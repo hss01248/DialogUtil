@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/bg_ios_roundcorner_progress"
+    android:layout_height="wrap_content">
+
+    <LinearLayout android:id="@+id/body"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+                  android:layout_gravity="center"
+        android:baselineAligned="false"
+                  android:elevation="10dp"
+                  android:background="@drawable/bg_ios_roundcorner_progress"
+        android:paddingStart="8dip"
+        android:paddingTop="14dip"
+        android:paddingEnd="8dip"
+
+        android:paddingBottom="14dip">
+<!-- style="?android:attr/progressBarStyle"-->
+        <ProgressBar
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:max="10000"
+                     android:indeterminateDrawable="@drawable/progressstyleshape"
+                     android:indeterminate="true"
+                     android:indeterminateDuration="1200"
+            android:layout_marginEnd="12dip"
+            android:layout_marginRight="12dip" />
+
+     <!--   <com.hss01248.roundprogressbar.RoundProgressBar
+            android:id="@+id/pb"
+            android:layout_centerInParent="true"
+            app:cpb_duration = "1200"
+            android:layout_marginLeft="5dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp" />-->
+
+
+
+        <TextView android:id="@+id/message"
+            android:text="djjdjdjd"
+                  android:textColor="#222222"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:layout_gravity="center_vertical" />
+    </LinearLayout>
+</FrameLayout>
