@@ -1,4 +1,4 @@
-package com.hss01248.dialog;
+package com.hss01248.dialog.interfaces;
 
 /**
  * Created by Administrator on 2016/7/24.

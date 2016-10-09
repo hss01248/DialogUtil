@@ -45,7 +45,7 @@ public class IosBottomSheetHolder extends SuperHolder {
             btnBottom.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    StyledDialog.dismiss(bean.dialog,bean.appCompatDialog);
+                    StyledDialog.dismiss(bean.dialog,bean.alertDialog);
                     bean.itemDialogListener.onBottomBtnClick();
 
                 }
@@ -91,7 +91,7 @@ public class IosBottomSheetHolder extends SuperHolder {
                 view.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        StyledDialog.dismiss(bean.dialog,bean.appCompatDialog);
+                        StyledDialog.dismiss(bean.dialog,bean.alertDialog);
                         bean.itemDialogListener.onItemClick(bean.words.get(position),position);
 
                     }

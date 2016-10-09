@@ -70,7 +70,7 @@ public class IosCenterItemHolder extends SuperHolder {
                 view.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        StyledDialog.dismiss(bean.appCompatDialog,bean.dialog);
+                        StyledDialog.dismiss(bean.alertDialog,bean.dialog);
                         bean.itemDialogListener.onItemClick(bean.words.get(position),position);
 
                     }

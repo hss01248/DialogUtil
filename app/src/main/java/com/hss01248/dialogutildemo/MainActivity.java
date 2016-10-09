@@ -8,8 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.hss01248.dialog.MyDialogListener;
-import com.hss01248.dialog.MyItemDialogListener;
+import com.hss01248.dialog.interfaces.MyDialogListener;
+import com.hss01248.dialog.interfaces.MyItemDialogListener;
 import com.hss01248.dialog.StyledDialog;
 
 import java.util.ArrayList;

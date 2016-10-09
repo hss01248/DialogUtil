@@ -13,6 +13,8 @@ import android.view.Window;
 import android.widget.TextView;
 
 import com.hss01248.dialog.config.ConfigBean;
+import com.hss01248.dialog.interfaces.MyDialogListener;
+import com.hss01248.dialog.interfaces.MyItemDialogListener;
 import com.hss01248.dialog.view.IosAlertDialogHolder;
 import com.hss01248.dialog.view.IosBottomSheetHolder;
 import com.hss01248.dialog.view.IosCenterItemHolder;
@@ -300,6 +302,8 @@ public class StyledDialog {
         Tool.setDialogStyle(context,dialog,height);
 
        Tool.showDialog(dialog);
+
+
         return dialog;
     }
 

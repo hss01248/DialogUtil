@@ -1,9 +1,7 @@
 
-# Deprecated
-此库不再维护,新地址请看:[ https://github.com/hss01248/DialogUtil](https://github.com/hss01248/DialogUtil)
 
 
-# DialogUtils
+# DialogUtil
 material风格(v7支持包中的)，ios风格，传入context构建，可在任意界面弹出，以及dialog样式的activity(todo)
 
 
@@ -32,21 +30,21 @@ loading对话框和ios风格的dialog传入context和activity均可弹出dialog.
 
 # 示例图
 
-  ![loading](snapshot\loading.jpg)
+  ![loading](loading.jpg)
 
 
 
- ![md_alert](snapshot\md_alert.jpg)
+ ![md_alert](md_alert.jpg)
 
 
 
 
 
- ![md_single_choose](snapshot\md_single_choose.jpg)
+ ![md_single_choose](md_single_choose.jpg)
 
 
 
- ![md_multi_choose](snapshot\md_multi_choose.jpg)
+ ![md_multi_choose](md_multi_choose.jpg)
 
 
 
@@ -56,27 +54,27 @@ ios风格(含按下效果)
 
 
 
- ![ios_alert](snapshot\ios_alert.jpg)
+ ![ios_alert](ios_alert.jpg)
 
 
 
 
 
- ![ios_alert_v](snapshot\ios_alert_v.jpg)
+ ![ios_alert_v](ios_alert_v.jpg)
 
 
 
- ![ios_input](snapshot\ios_input.jpg)
+ ![ios_input](ios_input.jpg)
 
 
 
 
 
- ![ios_centerlist](snapshot\ios_centerlist.jpg)
+ ![ios_centerlist](ios_centerlist.jpg)
 
 
 
- ![ios_bottom](snapshot\ios_bottom.jpg)
+ ![ios_bottom](ios_bottom.jpg)
 
 
 
@@ -125,7 +123,7 @@ StyledDialog.showProgressDialog(this,msg,true,true);
 gloablDialog=   StytledDialog.showMdLoading(getApplicationContext(),msg,true,true);
 
 //meterial design 样式的alertdialog:
- StytledDialog.showMdAlert(this, "title", msg, "sure", "cancle", "think about", true, 	true, new MyDialogListener() {
+ StyledDialog.showMdAlert(this, "title", msg, "sure", "cancle", "think about", true, 	true, new MyDialogListener() {
                     @Override
                     public void onFirst() {
                         showToast("onFirst");
@@ -146,7 +144,7 @@ gloablDialog=   StytledDialog.showMdLoading(getApplicationContext(),msg,true,tru
                 
  //ios样式的提示框:( StytledDialog.showIosAlertVertical(...)为按钮竖直方向上排列的对话框)
  
-StytledDialog.showIosAlert(this, "title", msg, "sure", "cancle", "think about", true, true, new MyDialogListener() {
+StyledDialog.showIosAlert(this, "title", msg, "sure", "cancle", "think about", true, true, new MyDialogListener() {
                     @Override
                     public void onFirst() {
                         showToast("onFirst");
@@ -172,7 +170,7 @@ StytledDialog.showIosAlert(this, "title", msg, "sure", "cancle", "think about", 
                 strings.add("2");
                 strings.add(msg);
 
-	StytledDialog.showBottomItemDialog(activity, strings, "cancle", true, true, new MyItemDialogListener() {
+	StyledDialog.showBottomItemDialog(activity, strings, "cancle", true, true, new MyItemDialogListener() {
                     @Override
                     public void onItemClick(String text,int position) {
                         showToast(text);
@@ -211,7 +209,7 @@ StytledDialog.showIosAlert(this, "title", msg, "sure", "cancle", "think about", 
                 strings.add("2");
                 strings.add(msg);
                 
-   StytledDialog.showIosSingleChoose(activity, strings, true, true, new MyItemDialogListener() {
+   StyledDialog.showIosSingleChoose(activity, strings, true, true, new MyItemDialogListener() {
                     @Override
                     public void onItemClick(String text,int position) {
                         showToast(text);
