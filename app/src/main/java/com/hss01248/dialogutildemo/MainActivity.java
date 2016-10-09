@@ -3,7 +3,6 @@ package com.hss01248.dialogutildemo;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -45,9 +44,9 @@ public class MainActivity extends Activity {
     Context context;
     @Bind(R.id.btn_ios_alert_vertical)
     Button btnIosAlertVertical;
-    @Bind(R.id.btn_ios_alert_2)
+    @Bind(R.id.btn_input)
     Button btnIosAlert2;
-    @Bind(R.id.btn_ios_alert_vertical_2)
+    @Bind(R.id.btn_multichoose)
     Button btnIosAlertVertical2;
 
 
@@ -81,7 +80,7 @@ android:pivotY="50%" />
         //ringView.setAnimation(animation);
         ringView.startAnimation(animation);*/
 
-        //showProgressDialog();
+        //showMdLoading();
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
        /* Intent intent = new Intent(this, CustomDialogActivity.class);
@@ -93,7 +92,7 @@ android:pivotY="50%" />
     protected void onResume() {
         super.onResume();
 
-        // MyDialogUtils.showProgressDialog(getApplicationContext(), "jindutiao", true, false);
+        // MyDialogUtils.showMdLoading(getApplicationContext(), "jindutiao", true, false);
 
 
         // showGlobleDialog(this);
@@ -201,30 +200,30 @@ android:pivotY="50%" />
     }
 
     @OnClick({R.id.btn_common_progress, R.id.btn_context_progress, R.id.btn_material_alert, R.id.btn_ios_alert,
-            R.id.btn_ios_alert_vertical, R.id.btn_ios_bottom_sheet, R.id.btn_ios_center_list,R.id.btn_ios_alert_2, R.id.btn_ios_alert_vertical_2})
+            R.id.btn_ios_alert_vertical, R.id.btn_ios_bottom_sheet, R.id.btn_ios_center_list,R.id.btn_input, R.id.btn_multichoose, R.id.btn_singlechoose})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_common_progress:
-                StyledDialog.showProgressDialog(this, msg, true, true);
+                StyledDialog.showMdLoading(this, msg, true, true);
 
                 break;
             case R.id.btn_context_progress:
-                gloablDialog = StyledDialog.showProgressDialog(getApplicationContext(), msg, true, true);
+                gloablDialog = StyledDialog.showMdLoading(getApplicationContext(), msg, true, true);
                 break;
             case R.id.btn_material_alert:
-                StyledDialog.showMdAlert(this, "title", msg, "sure", "cancle", "think about", true, true, new MyDialogListener() {
+                StyledDialog.showMdAlert(activity, "title", msg, "sure", "cancle", "think about", true, true, new MyDialogListener() {
                     @Override
-                    public void onFirst(DialogInterface dialog) {
+                    public void onFirst() {
                         showToast("onFirst");
                     }
 
                     @Override
-                    public void onSecond(DialogInterface dialog) {
+                    public void onSecond() {
                         showToast("onSecond");
                     }
 
                     @Override
-                    public void onThird(DialogInterface dialog) {
+                    public void onThird() {
                         showToast("onThird");
                     }
 
@@ -232,19 +231,19 @@ android:pivotY="50%" />
                 });
                 break;
             case R.id.btn_ios_alert:
-                StyledDialog.showIosAlert(this, "title", msg, "sure", "cancle", "think about", true, true, new MyDialogListener() {
+                StyledDialog.showIosAlert(activity, "title", msg, "sure", "cancle", "think about", true, true, new MyDialogListener() {
                     @Override
-                    public void onFirst(DialogInterface dialog) {
+                    public void onFirst() {
                         showToast("onFirst");
                     }
 
                     @Override
-                    public void onSecond(DialogInterface dialog) {
+                    public void onSecond() {
                         showToast("onSecond");
                     }
 
                     @Override
-                    public void onThird(DialogInterface dialog) {
+                    public void onThird() {
                         showToast("onThird");
                     }
 
@@ -254,17 +253,17 @@ android:pivotY="50%" />
             case R.id.btn_ios_alert_vertical:
                 StyledDialog.showIosAlertVertical(this, "title", msg, "sure", "cancle", "think about", true, true, new MyDialogListener() {
                     @Override
-                    public void onFirst(DialogInterface dialog) {
+                    public void onFirst() {
                         showToast("onFirst");
                     }
 
                     @Override
-                    public void onSecond(DialogInterface dialog) {
+                    public void onSecond() {
                         showToast("onSecond");
                     }
 
                     @Override
-                    public void onThird(DialogInterface dialog) {
+                    public void onThird() {
                         showToast("onThird");
                     }
 
@@ -295,7 +294,7 @@ android:pivotY="50%" />
 
                 StyledDialog.showBottomItemDialog(activity, strings, "cancle", true, true, new MyItemDialogListener() {
                     @Override
-                    public void onItemClick(String text, int position) {
+                    public void onItemClick(CharSequence text, int position) {
                         showToast(text);
                     }
 
@@ -331,7 +330,7 @@ android:pivotY="50%" />
 
                 StyledDialog.showIosSingleChoose(activity, strings, true, true, new MyItemDialogListener() {
                     @Override
-                    public void onItemClick(String text, int position) {
+                    public void onItemClick(CharSequence text, int position) {
                         showToast(text);
                     }
 
@@ -342,52 +341,78 @@ android:pivotY="50%" />
                 });
 
                 break;
-            case R.id.btn_ios_alert_2:
-                StyledDialog.showIosAlert(this, "title", msg, "sure", "", "", true, true, new MyDialogListener() {
-                    @Override
-                    public void onFirst(DialogInterface dialog) {
-                        showToast("onFirst");
-                    }
+            case R.id.btn_input:
+               StyledDialog.ShowNormalInput(activity, "登录", "请输入用户名", "请输入密码", "登录", "取消", true, new MyDialogListener() {
+                   @Override
+                   public void onFirst() {
 
-                    @Override
-                    public void onSecond(DialogInterface dialog) {
-                        showToast("onSecond");
-                    }
+                   }
 
-                    @Override
-                    public void onThird(DialogInterface dialog) {
-                       // showToast("onThird");
-                    }
+                   @Override
+                   public void onSecond() {
 
+                   }
 
-                });
+                   @Override
+                   public void onGetInput(CharSequence input1, CharSequence input2) {
+                       super.onGetInput(input1, input2);
+                       showToast("input1:"+ input1 +"--input2:"+input2);
+                   }
+               });
 
                 break;
-            case R.id.btn_ios_alert_vertical_2:
-                StyledDialog.showIosAlertVertical(this, "title", msg, "sure", "", "", true, true, new MyDialogListener() {
+            case R.id.btn_multichoose:
+                String[] words = new String[]{"12","78","45","89","88","00"};
+
+
+                boolean[] choseDefault = new boolean[]{false,false,false,false,true,false};
+
+                StyledDialog.showMdMultiChoose(activity, "xuanze", words, choseDefault,  "sure", "no", new MyDialogListener() {
                     @Override
-                    public void onFirst(DialogInterface dialog) {
-                        showToast("onFirst");
+                    public void onFirst() {
+
                     }
 
                     @Override
-                    public void onSecond(DialogInterface dialog) {
-                        showToast("onSecond");
+                    public void onSecond() {
+
                     }
-
-                    @Override
-                    public void onThird(DialogInterface dialog) {
-                        showToast("onThird");
-                    }
-
-
                 });
                 break;
+            case R.id.btn_singlechoose:
+                String[] words2 = new String[]{"12","78","45","89","88","00"};
+                StyledDialog.showMdSingleChoose(activity, "单选", 2, words2, true, true, "确定", "取消", new MyItemDialogListener() {
+                    @Override
+                    public void onItemClick(CharSequence text, int position) {
+                        //showToast(text + "--" + position);
+                    }
+                },
+                        new MyDialogListener() {
+                    @Override
+                    public void onFirst() {
+
+                    }
+
+                    @Override
+                    public void onSecond() {
+
+                    }
+
+                            @Override
+                            public void onGetChoose(int positions, CharSequence text) {
+
+                                showToast("chosen:"+text);
+                            }
+                        });
+
+                break;
+
+
         }
     }
 
 
-    public void showToast(String msg) {
+    public void showToast(CharSequence msg) {
         Toast.makeText(MainActivity.this, msg, Toast.LENGTH_SHORT).show();
 
     }
