@@ -4,13 +4,13 @@
 
 
 # DialogUtils
-material风格，ios风格，传入context构建，可在任意界面弹出，以及dialog样式的activity(todo)
+material风格(v7支持包中的)，ios风格，传入context构建，可在任意界面弹出，以及dialog样式的activity(todo)
 
 
 
 # 特性
 
-传入context和activity均可弹出dialog
+loading对话框和ios风格的dialog传入context和activity均可弹出dialog.
 
 样式包括常用的ios风格dialog和meterial design风格的dialog.
 
@@ -18,41 +18,69 @@ material风格，ios风格，传入context构建，可在任意界面弹出，�
 
 
 
+# 更新
+
+1.ios风格的按钮颜色改成ios的蓝色(图中蓝色不正是因为total control 截图后偏色)
+
+2.按钮添加按下的效果
+
+3.增加meterial design的单选和多选,增加ios风格的输入框
+
+
+
+
+
 # 示例图
 
- ![normaldialog](normaldialog.png)
+  ![loading](snapshot\loading.jpg)
+
+
+
+ ![md_alert](snapshot\md_alert.jpg)
 
 
 
 
 
- ![material](material.png)
+ ![md_single_choose](snapshot\md_single_choose.jpg)
 
 
 
- ![ios_alert](ios_alert.png)
-
-
-
-
-
- ![ios_vertical](ios_vertical.png)
+ ![md_multi_choose](snapshot\md_multi_choose.jpg)
 
 
 
 
 
- ![ios_alert_2btn](ios_alert_2btn.png)
+ios风格(含按下效果)
+
+
+
+ ![ios_alert](snapshot\ios_alert.jpg)
 
 
 
 
 
- ![ios_bottom_sheet](ios_bottom_sheet.png)
+ ![ios_alert_v](snapshot\ios_alert_v.jpg)
 
 
 
- ![ios_center_sheet](ios_center_sheet.png)
+ ![ios_input](snapshot\ios_input.jpg)
+
+
+
+
+
+ ![ios_centerlist](snapshot\ios_centerlist.jpg)
+
+
+
+ ![ios_bottom](snapshot\ios_bottom.jpg)
+
+
+
+
 
 
 
@@ -79,7 +107,7 @@ Add it in your root build.gradle at the end of repositories:
 
 ```
 	dependencies {
-	        compile 'com.github.glassLake:DialogUtils:1.0.2'
+	        compile 'com.github.hss01248:DialogUtil:1.0.0'
 	}
 ```
 
@@ -91,25 +119,25 @@ Add it in your root build.gradle at the end of repositories:
 
 ```
 //通过普通的activity 弹出进度条(转圈圈)
-StytledDialog.showProgressDialog(this,msg,true,true);
+StyledDialog.showProgressDialog(this,msg,true,true);
 
 //通过context弹出进度条
-gloablDialog=   StytledDialog.showProgressDialog(getApplicationContext(),msg,true,true);
+gloablDialog=   StytledDialog.showMdLoading(getApplicationContext(),msg,true,true);
 
 //meterial design 样式的alertdialog:
  StytledDialog.showMdAlert(this, "title", msg, "sure", "cancle", "think about", true, 	true, new MyDialogListener() {
                     @Override
-                    public void onFirst(DialogInterface dialog) {
+                    public void onFirst() {
                         showToast("onFirst");
                     }
 
                     @Override
-                    public void onSecond(DialogInterface dialog) {
+                    public void onSecond() {
                         showToast("onSecond");
                     }
 
                     @Override
-                    public void onThird(DialogInterface dialog) {
+                    public void onThird() {
                         showToast("onThird");
                     }
 
@@ -120,17 +148,17 @@ gloablDialog=   StytledDialog.showProgressDialog(getApplicationContext(),msg,tru
  
 StytledDialog.showIosAlert(this, "title", msg, "sure", "cancle", "think about", true, true, new MyDialogListener() {
                     @Override
-                    public void onFirst(DialogInterface dialog) {
+                    public void onFirst() {
                         showToast("onFirst");
                     }
 
                     @Override
-                    public void onSecond(DialogInterface dialog) {
+                    public void onSecond() {
                         showToast("onSecond");
                     }
 
                     @Override
-                    public void onThird(DialogInterface dialog) {
+                    public void onThird() {
                         showToast("onThird");
                     }
 
@@ -155,6 +183,25 @@ StytledDialog.showIosAlert(this, "title", msg, "sure", "cancle", "think about", 
                         showToast("onItemClick");
                     }
                 });}
+   //输入框:
+   
+     StyledDialog.ShowNormalInput(activity, "登录", "请输入用户名", "请输入密码", "登录", "取消", true, new MyDialogListener() {
+                   @Override
+                   public void onFirst() {
+
+                   }
+
+                   @Override
+                   public void onSecond() {
+
+                   }
+
+                   @Override
+                   public void onGetInput(CharSequence input1, CharSequence input2) {
+                       super.onGetInput(input1, input2);
+                       showToast("input1:"+ input1 +"--input2:"+input2);
+                   }
+               });
   
   
   //中间弹出的条目弹窗

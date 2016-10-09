@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="ios_text_blue">#007aff</color>
+    <color name="gap_line">#dddddd</color>
+
+    <color name="ios_btn_normal">#ffffff</color>
+    <color name="ios_btn_pressed">#eeeeee</color>
+
+
+</resources>

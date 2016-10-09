@@ -5,7 +5,7 @@ package com.hss01248.dialog;
  */
 public abstract class MyItemDialogListener {
 
-   public abstract void onItemClick(String text, int position);
+   public abstract void onItemClick(CharSequence text, int position);
 
    public void onBottomBtnClick(){}
 

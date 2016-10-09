@@ -18,8 +18,27 @@ android {
     }
 }
 
+repositories {
+    jcenter();
+    flatDir {
+        dirs 'libs'
+    }
+    mavenCentral();
+    maven {
+        url "https://jitpack.io"
+    };
+
+    maven {
+        url  "http://dl.bintray.com/lukaville/maven"
+    }
+
+
+
+}
+
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:24.2.1'
+    //compile 'com.jakewharton:butterknife:7.0.1'
 }

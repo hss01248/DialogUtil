@@ -47,11 +47,11 @@
 
     <Button
         android:id="@+id/btn_bottom"
-        android:background="@drawable/bg_ios_roundcorner_progress"
+        android:background="@drawable/selector_btn_press_all"
         android:layout_marginBottom="10dp"
         android:text="cancle"
         android:textSize="14sp"
-        android:textColor="#444444"
+        android:textColor="@color/ios_text_blue"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
