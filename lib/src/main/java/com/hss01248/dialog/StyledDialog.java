@@ -143,7 +143,7 @@ public class StyledDialog {
                                                  final MyItemDialogListener listener, final MyDialogListener btnListener){
 
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+               AlertDialog.Builder builder = new AlertDialog.Builder(context);
         singleChosen = defaultChosen;
 
         builder.setTitle(title)
@@ -287,7 +287,7 @@ public class StyledDialog {
         bean.text3 = thirdTxt;
         bean.outsideTouchable = outsideCancleable;
         bean.cancelable = cancleable;
-        bean.dialogListener = listener;
+        bean.listener = listener;
 
         bean.hint1 = hint1;
         bean.hint2 = hint2;
@@ -313,12 +313,12 @@ public class StyledDialog {
 
         ConfigBean bean =  new ConfigBean();
         bean.context = context;
-        bean.words = words;
+        bean.wordsIos = words;
 
 
         bean.outsideTouchable = outsideCancleable;
         bean.cancelable = cancleable;
-        bean.itemDialogListener = listener;
+        bean.itemListener = listener;
 
         IosCenterItemHolder holder = new IosCenterItemHolder(context);
         dialog.setContentView(holder.rootView);
@@ -347,16 +347,16 @@ public class StyledDialog {
 
 
 
-       // int measuredHeight =   assignBottomListDialogView(context,dialog,words,bottomTxt,listener);
+       // int measuredHeight =   assignBottomListDialogView(context,dialog,wordsIos,bottomTxt,listener);
 
         ConfigBean bean =  new ConfigBean();
         bean.context = context;
-        bean.words = words;
+        bean.wordsIos = words;
         bean.bottomTxt = bottomTxt;
 
         bean.outsideTouchable = outsideCancleable;
         bean.cancelable = cancleable;
-        bean.itemDialogListener = listener;
+        bean.itemListener = listener;
 
         IosBottomSheetHolder holder = new IosBottomSheetHolder(context);
         dialog.setContentView(holder.rootView);

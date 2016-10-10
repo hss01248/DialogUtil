@@ -37,12 +37,12 @@ public class IosCenterItemHolder extends SuperHolder {
         lv.setAdapter(new BaseAdapter() {
             @Override
             public int getCount() {
-                return bean.words.size();
+                return bean.wordsIos.size();
             }
 
             @Override
             public Object getItem(int position) {
-                return bean.words.get(position);
+                return bean.wordsIos.get(position);
             }
 
             @Override
@@ -66,12 +66,12 @@ public class IosCenterItemHolder extends SuperHolder {
                 }else {
                     view.setBackgroundResource(R.drawable.selector_btn_press_all);
                 }
-                view.setText(bean.words.get(position));
+                view.setText(bean.wordsIos.get(position));
                 view.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         StyledDialog.dismiss(bean.alertDialog,bean.dialog);
-                        bean.itemDialogListener.onItemClick(bean.words.get(position),position);
+                        bean.itemListener.onItemClick(bean.wordsIos.get(position),position);
 
                     }
                 });

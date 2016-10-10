@@ -6,8 +6,8 @@
               android:layout_height="match_parent">
     <TextView
         android:id="@+id/tv_title"
-        android:textSize="17sp"
-        android:textColor="#111111"
+        android:textSize="@dimen/title_txt_size"
+        android:textColor="@color/text_title_11"
         android:gravity="center"
         android:text="支持自定义边框圆角、背景透明度、字体大小与色值等。 列表选择框可以接收List与Arrays的数据源，详细见demo"
         android:paddingTop="12dp"
@@ -33,8 +33,8 @@
             android:layout_height="wrap_content">
             <TextView
                 android:id="@+id/tv_msg"
-                android:textSize="14sp"
-                android:textColor="#333333"
+                android:textSize="@dimen/msg_txt_size"
+                android:textColor="@color/text_msg_33"
                 android:gravity="center"
                 android:text="支持"
                 android:paddingTop="5dp"
@@ -48,8 +48,8 @@
             <EditText
                 android:layout_marginTop="5dp"
                 android:id="@+id/et_1"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
                 android:maxLines="1"
                 android:cursorVisible="true"
                 android:paddingLeft="5dp"
@@ -58,22 +58,23 @@
                 android:background="@drawable/edittext_nomal"
                 android:layout_marginBottom="15dp"
                 android:layout_width="match_parent"
-                android:textSize="13sp"
-
+                android:textSize="@dimen/input_txt_size"
+                android:textColor="@color/text_input_44"
                 android:layout_height="35dp" />
 
             <EditText
                 android:id="@+id/et_2"
                 android:maxLines="1"
-                android:textSize="13sp"
+                android:textSize="@dimen/input_txt_size"
                 android:paddingLeft="5dp"
                 android:paddingRight="5dp"
                 android:cursorVisible="true"
+                android:textColor="@color/text_input_44"
                 android:textCursorDrawable="@drawable/et_cursor"
                 android:background="@drawable/edittext_nomal"
                 android:layout_marginBottom="15dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="35dp" />
 
@@ -86,7 +87,7 @@
     <View
         android:id="@+id/line"
         android:layout_width="match_parent"
-        android:background="@color/gap_line"
+        android:background="@color/line_dd"
         android:layout_height="1px"/>
 
     <LinearLayout
@@ -101,17 +102,16 @@
             android:layout_gravity="center"
             android:padding="5dp"
             android:gravity="center"
-            android:textSize="13sp"
-            android:textColor="@color/ios_text_blue"
+            android:textSize="@dimen/btn_txt_size"
+            android:textColor="@color/ios_btntext_blue"
             android:background="@drawable/selector_btn_press_left_bottom"
             android:layout_width="0dp"
             android:layout_weight="1"
-
             android:layout_height="wrap_content"/>
 
             <View
                 android:id="@+id/line_btn2"
-                android:background="@color/gap_line"
+                android:background="@color/line_dd"
                 android:layout_width="1px"
                 android:layout_height="match_parent"/>
             <Button
@@ -119,8 +119,8 @@
                 android:text="2"
                 android:layout_gravity="center"
                 android:padding="5dp"
-                android:textSize="13sp"
-                android:textColor="@color/ios_text_blue"
+                android:textSize="@dimen/btn_txt_size"
+                android:textColor="@color/ios_btntext_blue"
                 android:background="@drawable/selector_btn_press_no_corner"
                 android:layout_width="0dp"
                 android:gravity="center"
@@ -130,7 +130,7 @@
 
             <View
                 android:id="@+id/line_btn3"
-                android:background="@color/gap_line"
+                android:background="@color/line_dd"
                 android:layout_width="1px"
                 android:layout_height="match_parent"/>
             <Button
@@ -139,8 +139,8 @@
                 android:id="@+id/btn_3"
                 android:text="3"
                 android:gravity="center"
-                android:textSize="13sp"
-                android:textColor="@color/ios_text_blue"
+                android:textSize="@dimen/btn_txt_size"
+                android:textColor="@color/ios_btntext_blue"
                 android:background="@drawable/selector_btn_press_right_bottom"
                 android:layout_width="0dp"
                 android:layout_weight="1"
@@ -163,8 +163,8 @@
             android:layout_gravity="center"
             android:padding="5dp"
             android:gravity="center"
-            android:textSize="13sp"
-            android:textColor="@color/ios_text_blue"
+            android:textSize="@dimen/btn_txt_size"
+            android:textColor="@color/ios_btntext_blue"
             android:background="@drawable/selector_btn_press_no_corner"
 
             android:layout_width="match_parent"
@@ -173,7 +173,7 @@
 
         <View
             android:id="@+id/line_btn2_vertical"
-            android:background="@color/gap_line"
+            android:background="@color/line_dd"
             android:layout_width="match_parent"
             android:layout_height="1px"/>
         <Button
@@ -181,8 +181,8 @@
             android:text="2"
             android:layout_gravity="center"
             android:padding="5dp"
-            android:textSize="13sp"
-            android:textColor="@color/ios_text_blue"
+            android:textSize="@dimen/btn_txt_size"
+            android:textColor="@color/ios_btntext_blue"
             android:background="@drawable/selector_btn_press_no_corner"
 
             android:layout_width="match_parent"
@@ -192,7 +192,7 @@
 
         <View
             android:id="@+id/line_btn3_vertical"
-            android:background="@color/gap_line"
+            android:background="@color/line_dd"
             android:layout_width="match_parent"
             android:layout_height="1px"/>
         <Button
@@ -201,8 +201,8 @@
             android:id="@+id/btn_3_vertical"
             android:text="3"
             android:gravity="center"
-            android:textSize="13sp"
-            android:textColor="@color/ios_text_blue"
+            android:textSize="@dimen/btn_txt_size"
+            android:textColor="@color/ios_btntext_blue"
             android:background="@drawable/selector_btn_press_all_bottom"
 
             android:layout_width="match_parent"

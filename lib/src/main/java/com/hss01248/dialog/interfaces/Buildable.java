@@ -1,59 +1,269 @@
 package com.hss01248.dialog.interfaces;
 
-import android.app.Activity;
-import android.content.Context;
-import android.support.annotation.ColorInt;
+import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
+import android.view.Gravity;
+import android.view.View;
+import android.view.Window;
+import android.widget.TextView;
 
+import com.hss01248.dialog.R;
+import com.hss01248.dialog.StyledDialog;
+import com.hss01248.dialog.Tool;
 import com.hss01248.dialog.config.ConfigBean;
-
-import java.util.List;
-import java.util.Map;
+import com.hss01248.dialog.config.DefaultConfig;
+import com.hss01248.dialog.view.IosAlertDialogHolder;
+import com.hss01248.dialog.view.IosBottomSheetHolder;
+import com.hss01248.dialog.view.IosCenterItemHolder;
 
 /**
  * Created by Administrator on 2016/10/9.
  */
-public interface Buildable {
+public  class Buildable {
 
-    ConfigBean buildMdLoading(Context context, String msg, boolean cancleable, boolean outsideTouchable);
-    
-    ConfigBean buildMdAlert(Activity activity, String title, String msg,
-                           String firstTxt, String secondTxt, String thirdTxt,
-                           final MyDialogListener listener);
+    protected static int singleChosen;
+   protected  ConfigBean buildByType(ConfigBean bean){
+       Tool.fixContext(bean);
 
-    ConfigBean buildMdSingleChoose(Activity context, String title, final int defaultChosen, final CharSequence[] words,
-                                   CharSequence positiveTxt, CharSequence negtiveTxt,
-                                   final MyItemDialogListener listener, final MyDialogListener btnListener);
+       switch (bean.type){
+           case DefaultConfig.TYPE_MD_LOADING:
+               Tool.newCustomDialog(bean);
+               buildMdLoading(bean);
+               break;
+           case DefaultConfig.TYPE_MD_ALERT:
+               buildMdAlert(bean);
+               break;
+           case DefaultConfig.TYPE_MD_SINGLE_CHOOSE:
+               buildMdSingleChoose(bean);
+               break;
+           case DefaultConfig.TYPE_MD_MULTI_CHOOSE:
+               buildMdMultiChoose(bean);
+               break;
+           case DefaultConfig.TYPE_IOS_HORIZONTAL:
+               Tool.newCustomDialog(bean);
+               buildIosAlert(bean);
+               break;
+           case DefaultConfig.TYPE_IOS_VERTICAL:
+               Tool.newCustomDialog(bean);
+               buildIosAlertVertical(bean);
+               break;
+           case DefaultConfig.TYPE_IOS_BOTTOM:
+               Tool.newCustomDialog(bean);
+               buildBottomItemDialog(bean);
+               break;
+           case DefaultConfig.TYPE_IOS_INPUT:
+               Tool.newCustomDialog(bean);
+               buildIosSingleChoose(bean);
+               break;
+           case DefaultConfig.TYPE_IOS_CENTER_LIST:
+               Tool.newCustomDialog(bean);
+               buildNormalInput(bean);
+               break;
+          default:
+              break;
 
-    ConfigBean buildMdMultiChoose(Activity context, String title, final CharSequence[] words, final boolean[] checkedItems,
-                                  CharSequence positiveTxt, CharSequence negtiveTxt,
-                                  final MyDialogListener btnListener);
 
-    ConfigBean buildIosAlert(Context activity, String title, String msg,
-                        String firstTxt, String secondTxt, String thirdTxt,
-                        final MyDialogListener listener);
+       }
+       
+       Tool.setDialogStyle(bean);
 
-    ConfigBean buildIosAlertVertical(Context activity, String title, String msg,
-                                String firstTxt, String secondTxt, String thirdTxt,
-                                final MyDialogListener listener);
-
-    ConfigBean buildIosSingleChoose(Context context, List<? extends CharSequence> words,
-                               final MyItemDialogListener listener);
-
-    ConfigBean buildBottomItemDialog(Context context,
-                                List<? extends CharSequence> words, String bottomTxt,
-                                final MyItemDialogListener listener);
-
-    ConfigBean buildInputBox(Context context, boolean isButtonVerticle, String title, String msg,String hint1,String hint2,
-                        String firstTxt, String secondTxt, String thirdTxt,
-                        final MyDialogListener listener);
-
-    ConfigBean buildNormalInput(Context context, String title, String hint1,String hint2,
-                           String firstTxt, String secondTxt,final MyDialogListener listener);
+       Tool.setCancelable(bean);
+       return bean;
+   }
 
 
-    ConfigBean setBtnColor(@ColorInt int btn1Color,@ColorInt int btn2Color,@ColorInt int btn3Color);
 
-    ConfigBean setListItemColor(@ColorInt int lvItemTxtColor,Map<Integer,Integer> colorOfPosition);
+    protected  ConfigBean buildMdLoading(ConfigBean bean){
+        View root = View.inflate(bean.context, R.layout.progressview_wrapconent,null);
+        TextView tvMsg = (TextView) root.findViewById(R.id.message);
+        tvMsg.setText(bean.msg);
+        bean.dialog.setContentView(root);
+        return bean;
+    }
+
+    protected  ConfigBean buildMdAlert(final ConfigBean bean){
+        AlertDialog.Builder builder = new AlertDialog.Builder(bean.context);
+        builder.setTitle(bean.title)
+                .setMessage(bean.msg)
+                .setPositiveButton(bean.text1, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        bean.listener.onFirst();
+                        dialog.dismiss();
+                    }
+                })
+                .setNegativeButton(bean.text2, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        bean.listener.onSecond();
+                        dialog.dismiss();
+                    }
+                }).setNeutralButton(bean.text3, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                bean.listener.onThird();
+                dialog.dismiss();
+            }
+        });
+        AlertDialog dialog = builder.create();
+        
+        dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            @Override
+            public void onCancel(DialogInterface dialog) {
+                bean.listener.onCancle();
+            }
+        });
+        bean.alertDialog = dialog;
+        return bean;
+    }
+
+    protected  ConfigBean buildMdSingleChoose(final ConfigBean bean){
+        AlertDialog.Builder builder = new AlertDialog.Builder(bean.context);
+        singleChosen = bean.defaultChosen;
+        builder.setTitle(bean.title)
+                .setPositiveButton(bean.text1, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        if (bean.listener != null){
+                            StyledDialog.dismiss(dialogInterface);
+                            bean.listener.onFirst();
+                            bean.listener.onGetChoose(singleChosen,bean.wordsMd[singleChosen]);
+                        }
+                    }
+                })
+                .setNegativeButton(bean.text2, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        if (bean.listener != null){
+                            StyledDialog.dismiss(dialogInterface);
+                            bean.listener.onSecond();
+                        }
+                    }
+                })
+                .setSingleChoiceItems( bean.wordsMd, bean.defaultChosen, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        singleChosen = i;
+                        if (bean.itemListener != null){
+                            bean.itemListener.onItemClick(bean.wordsMd[i],i);
+                        }
+
+                        if (bean.listener == null){
+                            StyledDialog.dismiss(dialogInterface);
+                        }
+
+                    }
+                });
+
+        AlertDialog dialog = builder.create();
+        bean.alertDialog = dialog;
+        return bean;
+    }
+
+    protected  ConfigBean buildMdMultiChoose(final ConfigBean bean){
+        AlertDialog.Builder builder = new AlertDialog.Builder(bean.context);
+        builder.setTitle(bean.title)
+                .setCancelable(true)
+                .setPositiveButton(bean.text1, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        if (bean.listener != null){
+                            StyledDialog.dismiss(dialogInterface);
+                            bean.listener.onFirst();
+                            bean.listener.onGetChoose(bean.checkedItems);
+                        }
+                    }
+                })
+                .setNegativeButton(bean.text2, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        if (bean.listener != null){
+                            StyledDialog.dismiss(dialogInterface);
+                            bean.listener.onSecond();
+                        }
+                    }
+                })
+                .setMultiChoiceItems(bean.wordsMd, bean.checkedItems, new DialogInterface.OnMultiChoiceClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i, boolean b) {
+
+                    }
+                })
+        ;
+
+        AlertDialog dialog = builder.create();
+        bean.alertDialog = dialog;
+        return bean;
+    }
+
+    protected  ConfigBean buildIosAlert(ConfigBean bean){
+        bean.isVertical = false;
+        bean.hint1 = "";
+        bean.hint2 = "";
+        buildIosCommon(bean);
+        return bean;
+    }
+
+    protected  ConfigBean buildIosAlertVertical(ConfigBean bean){
+        bean.isVertical = true;
+        bean.hint1 = "";
+        bean.hint2 = "";
+        buildIosCommon(bean);
+        return bean;
+    }
+
+    protected  ConfigBean buildIosSingleChoose(ConfigBean bean){
+        IosCenterItemHolder holder = new IosCenterItemHolder(bean.context);
+        bean.dialog.setContentView(holder.rootView);
+        holder.assingDatasAndEvents(bean.context,bean);
+
+        bean.viewHeight = Tool.mesureHeight(holder.rootView,holder.lv);
+
+        Window window = bean.dialog.getWindow();
+        window.setGravity(Gravity.CENTER);
+        return bean;
+    }
+
+    protected  ConfigBean buildBottomItemDialog(ConfigBean bean){
+        IosBottomSheetHolder holder = new IosBottomSheetHolder(bean.context);
+        bean.dialog.setContentView(holder.rootView);
+
+        holder.assingDatasAndEvents(bean.context,bean);
+
+        bean.viewHeight = Tool.mesureHeight(holder.rootView,holder.lv);
+
+        Window window = bean.dialog.getWindow();
+        window.setGravity(Gravity.BOTTOM);
+        window.setWindowAnimations(R.style.mystyle);
+        return bean;
+    }
+
+
+    protected  ConfigBean buildNormalInput(ConfigBean bean){
+        buildIosCommon(bean);
+        return bean;
+    }
+
+    private ConfigBean buildIosCommon(ConfigBean bean){
+
+
+
+        IosAlertDialogHolder holder = new IosAlertDialogHolder(bean.context);
+        bean.dialog.setContentView(holder.rootView);
+        holder.assingDatasAndEvents(bean.context,bean);
+
+        int height = Tool.mesureHeight(holder.rootView,holder.tvMsg,holder.et1,holder.et2);
+        bean.viewHeight = height;
+
+
+        return bean;
+
+    }
+
+
+
+
+
 
 
     

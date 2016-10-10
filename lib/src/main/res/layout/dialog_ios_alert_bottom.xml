@@ -50,8 +50,8 @@
         android:background="@drawable/selector_btn_press_all"
         android:layout_marginBottom="10dp"
         android:text="cancle"
-        android:textSize="14sp"
-        android:textColor="@color/ios_text_blue"
+        android:textSize="@dimen/btn_txt_size"
+        android:textColor="@color/ios_btntext_blue"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 

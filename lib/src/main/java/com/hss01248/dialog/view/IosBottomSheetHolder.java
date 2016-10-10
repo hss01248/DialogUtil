@@ -46,7 +46,7 @@ public class IosBottomSheetHolder extends SuperHolder {
                 @Override
                 public void onClick(View v) {
                     StyledDialog.dismiss(bean.dialog,bean.alertDialog);
-                    bean.itemDialogListener.onBottomBtnClick();
+                    bean.itemListener.onBottomBtnClick();
 
                 }
             });
@@ -56,7 +56,7 @@ public class IosBottomSheetHolder extends SuperHolder {
         BaseAdapter adapter = new BaseAdapter() {
             @Override
             public int getCount() {
-                return bean.words.size();
+                return bean.wordsIos.size();
             }
 
             @Override
@@ -87,12 +87,12 @@ public class IosBottomSheetHolder extends SuperHolder {
                     view.setBackgroundResource(R.drawable.selector_btn_press_all);
                 }
 
-                view.setText(bean.words.get(position));
+                view.setText(bean.wordsIos.get(position));
                 view.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         StyledDialog.dismiss(bean.dialog,bean.alertDialog);
-                        bean.itemDialogListener.onItemClick(bean.words.get(position),position);
+                        bean.itemListener.onItemClick(bean.wordsIos.get(position),position);
 
                     }
                 });

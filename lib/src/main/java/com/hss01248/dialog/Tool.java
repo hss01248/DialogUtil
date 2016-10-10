@@ -50,6 +50,45 @@ public class Tool {
 
     }
 
+    public static ConfigBean fixContext(ConfigBean bean){
+        if (bean.context == null){
+            bean.context = StyledDialog.context;
+        }else if (bean.context instanceof Activity){//todo keycode
+            Activity activity = (Activity) bean.context;
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+                if (activity.isDestroyed()){
+                    bean.context = StyledDialog.context;
+                }
+            }
+        }
+        return bean;
+    }
+
+    public static ConfigBean newCustomDialog(ConfigBean bean){
+        Dialog dialog = new Dialog(bean.context);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        bean.dialog = dialog;
+        return bean;
+    }
+
+    public static ConfigBean setCancelable(ConfigBean bean){
+
+        if (bean.alertDialog != null){
+            bean.alertDialog.setCancelable(bean.cancelable);
+            bean.alertDialog.setCanceledOnTouchOutside(bean.outsideTouchable);
+        }else if (bean.dialog != null){
+            bean.dialog.setCancelable(bean.cancelable);
+            bean.dialog.setCanceledOnTouchOutside(bean.outsideTouchable);
+        }
+
+
+        return bean;
+    }
+
+
+
+
+
     public static Dialog buildDialog(Context context, boolean cancleable, boolean outsideTouchable) {
 
 
@@ -67,6 +106,10 @@ public class Tool {
         dialog.setCancelable(cancleable);
         dialog.setCanceledOnTouchOutside(outsideTouchable);
         return dialog;
+    }
+
+    public static void setDialogStyle(ConfigBean bean) {
+        setDialogStyle(bean.context,bean.dialog,bean.viewHeight);
     }
 
     public static void setDialogStyle(Context activity, Dialog dialog, int measuredHeight ) {
@@ -183,5 +226,8 @@ public class Tool {
 
         return height + heightExtra;
     }
+
+
+
 
 }

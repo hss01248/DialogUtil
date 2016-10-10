@@ -122,12 +122,12 @@ android:pivotY="50%" />
 
             }
         });*/
-       /* List<String> words = new ArrayList<>();
-        words.add("相册");
-        words.add("zhaoxiaoji");
-        words.add("可以");
+       /* List<String> wordsIos = new ArrayList<>();
+        wordsIos.add("相册");
+        wordsIos.add("zhaoxiaoji");
+        wordsIos.add("可以");
 
-        MyDialogUtils.showBottomItemDialog(this,words, "", true, true, new MyItemDialogListener() {
+        MyDialogUtils.showBottomItemDialog(this,wordsIos, "", true, true, new MyItemDialogListener() {
             @Override
             public void onItemClick(int position) {
 

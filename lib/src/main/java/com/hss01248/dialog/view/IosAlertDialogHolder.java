@@ -165,9 +165,9 @@ public class IosAlertDialogHolder extends SuperHolder {
                 @Override
                 public void onClick(View view) {
                     StyledDialog.dismiss(bean.dialog,bean.alertDialog);
-                    bean.dialogListener.onFirst();
+                    bean.listener.onFirst();
 
-                    bean.dialogListener.onGetInput(et1.getText().toString().trim(),et2.getText().toString().trim());
+                    bean.listener.onGetInput(et1.getText().toString().trim(),et2.getText().toString().trim());
 
 
 
@@ -178,7 +178,7 @@ public class IosAlertDialogHolder extends SuperHolder {
                 @Override
                 public void onClick(View view) {
                     StyledDialog.dismiss(bean.dialog,bean.alertDialog);
-                    bean.dialogListener.onSecond();
+                    bean.listener.onSecond();
                 }
             });
 
@@ -186,7 +186,7 @@ public class IosAlertDialogHolder extends SuperHolder {
                 @Override
                 public void onClick(View view) {
                     StyledDialog.dismiss(bean.dialog,bean.alertDialog);
-                    bean.dialogListener.onThird();
+                    bean.listener.onThird();
                 }
             });
 
@@ -196,8 +196,8 @@ public class IosAlertDialogHolder extends SuperHolder {
                 @Override
                 public void onClick(View view) {
                     StyledDialog.dismiss(bean.dialog,bean.alertDialog);
-                    bean.dialogListener.onFirst();
-                    bean.dialogListener.onGetInput(et1.getText().toString().trim(),et2.getText().toString().trim());
+                    bean.listener.onFirst();
+                    bean.listener.onGetInput(et1.getText().toString().trim(),et2.getText().toString().trim());
                 }
             });
 
@@ -205,7 +205,7 @@ public class IosAlertDialogHolder extends SuperHolder {
                 @Override
                 public void onClick(View view) {
                     StyledDialog.dismiss(bean.dialog,bean.alertDialog);
-                    bean.dialogListener.onSecond();
+                    bean.listener.onSecond();
                 }
             });
 
@@ -213,7 +213,7 @@ public class IosAlertDialogHolder extends SuperHolder {
                 @Override
                 public void onClick(View view) {
                     StyledDialog.dismiss(bean.dialog,bean.alertDialog);
-                    bean.dialogListener.onThird();
+                    bean.listener.onThird();
                 }
             });
 
