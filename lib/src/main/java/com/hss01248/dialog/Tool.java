@@ -1,12 +1,12 @@
 package com.hss01248.dialog;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -32,19 +32,30 @@ public class Tool {
         }
     }
 
-    public static void setMdBtnColor(ConfigBean bean){
+    public static void setMdBtnStytle(ConfigBean bean){
         Button btnPositive =
-                bean.alertDialog.getButton(android.app.AlertDialog.BUTTON_POSITIVE);
+                bean.alertDialog.getButton(AlertDialog.BUTTON_POSITIVE);
         Button btnNegative =
-                bean.alertDialog.getButton(android.app.AlertDialog.BUTTON_NEGATIVE);
+                bean.alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE);
         Button btnNatural =
                 bean.alertDialog.getButton(AlertDialog.BUTTON_NEUTRAL);
-        if (bean.btn1Color != 0)
-            btnPositive.setTextColor(bean.btn1Color);
-        if (bean.btn2Color != 0)
-            btnNegative.setTextColor(bean.btn2Color);
-        if (bean.btn3Color != 0)
-            btnNatural.setTextColor(bean.btn3Color);
+
+        //todo null
+
+        if (btnPositive != null && btnNegative != null){
+            btnPositive.setTextSize(bean.btnTxtSize);
+            btnNegative.setTextSize(bean.btnTxtSize);
+            btnNatural.setTextSize(bean.btnTxtSize);
+
+            if (bean.btn1Color != 0)
+                btnPositive.setTextColor(getColor(null,bean.btn1Color));
+            if (bean.btn2Color != 0)
+                btnNegative.setTextColor(getColor(null,bean.btn2Color));
+            if (bean.btn3Color != 0)
+                btnNatural.setTextColor(getColor(null,bean.btn3Color));
+        }
+
+
 
 
 
@@ -109,10 +120,18 @@ public class Tool {
     }
 
     public static void setDialogStyle(ConfigBean bean) {
-        setDialogStyle(bean.context,bean.dialog,bean.viewHeight);
+        if (bean.alertDialog!= null){
+            setMdBtnStytle(bean);
+        }else {
+            setDialogStyle(bean.context,bean.dialog,bean.viewHeight);
+        }
+
     }
 
     public static void setDialogStyle(Context activity, Dialog dialog, int measuredHeight ) {
+        if (dialog == null){
+            return;
+        }
         Window window = dialog.getWindow();
 
         //window.setWindowAnimations(R.style.dialog_center);
@@ -225,6 +244,14 @@ public class Tool {
         }
 
         return height + heightExtra;
+    }
+
+    public static int getColor(Context context,int colorRes){
+        if (context ==null){
+            context = StyledDialog.context;
+        }
+       return context.getResources().getColor(colorRes);
+
     }
 
 

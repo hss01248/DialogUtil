@@ -204,14 +204,14 @@ android:pivotY="50%" />
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_common_progress:
-                StyledDialog.showMdLoading(this, msg, true, true);
+                StyledDialog.buildMdLoading(this, msg, true, true).show();
 
                 break;
             case R.id.btn_context_progress:
-                gloablDialog = StyledDialog.showMdLoading(getApplicationContext(), msg, true, true);
+                gloablDialog = StyledDialog.buildMdLoading(getApplicationContext(), msg, true, true).show();
                 break;
             case R.id.btn_material_alert:
-                StyledDialog.showMdAlert(activity, "title", msg, "sure", "cancle", "think about", true, true, new MyDialogListener() {
+                StyledDialog.buildMdAlert(activity, "title", msg,  new MyDialogListener() {
                     @Override
                     public void onFirst() {
                         showToast("onFirst");
@@ -228,10 +228,10 @@ android:pivotY="50%" />
                     }
 
 
-                });
+                }).show();
                 break;
             case R.id.btn_ios_alert:
-                StyledDialog.showIosAlert(activity, "title", msg, "sure", "cancle", "think about", true, true, new MyDialogListener() {
+                StyledDialog.buildIosAlert(activity, "title", msg,  new MyDialogListener() {
                     @Override
                     public void onFirst() {
                         showToast("onFirst");
@@ -248,10 +248,10 @@ android:pivotY="50%" />
                     }
 
 
-                });
+                }).show();
                 break;
             case R.id.btn_ios_alert_vertical:
-                StyledDialog.showIosAlertVertical(this, "title", msg, "sure", "cancle", "think about", true, true, new MyDialogListener() {
+                StyledDialog.buildIosAlertVertical(this, "title", msg,  new MyDialogListener() {
                     @Override
                     public void onFirst() {
                         showToast("onFirst");
@@ -268,7 +268,7 @@ android:pivotY="50%" />
                     }
 
 
-                });
+                }).show();
                 break;
             case R.id.btn_ios_bottom_sheet: {
                 final List<String> strings = new ArrayList<>();
@@ -292,7 +292,7 @@ android:pivotY="50%" />
                 strings.add("13");
                 strings.add(msg);*/
 
-                StyledDialog.showBottomItemDialog(activity, strings, "cancle", true, true, new MyItemDialogListener() {
+                StyledDialog.buildBottomItemDialog(activity, strings, "cancle",  new MyItemDialogListener() {
                     @Override
                     public void onItemClick(CharSequence text, int position) {
                         showToast(text);
@@ -302,7 +302,7 @@ android:pivotY="50%" />
                     public void onBottomBtnClick() {
                         showToast("onItemClick");
                     }
-                });
+                }).show();
             }
             break;
             case R.id.btn_ios_center_list:
@@ -328,7 +328,7 @@ android:pivotY="50%" />
                 strings.add("13");
                 strings.add(msg);*/
 
-                StyledDialog.showIosSingleChoose(activity, strings, true, true, new MyItemDialogListener() {
+                StyledDialog.buildIosSingleChoose(activity, strings, new MyItemDialogListener() {
                     @Override
                     public void onItemClick(CharSequence text, int position) {
                         showToast(text);
@@ -338,11 +338,11 @@ android:pivotY="50%" />
                     public void onBottomBtnClick() {
                         showToast("onItemClick");
                     }
-                });
+                }).show();
 
                 break;
             case R.id.btn_input:
-               StyledDialog.ShowNormalInput(activity, "登录", "请输入用户名", "请输入密码", "登录", "取消", true, new MyDialogListener() {
+               StyledDialog.buildNormalInput(activity, "登录", "请输入用户名", "请输入密码", "登录", "取消",  new MyDialogListener() {
                    @Override
                    public void onFirst() {
 
@@ -358,7 +358,7 @@ android:pivotY="50%" />
                        super.onGetInput(input1, input2);
                        showToast("input1:"+ input1 +"--input2:"+input2);
                    }
-               });
+               }).show();
 
                 break;
             case R.id.btn_multichoose:
@@ -367,7 +367,7 @@ android:pivotY="50%" />
 
                 boolean[] choseDefault = new boolean[]{false,false,false,false,true,false};
 
-                StyledDialog.showMdMultiChoose(activity, "xuanze", words, choseDefault,  "sure", "no", new MyDialogListener() {
+                StyledDialog.buildMdMultiChoose(activity, "xuanze", words, choseDefault,  new MyDialogListener() {
                     @Override
                     public void onFirst() {
 
@@ -377,33 +377,16 @@ android:pivotY="50%" />
                     public void onSecond() {
 
                     }
-                });
+                }).show();
                 break;
             case R.id.btn_singlechoose:
                 String[] words2 = new String[]{"12","78","45","89","88","00"};
-                StyledDialog.showMdSingleChoose(activity, "单选", 2, words2, true, true, "确定", "取消", new MyItemDialogListener() {
+                StyledDialog.buildMdSingleChoose(activity, "单选", 2, words2,  new MyItemDialogListener() {
                     @Override
                     public void onItemClick(CharSequence text, int position) {
-                        //showToast(text + "--" + position);
+                        showToast(text + "--" + position);
                     }
-                },
-                        new MyDialogListener() {
-                    @Override
-                    public void onFirst() {
-
-                    }
-
-                    @Override
-                    public void onSecond() {
-
-                    }
-
-                            @Override
-                            public void onGetChoose(int positions, CharSequence text) {
-
-                                showToast("chosen:"+text);
-                            }
-                        });
+                }).show();
 
                 break;
 

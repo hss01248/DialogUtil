@@ -30,9 +30,11 @@ http://blog.csdn.net/qibin0506/article/details/51002241
 http://www.cnblogs.com/warnier-zhang/p/4904296.html
 http://www.jianshu.com/p/21bb14e3be94/comments/1570995  坑
 
-2. ios风格和md风格的样式值设置到holder中
+2.ios风格和md风格的样式值设置到holder中
 
 3.最外层api调整
+
+4.windows风格的dialog
 
 
 
