@@ -4,15 +4,20 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.hss01248.dialog.StyledDialog;
+import com.hss01248.dialog.adapter.SuperRcvAdapter;
+import com.hss01248.dialog.adapter.SuperRcvHolder;
 import com.hss01248.dialog.interfaces.MyDialogListener;
 import com.hss01248.dialog.interfaces.MyItemDialogListener;
-import com.hss01248.dialog.StyledDialog;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import butterknife.Bind;
@@ -392,7 +397,44 @@ android:pivotY="50%" />
                 break;
             case R.id.btn_md_bs:
                 String[] words3 = new String[]{"12","78","45","89","88","00"};
-               // final BottomSheetDialog dialog = new BottomSheetDialog(this);
+                List<String> datas = Arrays.asList(words3);
+
+              // final BottomSheetDialog dialog = new BottomSheetDialog(this);
+                RecyclerView recyclerView = new RecyclerView(this);
+                recyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
+                SuperRcvAdapter adapter = new SuperRcvAdapter(this) {
+                    @Override
+                    protected SuperRcvHolder generateCoustomViewHolder(int viewType) {
+
+                        return new SuperRcvHolder<String>(inflate(R.layout.item_text)) {
+
+                            Button mButton;
+                            @Override
+                            public void assignDatasAndEvents(Activity context, final String data) {
+                                if (mButton==null){
+                                    mButton = (Button) itemView.findViewById(R.id.btnee);
+                                }
+                                mButton.setText(data);
+                                mButton.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        showToast(data);
+                                    }
+                                });
+                            }
+                        };
+                    }
+                };
+                recyclerView.setAdapter(adapter);
+                adapter.addAll(datas);
+                adapter.addAll(datas);
+                adapter.addAll(datas);
+
+               StyledDialog.buildCustomBottomSheet(this,recyclerView).show();//不好建立回调
+
+
+
+
 
                 break;
 

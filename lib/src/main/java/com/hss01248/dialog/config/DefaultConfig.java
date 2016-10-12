@@ -53,6 +53,12 @@ public class DefaultConfig {
 
     public static final int TYPE_CUSTOM_VIEW =10;
 
+    public static final int TYPE_BOTTOM_SHEET_CUSTOM =11;
+
+    public static final int TYPE_BOTTOM_SHEET_LIST =12;
+
+    public static final int TYPE_BOTTOM_SHEET_GRID =13;
+
 
 
 

@@ -102,4 +102,8 @@ public class StyledDialog  {
         return DialogBuilder.getInstance().assignCustom(context,contentView,gravity);
     }
 
+    public static ConfigBean buildCustomBottomSheet(Activity context, View contentView){
+        return DialogBuilder.getInstance().assignCustomBottomSheet(context,contentView);
+    }
+
 }

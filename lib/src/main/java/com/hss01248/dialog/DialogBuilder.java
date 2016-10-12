@@ -157,5 +157,14 @@ public class DialogBuilder implements Assignable {
         return bean;
     }
 
+    @Override
+    public ConfigBean assignCustomBottomSheet(Activity context, View contentView) {
+        ConfigBean bean = new ConfigBean();
+        bean.context = context;
+        bean.customView = contentView;
+        bean.type = DefaultConfig.TYPE_BOTTOM_SHEET_CUSTOM;
+        return bean;
+    }
+
 
 }

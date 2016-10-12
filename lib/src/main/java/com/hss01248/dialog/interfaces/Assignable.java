@@ -37,6 +37,8 @@ public interface Assignable {
 
    ConfigBean assignCustom(Context context, View contentView, int gravity);
 
+    ConfigBean assignCustomBottomSheet(Activity context, View contentView);
+
 
 
 

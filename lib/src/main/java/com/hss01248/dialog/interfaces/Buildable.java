@@ -1,6 +1,7 @@
 package com.hss01248.dialog.interfaces;
 
 import android.content.DialogInterface;
+import android.support.design.widget.BottomSheetDialog;
 import android.support.v7.app.AlertDialog;
 import android.view.Gravity;
 import android.view.View;
@@ -65,6 +66,19 @@ public  class Buildable {
                bean.dialog.getWindow().setGravity(bean.gravity);
 
                break;
+           case DefaultConfig.TYPE_BOTTOM_SHEET_CUSTOM:
+              buildBottomSheet(bean);
+
+
+               break;
+           case DefaultConfig.TYPE_BOTTOM_SHEET_LIST:
+
+
+               break;
+           case DefaultConfig.TYPE_BOTTOM_SHEET_GRID:
+
+
+               break;
           default:
               break;
 
@@ -77,6 +91,14 @@ public  class Buildable {
        return bean;
    }
 
+    private void buildBottomSheet(ConfigBean bean) {
+        final BottomSheetDialog dialog = new BottomSheetDialog(bean.context);
+        dialog.setContentView(bean.customView);
+        dialog.setCancelable(bean.cancelable);
+        dialog.setCanceledOnTouchOutside(bean.outsideTouchable);
+
+        bean.dialog = dialog;
+    }
 
 
     protected  ConfigBean buildMdLoading(ConfigBean bean){
