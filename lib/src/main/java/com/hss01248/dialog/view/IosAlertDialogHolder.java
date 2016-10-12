@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.hss01248.dialog.R;
 import com.hss01248.dialog.StyledDialog;
+import com.hss01248.dialog.Tool;
 import com.hss01248.dialog.config.ConfigBean;
 
 
@@ -72,6 +73,34 @@ public class IosAlertDialogHolder extends SuperHolder {
     @Override
     public void assingDatasAndEvents(Context context, final ConfigBean bean) {
 
+        //style
+        tvMsg.setTextColor(Tool.getColor(tvMsg.getContext(),bean.msgTxtColor));
+        tvMsg.setTextSize(bean.msgTxtSize);
+
+        tvTitle.setTextColor(Tool.getColor(tvTitle.getContext(),bean.titleTxtColor));
+        tvTitle.setTextSize(bean.titleTxtSize);
+
+        btn3Vertical.setTextSize(bean.btnTxtSize);
+        btn2Vertical.setTextSize(bean.btnTxtSize);
+        btn1Vertical.setTextSize(bean.btnTxtSize);
+        btn3.setTextSize(bean.btnTxtSize);
+        btn2.setTextSize(bean.btnTxtSize);
+        btn1.setTextSize(bean.btnTxtSize);
+
+        btn1.setTextColor(Tool.getColor(btn1.getContext(),bean.btn1Color));
+        btn2.setTextColor(Tool.getColor(btn1.getContext(),bean.btn2Color));
+        btn3.setTextColor(Tool.getColor(btn1.getContext(),bean.btn3Color));
+
+        btn1Vertical.setTextColor(Tool.getColor(btn1.getContext(),bean.btn1Color));
+        btn2Vertical.setTextColor(Tool.getColor(btn1.getContext(),bean.btn2Color));
+        btn3Vertical.setTextColor(Tool.getColor(btn1.getContext(),bean.btn3Color));
+
+
+
+
+
+
+
         //隐藏view
         if (bean.isVertical) {
             llContainerVertical.setVisibility(View.VISIBLE);
@@ -83,11 +112,15 @@ public class IosAlertDialogHolder extends SuperHolder {
 
         tvTitle.setText(bean.title);
 
+
         if (TextUtils.isEmpty(bean.msg)) {
             tvMsg.setVisibility(View.GONE);
         } else {
             tvMsg.setVisibility(View.VISIBLE);
             tvMsg.setText(bean.msg);
+
+            tvMsg.setTextColor(Tool.getColor(tvMsg.getContext(),bean.msgTxtColor));
+            tvMsg.setTextSize(bean.msgTxtSize);
         }
 
         if (TextUtils.isEmpty(bean.hint1)) {
@@ -95,6 +128,9 @@ public class IosAlertDialogHolder extends SuperHolder {
         } else {
             et1.setVisibility(View.VISIBLE);
             et1.setHint(bean.hint1);
+
+            et1.setTextColor(Tool.getColor(et1.getContext(),bean.inputTxtColor));
+            et1.setTextSize(bean.inputTxtSize);
         }
 
         if (TextUtils.isEmpty(bean.hint2)) {
@@ -102,9 +138,16 @@ public class IosAlertDialogHolder extends SuperHolder {
         } else {
             et2.setVisibility(View.VISIBLE);
             et2.setHint(bean.hint2);
+            et2.setTextColor(Tool.getColor(et2.getContext(),bean.inputTxtColor));
+            et2.setTextSize(bean.inputTxtSize);
         }
 
         //按钮数量
+
+
+
+
+
         if (TextUtils.isEmpty(bean.text3)) {
             if (bean.isVertical) {
                 btn3Vertical.setVisibility(View.GONE);
@@ -121,6 +164,8 @@ public class IosAlertDialogHolder extends SuperHolder {
                 btn3Vertical.setVisibility(View.VISIBLE);
                 lineBtn3Vertical.setVisibility(View.VISIBLE);
                 btn3Vertical.setText(bean.text3);
+
+
             } else {
                 btn3.setVisibility(View.VISIBLE);
                 lineBtn3.setVisibility(View.VISIBLE);
