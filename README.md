@@ -26,13 +26,14 @@ loading对话框和ios风格的dialog传入context和activity均可弹出dialog.
 
 # todo
 1.bottomsheet 加上listview和gridview以及recycleview
+
 http://blog.csdn.net/qibin0506/article/details/51002241
 http://www.cnblogs.com/warnier-zhang/p/4904296.html
 http://www.jianshu.com/p/21bb14e3be94/comments/1570995  坑
 
-2. ios风格和md风格的样式值设置到holder中
-
+2.ios风格和md风格的样式值设置到holder中
 3.最外层api调整
+4.windows风格的dialog
 
 
 
@@ -115,7 +116,7 @@ Add it in your root build.gradle at the end of repositories:
 
 ```
 	dependencies {
-	        compile 'com.github.hss01248:DialogUtil:1.0.0'
+	       // compile 'com.github.hss01248:DialogUtil:1.0.0'
 	}
 ```
 
