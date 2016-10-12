@@ -6,6 +6,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.support.v7.app.AppCompatDialog;
+import android.view.View;
 
 import com.hss01248.dialog.config.ConfigBean;
 import com.hss01248.dialog.interfaces.MyDialogListener;
@@ -96,4 +97,9 @@ public class StyledDialog  {
     public static ConfigBean buildNormalInput(Context context, CharSequence title, CharSequence hint1, CharSequence hint2, CharSequence firstTxt, CharSequence secondTxt, MyDialogListener listener) {
         return DialogBuilder.getInstance().assignNormalInput(context,title,hint1,hint2,firstTxt,secondTxt,listener);
     }
+
+    public static ConfigBean buildCustom(Context context, View contentView, int gravity) {
+        return DialogBuilder.getInstance().assignCustom(context,contentView,gravity);
+    }
+
 }

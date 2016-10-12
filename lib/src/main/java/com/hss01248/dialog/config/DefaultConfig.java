@@ -51,6 +51,8 @@ public class DefaultConfig {
     public static final int TYPE_IOS_CENTER_LIST = 8;
     public static final int TYPE_IOS_INPUT = 9;
 
+    public static final int TYPE_CUSTOM_VIEW =10;
+
 
 
 

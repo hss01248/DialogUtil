@@ -5,6 +5,7 @@ import android.content.Context;
 import android.support.annotation.ColorRes;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
+import android.view.View;
 
 import com.hss01248.dialog.Tool;
 import com.hss01248.dialog.interfaces.Buildable;
@@ -24,6 +25,10 @@ public class ConfigBean extends Buildable implements Styleable {
 
     public Context context;
     public boolean isVertical;
+
+    public View customView;
+
+    public int gravity;
 
     public CharSequence title;
     public CharSequence msg;

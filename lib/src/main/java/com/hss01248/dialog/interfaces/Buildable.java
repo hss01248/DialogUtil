@@ -53,11 +53,17 @@ public  class Buildable {
                break;
            case DefaultConfig.TYPE_IOS_INPUT:
                Tool.newCustomDialog(bean);
-               buildIosSingleChoose(bean);
+               buildNormalInput(bean);
                break;
            case DefaultConfig.TYPE_IOS_CENTER_LIST:
                Tool.newCustomDialog(bean);
-               buildNormalInput(bean);
+               buildIosSingleChoose(bean);
+               break;
+           case DefaultConfig.TYPE_CUSTOM_VIEW:
+               Tool.newCustomDialog(bean);
+               bean.dialog.setContentView(bean.customView);
+               bean.dialog.getWindow().setGravity(bean.gravity);
+
                break;
           default:
               break;

@@ -2,6 +2,7 @@ package com.hss01248.dialog.interfaces;
 
 import android.app.Activity;
 import android.content.Context;
+import android.view.View;
 
 import com.hss01248.dialog.config.ConfigBean;
 
@@ -33,6 +34,8 @@ public interface Assignable {
 
     ConfigBean assignNormalInput(Context context, CharSequence title, CharSequence hint1,CharSequence hint2,
                            CharSequence firstTxt, CharSequence secondTxt,final MyDialogListener listener);
+
+   ConfigBean assignCustom(Context context, View contentView, int gravity);
 
 
 

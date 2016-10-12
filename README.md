@@ -12,6 +12,8 @@ loading对话框和ios风格的dialog传入context和activity均可弹出dialog.
 
 样式包括常用的ios风格dialog和meterial design风格的dialog.
 
+可以传入自定义的view,定义好事件,本工具负责显示
+
 考虑了显示内容超多时的滑动和与屏幕的间隙.
 
 
@@ -24,17 +26,28 @@ loading对话框和ios风格的dialog传入context和activity均可弹出dialog.
 
 3.增加meterial design的单选和多选,增加ios风格的输入框
 
+4.增加传入自定义的view
+
 # todo
+
 1.bottomsheet 加上listview和gridview以及recycleview
+
+参考:
+
 http://blog.csdn.net/qibin0506/article/details/51002241
 http://www.cnblogs.com/warnier-zhang/p/4904296.html
 http://www.jianshu.com/p/21bb14e3be94/comments/1570995  坑
 
-2.ios风格和md风格的样式值设置到holder中
+https://github.com/android-cjj/BottomSheets
 
-3.最外层api调整
 
-4.windows风格的dialog
+2.windows风格的dialog
+
+3.md风格按钮样式无法自定义的bug
+
+4.增加传入自定义的view的事件监听
+
+
 
 
 
@@ -117,7 +130,7 @@ Add it in your root build.gradle at the end of repositories:
 
 ```
 	dependencies {
-	        compile 'com.github.hss01248:DialogUtil:1.0.0'
+	       // compile 'com.github.hss01248:DialogUtil:1.0.0'
 	}
 ```
 

@@ -2,6 +2,7 @@ package com.hss01248.dialog;
 
 import android.app.Activity;
 import android.content.Context;
+import android.view.View;
 
 import com.hss01248.dialog.config.ConfigBean;
 import com.hss01248.dialog.config.DefaultConfig;
@@ -132,7 +133,8 @@ public class DialogBuilder implements Assignable {
     }
 
     @Override
-    public ConfigBean assignNormalInput(Context context, CharSequence title, CharSequence hint1, CharSequence hint2, CharSequence firstTxt, CharSequence secondTxt, MyDialogListener listener) {
+    public ConfigBean assignNormalInput(Context context, CharSequence title, CharSequence hint1, CharSequence hint2,
+                                        CharSequence firstTxt, CharSequence secondTxt, MyDialogListener listener) {
         ConfigBean bean = new ConfigBean();
         bean.context = context;
         bean.listener = listener;
@@ -141,7 +143,17 @@ public class DialogBuilder implements Assignable {
         bean.hint2 = hint2;
         bean.text1 = firstTxt;
         bean.text2 = secondTxt;
-        bean.type = DefaultConfig.TYPE_IOS_BOTTOM;
+        bean.type = DefaultConfig.TYPE_IOS_INPUT;
+        return bean;
+    }
+
+    @Override
+    public ConfigBean assignCustom(Context context, View contentView, int gravity) {
+        ConfigBean bean = new ConfigBean();
+        bean.context = context;
+        bean.customView = contentView;
+        bean.gravity = gravity;
+        bean.type = DefaultConfig.TYPE_CUSTOM_VIEW;
         return bean;
     }
 

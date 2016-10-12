@@ -88,6 +88,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
+            <Button
+                android:id="@+id/btn_md_bs"
+                android:layout_margin="5dp"
+                android:text="md_bottomsheet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
 
 
         </LinearLayout>
