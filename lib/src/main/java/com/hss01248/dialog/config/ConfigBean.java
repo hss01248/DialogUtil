@@ -8,6 +8,8 @@ import android.support.v7.app.AlertDialog;
 import android.view.View;
 
 import com.hss01248.dialog.Tool;
+import com.hss01248.dialog.adapter.SuperLvAdapter;
+import com.hss01248.dialog.bottomsheet.BottomSheetBean;
 import com.hss01248.dialog.interfaces.Buildable;
 import com.hss01248.dialog.interfaces.MyDialogListener;
 import com.hss01248.dialog.interfaces.MyItemDialogListener;
@@ -65,6 +67,11 @@ public class ConfigBean extends Buildable implements Styleable {
     public List<? extends CharSequence> wordsIos;
     //bottom sheet
     public  CharSequence bottomTxt = "取消";
+
+    //bottomsheet
+    public SuperLvAdapter mAdapter;
+    public List<BottomSheetBean> lvDatas;
+    public int gridColumns = 4;
 
 
 

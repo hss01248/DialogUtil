@@ -21,4 +21,6 @@ public abstract class MyDialogListener {
     public void onGetChoose(boolean[] states){
 
     }
+
+
 }

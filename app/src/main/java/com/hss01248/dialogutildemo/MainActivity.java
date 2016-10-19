@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.hss01248.dialog.StyledDialog;
 import com.hss01248.dialog.adapter.SuperRcvAdapter;
 import com.hss01248.dialog.adapter.SuperRcvHolder;
+import com.hss01248.dialog.bottomsheet.BottomSheetBean;
 import com.hss01248.dialog.interfaces.MyDialogListener;
 import com.hss01248.dialog.interfaces.MyItemDialogListener;
 
@@ -206,7 +207,7 @@ android:pivotY="50%" />
 
     @OnClick({R.id.btn_common_progress, R.id.btn_context_progress, R.id.btn_material_alert, R.id.btn_ios_alert,
             R.id.btn_ios_alert_vertical, R.id.btn_ios_bottom_sheet, R.id.btn_ios_center_list,R.id.btn_input,
-            R.id.btn_multichoose, R.id.btn_singlechoose,R.id.btn_md_bs})
+            R.id.btn_multichoose, R.id.btn_singlechoose,R.id.btn_md_bs,R.id.btn_md_bs_listview,R.id.btn_md_bs_Gridview})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_common_progress:
@@ -436,6 +437,58 @@ android:pivotY="50%" />
 
 
 
+                break;
+
+            case R.id.btn_md_bs_listview:{
+                List<BottomSheetBean> datas2 = new ArrayList<>();
+
+                datas2.add(new BottomSheetBean(R.mipmap.ic_launcher,"1"));
+                datas2.add(new BottomSheetBean(R.mipmap.ic_launcher,"222"));
+                datas2.add(new BottomSheetBean(R.mipmap.ic_launcher,"333333"));
+                datas2.add(new BottomSheetBean(R.mipmap.ic_launcher,"444"));
+                datas2.add(new BottomSheetBean(R.mipmap.ic_launcher,"55"));
+                datas2.add(new BottomSheetBean(R.mipmap.ic_launcher,"666"));
+
+                datas2.add(new BottomSheetBean(R.mipmap.ic_launcher,"7777"));
+                datas2.add(new BottomSheetBean(R.mipmap.ic_launcher,"fddsf"));
+                datas2.add(new BottomSheetBean(R.mipmap.ic_launcher,"67gfhfg"));
+                datas2.add(new BottomSheetBean(R.mipmap.ic_launcher,"oooooppp"));
+
+
+
+
+                StyledDialog.buildBottomSheetLv(activity, "拉出来溜溜", datas2, "this is cancle button", new MyItemDialogListener() {
+                    @Override
+                    public void onItemClick(CharSequence text, int position) {
+                        showToast(text+"---"+position);
+                    }
+                }).show();}
+                break;
+
+            case R.id.btn_md_bs_Gridview:
+                List<BottomSheetBean> datas2 = new ArrayList<>();
+
+                datas2.add(new BottomSheetBean(R.mipmap.ic_launcher,"1"));
+                datas2.add(new BottomSheetBean(R.mipmap.ic_launcher,"222"));
+                datas2.add(new BottomSheetBean(R.mipmap.ic_launcher,"333333"));
+                datas2.add(new BottomSheetBean(R.mipmap.ic_launcher,"444"));
+                datas2.add(new BottomSheetBean(R.mipmap.ic_launcher,"55"));
+                datas2.add(new BottomSheetBean(R.mipmap.ic_launcher,"666"));
+
+                datas2.add(new BottomSheetBean(R.mipmap.ic_launcher,"7777"));
+                datas2.add(new BottomSheetBean(R.mipmap.ic_launcher,"fddsf"));
+                datas2.add(new BottomSheetBean(R.mipmap.ic_launcher,"67gfhfg"));
+                datas2.add(new BottomSheetBean(R.mipmap.ic_launcher,"oooooppp"));
+
+
+
+
+                StyledDialog.buildBottomSheetGv(activity, "拉出来溜溜", datas2, "this is cancle button",3, new MyItemDialogListener() {
+                    @Override
+                    public void onItemClick(CharSequence text, int position) {
+                        showToast(text+"---"+position);
+                    }
+                }).show();
                 break;
 
 

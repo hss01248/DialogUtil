@@ -18,5 +18,9 @@
 
     <color name="bg_white">#ffffff</color>
 
+    <color name="text_gray">#999999</color>
+    <color name="text_gray_light">#B3B3B3</color>
 
+    <color name="text_black">#333333</color><!--正式发布时改成666666-->
+    <color name="text_black_light" >#666666</color><!--正式发布时改成666666-->
 </resources>

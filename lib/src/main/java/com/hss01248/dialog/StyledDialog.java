@@ -53,59 +53,67 @@ public class StyledDialog  {
     }
 
     public static ConfigBean buildLoading(Context context, CharSequence msg, boolean cancleable, boolean outsideTouchable) {
-        return DialogBuilder.getInstance().assignLoading(context,msg,cancleable,outsideTouchable);
+        return DialogAssigner.getInstance().assignLoading(context,msg,cancleable,outsideTouchable);
     }
     
     public static ConfigBean buildMdLoading(Context context, CharSequence msg, boolean cancleable, boolean outsideTouchable) {
-        return DialogBuilder.getInstance().assignMdLoading(context,msg,cancleable,outsideTouchable);
+        return DialogAssigner.getInstance().assignMdLoading(context,msg,cancleable,outsideTouchable);
     }
 
      
     public static ConfigBean buildMdAlert(Activity activity, CharSequence title, CharSequence msg, MyDialogListener listener) {
-        return DialogBuilder.getInstance().assignMdAlert(activity,title,msg,listener);
+        return DialogAssigner.getInstance().assignMdAlert(activity,title,msg,listener);
     }
 
     
     public static ConfigBean buildMdSingleChoose(Activity context, CharSequence title, int defaultChosen, CharSequence[] words, MyItemDialogListener listener) {
-        return DialogBuilder.getInstance().assignMdSingleChoose(context,title,defaultChosen,words,listener);
+        return DialogAssigner.getInstance().assignMdSingleChoose(context,title,defaultChosen,words,listener);
     }
 
     
     public static ConfigBean buildMdMultiChoose(Activity context, CharSequence title, CharSequence[] words, boolean[] checkedItems, MyDialogListener btnListener) {
-        return DialogBuilder.getInstance().assignMdMultiChoose(context,title,words,checkedItems,btnListener);
+        return DialogAssigner.getInstance().assignMdMultiChoose(context,title,words,checkedItems,btnListener);
     }
 
    
     public static ConfigBean buildIosAlert(Context activity, CharSequence title, CharSequence msg, MyDialogListener listener) {
-        return DialogBuilder.getInstance().assignIosAlert(activity,title,msg,listener);
+        return DialogAssigner.getInstance().assignIosAlert(activity,title,msg,listener);
     }
 
    
     public static ConfigBean buildIosAlertVertical(Context activity, CharSequence title, CharSequence msg, MyDialogListener listener) {
-        return DialogBuilder.getInstance().assignIosAlertVertical(activity,title,msg,listener);
+        return DialogAssigner.getInstance().assignIosAlertVertical(activity,title,msg,listener);
     }
 
     
     public static ConfigBean buildIosSingleChoose(Context context, List<? extends CharSequence> words, MyItemDialogListener listener) {
-        return DialogBuilder.getInstance().assignIosSingleChoose(context,words,listener);
+        return DialogAssigner.getInstance().assignIosSingleChoose(context,words,listener);
     }
 
     
     public static ConfigBean buildBottomItemDialog(Context context, List<? extends CharSequence> words, CharSequence bottomTxt, MyItemDialogListener listener) {
-        return DialogBuilder.getInstance().assignBottomItemDialog(context,words,bottomTxt,listener);
+        return DialogAssigner.getInstance().assignBottomItemDialog(context,words,bottomTxt,listener);
     }
 
    
     public static ConfigBean buildNormalInput(Context context, CharSequence title, CharSequence hint1, CharSequence hint2, CharSequence firstTxt, CharSequence secondTxt, MyDialogListener listener) {
-        return DialogBuilder.getInstance().assignNormalInput(context,title,hint1,hint2,firstTxt,secondTxt,listener);
+        return DialogAssigner.getInstance().assignNormalInput(context,title,hint1,hint2,firstTxt,secondTxt,listener);
     }
 
     public static ConfigBean buildCustom(Context context, View contentView, int gravity) {
-        return DialogBuilder.getInstance().assignCustom(context,contentView,gravity);
+        return DialogAssigner.getInstance().assignCustom(context,contentView,gravity);
     }
 
     public static ConfigBean buildCustomBottomSheet(Activity context, View contentView){
-        return DialogBuilder.getInstance().assignCustomBottomSheet(context,contentView);
+        return DialogAssigner.getInstance().assignCustomBottomSheet(context,contentView);
+    }
+
+    public static ConfigBean buildBottomSheetLv(Context context, CharSequence title, List datas, CharSequence bottomTxt, MyItemDialogListener listener){
+        return DialogAssigner.getInstance().assignBottomSheetLv(context,title,datas,bottomTxt,listener);
+    }
+
+    public static ConfigBean buildBottomSheetGv(Context context, CharSequence title, List datas, CharSequence bottomTxt,int columnsNum ,MyItemDialogListener listener){
+        return DialogAssigner.getInstance().assignBottomSheetGv(context,title,datas,bottomTxt,columnsNum,listener);
     }
 
 }

@@ -28,11 +28,11 @@ loading对话框和ios风格的dialog传入context和activity均可弹出dialog.
 
 4.增加传入自定义的view(此时工具类作为一个壳,view相关数据样式和回调自己实现.)
 
-5.增加转菊花的loading效果
+## 2016-10-20
 
-# todo
+1.增加转菊花的loading效果
 
-1.bottomsheet 加上listview和gridview以及recycleview
+2.bottomsheet 加上listview和gridview,只需要设置图标和文字
 
 参考:
 
@@ -43,11 +43,17 @@ http://www.jianshu.com/p/21bb14e3be94/comments/1570995  坑
 https://github.com/android-cjj/BottomSheets
 
 
-2.windows风格的dialog
 
-3.md风格按钮样式无法自定义的bug
+# todo
 
-4.增加传入自定义的view的事件监听
+
+1.windows风格的dialog
+
+2.md风格按钮样式无法自定义的bug
+
+3.bottomsheet 图标大小和文字大小的自定义
+
+
 
 
 
@@ -111,7 +117,23 @@ ios风格(含按下效果)
 
 bottomsheet:
 
- ![bottomsheet_custom](bottomsheet_custom.jpg)
+  ![btnsheet-lv](btnsheet-lv.jpg)
+
+
+
+
+
+
+
+ ![btnsheet-gv](btnsheet-gv.jpg)
+
+
+
+
+
+gridview拉出来时:
+
+ ![btnsheet-gv-out](btnsheet-gv-out.jpg)
 
 
 
@@ -144,7 +166,7 @@ Add it in your root build.gradle at the end of repositories:
 
 
 
-## 示例代码
+## 示例代码(MainActivity里)
 
 
 

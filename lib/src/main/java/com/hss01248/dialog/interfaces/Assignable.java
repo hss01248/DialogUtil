@@ -43,6 +43,10 @@ public interface Assignable {
     ConfigBean assignLoading(Context context, CharSequence msg, boolean cancleable, boolean outsideTouchable);
 
 
+    ConfigBean assignBottomSheetLv(Context context, CharSequence title, List datas,CharSequence bottomTxt,MyItemDialogListener listener);
+
+    ConfigBean assignBottomSheetGv(Context context, CharSequence title, List datas,CharSequence bottomTxt,int columnsNum,MyItemDialogListener listener);
+
 
 
 
