@@ -52,7 +52,9 @@ public class StyledDialog  {
         }
     }
 
-
+    public static ConfigBean buildLoading(Context context, CharSequence msg, boolean cancleable, boolean outsideTouchable) {
+        return DialogBuilder.getInstance().assignLoading(context,msg,cancleable,outsideTouchable);
+    }
     
     public static ConfigBean buildMdLoading(Context context, CharSequence msg, boolean cancleable, boolean outsideTouchable) {
         return DialogBuilder.getInstance().assignMdLoading(context,msg,cancleable,outsideTouchable);

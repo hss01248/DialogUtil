@@ -26,7 +26,9 @@ loading对话框和ios风格的dialog传入context和activity均可弹出dialog.
 
 3.增加meterial design的单选和多选,增加ios风格的输入框
 
-4.增加传入自定义的view
+4.增加传入自定义的view(此时工具类作为一个壳,view相关数据样式和回调自己实现.)
+
+5.增加转菊花的loading效果
 
 # todo
 
@@ -54,6 +56,10 @@ https://github.com/android-cjj/BottomSheets
 
 
 # 示例图
+
+ ![loading-common](loading-common.jpg)
+
+
 
   ![loading](loading.jpg)
 

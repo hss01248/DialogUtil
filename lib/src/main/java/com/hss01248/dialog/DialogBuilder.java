@@ -166,5 +166,15 @@ public class DialogBuilder implements Assignable {
         return bean;
     }
 
+    @Override
+    public ConfigBean assignLoading(Context context, CharSequence msg, boolean cancleable, boolean outsideTouchable) {
+        ConfigBean bean = new ConfigBean();
+        bean.context = context;
+        bean.msg = msg;
+        bean.type = DefaultConfig.TYPE_LOADING;
+
+        return bean;
+    }
+
 
 }

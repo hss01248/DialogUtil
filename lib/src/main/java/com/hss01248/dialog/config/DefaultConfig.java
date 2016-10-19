@@ -59,7 +59,7 @@ public class DefaultConfig {
 
     public static final int TYPE_BOTTOM_SHEET_GRID =13;
 
-
+    public static final int TYPE_LOADING = 14;
 
 
 

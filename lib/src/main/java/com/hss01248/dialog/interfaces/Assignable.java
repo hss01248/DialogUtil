@@ -40,6 +40,8 @@ public interface Assignable {
     ConfigBean assignCustomBottomSheet(Activity context, View contentView);
 
 
+    ConfigBean assignLoading(Context context, CharSequence msg, boolean cancleable, boolean outsideTouchable);
+
 
 
 

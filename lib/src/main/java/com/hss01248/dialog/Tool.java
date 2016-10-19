@@ -14,6 +14,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 
 import com.hss01248.dialog.config.ConfigBean;
+import com.hss01248.dialog.config.DefaultConfig;
 
 /**
  * Created by Administrator on 2016/10/9 0009.
@@ -123,12 +124,12 @@ public class Tool {
         if (bean.alertDialog!= null){
             setMdBtnStytle(bean);
         }else {
-            setDialogStyle(bean.context,bean.dialog,bean.viewHeight);
+            setDialogStyle(bean.context,bean.dialog,bean.viewHeight,bean);
         }
 
     }
 
-    public static void setDialogStyle(Context activity, Dialog dialog, int measuredHeight ) {
+    public static void setDialogStyle(Context activity, Dialog dialog, int measuredHeight,ConfigBean bean ) {
         if (dialog == null){
             return;
         }
@@ -147,7 +148,13 @@ public class Tool {
         int height = (int) (((WindowManager) activity.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay().getHeight() * 0.9);
 
         // wl.width = ViewGroup.LayoutParams.MATCH_PARENT;
-        wl.width = (int) (width * 0.94);  // todo keycode to keep gap
+        if (bean.type != DefaultConfig.TYPE_LOADING){
+            wl.width = (int) (width * 0.94);  // todo keycode to keep gap
+        }else {
+            wl.width = ViewGroup.LayoutParams.WRAP_CONTENT;
+
+        }
+
         wl.height = ViewGroup.LayoutParams.WRAP_CONTENT;  //TODO  一般情况下为wrapcontent,最大值为height*0.9
        /* ViewUtils.measureView(contentView);
         int meHeight = contentView.getMeasuredHeight();//height 为0,weight为1时,控件计算所得height就是0
@@ -174,6 +181,7 @@ public class Tool {
             wl.type = WindowManager.LayoutParams.TYPE_TOAST;
             //todo keycode to improve window level,同时要让它的后面半透明背景也拦截事件,不要传递到下面去
             //todo 单例化,不然连续弹出两次,只能关掉第二次的
+           // wl.flags =
 
 
         }

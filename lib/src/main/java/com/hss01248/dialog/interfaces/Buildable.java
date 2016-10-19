@@ -79,6 +79,11 @@ public  class Buildable {
 
 
                break;
+
+           case DefaultConfig.TYPE_LOADING:
+               Tool.newCustomDialog(bean);
+               buildLoading(bean);
+               break;
           default:
               break;
 
@@ -98,6 +103,14 @@ public  class Buildable {
         dialog.setCanceledOnTouchOutside(bean.outsideTouchable);
 
         bean.dialog = dialog;
+    }
+
+    protected  ConfigBean buildLoading(ConfigBean bean){
+        View root = View.inflate(bean.context, R.layout.loading,null);
+        TextView tvMsg = (TextView) root.findViewById(R.id.tv_msg);
+        tvMsg.setText(bean.msg);
+        bean.dialog.setContentView(root);
+        return bean;
     }
 
 

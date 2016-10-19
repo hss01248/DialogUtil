@@ -210,7 +210,7 @@ android:pivotY="50%" />
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_common_progress:
-                StyledDialog.buildMdLoading(this, msg, true, true).show();
+                StyledDialog.buildLoading(this, "加载中...", true, true).show();
 
                 break;
             case R.id.btn_context_progress:

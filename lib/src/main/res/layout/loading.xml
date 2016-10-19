@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:custom="http://schemas.android.com/apk/res-auto"
+                android:orientation="vertical"
+                android:background="@drawable/bg_toast"
+                android:minWidth="120dp"
+                android:minHeight="120dp"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+    <!--http://loadingapng.com/-->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+
+        <com.hss01248.dialog.view.GifMovieView
+            android:id="@+id/iv_loading"
+            android:layout_width="25dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_height="25dp"
+            android:onClick="onGifClick"
+            custom:gif="@drawable/loading_large"/>
+       <!-- <ImageView
+           android:id="@+id/iv_loading"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/loading_large"
+            android:layout_width="25dp"
+            android:layout_height="25dp"/>-->
+        <TextView
+            android:id="@+id/tv_msg"
+            android:text="加载中..."
+            android:textColor="#ffffff"
+            android:layout_marginTop="20dp"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:maxWidth="300dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        
+    </LinearLayout>
+
+</RelativeLayout>
