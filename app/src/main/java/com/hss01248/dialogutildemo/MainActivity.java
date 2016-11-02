@@ -14,6 +14,7 @@ import com.hss01248.dialog.StyledDialog;
 import com.hss01248.dialog.adapter.SuperRcvAdapter;
 import com.hss01248.dialog.adapter.SuperRcvHolder;
 import com.hss01248.dialog.bottomsheet.BottomSheetBean;
+import com.hss01248.dialog.config.ConfigBean;
 import com.hss01248.dialog.interfaces.MyDialogListener;
 import com.hss01248.dialog.interfaces.MyItemDialogListener;
 
@@ -211,11 +212,12 @@ android:pivotY="50%" />
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_common_progress:
-                StyledDialog.buildLoading(this, "加载中...", true, true).show();
+                StyledDialog.buildLoading(this, "加载中...", true, false).show();
+
 
                 break;
             case R.id.btn_context_progress:
-                gloablDialog = StyledDialog.buildMdLoading(getApplicationContext(), msg, true, true).show();
+                gloablDialog = StyledDialog.buildMdLoading(getApplicationContext(), msg, true, false).show();
                 break;
             case R.id.btn_material_alert:
                 StyledDialog.buildMdAlert(activity, "title", msg,  new MyDialogListener() {
@@ -235,7 +237,10 @@ android:pivotY="50%" />
                     }
 
 
-                }).show();
+                })
+                        .setBtnSize(20)
+                        .setBtnText("i","b","3")
+                        .show();
                 break;
             case R.id.btn_ios_alert:
                 StyledDialog.buildIosAlert(activity, "title", msg,  new MyDialogListener() {

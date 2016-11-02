@@ -26,7 +26,7 @@ import com.hss01248.dialog.bottomsheet.BsLvHolder;
 import com.hss01248.dialog.config.ConfigBean;
 import com.hss01248.dialog.config.DefaultConfig;
 import com.hss01248.dialog.view.IosAlertDialogHolder;
-import com.hss01248.dialog.view.IosBottomSheetHolder;
+import com.hss01248.dialog.view.IosActionSheetHolder;
 import com.hss01248.dialog.view.IosCenterItemHolder;
 
 /**
@@ -377,7 +377,7 @@ public  class Buildable {
     }
 
     protected  ConfigBean buildBottomItemDialog(ConfigBean bean){
-        IosBottomSheetHolder holder = new IosBottomSheetHolder(bean.context);
+        IosActionSheetHolder holder = new IosActionSheetHolder(bean.context);
         bean.dialog.setContentView(holder.rootView);
 
         holder.assingDatasAndEvents(bean.context,bean);

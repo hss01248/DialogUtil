@@ -6,7 +6,6 @@ import android.view.View;
 
 import java.util.List;
 
-import butterknife.ButterKnife;
 
 /**
  * Created by Administrator on 2016/8/22 0022.
@@ -18,7 +17,7 @@ public abstract  class SuperRcvHolder<T> extends RecyclerView.ViewHolder {
     public SuperRcvHolder(View itemView) {
         super(itemView);
         rootView = itemView;
-        ButterKnife.bind(this,rootView);
+       // ButterKnife.bind(this,rootView);
     }
 
     /**

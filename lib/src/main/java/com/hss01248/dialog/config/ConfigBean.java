@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
 
+import com.hss01248.dialog.StyledDialog;
 import com.hss01248.dialog.Tool;
 import com.hss01248.dialog.adapter.SuperLvAdapter;
 import com.hss01248.dialog.bottomsheet.BottomSheetBean;
@@ -46,8 +47,8 @@ public class ConfigBean extends Buildable implements Styleable {
     public MyDialogListener listener;
     public MyItemDialogListener itemListener;
 
-    public boolean cancelable = true;
-    public boolean outsideTouchable = true;
+    public boolean cancelable = true;//默认可以点击后退键来dismiss对话框
+    public boolean outsideTouchable = false;//默认外部半透明处点击不消失
 
     public Dialog dialog;
     public AlertDialog alertDialog;
@@ -199,6 +200,10 @@ public class ConfigBean extends Buildable implements Styleable {
 
 
         buildByType(this);
+        //内部保存loadingdialog对象
+        if(type == DefaultConfig.TYPE_LOADING || type == DefaultConfig.TYPE_MD_LOADING){
+            StyledDialog.setLoadingObj(dialog);
+        }
 
 
         if (dialog != null && !dialog.isShowing()){

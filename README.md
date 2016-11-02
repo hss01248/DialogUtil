@@ -44,6 +44,14 @@ https://github.com/android-cjj/BottomSheets
 
 
 
+## 2016-11-2
+
+1. 修改: 点击半透明背景处,默认动作改成不消失.(outsideTouchable默认值改成false)
+2. 增加: loading对话框--无须对象即可关闭:StyledDialog.dismissLoading()
+3. fix bug: 原先的两个loading对话框第一层api设置cancelable和outsideTouchable无效,如今有效.
+4. 移除对butterknife的依赖
+5. ​
+
 # todo
 
 
@@ -160,7 +168,7 @@ Add it in your root build.gradle at the end of repositories:
 
 ```
 	dependencies {
-	       // compile 'com.github.hss01248:DialogUtil:1.0.0'
+	        compile 'com.github.hss01248:DialogUtil:1.0.1'
 	}
 ```
 
@@ -168,17 +176,12 @@ Add it in your root build.gradle at the end of repositories:
 
 ## 示例代码(MainActivity里)
 
-
-
 ```
-//通过普通的activity 弹出进度条(转圈圈)
-StyledDialog.showProgressDialog(this,msg,true,true);
-
-//通过context弹出进度条
-gloablDialog=   StytledDialog.showMdLoading(getApplicationContext(),msg,true,true);
-
-//meterial design 样式的alertdialog:
- StyledDialog.showMdAlert(this, "title", msg, "sure", "cancle", "think about", true, 	true, new MyDialogListener() {
+        //使用默认样式时,无须.setxxx:
+        StyledDialog.buildLoading(this, "加载中...", true, false).show();
+        
+        //自定义部分样式时:
+        StyledDialog.buildMdAlert(activity, "title", msg,  new MyDialogListener() {
                     @Override
                     public void onFirst() {
                         showToast("onFirst");
@@ -195,87 +198,51 @@ gloablDialog=   StytledDialog.showMdLoading(getApplicationContext(),msg,true,tru
                     }
 
 
-                });
-                
- //ios样式的提示框:( StytledDialog.showIosAlertVertical(...)为按钮竖直方向上排列的对话框)
+                })
+                        .setBtnSize(20)
+                        .setBtnText("i","b","3")
+                        .show();
+```
+
+
+
+# 提供的api
+
+### 各类dialog的初始参数传递和回调:StyledDialog.buildxxx:
+
+ ![methodsofstyledialog](methodsofstyledialog.jpg)
+
+
+
+## 自定义样式:setXxx
+
+ ![methodsofconfig2](methodsofconfig2.jpg)
+
+ ![methodsofconfig](methodsofconfig.jpg)
+
  
-StyledDialog.showIosAlert(this, "title", msg, "sure", "cancle", "think about", true, true, new MyDialogListener() {
-                    @Override
-                    public void onFirst() {
-                        showToast("onFirst");
-                    }
 
-                    @Override
-                    public void onSecond() {
-                        showToast("onSecond");
-                    }
-
-                    @Override
-                    public void onThird() {
-                        showToast("onThird");
-                    }
+## 最后必须调用show()
 
 
-                });
-  
-  //底部弹出的带或不带取消按钮的弹窗
-  
-   final List<String> strings = new ArrayList<>();
-                strings.add("1");
-                strings.add("2");
-                strings.add(msg);
 
-	StyledDialog.showBottomItemDialog(activity, strings, "cancle", true, true, new MyItemDialogListener() {
-                    @Override
-                    public void onItemClick(String text,int position) {
-                        showToast(text);
-                    }
 
-                    @Override
-                    public void onBottomBtnClick() {
-                        showToast("onItemClick");
-                    }
-                });}
-   //输入框:
-   
-     StyledDialog.ShowNormalInput(activity, "登录", "请输入用户名", "请输入密码", "登录", "取消", true, new MyDialogListener() {
-                   @Override
-                   public void onFirst() {
 
-                   }
+# 对话框的消失
 
-                   @Override
-                   public void onSecond() {
-
-                   }
-
-                   @Override
-                   public void onGetInput(CharSequence input1, CharSequence input2) {
-                       super.onGetInput(input1, input2);
-                       showToast("input1:"+ input1 +"--input2:"+input2);
-                   }
-               });
-  
-  
-  //中间弹出的条目弹窗
-  
-   final List<String> strings = new ArrayList<>();
-                strings.add("1");
-                strings.add("2");
-                strings.add(msg);
-                
-   StyledDialog.showIosSingleChoose(activity, strings, true, true, new MyItemDialogListener() {
-                    @Override
-                    public void onItemClick(String text,int position) {
-                        showToast(text);
-                    }
-
-                    @Override
-                    public void onBottomBtnClick() {
-                        showToast("onItemClick");
-                    }
-                });
 ```
+StyledDialog.dismiss(DialogInterface... dialogs);
+```
+
+
+
+## 新增: 两个loading对话框不需要对象就可以直接dismisss:
+
+```
+StyledDialog.dismissLoading();
+```
+
+
 
 
 
@@ -295,7 +262,6 @@ public void onBackPressed() {
         super.onBackPressed();
     }
 }
-
 
 ```
 

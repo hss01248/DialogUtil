@@ -6,7 +6,7 @@ import android.view.View;
 
 import java.util.List;
 
-import butterknife.ButterKnife;
+
 
 /**
  * Created by Administrator on 2016/4/15 0015.
@@ -20,7 +20,7 @@ public abstract class SuperLvHolder<T> {
 
     public SuperLvHolder(Context context){
         rootView = View.inflate(context,setLayoutRes(),null);
-        ButterKnife.bind(this,rootView);
+        //ButterKnife.bind(this,rootView);
     }
 
     protected abstract  @LayoutRes  int setLayoutRes();

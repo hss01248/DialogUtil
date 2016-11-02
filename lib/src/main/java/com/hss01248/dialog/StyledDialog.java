@@ -25,10 +25,29 @@ public class StyledDialog  {
 
     private static int singleChosen;
 
+    private static DialogInterface loadingDialog;//缓存加载中的dialog,便于以后可以不需要对象就让它消失
+
 
     public static void init(Context context){
         StyledDialog.context = context;
 
+    }
+
+    public static void setLoadingObj(DialogInterface  loading){
+        loadingDialog = loading;
+    }
+
+
+
+
+    /**
+     * 一键让loading消失.
+     */
+    public static void dismissLoading(){
+        if (loadingDialog != null ){
+            dismiss(loadingDialog);
+            loadingDialog = null;
+        }
     }
 
    

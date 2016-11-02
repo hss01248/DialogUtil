@@ -32,12 +32,13 @@ public class DialogAssigner implements Assignable {
 
 
     @Override
-    public ConfigBean assignMdLoading(Context context, CharSequence msg, boolean cancleable, boolean outsideTouchable) {
+    public ConfigBean assignMdLoading(Context context, CharSequence msg, boolean cancelable, boolean outsideTouchable) {
         ConfigBean bean = new ConfigBean();
         bean.context = context;
         bean.msg = msg;
         bean.type = DefaultConfig.TYPE_MD_LOADING;
-
+        bean.cancelable = cancelable;
+        bean.outsideTouchable = outsideTouchable;
         return bean;
     }
 
@@ -167,11 +168,14 @@ public class DialogAssigner implements Assignable {
     }
 
     @Override
-    public ConfigBean assignLoading(Context context, CharSequence msg, boolean cancleable, boolean outsideTouchable) {
+    public ConfigBean assignLoading(Context context, CharSequence msg, boolean cancelable, boolean outsideTouchable) {
         ConfigBean bean = new ConfigBean();
         bean.context = context;
         bean.msg = msg;
         bean.type = DefaultConfig.TYPE_LOADING;
+
+        bean.cancelable = cancelable;
+        bean.outsideTouchable = outsideTouchable;
 
         return bean;
     }
