@@ -11,7 +11,7 @@ import com.hss01248.dialog.StyledDialog;
 import com.hss01248.dialog.Tool;
 import com.hss01248.dialog.adapter.SuperLvAdapter;
 import com.hss01248.dialog.bottomsheet.BottomSheetBean;
-import com.hss01248.dialog.interfaces.Buildable;
+import com.hss01248.dialog.interfaces.MyDialogBuilder;
 import com.hss01248.dialog.interfaces.MyDialogListener;
 import com.hss01248.dialog.interfaces.MyItemDialogListener;
 import com.hss01248.dialog.interfaces.Styleable;
@@ -22,7 +22,7 @@ import java.util.Map;
 /**
  * Created by Administrator on 2016/10/9 0009.
  */
-public class ConfigBean extends Buildable implements Styleable {
+public class ConfigBean extends MyDialogBuilder implements Styleable {
 
     public int type;
 

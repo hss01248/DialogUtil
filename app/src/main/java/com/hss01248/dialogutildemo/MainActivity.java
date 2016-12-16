@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -14,7 +15,6 @@ import com.hss01248.dialog.StyledDialog;
 import com.hss01248.dialog.adapter.SuperRcvAdapter;
 import com.hss01248.dialog.adapter.SuperRcvHolder;
 import com.hss01248.dialog.bottomsheet.BottomSheetBean;
-import com.hss01248.dialog.config.ConfigBean;
 import com.hss01248.dialog.interfaces.MyDialogListener;
 import com.hss01248.dialog.interfaces.MyItemDialogListener;
 
@@ -65,6 +65,7 @@ public class MainActivity extends Activity {
 
         activity = this;
         context = getApplication();
+        StyledDialog.init(getApplicationContext());
 
 
         /*<set xmlns:android="http://schemas.android.com/apk/res/android">
@@ -218,6 +219,13 @@ android:pivotY="50%" />
                 break;
             case R.id.btn_context_progress:
                 gloablDialog = StyledDialog.buildMdLoading(getApplicationContext(), msg, true, false).show();
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        StyledDialog.buildLoading(MainActivity.this, "加载中...", true, false).show();
+                    }
+                },3000);
                 break;
             case R.id.btn_material_alert:
                 StyledDialog.buildMdAlert(activity, "title", msg,  new MyDialogListener() {
@@ -354,7 +362,7 @@ android:pivotY="50%" />
 
                 break;
             case R.id.btn_input:
-               StyledDialog.buildNormalInput(activity, "登录", "请输入用户名", "请输入密码", "登录", "取消",  new MyDialogListener() {
+               StyledDialog.buildNormalInput(getApplicationContext(), "登录", "请输入用户名", "请输入密码", "登录", "取消",  new MyDialogListener() {
                    @Override
                    public void onFirst() {
 

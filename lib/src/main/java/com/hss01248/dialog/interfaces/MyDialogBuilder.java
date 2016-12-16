@@ -32,7 +32,7 @@ import com.hss01248.dialog.view.IosCenterItemHolder;
 /**
  * Created by Administrator on 2016/10/9.
  */
-public  class Buildable {
+public  class MyDialogBuilder {
 
     protected static int singleChosen;
    protected  ConfigBean buildByType(ConfigBean bean){

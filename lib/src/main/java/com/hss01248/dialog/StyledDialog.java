@@ -27,13 +27,20 @@ public class StyledDialog  {
 
     private static DialogInterface loadingDialog;//缓存加载中的dialog,便于以后可以不需要对象就让它消失
 
+    private static boolean isMiUi8 = false;//miui8用非activity的Context时,无法以TYPE_TOAST的形式弹出对话框.没有好的解决办法.....
+
 
     public static void init(Context context){
         StyledDialog.context = context;
+       /* String userAgent = System.getProperty("http.agent");
+        if((!TextUtils.isEmpty(userAgent)) && userAgent.contains("MIUI") && userAgent.contains("V8")){
+            isMiUi8 = true;
+        }*/
 
     }
 
     public static void setLoadingObj(DialogInterface  loading){
+        dismiss(loadingDialog);
         loadingDialog = loading;
     }
 
@@ -76,6 +83,7 @@ public class StyledDialog  {
     }
     
     public static ConfigBean buildMdLoading(Context context, CharSequence msg, boolean cancleable, boolean outsideTouchable) {
+
         return DialogAssigner.getInstance().assignMdLoading(context,msg,cancleable,outsideTouchable);
     }
 

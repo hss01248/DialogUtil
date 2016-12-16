@@ -1,6 +1,7 @@
 package com.hss01248.dialog.view;
 
 import android.content.Context;
+import android.graphics.drawable.ColorDrawable;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -25,6 +26,9 @@ public class IosCenterItemHolder extends SuperHolder {
     @Override
     protected void findViews() {
         lv = (ListView) rootView.findViewById(R.id.lv);
+
+        lv.setDivider(new ColorDrawable(lv.getResources().getColor(R.color.line_dd)));
+        lv.setDividerHeight(1);
     }
 
     @Override

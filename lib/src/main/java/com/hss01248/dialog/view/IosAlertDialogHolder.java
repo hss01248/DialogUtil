@@ -74,11 +74,6 @@ public class IosAlertDialogHolder extends SuperHolder {
     public void assingDatasAndEvents(Context context, final ConfigBean bean) {
 
         //style
-        tvMsg.setTextColor(Tool.getColor(tvMsg.getContext(),bean.msgTxtColor));
-        tvMsg.setTextSize(bean.msgTxtSize);
-
-        tvTitle.setTextColor(Tool.getColor(tvTitle.getContext(),bean.titleTxtColor));
-        tvTitle.setTextSize(bean.titleTxtSize);
 
         btn3Vertical.setTextSize(bean.btnTxtSize);
         btn2Vertical.setTextSize(bean.btnTxtSize);
@@ -97,10 +92,6 @@ public class IosAlertDialogHolder extends SuperHolder {
 
 
 
-
-
-
-
         //隐藏view
         if (bean.isVertical) {
             llContainerVertical.setVisibility(View.VISIBLE);
@@ -110,7 +101,16 @@ public class IosAlertDialogHolder extends SuperHolder {
             llContainerHorizontal.setVisibility(View.VISIBLE);
         }
 
-        tvTitle.setText(bean.title);
+        if (TextUtils.isEmpty(bean.title)) {
+            tvTitle.setVisibility(View.GONE);
+        } else {
+            tvTitle.setVisibility(View.VISIBLE);
+            tvTitle.setText(bean.title);
+            tvTitle.setTextColor(Tool.getColor(tvTitle.getContext(),bean.titleTxtColor));
+            tvTitle.setTextSize(bean.titleTxtSize);
+        }
+
+
 
 
         if (TextUtils.isEmpty(bean.msg)) {

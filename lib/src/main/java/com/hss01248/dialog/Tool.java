@@ -29,7 +29,7 @@ public class Tool {
         try {
             dialog.show();
         }catch (Exception e){
-
+            e.printStackTrace();
         }
     }
 
@@ -144,25 +144,19 @@ public class Tool {
         wl.y = getWindowManager().getDefaultDisplay().getHeight();*/
 // 以下这两句是为了保证按钮可以水平满屏
         int width = ((WindowManager) activity.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay().getWidth();
+        int height = (int) (((WindowManager) activity.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay().getHeight() );
 
-        int height = (int) (((WindowManager) activity.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay().getHeight() * 0.9);
 
-        // wl.width = ViewGroup.LayoutParams.MATCH_PARENT;
         if (bean.type != DefaultConfig.TYPE_LOADING){
-            wl.width = (int) (width * 0.94);  // todo keycode to keep gap
+            wl.width = (int) (width * 0.9);  // todo keycode to keep gap
         }else {
             wl.width = ViewGroup.LayoutParams.WRAP_CONTENT;
-
         }
 
         wl.height = ViewGroup.LayoutParams.WRAP_CONTENT;  //TODO  一般情况下为wrapcontent,最大值为height*0.9
-       /* ViewUtils.measureView(contentView);
-        int meHeight = contentView.getMeasuredHeight();//height 为0,weight为1时,控件计算所得height就是0
-        View textview = contentView.findViewById(R.id.tv_msg);
-        ViewUtils.measureView(textview);
-        int textHeight = textview.getMeasuredHeight();*/
-        if (measuredHeight > height){
-            wl.height = height;
+
+        if (measuredHeight > height* 0.9){
+            wl.height = (int) (height* 0.9);
         }
 
         //wl.horizontalMargin= 0.2f;

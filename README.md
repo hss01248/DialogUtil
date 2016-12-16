@@ -4,7 +4,7 @@
 # DialogUtil
 material风格(v7支持包中的)，ios风格，传入context构建，可在任意界面弹出，以及dialog样式的activity(todo)
 
-
+[![](https://jitpack.io/v/hss01248/DialogUtil.svg)](https://jitpack.io/#hss01248/DialogUtil)
 
 # 特性
 
@@ -168,7 +168,7 @@ Add it in your root build.gradle at the end of repositories:
 
 ```
 	dependencies {
-	        compile 'com.github.hss01248:DialogUtil:1.0.1'
+	        compile 'com.github.hss01248:DialogUtil:1.0.2'
 	}
 ```
 
