@@ -268,7 +268,7 @@ android:pivotY="50%" />
                     }
 
 
-                }).show();
+                }).setBtnText("sure","cancle","hhhh").show();
                 break;
             case R.id.btn_ios_alert_vertical:
                 StyledDialog.buildIosAlertVertical(this, "title", msg,  new MyDialogListener() {

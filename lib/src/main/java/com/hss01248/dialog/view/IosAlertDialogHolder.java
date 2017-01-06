@@ -181,7 +181,7 @@ public class IosAlertDialogHolder extends SuperHolder {
             } else {
                 btn2.setVisibility(View.GONE);
                 lineBtn2.setVisibility(View.GONE);
-                btn1.setBackgroundResource(R.drawable.selector_btn_press_right_bottom);
+                btn1.setBackgroundResource(R.drawable.selector_btn_press_all_bottom);
             }
         } else {
             if (bean.isVertical) {
