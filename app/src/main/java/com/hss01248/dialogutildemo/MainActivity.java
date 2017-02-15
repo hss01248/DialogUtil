@@ -213,22 +213,22 @@ android:pivotY="50%" />
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_common_progress:
-                StyledDialog.buildLoading(this, "加载中...", true, false).show();
+                StyledDialog.buildLoading( "加载中...").show();
 
 
                 break;
             case R.id.btn_context_progress:
-                gloablDialog = StyledDialog.buildMdLoading(getApplicationContext(), msg, true, false).show();
+                gloablDialog = StyledDialog.buildMdLoading().show();
                 Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        StyledDialog.buildLoading(MainActivity.this, "加载中...", true, false).show();
+                        StyledDialog.buildLoading().show();
                     }
                 },3000);
                 break;
             case R.id.btn_material_alert:
-                StyledDialog.buildMdAlert(activity, "title", msg,  new MyDialogListener() {
+                StyledDialog.buildMdAlert("title", msg,  new MyDialogListener() {
                     @Override
                     public void onFirst() {
                         showToast("onFirst");
@@ -251,7 +251,7 @@ android:pivotY="50%" />
                         .show();
                 break;
             case R.id.btn_ios_alert:
-                StyledDialog.buildIosAlert(activity, "title", msg,  new MyDialogListener() {
+                StyledDialog.buildIosAlert( "title", msg,  new MyDialogListener() {
                     @Override
                     public void onFirst() {
                         showToast("onFirst");
@@ -271,7 +271,7 @@ android:pivotY="50%" />
                 }).setBtnText("sure","cancle","hhhh").show();
                 break;
             case R.id.btn_ios_alert_vertical:
-                StyledDialog.buildIosAlertVertical(this, "title", msg,  new MyDialogListener() {
+                StyledDialog.buildIosAlertVertical( "title", msg,  new MyDialogListener() {
                     @Override
                     public void onFirst() {
                         showToast("onFirst");
@@ -312,7 +312,7 @@ android:pivotY="50%" />
                 strings.add("13");
                 strings.add(msg);*/
 
-                StyledDialog.buildBottomItemDialog(activity, strings, "cancle",  new MyItemDialogListener() {
+                StyledDialog.buildBottomItemDialog( strings, "cancle",  new MyItemDialogListener() {
                     @Override
                     public void onItemClick(CharSequence text, int position) {
                         showToast(text);
@@ -348,7 +348,7 @@ android:pivotY="50%" />
                 strings.add("13");
                 strings.add(msg);*/
 
-                StyledDialog.buildIosSingleChoose(activity, strings, new MyItemDialogListener() {
+                StyledDialog.buildIosSingleChoose(strings, new MyItemDialogListener() {
                     @Override
                     public void onItemClick(CharSequence text, int position) {
                         showToast(text);
@@ -362,7 +362,7 @@ android:pivotY="50%" />
 
                 break;
             case R.id.btn_input:
-               StyledDialog.buildNormalInput(getApplicationContext(), "登录", "请输入用户名", "请输入密码", "登录", "取消",  new MyDialogListener() {
+               StyledDialog.buildNormalInput("登录", "请输入用户名", "请输入密码", "登录", "取消",  new MyDialogListener() {
                    @Override
                    public void onFirst() {
 
@@ -387,7 +387,7 @@ android:pivotY="50%" />
 
                 boolean[] choseDefault = new boolean[]{false,false,false,false,true,false};
 
-                StyledDialog.buildMdMultiChoose(activity, "xuanze", words, choseDefault,  new MyDialogListener() {
+                StyledDialog.buildMdMultiChoose( "xuanze", words, choseDefault,  new MyDialogListener() {
                     @Override
                     public void onFirst() {
 
@@ -401,7 +401,7 @@ android:pivotY="50%" />
                 break;
             case R.id.btn_singlechoose:
                 String[] words2 = new String[]{"12","78","45","89","88","00"};
-                StyledDialog.buildMdSingleChoose(activity, "单选", 2, words2,  new MyItemDialogListener() {
+                StyledDialog.buildMdSingleChoose("单选", 2, words2,  new MyItemDialogListener() {
                     @Override
                     public void onItemClick(CharSequence text, int position) {
                         showToast(text + "--" + position);
@@ -444,7 +444,7 @@ android:pivotY="50%" />
                 adapter.addAll(datas);
                 adapter.addAll(datas);
 
-               StyledDialog.buildCustomBottomSheet(this,recyclerView).show();//不好建立回调
+               StyledDialog.buildCustomBottomSheet(recyclerView).show();//不好建立回调
 
 
 
@@ -470,7 +470,7 @@ android:pivotY="50%" />
 
 
 
-                StyledDialog.buildBottomSheetLv(activity, "拉出来溜溜", datas2, "this is cancle button", new MyItemDialogListener() {
+                StyledDialog.buildBottomSheetLv( "拉出来溜溜", datas2, "this is cancle button", new MyItemDialogListener() {
                     @Override
                     public void onItemClick(CharSequence text, int position) {
                         showToast(text+"---"+position);
@@ -496,7 +496,7 @@ android:pivotY="50%" />
 
 
 
-                StyledDialog.buildBottomSheetGv(activity, "拉出来溜溜", datas2, "this is cancle button",3, new MyItemDialogListener() {
+                StyledDialog.buildBottomSheetGv( "拉出来溜溜", datas2, "this is cancle button",3, new MyItemDialogListener() {
                     @Override
                     public void onItemClick(CharSequence text, int position) {
                         showToast(text+"---"+position);

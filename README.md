@@ -2,7 +2,7 @@
 
 
 # DialogUtil
-material风格(v7支持包中的)，ios风格，传入context构建，可在任意界面弹出，以及dialog样式的activity(todo)
+material风格(v7支持包中的)，ios风格，可在任意界面弹出,不必传入activity引用,而是自动获取
 
 [![](https://jitpack.io/v/hss01248/DialogUtil.svg)](https://jitpack.io/#hss01248/DialogUtil)
 
@@ -12,7 +12,7 @@ loading对话框和ios风格的dialog传入context和activity均可弹出dialog.
 
 样式包括常用的ios风格dialog和meterial design风格的dialog.
 
-可以传入自定义的view,定义好事件,本工具负责显示
+自定义样式:可以传入自定义的view,定义好事件,本工具负责显示
 
 考虑了显示内容超多时的滑动和与屏幕的间隙.
 
@@ -50,7 +50,16 @@ https://github.com/android-cjj/BottomSheets
 2. 增加: loading对话框--无须对象即可关闭:StyledDialog.dismissLoading()
 3. fix bug: 原先的两个loading对话框第一层api设置cancelable和outsideTouchable无效,如今有效.
 4. 移除对butterknife的依赖
-5. ​
+
+## 2017-2-15
+
+1.添加获取app顶层activity的工具MyActyManager,从此构建dialog时不用再传特定activity,自动去拿顶层activity使用,同时也规避了miui对TYPE_TOAST的种种限制.
+
+2.调整菊花loading的UI
+
+3.简化所有api,取消context引用的传入.
+
+
 
 # todo
 
@@ -168,20 +177,67 @@ Add it in your root build.gradle at the end of repositories:
 
 ```
 	dependencies {
-	        compile 'com.github.hss01248:DialogUtil:1.0.3'
+	        compile 'com.github.hss01248:DialogUtil:1.0.4'
 	}
 ```
 
+## 初始化
 
+```
+//在Application的oncreate方法里:
+传入context
+StyledDialog.init(this);
+
+在activity生命周期callback中拿到顶层activity引用:
+ registerActivityLifecycleCallbacks(new ActivityLifecycleCallbacks() {
+            @Override
+            public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
+
+            }
+
+            @Override
+            public void onActivityStarted(Activity activity) {
+
+            }
+
+            @Override
+            public void onActivityResumed(Activity activity) {
+            	//在这里保存顶层activity的引用(内部以软引用实现)
+                MyActyManager.getInstance().setCurrentActivity(activity);
+
+            }
+
+            @Override
+            public void onActivityPaused(Activity activity) {
+
+            }
+
+            @Override
+            public void onActivityStopped(Activity activity) {
+
+            }
+
+            @Override
+            public void onActivitySaveInstanceState(Activity activity, Bundle outState) {
+
+            }
+
+            @Override
+            public void onActivityDestroyed(Activity activity) {
+
+            }
+        });
+
+```
 
 ## 示例代码(MainActivity里)
 
 ```
         //使用默认样式时,无须.setxxx:
-        StyledDialog.buildLoading(this, "加载中...", true, false).show();
+        StyledDialog.buildLoading().show();
         
         //自定义部分样式时:
-        StyledDialog.buildMdAlert(activity, "title", msg,  new MyDialogListener() {
+        StyledDialog.buildMdAlert("title", msg,  new MyDialogListener() {
                     @Override
                     public void onFirst() {
                         showToast("onFirst");
@@ -242,26 +298,4 @@ StyledDialog.dismiss(DialogInterface... dialogs);
 StyledDialog.dismissLoading();
 ```
 
-
-
-
-
-## context弹出dialog注意事项
-
-弹出后对后退键的响应需要自己写代码:
-
-```
-Dialog gloablDialog;//用一个统一的变量名存引用
-
-@Override
-public void onBackPressed() {
-
-    if (gloablDialog != null && gloablDialog .isShowing()){
-        gloablDialog.dismiss();
-    }else {
-        super.onBackPressed();
-    }
-}
-
-```
 

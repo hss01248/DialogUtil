@@ -63,12 +63,20 @@ public class Tool {
     }
 
     public static ConfigBean fixContext(ConfigBean bean){
+        Activity activity = MyActyManager.getInstance().getCurrentActivity();
+        if(activity!=null){
+            bean.context = activity;
+            return bean;
+        }
+
         if (bean.context == null){
             bean.context = StyledDialog.context;
-        }else if (bean.context instanceof Activity){//todo keycode
-            Activity activity = (Activity) bean.context;
+        }
+
+        if (bean.context instanceof Activity){
+            Activity activity1 = (Activity) bean.context;
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-                if (activity.isDestroyed()){
+                if (activity1.isDestroyed()){
                     bean.context = StyledDialog.context;
                 }
             }
@@ -164,12 +172,12 @@ public class Tool {
         // wl.gravity = Gravity.CENTER_HORIZONTAL;
 
         if (activity instanceof Activity){
-            Activity activity1 = (Activity) activity;
+           /* Activity activity1 = (Activity) activity;
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
                 if (activity1.isDestroyed()){
                     activity = StyledDialog.context;
                 }
-            }
+            }*/
 
         }else {
             wl.type = WindowManager.LayoutParams.TYPE_TOAST;
