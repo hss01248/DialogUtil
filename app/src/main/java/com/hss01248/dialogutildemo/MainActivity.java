@@ -397,6 +397,13 @@ android:pivotY="50%" />
                     public void onSecond() {
 
                     }
+
+
+
+                    @Override
+                    public void onGetChoose(boolean[] states) {
+                        super.onGetChoose(states);
+                    }
                 }).show();
                 break;
             case R.id.btn_singlechoose:
