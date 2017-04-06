@@ -13,6 +13,8 @@ import java.util.List;
  */
 public interface Assignable {
 
+    ConfigBean assignProgress(Context context, CharSequence msg,boolean isHorizontal);
+
     ConfigBean assignMdLoading(Context context, CharSequence msg, boolean cancleable, boolean outsideTouchable);
     
     ConfigBean assignMdAlert(Activity activity, CharSequence title, CharSequence msg, final MyDialogListener listener);

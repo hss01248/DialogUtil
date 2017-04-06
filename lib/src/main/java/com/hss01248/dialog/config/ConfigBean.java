@@ -29,6 +29,8 @@ public class ConfigBean extends MyDialogBuilder implements Styleable {
     public Context context;
     public boolean isVertical;
 
+    public boolean isProgressHorzontal;
+
     public View customView;
 
     public int gravity;
@@ -203,6 +205,10 @@ public class ConfigBean extends MyDialogBuilder implements Styleable {
         //内部保存loadingdialog对象
         if(type == DefaultConfig.TYPE_LOADING || type == DefaultConfig.TYPE_MD_LOADING){
             StyledDialog.setLoadingObj(dialog);
+        }
+
+        if(type ==DefaultConfig.TYPE_PROGRESS){
+
         }
 
 

@@ -30,6 +30,20 @@
                 android:layout_height="wrap_content" />
 
             <Button
+                android:id="@+id/btn_context_progress_h"
+                android:layout_margin="5dp"
+                android:text="horizontal progress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <Button
+                android:id="@+id/btn_context_progress_c"
+                android:layout_margin="5dp"
+                android:text="horizontal circle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <Button
                 android:id="@+id/btn_material_alert"
                 android:layout_margin="5dp"
                 android:text="material_alert"

@@ -61,6 +61,20 @@ https://github.com/android-cjj/BottomSheets
 
 
 
+###  2017-04-06
+
+* 支持任意线程调用
+
+* 支持带进度的dialog,以及进度更新
+
+  ```
+  StyledDialog.buildProgress(CharSequence msg,boolean isHorizontal)
+
+  StyledDialog.updateProgress(Dialog dialog, int progress, int max, CharSequence msg,  boolean isHorizontal)
+  ```
+
+
+
 # todo
 
 
@@ -80,13 +94,23 @@ https://github.com/android-cjj/BottomSheets
 
 # 示例图
 
+ios 样式的 loading
+
  ![loading-common](loading-common.jpg)
 
-
+android 样式的loading
 
   ![loading](loading.jpg)
 
+ProgressDialog of horizontal
 
+ ![progress_h](progress_h.jpg)
+
+ProgressDialog of spinner,用文字显示的进度(自动计算):
+
+ ![progress_c](progress_c.jpg)
+
+AlertDialog of appcompat-v7
 
  ![md_alert](md_alert.jpg)
 
@@ -132,7 +156,7 @@ ios风格(含按下效果)
 
 
 
-bottomsheet:
+BottomSheetDialog of design
 
   ![btnsheet-lv](btnsheet-lv.jpg)
 
@@ -177,7 +201,7 @@ Add it in your root build.gradle at the end of repositories:
 
 ```
 	dependencies {
-	        compile 'com.github.hss01248:DialogUtil:1.0.4'
+	        compile 'com.github.hss01248:DialogUtil:1.0.5'
 	}
 ```
 
@@ -272,13 +296,13 @@ StyledDialog.init(this);
 
 ## 自定义样式:setXxx
 
- ![methodsofconfig2](methodsofconfig2.jpg)
 
- ![methodsofconfig](methodsofconfig.jpg)
+
+![methodsofconfig](methodsofconfig.jpg)
 
  
 
-## 最后必须调用show()
+## 最后必须调用show(),返回dialog对象
 
 
 
@@ -292,10 +316,23 @@ StyledDialog.dismiss(DialogInterface... dialogs);
 
 
 
-## 新增: 两个loading对话框不需要对象就可以直接dismisss:
+## 两个loading对话框不需要对象就可以直接dismisss:
 
 ```
 StyledDialog.dismissLoading();
 ```
 
+### progress dialog 的进度更新
+
+```
+/**
+ *  可以在任何线程调用
+ * @param dialog 传入show方法返回的对象
+ * @param progress
+ * @param max
+ * @param msg 如果是转圈圈,会将msg变成msg:78%的形式.如果是水平,msg不起作用
+ * @param isHorizontal 是水平线状,还是转圈圈
+ */
+public static void updateProgress( Dialog dialog, int progress,  int max,  CharSequence msg,  boolean isHorizontal)
+```
 

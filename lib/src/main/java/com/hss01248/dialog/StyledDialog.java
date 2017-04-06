@@ -2,8 +2,11 @@ package com.hss01248.dialog;
 
 
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.v7.app.AppCompatDialog;
 import android.view.View;
 
@@ -24,10 +27,22 @@ public class StyledDialog  {
 
     private static int singleChosen;
 
+    public static DialogInterface getLoadingDialog() {
+        return loadingDialog;
+    }
+
     private static DialogInterface loadingDialog;//缓存加载中的dialog,便于以后可以不需要对象就让它消失
 
     private static boolean isMiUi8 = false;//miui8用非activity的Context时,无法以TYPE_TOAST的形式弹出对话框.没有好的解决办法.....
 
+    public static Handler getMainHandler() {
+        if(mainHandler==null){
+            mainHandler = new Handler(Looper.getMainLooper());
+        }
+        return mainHandler;
+    }
+
+    private static Handler mainHandler;
 
     public static void init(Context context){
         StyledDialog.context = context;
@@ -35,10 +50,11 @@ public class StyledDialog  {
         if((!TextUtils.isEmpty(userAgent)) && userAgent.contains("MIUI") && userAgent.contains("V8")){
             isMiUi8 = true;
         }*/
+       mainHandler = new Handler(Looper.getMainLooper());
 
     }
 
-    public static void setLoadingObj(DialogInterface  loading){
+     public static void setLoadingObj(DialogInterface  loading){
         dismiss(loadingDialog);
         loadingDialog = loading;
     }
@@ -75,6 +91,41 @@ public class StyledDialog  {
            }
             
         }
+    }
+
+
+    public static ConfigBean buildProgress( CharSequence msg,boolean isHorizontal) {
+        return DialogAssigner.getInstance().assignProgress(null,msg,isHorizontal);
+    }
+
+    /**
+     *  可以在任何线程调用
+     * @param dialog 传入show方法返回的对象
+     * @param progress
+     * @param max
+     * @param msg 如果是转圈圈,会将msg变成msg:78%的形式.如果是水平,msg不起作用
+     * @param isHorizontal 是水平线状,还是转圈圈
+     */
+    public static void updateProgress(final Dialog dialog, final int progress, final int max, final CharSequence msg, final boolean isHorizontal){
+
+        getMainHandler().post(new Runnable() {
+            @Override
+            public void run() {
+                if(dialog instanceof ProgressDialog && dialog.isShowing()){
+                    ProgressDialog progressDialog = (ProgressDialog) dialog;
+                    if(isHorizontal){
+                        progressDialog.setProgress((int) progress);
+                        progressDialog.setMax((int) max);
+                    }else {
+                        String pmsg = new StringBuilder(msg).append(":").append(progress*100/max).append("%").toString();
+                        progressDialog.setMessage(pmsg);
+                    }
+
+                }
+            }
+        });
+
+
     }
 
     public static ConfigBean buildLoading( CharSequence msg) {

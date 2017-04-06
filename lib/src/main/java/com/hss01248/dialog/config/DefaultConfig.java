@@ -61,6 +61,8 @@ public class DefaultConfig {
 
     public static final int TYPE_LOADING = 14;
 
+    public static final int TYPE_PROGRESS = 15;
+
 
 
 

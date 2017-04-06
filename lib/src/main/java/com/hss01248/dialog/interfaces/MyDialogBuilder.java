@@ -1,5 +1,7 @@
 package com.hss01248.dialog.interfaces;
 
+
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.support.design.widget.BottomSheetDialog;
@@ -25,8 +27,8 @@ import com.hss01248.dialog.bottomsheet.BsGvHolder;
 import com.hss01248.dialog.bottomsheet.BsLvHolder;
 import com.hss01248.dialog.config.ConfigBean;
 import com.hss01248.dialog.config.DefaultConfig;
-import com.hss01248.dialog.view.IosAlertDialogHolder;
 import com.hss01248.dialog.view.IosActionSheetHolder;
+import com.hss01248.dialog.view.IosAlertDialogHolder;
 import com.hss01248.dialog.view.IosCenterItemHolder;
 
 /**
@@ -42,6 +44,9 @@ public  class MyDialogBuilder {
            case DefaultConfig.TYPE_MD_LOADING:
                Tool.newCustomDialog(bean);
                buildMdLoading(bean);
+               break;
+           case DefaultConfig.TYPE_PROGRESS:
+               buildProgress(bean);
                break;
            case DefaultConfig.TYPE_MD_ALERT:
                buildMdAlert(bean);
@@ -104,10 +109,19 @@ public  class MyDialogBuilder {
        }
        
        Tool.setDialogStyle(bean);
-
        Tool.setCancelable(bean);
+       Tool.setCancelListener(bean);
        return bean;
    }
+
+    private void buildProgress(ConfigBean bean) {
+        ProgressDialog dialog = new ProgressDialog(bean.context);
+        dialog.setTitle("");
+        dialog.setMessage(bean.msg);
+        dialog.setProgressStyle(bean.isProgressHorzontal ? ProgressDialog.STYLE_HORIZONTAL:ProgressDialog.STYLE_SPINNER);
+        dialog.setIndeterminate(false);
+        bean.dialog = dialog;
+    }
 
     private void buildBottomSheetGv(ConfigBean bean) {
         final BottomSheetDialog dialog = new BottomSheetDialog(bean.context);
@@ -262,6 +276,7 @@ public  class MyDialogBuilder {
         dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
             @Override
             public void onCancel(DialogInterface dialog) {
+                if(bean.listener!=null)
                 bean.listener.onCancle();
             }
         });

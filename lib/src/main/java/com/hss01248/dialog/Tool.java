@@ -3,6 +3,7 @@ package com.hss01248.dialog;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
@@ -25,12 +26,18 @@ public class Tool {
      * 解决badtoken问题,一劳永逸
      * @param dialog
      */
-    public static void showDialog(Dialog dialog) {
-        try {
-            dialog.show();
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+    public static void showDialog(final Dialog dialog) {
+        StyledDialog.getMainHandler().post(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    dialog.show();
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+        });
+
     }
 
     public static void setMdBtnStytle(ConfigBean bean){
@@ -265,6 +272,38 @@ public class Tool {
     }
 
 
+    public static void setCancelListener(final ConfigBean bean) {
+
+            if(bean.dialog!=null){
+                bean.dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                    @Override
+                    public void onCancel(DialogInterface dialog) {
+                        if(bean.listener!=null) {
+                            bean.listener.onCancle();
+                        }
+                        if (bean.dialog == StyledDialog.getLoadingDialog()) {
+                            StyledDialog.setLoadingObj(null);
+                        }
+
+                    }
+                });
+            }
+            if(bean.alertDialog!=null){
+                bean.alertDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                    @Override
+                    public void onCancel(DialogInterface dialog) {
+                        if (bean.listener != null) {
+                            bean.listener.onCancle();
+                        }
+                        if (bean.alertDialog == StyledDialog.getLoadingDialog()) {
+                            StyledDialog.setLoadingObj(null);
+                        }
+                    }
+                });
 
 
+            }
+
+
+    }
 }

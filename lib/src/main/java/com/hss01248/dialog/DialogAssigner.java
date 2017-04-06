@@ -30,6 +30,24 @@ public class DialogAssigner implements Assignable {
         return instance;
     }
 
+    /**
+     *
+     * @param context
+     * @param msg
+     * @param isHorizontal 是水平还是圈圈
+     * @return
+     */
+    @Override
+    public ConfigBean assignProgress(Context context, CharSequence msg,boolean isHorizontal) {
+        ConfigBean bean = new ConfigBean();
+        bean.context = context;
+        bean.msg = msg;
+        bean.isProgressHorzontal = isHorizontal;
+        bean.type = DefaultConfig.TYPE_PROGRESS;
+        bean.cancelable = true;
+        bean.outsideTouchable = false;
+        return bean;
+    }
 
     @Override
     public ConfigBean assignMdLoading(Context context, CharSequence msg, boolean cancelable, boolean outsideTouchable) {

@@ -2,6 +2,7 @@ package com.hss01248.dialogutildemo;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
@@ -21,6 +22,8 @@ import com.hss01248.dialog.interfaces.MyItemDialogListener;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -55,14 +58,14 @@ public class MainActivity extends Activity {
     Button btnIosAlert2;
     @Bind(R.id.btn_multichoose)
     Button btnIosAlertVertical2;
-
+    Handler handler ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-
+        handler = new Handler();
         activity = this;
         context = getApplication();
         StyledDialog.init(getApplicationContext());
@@ -209,23 +212,65 @@ android:pivotY="50%" />
 
     @OnClick({R.id.btn_common_progress, R.id.btn_context_progress, R.id.btn_material_alert, R.id.btn_ios_alert,
             R.id.btn_ios_alert_vertical, R.id.btn_ios_bottom_sheet, R.id.btn_ios_center_list,R.id.btn_input,
-            R.id.btn_multichoose, R.id.btn_singlechoose,R.id.btn_md_bs,R.id.btn_md_bs_listview,R.id.btn_md_bs_Gridview})
+            R.id.btn_multichoose, R.id.btn_singlechoose,R.id.btn_md_bs,R.id.btn_md_bs_listview,R.id.btn_md_bs_Gridview,
+            R.id.btn_context_progress_h,R.id.btn_context_progress_c})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_common_progress:
-                StyledDialog.buildLoading( "加载中...").show();
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        StyledDialog.buildLoading( "加载中...").show();
+                    }
+                }).run();
+
 
 
                 break;
             case R.id.btn_context_progress:
                 gloablDialog = StyledDialog.buildMdLoading().show();
-                Handler handler = new Handler();
+
+
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         StyledDialog.buildLoading().show();
                     }
                 },3000);
+                break;
+            case R.id.btn_context_progress_h:
+               final ProgressDialog dialog= (ProgressDialog) StyledDialog.buildProgress( "下载中...",true).show();
+                final int[] progress = {0};
+                final Timer timer = new Timer();
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        progress[0] +=10;
+                        StyledDialog.updateProgress(dialog, progress[0],100,"progress",true);
+                        if(progress[0]>100){
+                            timer.cancel();
+                        }
+                    }
+                },500,500);
+
+
+                break;
+            case R.id.btn_context_progress_c:
+                final ProgressDialog dialog2= (ProgressDialog) StyledDialog.buildProgress( "下载中...",false).show();
+                final int[] progress2 = {0};
+
+                final Timer timer2 = new Timer();
+                timer2.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        progress2[0] +=10;
+                        StyledDialog.updateProgress(dialog2, progress2[0],100,"progress",false);
+                        if(progress2[0]>100){
+                            timer2.cancel();
+                        }
+                    }
+                },500,500);
+
                 break;
             case R.id.btn_material_alert:
                 StyledDialog.buildMdAlert("title", msg,  new MyDialogListener() {
