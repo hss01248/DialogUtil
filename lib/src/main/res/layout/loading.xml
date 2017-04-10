@@ -19,7 +19,7 @@
         custom:gif="@drawable/loading_large"/>
 
     <TextView
-        android:id="@+id/tv_msg"
+        android:id="@+id/loading_msg"
         android:text="加载中..."
         android:textColor="#ffffff"
         android:layout_marginTop="20dp"

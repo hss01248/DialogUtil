@@ -22,6 +22,7 @@ import com.hss01248.dialog.interfaces.MyItemDialogListener;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -224,6 +225,13 @@ android:pivotY="50%" />
                     }
                 }).run();
 
+                new Timer().schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        StyledDialog.updateLoadingMsg("jjjjj"+ new Random().nextInt(100));
+                    }
+                },50,2000);
+
 
 
                 break;
@@ -231,10 +239,12 @@ android:pivotY="50%" />
                 gloablDialog = StyledDialog.buildMdLoading().show();
 
 
+
+
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        StyledDialog.buildLoading().show();
+                       StyledDialog.updateLoadingMsg("jjjjj"+ new Random().nextInt(100));
                     }
                 },3000);
                 break;

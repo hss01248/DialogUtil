@@ -73,6 +73,13 @@ https://github.com/android-cjj/BottomSheets
   StyledDialog.updateProgress(Dialog dialog, int progress, int max, CharSequence msg,  boolean isHorizontal)
   ```
 
+### 2017-04-10
+
+* loading 对话框更新msg:
+```
+    StyledDialog.updateLoadingMsg(String msg)
+
+```
 
 
 # todo

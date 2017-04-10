@@ -36,6 +36,7 @@ public class BaseApp extends Application {
             public void onActivityResumed(Activity activity) {
                 MyActyManager.getInstance().setCurrentActivity(activity);
 
+
             }
 
             @Override

@@ -9,6 +9,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.support.v7.app.AppCompatDialog;
 import android.view.View;
+import android.widget.TextView;
 
 import com.hss01248.dialog.config.ConfigBean;
 import com.hss01248.dialog.interfaces.MyDialogListener;
@@ -32,6 +33,12 @@ public class StyledDialog  {
     }
 
     private static DialogInterface loadingDialog;//缓存加载中的dialog,便于以后可以不需要对象就让它消失
+
+    public static void setTv_msg(TextView tv_msg) {
+        StyledDialog.tv_msg = tv_msg;
+    }
+
+    private static TextView tv_msg;
 
     private static boolean isMiUi8 = false;//miui8用非activity的Context时,无法以TYPE_TOAST的形式弹出对话框.没有好的解决办法.....
 
@@ -57,6 +64,9 @@ public class StyledDialog  {
      public static void setLoadingObj(DialogInterface  loading){
         dismiss(loadingDialog);
         loadingDialog = loading;
+         if(loading==null){
+             tv_msg=null;
+         }
     }
 
 
@@ -67,6 +77,7 @@ public class StyledDialog  {
      */
     public static void dismissLoading(){
         if (loadingDialog != null ){
+            tv_msg=null;
             dismiss(loadingDialog);
             loadingDialog = null;
         }
@@ -96,6 +107,18 @@ public class StyledDialog  {
 
     public static ConfigBean buildProgress( CharSequence msg,boolean isHorizontal) {
         return DialogAssigner.getInstance().assignProgress(null,msg,isHorizontal);
+    }
+
+    public static void updateLoadingMsg(final String msg){
+        if(tv_msg!=null){//&& tv_msg.getVisibility() == View.VISIBLE
+            getMainHandler().post(new Runnable() {
+                @Override
+                public void run() {
+                    tv_msg.setText(msg);
+                }
+            });
+
+        }
     }
 
     /**

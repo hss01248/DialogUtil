@@ -283,6 +283,7 @@ public class Tool {
                         }
                         if (bean.dialog == StyledDialog.getLoadingDialog()) {
                             StyledDialog.setLoadingObj(null);
+
                         }
 
                     }

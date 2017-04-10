@@ -232,7 +232,8 @@ public  class MyDialogBuilder {
 
     protected  ConfigBean buildLoading(ConfigBean bean){
         View root = View.inflate(bean.context, R.layout.loading,null);
-        TextView tvMsg = (TextView) root.findViewById(R.id.tv_msg);
+        TextView tvMsg = (TextView) root.findViewById(R.id.loading_msg);
+        StyledDialog.setTv_msg(tvMsg);
         tvMsg.setText(bean.msg);
         bean.dialog.setContentView(root);
         return bean;
@@ -241,7 +242,8 @@ public  class MyDialogBuilder {
 
     protected  ConfigBean buildMdLoading(ConfigBean bean){
         View root = View.inflate(bean.context, R.layout.progressview_wrapconent,null);
-        TextView tvMsg = (TextView) root.findViewById(R.id.message);
+        TextView tvMsg = (TextView) root.findViewById(R.id.loading_msg);
+        StyledDialog.setTv_msg(tvMsg);
         tvMsg.setText(bean.msg);
         bean.dialog.setContentView(root);
         return bean;
