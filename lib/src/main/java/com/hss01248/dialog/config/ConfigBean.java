@@ -1,5 +1,6 @@
 package com.hss01248.dialog.config;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.support.annotation.ColorRes;
@@ -142,6 +143,11 @@ public class ConfigBean extends MyDialogBuilder implements Styleable {
         if (colorRes >0){
             this.msgTxtColor = colorRes;
         }
+        return this;
+    }
+
+    public ConfigBean setActivity(Activity activity){
+        this.context = activity;
         return this;
     }
 

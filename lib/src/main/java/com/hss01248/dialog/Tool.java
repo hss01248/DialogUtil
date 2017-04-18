@@ -70,6 +70,16 @@ public class Tool {
     }
 
     public static ConfigBean fixContext(ConfigBean bean){
+        if (bean.context instanceof Activity){
+            Activity activity1 = (Activity) bean.context;
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+                if (!activity1.isDestroyed()){
+                    return bean;
+                }
+            }else {
+                return bean;
+            }
+        }
         Activity activity = MyActyManager.getInstance().getCurrentActivity();
         if(activity!=null){
             bean.context = activity;

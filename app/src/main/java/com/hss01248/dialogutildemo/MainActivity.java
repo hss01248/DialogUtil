@@ -221,7 +221,7 @@ android:pivotY="50%" />
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        StyledDialog.buildLoading( "加载中...").show();
+                        StyledDialog.buildLoading( "加载中...").setActivity(MainActivity.this).show();
                     }
                 }).run();
 

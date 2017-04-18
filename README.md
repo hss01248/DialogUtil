@@ -80,6 +80,11 @@ https://github.com/android-cjj/BottomSheets
     StyledDialog.updateLoadingMsg(String msg)
 
 ```
+### 2017-04-18
+* 添加功能: 在指定的activity上弹出dialog:
+```
+   .setActivity(MainActivity.this)
+```
 
 
 # todo
@@ -208,7 +213,7 @@ Add it in your root build.gradle at the end of repositories:
 
 ```
 	dependencies {
-	        compile 'com.github.hss01248:DialogUtil:1.0.6'
+	        compile 'com.github.hss01248:DialogUtil:1.0.7'
 	}
 ```
 
