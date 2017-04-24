@@ -161,19 +161,28 @@ public class Tool {
         Window window = dialog.getWindow();
 
         //window.setWindowAnimations(R.style.dialog_center);
-        window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));//todo keycode to show round corner
+        if(bean.type != DefaultConfig.TYPE_PROGRESS){
+            window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));//todo keycode to show round corner
+        }
+
 
 
         WindowManager.LayoutParams wl = window.getAttributes();
        /* wl.x = 0;
         wl.y = getWindowManager().getDefaultDisplay().getHeight();*/
 // 以下这两句是为了保证按钮可以水平满屏
-        int width = ((WindowManager) activity.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay().getWidth();
-        int height = (int) (((WindowManager) activity.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay().getHeight() );
+
+        int width = window.getWindowManager().getDefaultDisplay().getWidth();
+        int height = window.getWindowManager().getDefaultDisplay().getHeight();
+
+        float ratio = 0.8f;
+        if(width > height){//宽屏
+            ratio = 0.5f;
+        }
 
 
-        if (bean.type != DefaultConfig.TYPE_LOADING){
-            wl.width = (int) (width * 0.9);  // todo keycode to keep gap
+        if (isCustomType(bean)){
+            wl.width = (int) (width * ratio);  // todo keycode to keep gap
         }else {
             wl.width = ViewGroup.LayoutParams.WRAP_CONTENT;
         }
@@ -206,6 +215,21 @@ public class Tool {
         }
 
         dialog.onWindowAttributesChanged(wl);
+    }
+
+    private static boolean isCustomType(ConfigBean bean) {
+        switch (bean.type){
+            case DefaultConfig.TYPE_IOS_HORIZONTAL:
+            case DefaultConfig.TYPE_IOS_VERTICAL:
+            case DefaultConfig.TYPE_IOS_BOTTOM:
+            case DefaultConfig.TYPE_IOS_CENTER_LIST:
+            case DefaultConfig.TYPE_IOS_INPUT:
+            case DefaultConfig.TYPE_CUSTOM_VIEW:
+            case DefaultConfig.TYPE_MD_LOADING:
+            return true;
+            default:
+                return false;
+        }
     }
 
 
@@ -264,8 +288,11 @@ public class Tool {
         int heightExtra = 0;
         if (subViews != null && subViews.length>0){
             for (View view : subViews){
-                measureView(view);
-                heightExtra += view.getMeasuredHeight();
+                if(view.getVisibility() == View.VISIBLE){//确保设置了gone的view不再出现
+                    measureView(view);
+                    heightExtra += view.getMeasuredHeight();
+                }
+
             }
 
         }

@@ -98,7 +98,7 @@ public  class MyDialogBuilder {
 
                break;
 
-           case DefaultConfig.TYPE_LOADING:
+           case DefaultConfig.TYPE_IOS_LOADING:
                Tool.newCustomDialog(bean);
                buildLoading(bean);
                break;

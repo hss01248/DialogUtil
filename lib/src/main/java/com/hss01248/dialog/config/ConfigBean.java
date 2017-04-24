@@ -209,7 +209,7 @@ public class ConfigBean extends MyDialogBuilder implements Styleable {
 
         buildByType(this);
         //内部保存loadingdialog对象
-        if(type == DefaultConfig.TYPE_LOADING || type == DefaultConfig.TYPE_MD_LOADING){
+        if(type == DefaultConfig.TYPE_IOS_LOADING || type == DefaultConfig.TYPE_MD_LOADING){
             StyledDialog.setLoadingObj(dialog);
         }
 

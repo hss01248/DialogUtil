@@ -190,7 +190,7 @@ public class DialogAssigner implements Assignable {
         ConfigBean bean = new ConfigBean();
         bean.context = context;
         bean.msg = msg;
-        bean.type = DefaultConfig.TYPE_LOADING;
+        bean.type = DefaultConfig.TYPE_IOS_LOADING;
 
         bean.cancelable = cancelable;
         bean.outsideTouchable = outsideTouchable;

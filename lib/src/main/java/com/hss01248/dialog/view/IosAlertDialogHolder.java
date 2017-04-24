@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.hss01248.dialog.R;
@@ -36,6 +37,7 @@ public class IosAlertDialogHolder extends SuperHolder {
     protected View lineBtn3Vertical;
     protected Button btn3Vertical;
     protected LinearLayout llContainerVertical;
+    protected ScrollView sv;
 
 
 
@@ -62,6 +64,7 @@ public class IosAlertDialogHolder extends SuperHolder {
         lineBtn3Vertical = (View) rootView.findViewById(R.id.line_btn3_vertical);
         btn3Vertical = (Button) rootView.findViewById(R.id.btn_3_vertical);
         llContainerVertical = (LinearLayout) rootView.findViewById(R.id.ll_container_vertical);
+        sv = (ScrollView) rootView.findViewById(R.id.sv);
     }
 
 
@@ -126,6 +129,11 @@ public class IosAlertDialogHolder extends SuperHolder {
         if (TextUtils.isEmpty(bean.hint1)) {
             et1.setVisibility(View.GONE);
         } else {
+
+            LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) sv.getLayoutParams();
+            params.height = LinearLayout.LayoutParams.WRAP_CONTENT;
+            params.weight = 0;
+            sv.setLayoutParams(params);
             et1.setVisibility(View.VISIBLE);
             et1.setHint(bean.hint1);
 
