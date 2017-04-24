@@ -213,9 +213,10 @@ Add it in your root build.gradle at the end of repositories:
 
 ```
 	dependencies {
-	        compile 'com.github.hss01248:DialogUtil:1.0.7'
+	        compile 'com.github.hss01248:DialogUtil:lastest release'
 	}
 ```
+lastest release: https://github.com/hss01248/DialogUtil/releases
 
 ## 初始化
 
