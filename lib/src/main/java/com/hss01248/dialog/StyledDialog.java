@@ -114,7 +114,12 @@ public class StyledDialog  {
             getMainHandler().post(new Runnable() {
                 @Override
                 public void run() {
-                    tv_msg.setText(msg);
+                    try {
+                        tv_msg.setText(msg);
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
+
                 }
             });
 

@@ -196,6 +196,9 @@ public class Tool {
 
 
         WindowManager.LayoutParams wl = window.getAttributes();
+        if(bean.type == DefaultConfig.TYPE_IOS_LOADING){//转菊花,则让背景透明
+            wl.dimAmount = 0;
+        }
        /* wl.x = 0;
         wl.y = getWindowManager().getDefaultDisplay().getHeight();*/
 // 以下这两句是为了保证按钮可以水平满屏

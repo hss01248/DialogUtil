@@ -87,12 +87,22 @@ https://github.com/android-cjj/BottomSheets
 ```
 ### 2017-04-24
 * 适配横屏,平板,以及高低分辨率屏幕
-* 解决原先alertdialog的按钮的样式无法自定义的bug
+* 解决原先alertdialog的按钮的样式无法自定义的bug. "取消"按钮默认灰色
+* 转菊花时,背景变透明,不再有变暗
 
 
 # todo
 
 bottomsheet 图标大小和文字大小的自定义
+ios action sheet 加上标题
+md 单选多选颜色自定义
+md 增加自定义输入框+勾选功能
+所有dialog 增加oncancellistener
+progressdialog改成完全自定义的
+所有dialog : 增加动画的自定义
+
+选择https://github.com/liangchengcheng/android-loading-dialog中的一些好的效果加进来
+
 
 
 
