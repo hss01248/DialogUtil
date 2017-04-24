@@ -85,16 +85,14 @@ https://github.com/android-cjj/BottomSheets
 ```
    .setActivity(MainActivity.this)
 ```
+### 2017-04-24
+* 适配横屏,平板,以及高低分辨率屏幕
+* 解决原先alertdialog的按钮的样式无法自定义的bug
 
 
 # todo
 
-
-1.windows风格的dialog
-
-2.md风格按钮样式无法自定义的bug
-
-3.bottomsheet 图标大小和文字大小的自定义
+bottomsheet 图标大小和文字大小的自定义
 
 
 
