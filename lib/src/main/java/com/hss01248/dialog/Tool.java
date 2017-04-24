@@ -7,7 +7,7 @@ import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
-import android.support.v7.app.AlertDialog;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -26,12 +26,15 @@ public class Tool {
      * 解决badtoken问题,一劳永逸
      * @param dialog
      */
-    public static void showDialog(final Dialog dialog) {
+    public static void showDialog(final Dialog dialog, final ConfigBean bean) {
         StyledDialog.getMainHandler().post(new Runnable() {
             @Override
             public void run() {
                 try {
                     dialog.show();
+                    if (bean.alertDialog!= null){
+                        setMdBtnStytle(bean);
+                    }
                 }catch (Exception e){
                     e.printStackTrace();
                 }
@@ -40,31 +43,51 @@ public class Tool {
 
     }
 
+
+    /**
+     * 必须在show之后,button才不会返回null
+     * @param bean
+     */
     public static void setMdBtnStytle(ConfigBean bean){
         Button btnPositive =
-                bean.alertDialog.getButton(AlertDialog.BUTTON_POSITIVE);
+                bean.alertDialog.getButton(DialogInterface.BUTTON_POSITIVE);
         Button btnNegative =
-                bean.alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE);
+                bean.alertDialog.getButton(DialogInterface.BUTTON_NEGATIVE);
         Button btnNatural =
-                bean.alertDialog.getButton(AlertDialog.BUTTON_NEUTRAL);
+                bean.alertDialog.getButton(DialogInterface.BUTTON_NEUTRAL);
 
         //todo null
-
-        if (btnPositive != null && btnNegative != null){
-            btnPositive.setTextSize(bean.btnTxtSize);
-            btnNegative.setTextSize(bean.btnTxtSize);
-            btnNatural.setTextSize(bean.btnTxtSize);
-
-            if (bean.btn1Color != 0)
+        if(btnPositive !=null){
+            if(TextUtils.isEmpty(bean.text1)){
+                btnPositive.setText(bean.text1);
+            }
+            if (bean.btn1Color > 0)
                 btnPositive.setTextColor(getColor(null,bean.btn1Color));
-            if (bean.btn2Color != 0)
+            if(bean.btnTxtSize >0){
+                btnPositive.setTextSize(bean.btnTxtSize);
+            }
+        }
+        if(btnNegative !=null){
+            if(TextUtils.isEmpty(bean.text2)){
+                btnNegative.setText(bean.text2);
+            }
+            if (bean.btn2Color > 0)
                 btnNegative.setTextColor(getColor(null,bean.btn2Color));
-            if (bean.btn3Color != 0)
-                btnNatural.setTextColor(getColor(null,bean.btn3Color));
+            if(bean.btnTxtSize >0){
+                btnNegative.setTextSize(bean.btnTxtSize);
+            }
         }
 
-
-
+        if(btnNatural !=null){
+            if(TextUtils.isEmpty(bean.text3)){
+                btnNatural.setText(bean.text3);
+            }
+            if (bean.btn3Color > 0)
+                btnNatural.setTextColor(getColor(null,bean.btn3Color));
+            if(bean.btnTxtSize >0){
+                btnNatural.setTextSize(bean.btnTxtSize);
+            }
+        }
 
 
     }

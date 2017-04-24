@@ -301,8 +301,9 @@ android:pivotY="50%" />
 
 
                 })
-                        .setBtnSize(20)
+                        .setBtnSize(29)
                         .setBtnText("i","b","3")
+                        .setBtnColor(R.color.colorPrimary,R.color.colorPrimaryDark,R.color.text_black)
                         .show();
                 break;
             case R.id.btn_ios_alert:

@@ -175,6 +175,11 @@ public class ConfigBean extends MyDialogBuilder implements Styleable {
         return this;
     }
 
+    /**
+     * 最大30sp
+     * @param sizeInSp
+     * @return
+     */
     @Override
     public ConfigBean setBtnSize(int sizeInSp) {
         if (sizeInSp >0 && sizeInSp < 30){
@@ -219,10 +224,10 @@ public class ConfigBean extends MyDialogBuilder implements Styleable {
 
 
         if (dialog != null && !dialog.isShowing()){
-            Tool.showDialog(dialog);
+            Tool.showDialog(dialog,this);
             return dialog;
         }else if (alertDialog != null && !alertDialog.isShowing()){
-            Tool.showDialog(alertDialog);
+            Tool.showDialog(alertDialog,this);
             return alertDialog;
         }
         return null;
