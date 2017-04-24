@@ -71,8 +71,13 @@ public class Tool {
             if(TextUtils.isEmpty(bean.text2)){
                 btnNegative.setText(bean.text2);
             }
-            if (bean.btn2Color > 0)
-                btnNegative.setTextColor(getColor(null,bean.btn2Color));
+            if (bean.btn2Color > 0 )
+                if(bean.btn2Color == DefaultConfig.iosBtnColor ){
+                    btnNegative.setTextColor(getColor(null,R.color.text_gray));
+                }else {
+                    btnNegative.setTextColor(getColor(null,bean.btn2Color));
+                }
+
             if(bean.btnTxtSize >0){
                 btnNegative.setTextSize(bean.btnTxtSize);
             }
