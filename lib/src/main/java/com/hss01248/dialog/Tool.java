@@ -4,9 +4,9 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.text.TextUtils;
 import android.view.View;
@@ -227,9 +227,7 @@ public class Tool {
                     || bean.type == DefaultConfig.TYPE_BOTTOM_SHEET_LIST
                     || bean.type == DefaultConfig.TYPE_BOTTOM_SHEET_CUSTOM
                     || bean.type == DefaultConfig.TYPE_PROGRESS){
-
-
-            }else if(bean.type == DefaultConfig.TYPE_IOS_LOADING){
+            }else if(bean.type == DefaultConfig.TYPE_IOS_LOADING){//转菊花时,背景透明
                 bean.dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
             }else {
                 bean.dialog.getWindow().setBackgroundDrawableResource(R.drawable.shadow);
@@ -279,13 +277,20 @@ public class Tool {
     private static void setListItemsStyle(ConfigBean bean) {
         if(bean.type == DefaultConfig.TYPE_MD_SINGLE_CHOOSE || bean.type == DefaultConfig.TYPE_MD_MULTI_CHOOSE){
             ListView listView =  bean.alertDialog.getListView();
+           // listView.getAdapter().
             if(listView!=null && listView.getAdapter() !=null){
                 for(int i=0;i<listView.getAdapter().getCount();i++){
                     View childAt = listView.getChildAt(i);
+                    if(childAt ==null){
+                        continue;
+                    }
                     CheckedTextView itemView = (CheckedTextView) childAt.findViewById(android.R.id.text1);
                     if(itemView !=null) {
-                        /*ColorStateList stateList = itemView.getCheckMarkDrawable();
-                        itemView.setCheckMarkTintList();*/
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                          Drawable drawable = itemView.getCheckMarkDrawable();
+                           // drawable.get
+                        }
+                       // itemView.setCheckMarkTintList();
                         //itemView.setCheckMarkTintList();
 
                     }
@@ -336,14 +341,15 @@ public class Tool {
             ratio = 0.5f;
         }
 
-        wl.width = (int) (width * ratio);
+
+        //wl.width = (int) (width * ratio);
 
 
-        /*if (isCustomType(bean)){
+        if (isCustomType(bean)){
             wl.width = (int) (width * ratio);  // todo keycode to keep gap
         }else {
             wl.width = ViewGroup.LayoutParams.WRAP_CONTENT;
-        }*/
+        }
 
         wl.height = ViewGroup.LayoutParams.WRAP_CONTENT;  //TODO  一般情况下为wrapcontent,最大值为height*0.9
 
@@ -384,6 +390,9 @@ public class Tool {
             case DefaultConfig.TYPE_IOS_INPUT:
             case DefaultConfig.TYPE_CUSTOM_VIEW:
             case DefaultConfig.TYPE_MD_LOADING:
+            case DefaultConfig.TYPE_MD_ALERT:
+            case DefaultConfig.TYPE_MD_MULTI_CHOOSE:
+            case DefaultConfig.TYPE_MD_SINGLE_CHOOSE:
             return true;
             default:
                 return false;
