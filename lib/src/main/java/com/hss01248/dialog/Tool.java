@@ -178,16 +178,17 @@ public class Tool {
         return dialog;
     }
 
-    public static void setDialogStyle(ConfigBean bean) {
+    public static void adjustWH(ConfigBean bean) {
         if (bean.alertDialog!= null){
             setMdBtnStytle(bean);
             setListItemsStyle(bean);
-
-
+           // adjustWH(bean.context,bean.dialog,bean.viewHeight,bean);
+            adjustWH(bean.context,bean.alertDialog,bean.viewHeight,bean);
         }else {
-            setDialogStyle(bean.context,bean.dialog,bean.viewHeight,bean);
+            adjustWH(bean.context,bean.dialog,bean.viewHeight,bean);
         }
         setBg(bean);
+       // bean.isTransparentBehind = true;
         setDim(bean);
 
         //fixNoDim(bean);
@@ -294,7 +295,7 @@ public class Tool {
         }
     }
 
-    public static void setDialogStyle(Context activity, Dialog dialog, int measuredHeight,ConfigBean bean ) {
+    public static void adjustWH(Context activity, Dialog dialog, int measuredHeight, ConfigBean bean ) {
         if (dialog == null){
             return;
         }
@@ -324,9 +325,16 @@ public class Tool {
         int height = window.getWindowManager().getDefaultDisplay().getHeight();
 
         float ratio = 0.8f;
+        if(bean.type ==DefaultConfig.TYPE_IOS_BOTTOM){
+            ratio = 0.95f;
+        }else if(bean.type ==DefaultConfig.TYPE_IOS_CENTER_LIST){
+            ratio = 0.9f;
+        }
         if(width > height){//宽屏
             ratio = 0.5f;
         }
+
+        //wl.width = (int) (width * ratio);
 
 
         if (isCustomType(bean)){

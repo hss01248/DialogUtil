@@ -198,6 +198,64 @@ gridview拉出来时:
 
 
 
+# 适配情况
+
+![ios_loading](imgs/ios_loading.jpg)
+
+
+
+![md_loading](imgs/md_loading.jpg)
+
+![progress_h](imgs/progress_h.jpg)
+
+![progress_c](imgs/progress_c.jpg)
+
+
+
+![md_alert](imgs/md_alert.jpg)
+
+![md_multi_choose](imgs/md_multi_choose.jpg)
+
+![md_single_chooose](imgs/md_single_chooose.jpg)
+
+
+
+![ios_alert_h](imgs/ios_alert_h.jpg)
+
+
+
+![ios_alert_v](imgs/ios_alert_v.jpg)
+
+
+
+![ios_input](imgs/ios_input.jpg)
+
+
+
+![ios_bottom](imgs/ios_bottom.jpg)
+
+
+
+![ios_centerlist](imgs/ios_centerlist.jpg)
+
+
+
+![md_bottom_list](imgs/md_bottom_list2.jpg)
+
+
+
+![md_bottom_grid](imgs/md_bottom_grid.jpg)
+
+> 当设置不要阴影,或者有的机型上阴影(dimlayer)不生效时,阴影效果如下:
+
+![nodim_1](imgs/nodim_1.jpg)
+
+
+
+![nodim_2](imgs/nodim_2.jpg)
+
+
+
 # useage
 
 

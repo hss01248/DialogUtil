@@ -5,10 +5,10 @@
             <solid android:color="@color/cardShadowColor_1" />
             <corners android:radius="@dimen/cardRadius" />
             <padding
-                android:bottom="@dimen/cardPadding"
-                android:left="@dimen/cardPadding"
-                android:top="@dimen/cardPadding"
-                android:right="@dimen/cardPadding" />
+                android:bottom="@dimen/shadowBottom"
+                android:left="@dimen/shadowleft"
+                android:top="@dimen/shadowTop"
+                android:right="@dimen/shadowRight" />
         </shape>
     </item>
     <item>
@@ -16,10 +16,10 @@
             <solid android:color="@color/cardShadowColor_2" />
             <corners android:radius="@dimen/cardRadius" />
             <padding
-                android:bottom="@dimen/cardPadding"
-                android:left="@dimen/cardPadding"
-                android:top="@dimen/cardPadding"
-                android:right="@dimen/cardPadding" />
+                android:bottom="@dimen/shadowBottom"
+                android:left="@dimen/shadowleft"
+                android:top="@dimen/shadowTop"
+                android:right="@dimen/shadowRight" />
         </shape>
     </item>
     <item>
@@ -27,10 +27,10 @@
             <solid android:color="@color/cardShadowColor_3" />
             <corners android:radius="@dimen/cardRadius" />
             <padding
-                android:bottom="@dimen/cardPadding"
-                android:left="@dimen/cardPadding"
-                android:top="@dimen/cardPadding"
-                android:right="@dimen/cardPadding" />
+                android:bottom="@dimen/shadowBottom"
+                android:left="@dimen/shadowleft"
+                android:top="@dimen/shadowTop"
+                android:right="@dimen/shadowRight" />
         </shape>
     </item>
     <item>
@@ -38,10 +38,10 @@
             <solid android:color="@color/cardShadowColor_4" />
             <corners android:radius="@dimen/cardRadius" />
             <padding
-                android:bottom="@dimen/cardPadding"
-                android:left="@dimen/cardPadding"
-                android:top="@dimen/cardPadding"
-                android:right="@dimen/cardPadding" />
+                android:bottom="@dimen/shadowBottom"
+                android:left="@dimen/shadowleft"
+                android:top="@dimen/shadowTop"
+                android:right="@dimen/shadowRight" />
         </shape>
     </item>
     <item>
@@ -49,10 +49,10 @@
             <solid android:color="@color/cardShadowColor_5" />
             <corners android:radius="@dimen/cardRadius" />
             <padding
-                android:bottom="@dimen/cardPadding"
-                android:left="@dimen/cardPadding"
-                android:top="@dimen/cardPadding"
-                android:right="@dimen/cardPadding" />
+                android:bottom="@dimen/shadowBottom"
+                android:left="@dimen/shadowleft"
+                android:top="@dimen/shadowTop"
+                android:right="@dimen/shadowRight" />
         </shape>
     </item>
     <item>
@@ -60,10 +60,10 @@
             <solid android:color="@color/cardShadowColor_6" />
             <corners android:radius="@dimen/cardRadius" />
             <padding
-                android:bottom="@dimen/cardPadding"
-                android:left="@dimen/cardPadding"
-                android:top="@dimen/cardPadding"
-                android:right="@dimen/cardPadding" />
+                android:bottom="@dimen/shadowBottom"
+                android:left="@dimen/shadowleft"
+                android:top="@dimen/shadowTop"
+                android:right="@dimen/shadowRight" />
         </shape>
     </item>
     <item>
@@ -71,10 +71,10 @@
             <solid android:color="@color/cardShadowColor_7" />
             <corners android:radius="@dimen/cardRadius" />
             <padding
-                android:bottom="@dimen/cardPadding"
-                android:left="@dimen/cardPadding"
-                android:top="@dimen/cardPadding"
-                android:right="@dimen/cardPadding" />
+                android:bottom="@dimen/shadowBottom"
+                android:left="@dimen/shadowleft"
+                android:top="@dimen/shadowTop"
+                android:right="@dimen/shadowRight" />
         </shape>
     </item>
     <item>
@@ -82,10 +82,10 @@
             <solid android:color="@color/cardShadowColor_8" />
             <corners android:radius="@dimen/cardRadius" />
             <padding
-                android:bottom="@dimen/cardPadding"
-                android:left="@dimen/cardPadding"
-                android:top="@dimen/cardPadding"
-                android:right="@dimen/cardPadding" />
+                android:bottom="@dimen/shadowBottom"
+                android:left="@dimen/shadowleft"
+                android:top="@dimen/shadowTop"
+                android:right="@dimen/shadowRight" />
         </shape>
     </item>
     <item>

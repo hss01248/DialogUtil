@@ -42,11 +42,13 @@
 
     </LinearLayout>-->
 
-
+<View android:layout_width="match_parent"
+    android:layout_height="1px"
+    android:background="@color/line_dd"/>
     <Button
         android:id="@+id/btn_bottom"
-        android:background="@drawable/selector_btn_press_all"
-        android:layout_marginTop="10dp"
+        android:background="@drawable/bg_ios_roundcorner_bottom"
+
         android:text="cancle"
         android:textSize="@dimen/btn_txt_size"
         android:textColor="@color/ios_btntext_blue"

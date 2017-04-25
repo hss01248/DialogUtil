@@ -1,15 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="cardBodyColor">#FFFFFF</color>
-    <color name="cardShadowColor_1">#0a8c8c8c</color>
+    <color name="cardShadowColor_1">#00222222</color>
+    <color name="cardShadowColor_2">#02222222</color>
+    <color name="cardShadowColor_3">#10222222</color>
+    <color name="cardShadowColor_4">#14222222</color>
+    <color name="cardShadowColor_5">#15222222</color>
+    <color name="cardShadowColor_6">#19222222</color>
+    <color name="cardShadowColor_7">#1b222222</color>
+    <color name="cardShadowColor_8">#20222222</color>
+    <!--<color name="cardShadowColor_1">#0a8c8c8c</color>
     <color name="cardShadowColor_2">#0f898989</color>
     <color name="cardShadowColor_3">#14898989</color>
     <color name="cardShadowColor_4">#19898989</color>
     <color name="cardShadowColor_5">#1e898989</color>
     <color name="cardShadowColor_6">#23898989</color>
     <color name="cardShadowColor_7">#28898989</color>
-    <color name="cardShadowColor_8">#2d898989</color>
+    <color name="cardShadowColor_8">#2d898989</color>-->
     <dimen name="cardPadding">1px</dimen>
+    <dimen name="shadowTop">1px</dimen>
+    <dimen name="shadowBottom">1px</dimen>
+    <dimen name="shadowleft">1px</dimen>
+    <dimen name="shadowRight">1px</dimen>
     <dimen name="cardRadius">@dimen/round_corner</dimen>
 
 </resources>
