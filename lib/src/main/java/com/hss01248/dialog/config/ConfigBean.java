@@ -44,6 +44,7 @@ public class ConfigBean extends MyDialogBuilder implements Styleable {
 
     public CharSequence hint1;
     public CharSequence hint2;
+    public boolean isTransparentBehind;
 
 
 
@@ -214,9 +215,7 @@ public class ConfigBean extends MyDialogBuilder implements Styleable {
 
         buildByType(this);
         //内部保存loadingdialog对象
-        if(type == DefaultConfig.TYPE_IOS_LOADING || type == DefaultConfig.TYPE_MD_LOADING){
-            StyledDialog.setLoadingObj(dialog);
-        }
+
 
         if(type ==DefaultConfig.TYPE_PROGRESS){
 
@@ -225,9 +224,15 @@ public class ConfigBean extends MyDialogBuilder implements Styleable {
 
         if (dialog != null && !dialog.isShowing()){
             Tool.showDialog(dialog,this);
+            if(type == DefaultConfig.TYPE_IOS_LOADING || type == DefaultConfig.TYPE_MD_LOADING){
+                StyledDialog.setLoadingObj(dialog);
+            }
             return dialog;
         }else if (alertDialog != null && !alertDialog.isShowing()){
             Tool.showDialog(alertDialog,this);
+            if(type == DefaultConfig.TYPE_IOS_LOADING || type == DefaultConfig.TYPE_MD_LOADING){
+                StyledDialog.setLoadingObj(dialog);
+            }
             return alertDialog;
         }
         return null;

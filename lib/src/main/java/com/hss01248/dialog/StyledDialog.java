@@ -91,12 +91,22 @@ public class StyledDialog  {
                if (dialog instanceof Dialog){
                    Dialog dialog1 = (Dialog) dialog;
                    if (dialog1.isShowing()){
-                       dialog1.dismiss();
+                       try {
+                           dialog1.dismiss();
+                       }catch (Exception e){
+                           e.printStackTrace();
+                       }
+
                    }
                }else if (dialog instanceof AppCompatDialog){
                    AppCompatDialog dialog2 = (AppCompatDialog) dialog;
                    if (dialog2.isShowing()){
-                       dialog2.dismiss();
+                       try {
+                           dialog2.dismiss();
+                       }catch (Exception e){
+                            e.printStackTrace();
+                       }
+
                    }
                }
            }

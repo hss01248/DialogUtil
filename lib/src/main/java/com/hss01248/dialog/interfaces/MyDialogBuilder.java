@@ -226,7 +226,6 @@ public  class MyDialogBuilder {
         dialog.setContentView(bean.customView);
         dialog.setCancelable(bean.cancelable);
         dialog.setCanceledOnTouchOutside(bean.outsideTouchable);
-
         bean.dialog = dialog;
     }
 
@@ -326,8 +325,14 @@ public  class MyDialogBuilder {
 
         AlertDialog dialog = builder.create();
         bean.alertDialog = dialog;
+        //dialog.getWindow().getDecorView()
+       // addShaow(bean,dialog);
+
+
         return bean;
     }
+
+
 
     protected  ConfigBean buildMdMultiChoose(final ConfigBean bean){
         AlertDialog.Builder builder = new AlertDialog.Builder(bean.context);
