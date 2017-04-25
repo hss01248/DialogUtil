@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <dimen name="round_corner">8dp</dimen>
+    <dimen name="round_corner">5dp</dimen>
     <dimen name="line_1px">1px</dimen>
 
     <dimen name="btn_txt_size">14sp</dimen>

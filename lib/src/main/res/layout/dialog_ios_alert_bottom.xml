@@ -3,7 +3,6 @@
               android:orientation="vertical"
               android:background="@android:color/transparent"
               android:layout_width="match_parent"
-                android:paddingTop="10dp"
               android:layout_height="wrap_content">
 
 
@@ -15,7 +14,6 @@
             android:scrollbars="none"
             android:overScrollMode="never"
             android:layout_width="match_parent"
-            android:layout_marginBottom="10dp"
             android:overScrollFooter="@android:color/transparent"
             android:overScrollHeader="@android:color/transparent"
             android:layout_height="0dp"
@@ -48,7 +46,7 @@
     <Button
         android:id="@+id/btn_bottom"
         android:background="@drawable/selector_btn_press_all"
-        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
         android:text="cancle"
         android:textSize="@dimen/btn_txt_size"
         android:textColor="@color/ios_btntext_blue"

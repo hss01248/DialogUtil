@@ -226,7 +226,6 @@ public  class MyDialogBuilder {
         dialog.setContentView(bean.customView);
         dialog.setCancelable(bean.cancelable);
         dialog.setCanceledOnTouchOutside(bean.outsideTouchable);
-
         bean.dialog = dialog;
     }
 

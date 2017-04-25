@@ -18,8 +18,6 @@ import android.widget.ListView;
 
 import com.hss01248.dialog.config.ConfigBean;
 import com.hss01248.dialog.config.DefaultConfig;
-import com.wangjie.shadowviewhelper.ShadowProperty;
-import com.wangjie.shadowviewhelper.ShadowViewHelper;
 
 /**
  * Created by Administrator on 2016/10/9 0009.
@@ -184,12 +182,16 @@ public class Tool {
         if (bean.alertDialog!= null){
             setMdBtnStytle(bean);
             setListItemsStyle(bean);
+
+
         }else {
             setDialogStyle(bean.context,bean.dialog,bean.viewHeight,bean);
         }
+        setBg(bean);
+        setDim(bean);
 
         //fixNoDim(bean);
-        addShaow(bean);
+       // addShaow(bean);
 
 
 
@@ -197,19 +199,43 @@ public class Tool {
 
     }
 
-    /**
-     * 在有的平板上背部半透明消失
-     * @param bean
-     */
-    private static void fixNoDim(ConfigBean bean) {
-        if (bean.alertDialog != null){
-            bean.alertDialog.getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED | WindowManager.LayoutParams.FLAG_DIM_BEHIND);
-            bean.alertDialog.getWindow().setDimAmount(0.5f);
-        }else if (bean.dialog != null){
-            bean.dialog.getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED | WindowManager.LayoutParams.FLAG_DIM_BEHIND);
-            bean.dialog.getWindow().setDimAmount(0.5f);
+    private static void setDim(ConfigBean bean) {
+        if(bean.type == DefaultConfig.TYPE_IOS_LOADING){//转菊花,则让背景透明
+            bean.isTransparentBehind = true;
+        }
+        if (bean.alertDialog!= null){
+           if(bean.isTransparentBehind){
+               bean.alertDialog.getWindow().setDimAmount(0);
+           }
+            bean.alertDialog.getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED );
+        }else {
+            if(bean.isTransparentBehind){
+                bean.dialog.getWindow().setDimAmount(0);
+            }
+            bean.dialog.getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED );
         }
     }
+
+    private static void setBg(ConfigBean bean) {
+        if (bean.alertDialog!= null){
+            bean.alertDialog.getWindow().setBackgroundDrawableResource(R.drawable.shadow);
+        }else {
+            if(bean.type == DefaultConfig.TYPE_BOTTOM_SHEET_GRID
+                    || bean.type == DefaultConfig.TYPE_BOTTOM_SHEET_LIST
+                    || bean.type == DefaultConfig.TYPE_BOTTOM_SHEET_CUSTOM
+                    || bean.type == DefaultConfig.TYPE_PROGRESS){
+
+
+            }else if(bean.type == DefaultConfig.TYPE_IOS_LOADING){
+                bean.dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            }else {
+                bean.dialog.getWindow().setBackgroundDrawableResource(R.drawable.shadow);
+            }
+
+        }
+    }
+
+
 
     private static void addShaow(ConfigBean bean) {
         /**/
@@ -238,12 +264,12 @@ public class Tool {
         ViewCompat.setBackground(dialog.getWindow().getDecorView(), sd);
         ViewCompat.setLayerType(dialog.getWindow().getDecorView(), ViewCompat.LAYER_TYPE_SOFTWARE, null);*/
 
-        ShadowViewHelper.bindShadowHelper(
+       /* ShadowViewHelper.bindShadowHelper(
                 new ShadowProperty()
                         .setShadowColor(0x77000000)
                         .setShadowDy(3)
                         .setShadowRadius(3)
-                , dialog.getWindow().getDecorView());
+                , dialog.getWindow().getDecorView());*/
 
     }
 
@@ -275,16 +301,21 @@ public class Tool {
         Window window = dialog.getWindow();
 
         //window.setWindowAnimations(R.style.dialog_center);
-        if(bean.type != DefaultConfig.TYPE_PROGRESS){
+        /*if(bean.type == DefaultConfig.TYPE_IOS_LOADING){
             window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));//todo keycode to show round corner
-        }
+        }else if(bean.type == DefaultConfig.TYPE_MD_MULTI_CHOOSE
+                || bean.type == DefaultConfig.TYPE_MD_ALERT
+            || bean.type == DefaultConfig.TYPE_MD_SINGLE_CHOOSE){
+            window.setBackgroundDrawableResource(R.drawable.shadow);
+        }*/
 
 
 
         WindowManager.LayoutParams wl = window.getAttributes();
-        if(bean.type == DefaultConfig.TYPE_IOS_LOADING){//转菊花,则让背景透明
+       /* if(bean.type == DefaultConfig.TYPE_IOS_LOADING){//转菊花,则让背景透明
             wl.dimAmount = 0;
-        }
+        }*/
+
        /* wl.x = 0;
         wl.y = getWindowManager().getDefaultDisplay().getHeight();*/
 // 以下这两句是为了保证按钮可以水平满屏
