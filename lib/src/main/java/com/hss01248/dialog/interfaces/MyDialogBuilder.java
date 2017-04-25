@@ -98,7 +98,7 @@ public  class MyDialogBuilder {
 
                break;
 
-           case DefaultConfig.TYPE_LOADING:
+           case DefaultConfig.TYPE_IOS_LOADING:
                Tool.newCustomDialog(bean);
                buildLoading(bean);
                break;
@@ -326,8 +326,14 @@ public  class MyDialogBuilder {
 
         AlertDialog dialog = builder.create();
         bean.alertDialog = dialog;
+        //dialog.getWindow().getDecorView()
+       // addShaow(bean,dialog);
+
+
         return bean;
     }
+
+
 
     protected  ConfigBean buildMdMultiChoose(final ConfigBean bean){
         AlertDialog.Builder builder = new AlertDialog.Builder(bean.context);

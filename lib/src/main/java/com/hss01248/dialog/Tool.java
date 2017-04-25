@@ -7,15 +7,19 @@ import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
-import android.support.v7.app.AlertDialog;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.CheckedTextView;
+import android.widget.ListView;
 
 import com.hss01248.dialog.config.ConfigBean;
 import com.hss01248.dialog.config.DefaultConfig;
+import com.wangjie.shadowviewhelper.ShadowProperty;
+import com.wangjie.shadowviewhelper.ShadowViewHelper;
 
 /**
  * Created by Administrator on 2016/10/9 0009.
@@ -26,12 +30,16 @@ public class Tool {
      * 解决badtoken问题,一劳永逸
      * @param dialog
      */
-    public static void showDialog(final Dialog dialog) {
+    public static void showDialog(final Dialog dialog, final ConfigBean bean) {
         StyledDialog.getMainHandler().post(new Runnable() {
             @Override
             public void run() {
                 try {
                     dialog.show();
+                    if (bean.alertDialog!= null){
+                        setMdBtnStytle(bean);
+                        setListItemsStyle(bean);
+                    }
                 }catch (Exception e){
                     e.printStackTrace();
                 }
@@ -40,31 +48,56 @@ public class Tool {
 
     }
 
+
+    /**
+     * 必须在show之后,button才不会返回null
+     * @param bean
+     */
     public static void setMdBtnStytle(ConfigBean bean){
         Button btnPositive =
-                bean.alertDialog.getButton(AlertDialog.BUTTON_POSITIVE);
+                bean.alertDialog.getButton(DialogInterface.BUTTON_POSITIVE);
         Button btnNegative =
-                bean.alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE);
+                bean.alertDialog.getButton(DialogInterface.BUTTON_NEGATIVE);
         Button btnNatural =
-                bean.alertDialog.getButton(AlertDialog.BUTTON_NEUTRAL);
+                bean.alertDialog.getButton(DialogInterface.BUTTON_NEUTRAL);
 
         //todo null
-
-        if (btnPositive != null && btnNegative != null){
-            btnPositive.setTextSize(bean.btnTxtSize);
-            btnNegative.setTextSize(bean.btnTxtSize);
-            btnNatural.setTextSize(bean.btnTxtSize);
-
-            if (bean.btn1Color != 0)
+        if(btnPositive !=null){
+            if(TextUtils.isEmpty(bean.text1)){
+                btnPositive.setText(bean.text1);
+            }
+            if (bean.btn1Color > 0)
                 btnPositive.setTextColor(getColor(null,bean.btn1Color));
-            if (bean.btn2Color != 0)
-                btnNegative.setTextColor(getColor(null,bean.btn2Color));
-            if (bean.btn3Color != 0)
-                btnNatural.setTextColor(getColor(null,bean.btn3Color));
+            if(bean.btnTxtSize >0){
+                btnPositive.setTextSize(bean.btnTxtSize);
+            }
+        }
+        if(btnNegative !=null){
+            if(TextUtils.isEmpty(bean.text2)){
+                btnNegative.setText(bean.text2);
+            }
+            if (bean.btn2Color > 0 )
+                if(bean.btn2Color == DefaultConfig.iosBtnColor ){
+                    btnNegative.setTextColor(getColor(null,R.color.text_gray));
+                }else {
+                    btnNegative.setTextColor(getColor(null,bean.btn2Color));
+                }
+
+            if(bean.btnTxtSize >0){
+                btnNegative.setTextSize(bean.btnTxtSize);
+            }
         }
 
-
-
+        if(btnNatural !=null){
+            if(TextUtils.isEmpty(bean.text3)){
+                btnNatural.setText(bean.text3);
+            }
+            if (bean.btn3Color > 0)
+                btnNatural.setTextColor(getColor(null,bean.btn3Color));
+            if(bean.btnTxtSize >0){
+                btnNatural.setTextSize(bean.btnTxtSize);
+            }
+        }
 
 
     }
@@ -113,9 +146,11 @@ public class Tool {
         if (bean.alertDialog != null){
             bean.alertDialog.setCancelable(bean.cancelable);
             bean.alertDialog.setCanceledOnTouchOutside(bean.outsideTouchable);
+            bean.alertDialog.getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED);
         }else if (bean.dialog != null){
             bean.dialog.setCancelable(bean.cancelable);
             bean.dialog.setCanceledOnTouchOutside(bean.outsideTouchable);
+            bean.dialog.getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED);
         }
 
 
@@ -148,10 +183,89 @@ public class Tool {
     public static void setDialogStyle(ConfigBean bean) {
         if (bean.alertDialog!= null){
             setMdBtnStytle(bean);
+            setListItemsStyle(bean);
         }else {
             setDialogStyle(bean.context,bean.dialog,bean.viewHeight,bean);
         }
 
+        //fixNoDim(bean);
+        addShaow(bean);
+
+
+
+
+
+    }
+
+    /**
+     * 在有的平板上背部半透明消失
+     * @param bean
+     */
+    private static void fixNoDim(ConfigBean bean) {
+        if (bean.alertDialog != null){
+            bean.alertDialog.getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED | WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+            bean.alertDialog.getWindow().setDimAmount(0.5f);
+        }else if (bean.dialog != null){
+            bean.dialog.getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED | WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+            bean.dialog.getWindow().setDimAmount(0.5f);
+        }
+    }
+
+    private static void addShaow(ConfigBean bean) {
+        /**/
+        if(bean.type == DefaultConfig.TYPE_IOS_LOADING
+                || bean.type == DefaultConfig.TYPE_PROGRESS
+                || bean.type == DefaultConfig.TYPE_BOTTOM_SHEET_CUSTOM
+                || bean.type == DefaultConfig.TYPE_BOTTOM_SHEET_LIST
+                || bean.type == DefaultConfig.TYPE_BOTTOM_SHEET_GRID
+                || bean.type == DefaultConfig.TYPE_IOS_BOTTOM){
+            return;
+        }
+
+        Dialog dialog = bean.dialog;
+        if(dialog ==null){
+            dialog = bean.alertDialog;
+        }
+
+        /*ShadowProperty sp = new ShadowProperty()
+                .setShadowColor(0x77000000)
+                .setShadowDy(3)
+                .setShadowRadius(3)
+                .setShadowSide(ShadowProperty.ALL);
+
+        ShadowViewDrawable sd = new ShadowViewDrawable(sp, bean.alertDialog ==null ? Color.TRANSPARENT : Color.WHITE, 0, 0);
+       // ShadowViewDrawable sd = new ShadowViewDrawable(sp,Color.TRANSPARENT, 0, 0);
+        ViewCompat.setBackground(dialog.getWindow().getDecorView(), sd);
+        ViewCompat.setLayerType(dialog.getWindow().getDecorView(), ViewCompat.LAYER_TYPE_SOFTWARE, null);*/
+
+        ShadowViewHelper.bindShadowHelper(
+                new ShadowProperty()
+                        .setShadowColor(0x77000000)
+                        .setShadowDy(3)
+                        .setShadowRadius(3)
+                , dialog.getWindow().getDecorView());
+
+    }
+
+    private static void setListItemsStyle(ConfigBean bean) {
+        if(bean.type == DefaultConfig.TYPE_MD_SINGLE_CHOOSE || bean.type == DefaultConfig.TYPE_MD_MULTI_CHOOSE){
+            ListView listView =  bean.alertDialog.getListView();
+            if(listView!=null && listView.getAdapter() !=null){
+                for(int i=0;i<listView.getAdapter().getCount();i++){
+                    View childAt = listView.getChildAt(i);
+                    CheckedTextView itemView = (CheckedTextView) childAt.findViewById(android.R.id.text1);
+                    if(itemView !=null) {
+                        /*ColorStateList stateList = itemView.getCheckMarkDrawable();
+                        itemView.setCheckMarkTintList();*/
+                        //itemView.setCheckMarkTintList();
+
+                    }
+
+                }
+
+            }
+
+        }
     }
 
     public static void setDialogStyle(Context activity, Dialog dialog, int measuredHeight,ConfigBean bean ) {
@@ -161,19 +275,31 @@ public class Tool {
         Window window = dialog.getWindow();
 
         //window.setWindowAnimations(R.style.dialog_center);
-        window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));//todo keycode to show round corner
+        if(bean.type != DefaultConfig.TYPE_PROGRESS){
+            window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));//todo keycode to show round corner
+        }
+
 
 
         WindowManager.LayoutParams wl = window.getAttributes();
+        if(bean.type == DefaultConfig.TYPE_IOS_LOADING){//转菊花,则让背景透明
+            wl.dimAmount = 0;
+        }
        /* wl.x = 0;
         wl.y = getWindowManager().getDefaultDisplay().getHeight();*/
 // 以下这两句是为了保证按钮可以水平满屏
-        int width = ((WindowManager) activity.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay().getWidth();
-        int height = (int) (((WindowManager) activity.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay().getHeight() );
+
+        int width = window.getWindowManager().getDefaultDisplay().getWidth();
+        int height = window.getWindowManager().getDefaultDisplay().getHeight();
+
+        float ratio = 0.8f;
+        if(width > height){//宽屏
+            ratio = 0.5f;
+        }
 
 
-        if (bean.type != DefaultConfig.TYPE_LOADING){
-            wl.width = (int) (width * 0.9);  // todo keycode to keep gap
+        if (isCustomType(bean)){
+            wl.width = (int) (width * ratio);  // todo keycode to keep gap
         }else {
             wl.width = ViewGroup.LayoutParams.WRAP_CONTENT;
         }
@@ -206,6 +332,21 @@ public class Tool {
         }
 
         dialog.onWindowAttributesChanged(wl);
+    }
+
+    private static boolean isCustomType(ConfigBean bean) {
+        switch (bean.type){
+            case DefaultConfig.TYPE_IOS_HORIZONTAL:
+            case DefaultConfig.TYPE_IOS_VERTICAL:
+            case DefaultConfig.TYPE_IOS_BOTTOM:
+            case DefaultConfig.TYPE_IOS_CENTER_LIST:
+            case DefaultConfig.TYPE_IOS_INPUT:
+            case DefaultConfig.TYPE_CUSTOM_VIEW:
+            case DefaultConfig.TYPE_MD_LOADING:
+            return true;
+            default:
+                return false;
+        }
     }
 
 
@@ -264,8 +405,11 @@ public class Tool {
         int heightExtra = 0;
         if (subViews != null && subViews.length>0){
             for (View view : subViews){
-                measureView(view);
-                heightExtra += view.getMeasuredHeight();
+                if(view.getVisibility() == View.VISIBLE){//确保设置了gone的view不再出现
+                    measureView(view);
+                    heightExtra += view.getMeasuredHeight();
+                }
+
             }
 
         }

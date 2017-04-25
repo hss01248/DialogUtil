@@ -27,4 +27,12 @@
     </style>
 
     <style name="Widget.GifMoviewView" parent="@android:style/Widget"></style>
+
+    <style name="MyDialog" parent="AlertDialog.AppCompat.Light">
+    <item name="android:windowFrame">@null</item>
+    <item name="android:windowNoTitle">true</item>
+    <!--<item name="android:windowBackground">@drawable/hint_img</item>-->
+    <item name="android:windowIsFloating">true</item>
+    <item name="android:windowContentOverlay">@null</item>
+    </style>
 </resources>

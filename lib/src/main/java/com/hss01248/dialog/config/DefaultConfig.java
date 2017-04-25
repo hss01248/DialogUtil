@@ -15,7 +15,7 @@ public class DefaultConfig {
 
     public  static @ColorRes int lvItemTxtColor = R.color.text_item_33;
 
-    public static  @ColorRes int mdBtnColor = R.color.btn_alert;
+    public static  @ColorRes int mdBtnColor = R.color.ios_btntext_blue;
 
     public static @ColorRes int titleTxtColor = R.color.text_title_11;
     public static @ColorRes int msgTxtColor = R.color.text_title_11;
@@ -59,7 +59,7 @@ public class DefaultConfig {
 
     public static final int TYPE_BOTTOM_SHEET_GRID =13;
 
-    public static final int TYPE_LOADING = 14;
+    public static final int TYPE_IOS_LOADING = 14;
 
     public static final int TYPE_PROGRESS = 15;
 

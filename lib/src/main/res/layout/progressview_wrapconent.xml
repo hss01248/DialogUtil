@@ -13,9 +13,9 @@
         android:baselineAligned="false"
                   android:elevation="10dp"
                   android:background="@drawable/bg_ios_roundcorner_progress"
-        android:paddingStart="8dip"
+        android:paddingLeft="12dip"
         android:paddingTop="14dip"
-        android:paddingEnd="8dip"
+        android:paddingRight="12dip"
 
         android:paddingBottom="14dip">
 <!-- style="?android:attr/progressBarStyle"-->
