@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
@@ -36,6 +37,7 @@ public class Tool {
                     dialog.show();
                     if (bean.alertDialog!= null){
                         setMdBtnStytle(bean);
+                        adjustWH(bean.context,bean.alertDialog,bean.viewHeight,bean);
                         setListItemsStyle(bean);
                     }
                 }catch (Exception e){
@@ -180,10 +182,10 @@ public class Tool {
 
     public static void adjustWH(ConfigBean bean) {
         if (bean.alertDialog!= null){
-            setMdBtnStytle(bean);
-            setListItemsStyle(bean);
+            //setMdBtnStytle(bean);
+            //setListItemsStyle(bean);
            // adjustWH(bean.context,bean.dialog,bean.viewHeight,bean);
-            adjustWH(bean.context,bean.alertDialog,bean.viewHeight,bean);
+
         }else {
             adjustWH(bean.context,bean.dialog,bean.viewHeight,bean);
         }
@@ -324,7 +326,7 @@ public class Tool {
         int width = window.getWindowManager().getDefaultDisplay().getWidth();
         int height = window.getWindowManager().getDefaultDisplay().getHeight();
 
-        float ratio = 0.8f;
+        float ratio = 0.85f;
         if(bean.type ==DefaultConfig.TYPE_IOS_BOTTOM){
             ratio = 0.95f;
         }else if(bean.type ==DefaultConfig.TYPE_IOS_CENTER_LIST){
@@ -334,14 +336,14 @@ public class Tool {
             ratio = 0.5f;
         }
 
-        //wl.width = (int) (width * ratio);
+        wl.width = (int) (width * ratio);
 
 
-        if (isCustomType(bean)){
+        /*if (isCustomType(bean)){
             wl.width = (int) (width * ratio);  // todo keycode to keep gap
         }else {
             wl.width = ViewGroup.LayoutParams.WRAP_CONTENT;
-        }
+        }*/
 
         wl.height = ViewGroup.LayoutParams.WRAP_CONTENT;  //TODO  一般情况下为wrapcontent,最大值为height*0.9
 

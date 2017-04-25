@@ -246,7 +246,7 @@ gridview拉出来时:
 
 ![md_bottom_grid](imgs/md_bottom_grid.jpg)
 
-> 当设置不要阴影,或者有的机型上阴影(dimlayer)不生效时,阴影效果如下:
+> 当设置不要半透明遮罩-setTransparentBehind(true),或者有的机型上半透明层(dimlayer)不生效时,四周阴影效果如下:
 
 ![nodim_1](imgs/nodim_1.jpg)
 
@@ -362,6 +362,63 @@ StyledDialog.init(this);
                         .setBtnText("i","b","3")
                         .show();
 ```
+
+# 相关回调
+
+## MyDialogListener
+
+```
+	public abstract void onFirst();//md-确定,ios-第一个
+    public abstract void onSecond();//md-取消,ios-第二个
+    public void onThird(){}//md-netural,ios-第三个
+
+    public void onCancle(){}
+
+    /**
+     * 提供给Input的回调
+     * @param input1
+     * @param input2
+     */
+    public void onGetInput(CharSequence input1,CharSequence input2){
+
+    }
+
+    /**
+     * 提供给MdSingleChoose的回调
+     * @param chosen
+     * @param chosenTxt
+     */
+    public void onGetChoose(int chosen,CharSequence chosenTxt){
+
+    }
+
+    /**
+     * 提供给MdMultiChoose的回调
+     * @param states
+     */
+    public void onGetChoose(boolean[] states){
+
+    }
+```
+
+## MyItemDialogListener
+
+```
+ /**
+     * IosSingleChoose,BottomItemDialog的点击条目回调
+     * @param text
+     * @param position
+     */
+   public abstract void onItemClick(CharSequence text, int position);
+
+
+    /**
+     * BottomItemDialog的底部按钮(经常是取消)的点击回调
+     */
+   public void onBottomBtnClick(){}
+```
+
+
 
 
 

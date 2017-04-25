@@ -7,7 +7,7 @@ public abstract class MyItemDialogListener {
 
 
     /**
-     * IosSingleChoose,BottomItemDialog,MdSingleChoose的点击条目回调
+     * IosSingleChoose,BottomItemDialog的点击条目回调
      * @param text
      * @param position
      */
