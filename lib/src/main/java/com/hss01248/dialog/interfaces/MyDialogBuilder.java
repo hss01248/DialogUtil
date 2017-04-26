@@ -31,6 +31,9 @@ import com.hss01248.dialog.view.IosActionSheetHolder;
 import com.hss01248.dialog.view.IosAlertDialogHolder;
 import com.hss01248.dialog.view.IosCenterItemHolder;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Administrator on 2016/10/9.
  */
@@ -345,6 +348,18 @@ public  class MyDialogBuilder {
                             StyledDialog.dismiss(dialogInterface);
                             bean.listener.onFirst();
                             bean.listener.onGetChoose(bean.checkedItems);
+
+                            List<Integer> selectedIndex = new ArrayList<Integer>();
+                            List<CharSequence> selectedStrs = new ArrayList<CharSequence>();
+                            for(int j=0;j<bean.checkedItems.length;j++){
+                                if(bean.checkedItems[j]){
+                                    selectedIndex.add(j);
+                                    selectedStrs.add(bean.wordsMd[j]);
+                                }
+                            }
+                            bean.listener.onChoosen(selectedIndex,selectedStrs,bean.checkedItems);
+
+
                         }
                     }
                 })

@@ -1,5 +1,7 @@
 package com.hss01248.dialog.interfaces;
 
+import java.util.List;
+
 /**
  * Created by Administrator on 2016/5/4 0004.
  */
@@ -33,7 +35,12 @@ public abstract class MyDialogListener {
      * 提供给MdMultiChoose的回调
      * @param states
      */
+    @Deprecated
     public void onGetChoose(boolean[] states){
+
+    }
+
+    public void onChoosen( List<Integer> selectedIndex, List<CharSequence> selectedStrs,boolean[] states){
 
     }
 

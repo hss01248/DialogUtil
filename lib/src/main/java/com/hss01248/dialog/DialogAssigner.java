@@ -91,6 +91,7 @@ public class DialogAssigner implements Assignable {
         return bean;
     }
 
+    @Deprecated
     @Override
     public ConfigBean assignMdMultiChoose(Activity context, CharSequence title, CharSequence[] words, boolean[] checkedItems, MyDialogListener btnListener) {
         ConfigBean bean = new ConfigBean();
@@ -106,6 +107,23 @@ public class DialogAssigner implements Assignable {
         bean.btn2Color = DefaultConfig.mdBtnColor;
         bean.btn3Color = DefaultConfig.mdBtnColor;
         return bean;
+    }
+
+    @Override
+    public ConfigBean assignMdMultiChoose(Activity context, CharSequence title, CharSequence[] words,
+                                          List<Integer> selectedIndexs, MyDialogListener btnListener) {
+        boolean[] checkedItems = new boolean[words.length];
+        for(int i=0;i<words.length;i++){
+           checkedItems[i] = false;
+            if(selectedIndexs !=null && selectedIndexs.size()>0){
+                for(int j=0; j< selectedIndexs.size();j++){
+                    if(i == selectedIndexs.get(j)){
+                        checkedItems[i] = true;
+                    }
+                }
+            }
+        }
+        return assignMdMultiChoose(context,title,words,checkedItems,btnListener);
     }
 
     @Override

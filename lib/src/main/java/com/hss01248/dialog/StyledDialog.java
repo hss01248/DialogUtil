@@ -191,9 +191,13 @@ public class StyledDialog  {
         return DialogAssigner.getInstance().assignMdSingleChoose(null,title,defaultChosen,words,listener);
     }
 
-    
+    @Deprecated
     public static ConfigBean buildMdMultiChoose( CharSequence title, CharSequence[] words, boolean[] checkedItems, MyDialogListener btnListener) {
         return DialogAssigner.getInstance().assignMdMultiChoose(null,title,words,checkedItems,btnListener);
+    }
+
+    public static ConfigBean buildMdMultiChoose( CharSequence title, CharSequence[] words, List<Integer> selectedIndexs, MyDialogListener btnListener) {
+        return DialogAssigner.getInstance().assignMdMultiChoose(null,title,words,selectedIndexs,btnListener);
     }
 
    

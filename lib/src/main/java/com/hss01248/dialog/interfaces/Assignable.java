@@ -19,11 +19,11 @@ public interface Assignable {
     
     ConfigBean assignMdAlert(Activity activity, CharSequence title, CharSequence msg, final MyDialogListener listener);
 
-    ConfigBean assignMdSingleChoose(Activity context, CharSequence title, final int defaultChosen, final CharSequence[] words,
-                                   final MyItemDialogListener listener);
+    ConfigBean assignMdSingleChoose(Activity context, CharSequence title,  int defaultChosen,  CharSequence[] words, MyItemDialogListener listener);
 
     ConfigBean assignMdMultiChoose(Activity context, CharSequence title, final CharSequence[] words, final boolean[] checkedItems,
                                   final MyDialogListener btnListener);
+    ConfigBean assignMdMultiChoose(Activity context, CharSequence title,  CharSequence[] words,  List<Integer> selectedIndexs,MyDialogListener btnListener);
 
     ConfigBean assignIosAlert(Context activity, CharSequence title, CharSequence msg,final MyDialogListener listener);
 

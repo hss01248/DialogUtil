@@ -91,6 +91,14 @@ https://github.com/android-cjj/BottomSheets
 * 转菊花时,背景变透明,不再有变暗
 
 
+### 2017-04-25
+
+* 添加背景阴影,优化适配显示
+
+### 2017-04-26
+
+* 简化多选对话框的api和回调
+
 # todo
 
 bottomsheet 图标大小和文字大小的自定义
@@ -116,13 +124,34 @@ progressdialog改成完全自定义的
 
 ios 样式的 loading
 
+```
+buildLoading( )
+buildLoading( CharSequence msg)
+
+updateLoadingMsg(final String msg)//更新msg
+```
+
  ![loading-common](loading-common.jpg)
 
 android 样式的loading
 
+```
+buildMdLoading( )
+buildMdLoading( CharSequence msg) 
+
+updateLoadingMsg(final String msg)//更新msg
+```
+
   ![loading](loading.jpg)
 
 ProgressDialog of horizontal
+
+```
+buildProgress( CharSequence msg,boolean isHorizontal)
+
+//更新进度
+updateProgress(final Dialog dialog, final int progress, final int max, final CharSequence msg, final boolean isHorizontal)
+```
 
  ![progress_h](progress_h.jpg)
 
@@ -132,15 +161,23 @@ ProgressDialog of spinner,用文字显示的进度(自动计算):
 
 AlertDialog of appcompat-v7
 
+```
+buildMdAlert( CharSequence title, CharSequence msg, MyDialogListener listener)
+```
+
  ![md_alert](md_alert.jpg)
 
 
 
-
+```
+buildMdSingleChoose( CharSequence title, int defaultChosen, CharSequence[] words, MyItemDialogListener listener)
+```
 
  ![md_single_choose](md_single_choose.jpg)
 
-
+```
+buildMdMultiChoose( CharSequence title, CharSequence[] words, List<Integer> selectedIndexs, MyDialogListener btnListener)
+```
 
  ![md_multi_choose](md_multi_choose.jpg)
 
@@ -150,27 +187,37 @@ AlertDialog of appcompat-v7
 
 ios风格(含按下效果)
 
-
+```
+buildIosAlert( CharSequence title, CharSequence msg, MyDialogListener listener)
+```
 
  ![ios_alert](ios_alert.jpg)
 
 
 
-
+```
+buildIosAlertVertical( CharSequence title, CharSequence msg, MyDialogListener listener) 
+```
 
  ![ios_alert_v](ios_alert_v.jpg)
 
-
+```
+buildNormalInput( CharSequence title, CharSequence hint1, CharSequence hint2, CharSequence firstTxt, CharSequence secondTxt, MyDialogListener listener
+```
 
  ![ios_input](ios_input.jpg)
 
 
 
-
+```
+buildIosSingleChoose( List<? extends CharSequence> words, MyItemDialogListener listener)
+```
 
  ![ios_centerlist](ios_centerlist.jpg)
 
-
+```
+buildBottomItemDialog( List<? extends CharSequence> words, CharSequence bottomTxt, MyItemDialogListener listener)
+```
 
  ![ios_bottom](ios_bottom.jpg)
 
@@ -178,13 +225,19 @@ ios风格(含按下效果)
 
 BottomSheetDialog of design
 
+```
+buildBottomSheetLv(CharSequence title, List datas, CharSequence bottomTxt, MyItemDialogListener listener)
+```
+
   ![btnsheet-lv](btnsheet-lv.jpg)
 
 
 
 
 
-
+```
+buildBottomSheetGv( CharSequence title, List datas, CharSequence bottomTxt,int columnsNum ,MyItemDialogListener listener)
+```
 
  ![btnsheet-gv](btnsheet-gv.jpg)
 
@@ -396,7 +449,7 @@ StyledDialog.init(this);
      * 提供给MdMultiChoose的回调
      * @param states
      */
-    public void onGetChoose(boolean[] states){
+    public void onChoosen( List<Integer> selectedIndex, List<CharSequence> selectedStrs,boolean[] states){
 
     }
 ```

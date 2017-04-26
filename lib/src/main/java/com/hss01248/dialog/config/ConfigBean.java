@@ -75,6 +75,7 @@ public class ConfigBean extends MyDialogBuilder implements Styleable {
     public  int defaultChosen;//
     public boolean[] checkedItems;
 
+
     public List<? extends CharSequence> wordsIos;
     //bottom sheet
     public  CharSequence bottomTxt = "取消";

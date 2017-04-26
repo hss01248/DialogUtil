@@ -3,8 +3,12 @@ package com.hss01248.dialogutildemo;
 import android.app.Activity;
 import android.app.Application;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.hss01248.dialog.MyActyManager;
+import com.orhanobut.logger.LogPrintStyle;
+import com.orhanobut.logger.Logger;
+import com.orhanobut.logger.Settings;
 import com.squareup.leakcanary.LeakCanary;
 
 /**
@@ -18,6 +22,18 @@ public class BaseApp extends Application {
         super.onCreate();
         LeakCanary.install(this);
         registCallback();
+        initlog();
+    }
+
+    private void initlog() {
+        Logger.initialize(
+                new Settings()
+                        .setStyle(new LogPrintStyle())
+                        .isShowMethodLink(true)
+                        .isShowThreadInfo(false)
+                        .setMethodOffset(0)
+                        .setLogPriority(BuildConfig.DEBUG ? Log.VERBOSE : Log.ASSERT)
+        );
     }
 
     private void registCallback() {

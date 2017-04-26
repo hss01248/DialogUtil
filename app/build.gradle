@@ -47,4 +47,6 @@ dependencies {
     compile project(path: ':lib')
     debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5'
     releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
+    compile 'com.github.tianzhijiexian:logger:1.1.9'
+    compile 'com.jakewharton.timber:timber:4.5.1'
 }

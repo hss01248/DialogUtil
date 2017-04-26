@@ -18,6 +18,7 @@ import com.hss01248.dialog.adapter.SuperRcvHolder;
 import com.hss01248.dialog.bottomsheet.BottomSheetBean;
 import com.hss01248.dialog.interfaces.MyDialogListener;
 import com.hss01248.dialog.interfaces.MyItemDialogListener;
+import com.orhanobut.logger.Logger;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -441,9 +442,9 @@ android:pivotY="50%" />
                 String[] words = new String[]{"12","78","45","89","88","00"};
 
 
-                boolean[] choseDefault = new boolean[]{false,false,false,false,true,false};
+                //boolean[] choseDefault = new boolean[]{false,false,false,false,true,false};
 
-                StyledDialog.buildMdMultiChoose( "xuanze", words, choseDefault,  new MyDialogListener() {
+                StyledDialog.buildMdMultiChoose( "xuanze", words, new ArrayList<Integer>(),  new MyDialogListener() {
                     @Override
                     public void onFirst() {
 
@@ -454,7 +455,15 @@ android:pivotY="50%" />
 
                     }
 
+                    @Override
+                    public void onChoosen( List<Integer> selectedIndex, List<CharSequence> selectedStrs,boolean[] states) {
+                        super.onChoosen( selectedIndex, selectedStrs,states);
+                        Logger.object(states);
+                        Logger.object(selectedIndex);
+                        Logger.object(selectedStrs);
 
+
+                    }
 
                     @Override
                     public void onGetChoose(boolean[] states) {
