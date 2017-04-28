@@ -259,7 +259,7 @@ final ConfigBean bean = StyledDialog.buildCustom(customView, Gravity.CENTER);
 final Dialog dialog1 =   bean.show();
 ```
 
- ![customview-webview](img0\customview-webview.jpg)
+ ![customview-webview](img0/customview-webview.jpg)
 
 
 
