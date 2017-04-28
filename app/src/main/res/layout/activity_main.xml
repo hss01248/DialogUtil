@@ -122,6 +122,12 @@
                 android:text="md_bottomsheet_gridview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
+            <Button
+                android:id="@+id/btn_customview"
+                android:layout_margin="5dp"
+                android:text="customview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
 
 

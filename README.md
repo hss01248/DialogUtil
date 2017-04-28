@@ -131,7 +131,7 @@ buildLoading( CharSequence msg)
 updateLoadingMsg(final String msg)//更新msg
 ```
 
- ![loading-common](loading-common.jpg)
+ ![loading-common](img0/loading-common.jpg)
 
 android 样式的loading
 
@@ -142,7 +142,7 @@ buildMdLoading( CharSequence msg)
 updateLoadingMsg(final String msg)//更新msg
 ```
 
-  ![loading](loading.jpg)
+  ![loading](img0/loading.jpg)
 
 ProgressDialog of horizontal
 
@@ -153,11 +153,11 @@ buildProgress( CharSequence msg,boolean isHorizontal)
 updateProgress(final Dialog dialog, final int progress, final int max, final CharSequence msg, final boolean isHorizontal)
 ```
 
- ![progress_h](progress_h.jpg)
+ ![progress_h](img0/progress_h.jpg)
 
 ProgressDialog of spinner,用文字显示的进度(自动计算):
 
- ![progress_c](progress_c.jpg)
+ ![progress_c](img0/progress_c.jpg)
 
 AlertDialog of appcompat-v7
 
@@ -165,7 +165,7 @@ AlertDialog of appcompat-v7
 buildMdAlert( CharSequence title, CharSequence msg, MyDialogListener listener)
 ```
 
- ![md_alert](md_alert.jpg)
+ ![md_alert](img0/md_alert.jpg)
 
 
 
@@ -173,13 +173,13 @@ buildMdAlert( CharSequence title, CharSequence msg, MyDialogListener listener)
 buildMdSingleChoose( CharSequence title, int defaultChosen, CharSequence[] words, MyItemDialogListener listener)
 ```
 
- ![md_single_choose](md_single_choose.jpg)
+ ![md_single_choose](img0/md_single_choose.jpg)
 
 ```
 buildMdMultiChoose( CharSequence title, CharSequence[] words, List<Integer> selectedIndexs, MyDialogListener btnListener)
 ```
 
- ![md_multi_choose](md_multi_choose.jpg)
+ ![md_multi_choose](img0/md_multi_choose.jpg)
 
 
 
@@ -191,7 +191,7 @@ ios风格(含按下效果)
 buildIosAlert( CharSequence title, CharSequence msg, MyDialogListener listener)
 ```
 
- ![ios_alert](ios_alert.jpg)
+ ![ios_alert](img0/ios_alert.jpg)
 
 
 
@@ -199,13 +199,13 @@ buildIosAlert( CharSequence title, CharSequence msg, MyDialogListener listener)
 buildIosAlertVertical( CharSequence title, CharSequence msg, MyDialogListener listener) 
 ```
 
- ![ios_alert_v](ios_alert_v.jpg)
+ ![ios_alert_v](img0/ios_alert_v.jpg)
 
 ```
 buildNormalInput( CharSequence title, CharSequence hint1, CharSequence hint2, CharSequence firstTxt, CharSequence secondTxt, MyDialogListener listener
 ```
 
- ![ios_input](ios_input.jpg)
+ ![ios_input](img0/ios_input.jpg)
 
 
 
@@ -213,13 +213,13 @@ buildNormalInput( CharSequence title, CharSequence hint1, CharSequence hint2, Ch
 buildIosSingleChoose( List<? extends CharSequence> words, MyItemDialogListener listener)
 ```
 
- ![ios_centerlist](ios_centerlist.jpg)
+ ![ios_centerlist](img0/ios_centerlist.jpg)
 
 ```
 buildBottomItemDialog( List<? extends CharSequence> words, CharSequence bottomTxt, MyItemDialogListener listener)
 ```
 
- ![ios_bottom](ios_bottom.jpg)
+ ![ios_bottom](img0/ios_bottom.jpg)
 
 
 
@@ -229,7 +229,7 @@ BottomSheetDialog of design
 buildBottomSheetLv(CharSequence title, List datas, CharSequence bottomTxt, MyItemDialogListener listener)
 ```
 
-  ![btnsheet-lv](btnsheet-lv.jpg)
+  ![btnsheet-lv](img0/btnsheet-lv.jpg)
 
 
 
@@ -239,7 +239,7 @@ buildBottomSheetLv(CharSequence title, List datas, CharSequence bottomTxt, MyIte
 buildBottomSheetGv( CharSequence title, List datas, CharSequence bottomTxt,int columnsNum ,MyItemDialogListener listener)
 ```
 
- ![btnsheet-gv](btnsheet-gv.jpg)
+ ![btnsheet-gv](img0/btnsheet-gv.jpg)
 
 
 
@@ -247,7 +247,19 @@ buildBottomSheetGv( CharSequence title, List datas, CharSequence bottomTxt,int c
 
 gridview拉出来时:
 
- ![btnsheet-gv-out](btnsheet-gv-out.jpg)
+ ![btnsheet-gv-out](img0/btnsheet-gv-out.jpg)
+
+
+
+弹出自己定义的一个view:(示例图中有一个webview)
+
+```
+ ViewGroup customView = (ViewGroup) View.inflate(this,R.layout.customview,null);
+final ConfigBean bean = StyledDialog.buildCustom(customView, Gravity.CENTER);
+final Dialog dialog1 =   bean.show();
+```
+
+ ![customview-webview](img0\customview-webview.jpg)
 
 
 
@@ -479,7 +491,7 @@ StyledDialog.init(this);
 
 ### 各类dialog的初始参数传递和回调:StyledDialog.buildxxx:
 
- ![methodsofstyledialog](methodsofstyledialog.jpg)
+ ![methodsofstyledialog](img0/methodsofstyledialog.jpg)
 
 
 
@@ -487,7 +499,7 @@ StyledDialog.init(this);
 
 
 
-![methodsofconfig](methodsofconfig.jpg)
+![methodsofconfig](img0/methodsofconfig.jpg)
 
  
 

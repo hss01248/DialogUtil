@@ -58,7 +58,7 @@ public class Tool {
                 .addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
                     @Override
                     public void onGlobalLayout() {
-                        adjustWH(bean.context,dialog,dialog.getWindow().getDecorView(),bean);
+                        adjustWH(dialog,bean);
                         dialog.getWindow().getDecorView().getViewTreeObserver().removeGlobalOnLayoutListener(this);
                     }
                 });
@@ -205,16 +205,19 @@ public class Tool {
         }else {
             adjustWH(bean.context,bean.dialog,bean.viewHeight,bean);
         }*/
+
         setBg(bean);
        // bean.isTransparentBehind = true;
         setDim(bean);
+        Dialog dialog = bean.dialog ==null ? bean.alertDialog : bean.dialog;
+        Window window = dialog.getWindow();
+        if(bean.context instanceof Activity){
 
-        //fixNoDim(bean);
-       // addShaow(bean);
-
-
-
-
+        }else {
+            window.setType(WindowManager.LayoutParams.TYPE_TOAST);
+            //todo keycode to improve window level,同时要让它的后面半透明背景也拦截事件,不要传递到下面去
+            //todo 单例化,不然连续弹出两次,只能关掉第二次的
+        }
 
     }
 
@@ -318,11 +321,13 @@ public class Tool {
         }
     }
 
-    public static void adjustWH(Context activity, Dialog dialog, View rootView, ConfigBean bean ) {
+    public static void adjustWH( Dialog dialog,  ConfigBean bean ) {
         if (dialog == null){
             return;
         }
+
         Window window = dialog.getWindow();
+        View rootView = window.getDecorView();
         //window.setWindowAnimations(R.style.dialog_center);
         WindowManager.LayoutParams wl = window.getAttributes();
 
@@ -344,17 +349,11 @@ public class Tool {
             /*wl.width = ViewGroup.LayoutParams.WRAP_CONTENT;
             wl.height = ViewGroup.LayoutParams.WRAP_CONTENT;*/
         }else {
+           // rootView.setPadding(0,30,0,30);
             wl.width = (int) (width * ratio);
             if (measuredHeight > height* 0.9){
                 wl.height = (int) (height* 0.9);
             }
-        }
-        if (activity instanceof Activity){
-        }else {
-            wl.type = WindowManager.LayoutParams.TYPE_TOAST;
-            //todo keycode to improve window level,同时要让它的后面半透明背景也拦截事件,不要传递到下面去
-            //todo 单例化,不然连续弹出两次,只能关掉第二次的
-           // wl.flags =
         }
 
         dialog.onWindowAttributesChanged(wl);

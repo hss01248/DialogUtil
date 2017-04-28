@@ -8,14 +8,22 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
+import android.webkit.WebChromeClient;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.hss01248.dialog.StyledDialog;
+import com.hss01248.dialog.Tool;
 import com.hss01248.dialog.adapter.SuperRcvAdapter;
 import com.hss01248.dialog.adapter.SuperRcvHolder;
 import com.hss01248.dialog.bottomsheet.BottomSheetBean;
+import com.hss01248.dialog.config.ConfigBean;
 import com.hss01248.dialog.interfaces.MyDialogListener;
 import com.hss01248.dialog.interfaces.MyItemDialogListener;
 import com.orhanobut.logger.Logger;
@@ -215,7 +223,7 @@ android:pivotY="50%" />
     @OnClick({R.id.btn_common_progress, R.id.btn_context_progress, R.id.btn_material_alert, R.id.btn_ios_alert,
             R.id.btn_ios_alert_vertical, R.id.btn_ios_bottom_sheet, R.id.btn_ios_center_list,R.id.btn_input,
             R.id.btn_multichoose, R.id.btn_singlechoose,R.id.btn_md_bs,R.id.btn_md_bs_listview,R.id.btn_md_bs_Gridview,
-            R.id.btn_context_progress_h,R.id.btn_context_progress_c})
+            R.id.btn_context_progress_h,R.id.btn_context_progress_c,R.id.btn_customview})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_common_progress:
@@ -574,6 +582,31 @@ android:pivotY="50%" />
                         showToast(text+"---"+position);
                     }
                 }).show();
+                break;
+            case R.id.btn_customview:
+                ViewGroup customView = (ViewGroup) View.inflate(this,R.layout.customview,null);
+                final ConfigBean bean = StyledDialog.buildCustom(customView, Gravity.CENTER);
+                final Dialog dialog1 =   bean.show();
+                WebView webView = (WebView) customView.findViewById(R.id.webview);
+                final TextView textView = (TextView) customView.findViewById(R.id.tv_title);
+                webView.loadUrl("http://www.jianshu.com/p/bcdee5821a7f");
+
+                webView.setWebViewClient(new WebViewClient(){
+                    @Override
+                    public void onPageFinished(WebView view, String url) {
+                        super.onPageFinished(view, url);
+                        Tool.adjustWH(dialog1,bean);
+                    }
+                });
+                webView.setWebChromeClient(new WebChromeClient(){
+                    @Override
+                    public void onReceivedTitle(WebView view, String title) {
+                        super.onReceivedTitle(view, title);
+                        textView.setText(title);
+
+                    }
+                });
+
                 break;
 
 
