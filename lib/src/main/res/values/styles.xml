@@ -20,7 +20,7 @@
 
     <style name="dialog_center" parent="android:Animation">
         <item name="@android:windowEnterAnimation">@anim/dialog_enter_center</item>  //进入时的动画
-      <!--  <item name="@android:windowExitAnimation">@anim/dialog_exit_center</item>    //退出时的动画-->
+        <item name="@android:windowExitAnimation">@anim/dialog_exit_center</item>    //退出时的动画
     </style>
     <style name="notitle" >
         <item name="android:windowNoTitle">true</item>

@@ -111,7 +111,7 @@ public  class MyDialogBuilder {
 
        }
        
-       Tool.adjustWH(bean);
+       Tool.adjustStyle(bean);
        Tool.setCancelable(bean);
        Tool.setCancelListener(bean);
        return bean;

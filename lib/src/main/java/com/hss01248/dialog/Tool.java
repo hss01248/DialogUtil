@@ -11,6 +11,7 @@ import android.os.Build;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -37,15 +38,30 @@ public class Tool {
                     dialog.show();
                     if (bean.alertDialog!= null){
                         setMdBtnStytle(bean);
-                        adjustWH(bean.context,bean.alertDialog,bean.viewHeight,bean);
-                        setListItemsStyle(bean);
+                        //setListItemsStyle(bean);
                     }
+                    adjustWindow(dialog,bean);
+
+
+
+
                 }catch (Exception e){
                     e.printStackTrace();
                 }
             }
         });
 
+    }
+
+    private static void adjustWindow(final Dialog dialog, final ConfigBean bean) {
+        dialog.getWindow().getDecorView().getViewTreeObserver()
+                .addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+                    @Override
+                    public void onGlobalLayout() {
+                        adjustWH(bean.context,dialog,dialog.getWindow().getDecorView(),bean);
+                        dialog.getWindow().getDecorView().getViewTreeObserver().removeGlobalOnLayoutListener(this);
+                    }
+                });
     }
 
 
@@ -180,15 +196,15 @@ public class Tool {
         return dialog;
     }
 
-    public static void adjustWH(ConfigBean bean) {
-        if (bean.alertDialog!= null){
+    public static void adjustStyle(ConfigBean bean) {
+        /*if (bean.alertDialog!= null){
             //setMdBtnStytle(bean);
             //setListItemsStyle(bean);
-           // adjustWH(bean.context,bean.dialog,bean.viewHeight,bean);
+           // adjustStyle(bean.context,bean.dialog,bean.viewHeight,bean);
 
         }else {
             adjustWH(bean.context,bean.dialog,bean.viewHeight,bean);
-        }
+        }*/
         setBg(bean);
        // bean.isTransparentBehind = true;
         setDim(bean);
@@ -302,34 +318,17 @@ public class Tool {
         }
     }
 
-    public static void adjustWH(Context activity, Dialog dialog, int measuredHeight, ConfigBean bean ) {
+    public static void adjustWH(Context activity, Dialog dialog, View rootView, ConfigBean bean ) {
         if (dialog == null){
             return;
         }
         Window window = dialog.getWindow();
-
         //window.setWindowAnimations(R.style.dialog_center);
-        /*if(bean.type == DefaultConfig.TYPE_IOS_LOADING){
-            window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));//todo keycode to show round corner
-        }else if(bean.type == DefaultConfig.TYPE_MD_MULTI_CHOOSE
-                || bean.type == DefaultConfig.TYPE_MD_ALERT
-            || bean.type == DefaultConfig.TYPE_MD_SINGLE_CHOOSE){
-            window.setBackgroundDrawableResource(R.drawable.shadow);
-        }*/
-
-
-
         WindowManager.LayoutParams wl = window.getAttributes();
-       /* if(bean.type == DefaultConfig.TYPE_IOS_LOADING){//转菊花,则让背景透明
-            wl.dimAmount = 0;
-        }*/
-
-       /* wl.x = 0;
-        wl.y = getWindowManager().getDefaultDisplay().getHeight();*/
-// 以下这两句是为了保证按钮可以水平满屏
 
         int width = window.getWindowManager().getDefaultDisplay().getWidth();
         int height = window.getWindowManager().getDefaultDisplay().getHeight();
+        int measuredHeight = rootView.getMeasuredHeight();
 
         float ratio = 0.85f;
         if(bean.type ==DefaultConfig.TYPE_IOS_BOTTOM){
@@ -341,44 +340,37 @@ public class Tool {
             ratio = 0.5f;
         }
 
-
-        //wl.width = (int) (width * ratio);
-
-
-        if (isCustomType(bean)){
-            wl.width = (int) (width * ratio);  // todo keycode to keep gap
+        if(istheTypeOfNotAdjust(bean.type)){
+            /*wl.width = ViewGroup.LayoutParams.WRAP_CONTENT;
+            wl.height = ViewGroup.LayoutParams.WRAP_CONTENT;*/
         }else {
-            wl.width = ViewGroup.LayoutParams.WRAP_CONTENT;
+            wl.width = (int) (width * ratio);
+            if (measuredHeight > height* 0.9){
+                wl.height = (int) (height* 0.9);
+            }
         }
-
-        wl.height = ViewGroup.LayoutParams.WRAP_CONTENT;  //TODO  一般情况下为wrapcontent,最大值为height*0.9
-
-        if (measuredHeight > height* 0.9){
-            wl.height = (int) (height* 0.9);
-        }
-
-        //wl.horizontalMargin= 0.2f;
-// 设置显示位置
-        // wl.gravity = Gravity.CENTER_HORIZONTAL;
-
         if (activity instanceof Activity){
-           /* Activity activity1 = (Activity) activity;
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-                if (activity1.isDestroyed()){
-                    activity = StyledDialog.context;
-                }
-            }*/
-
         }else {
             wl.type = WindowManager.LayoutParams.TYPE_TOAST;
             //todo keycode to improve window level,同时要让它的后面半透明背景也拦截事件,不要传递到下面去
             //todo 单例化,不然连续弹出两次,只能关掉第二次的
            // wl.flags =
-
-
         }
 
         dialog.onWindowAttributesChanged(wl);
+    }
+
+    private static boolean istheTypeOfNotAdjust(int type) {
+        switch (type){
+            case DefaultConfig.TYPE_IOS_LOADING:
+            case DefaultConfig.TYPE_PROGRESS:
+            case DefaultConfig.TYPE_BOTTOM_SHEET_CUSTOM:
+            case DefaultConfig.TYPE_BOTTOM_SHEET_GRID:
+            case DefaultConfig.TYPE_BOTTOM_SHEET_LIST:
+                return true;
+            default:
+                return false;
+        }
     }
 
     private static boolean isCustomType(ConfigBean bean) {

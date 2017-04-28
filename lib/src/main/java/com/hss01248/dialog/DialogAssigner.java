@@ -88,6 +88,9 @@ public class DialogAssigner implements Assignable {
         bean.btn1Color = DefaultConfig.mdBtnColor;
         bean.btn2Color = DefaultConfig.mdBtnColor;
         bean.btn3Color = DefaultConfig.mdBtnColor;
+        bean.text1 = "";
+        bean.text2 = "";
+        bean.text3 = "";
         return bean;
     }
 
@@ -106,6 +109,8 @@ public class DialogAssigner implements Assignable {
         bean.btn1Color = DefaultConfig.mdBtnColor;
         bean.btn2Color = DefaultConfig.mdBtnColor;
         bean.btn3Color = DefaultConfig.mdBtnColor;
+
+
         return bean;
     }
 
