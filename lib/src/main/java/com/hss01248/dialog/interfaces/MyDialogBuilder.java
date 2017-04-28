@@ -348,7 +348,6 @@ public  class MyDialogBuilder {
                             StyledDialog.dismiss(dialogInterface);
                             bean.listener.onFirst();
                             bean.listener.onGetChoose(bean.checkedItems);
-
                             List<Integer> selectedIndex = new ArrayList<Integer>();
                             List<CharSequence> selectedStrs = new ArrayList<CharSequence>();
                             for(int j=0;j<bean.checkedItems.length;j++){
