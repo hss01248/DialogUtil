@@ -33,12 +33,16 @@ public class StyledDialog  {
     }
 
     private static DialogInterface loadingDialog;//缓存加载中的dialog,便于以后可以不需要对象就让它消失
+    private static TextView tv_msg;
+    private static long startTime;
 
+    /**
+     * 内部使用
+     * @param tv_msg
+     */
     public static void setTv_msg(TextView tv_msg) {
         StyledDialog.tv_msg = tv_msg;
     }
-
-    private static TextView tv_msg;
 
     private static boolean isMiUi8 = false;//miui8用非activity的Context时,无法以TYPE_TOAST的形式弹出对话框.没有好的解决办法.....
 
@@ -61,9 +65,14 @@ public class StyledDialog  {
 
     }
 
-     public static void setLoadingObj(DialogInterface  loading){
+    /**
+     * 内部使用
+     */
+     public static void setLoadingObj( DialogInterface  loading){
+
         dismiss(loadingDialog);
         loadingDialog = loading;
+         startTime = System.currentTimeMillis();
          if(loading==null){
              tv_msg=null;
          }
@@ -78,8 +87,20 @@ public class StyledDialog  {
     public static void dismissLoading(){
         if (loadingDialog != null ){
             tv_msg=null;
-            dismiss(loadingDialog);
-            loadingDialog = null;
+            long timePassed = System.currentTimeMillis() - startTime;
+            if(timePassed >= 500){//500ms
+                dismiss(loadingDialog);
+                loadingDialog = null;
+            }else {
+                getMainHandler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        dismiss(loadingDialog);
+                        loadingDialog = null;
+                    }
+                },500 -timePassed);
+            }
+
         }
     }
 

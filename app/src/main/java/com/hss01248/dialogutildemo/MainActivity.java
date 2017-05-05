@@ -223,9 +223,12 @@ android:pivotY="50%" />
     @OnClick({R.id.btn_common_progress, R.id.btn_context_progress, R.id.btn_material_alert, R.id.btn_ios_alert,
             R.id.btn_ios_alert_vertical, R.id.btn_ios_bottom_sheet, R.id.btn_ios_center_list,R.id.btn_input,
             R.id.btn_multichoose, R.id.btn_singlechoose,R.id.btn_md_bs,R.id.btn_md_bs_listview,R.id.btn_md_bs_Gridview,
-            R.id.btn_context_progress_h,R.id.btn_context_progress_c,R.id.btn_customview})
+            R.id.btn_context_progress_h,R.id.btn_context_progress_c,R.id.btn_customview,R.id.btn_dismiss})
     public void onClick(View view) {
         switch (view.getId()) {
+            case R.id.btn_dismiss:
+                StyledDialog.dismissLoading();
+                break;
             case R.id.btn_common_progress:
                 new Thread(new Runnable() {
                     @Override
@@ -233,6 +236,8 @@ android:pivotY="50%" />
                         StyledDialog.buildLoading( "加载中...").show();
                     }
                 }).run();
+                StyledDialog.dismissLoading();
+                showToast("dismissLoading() called ");
 
                 new Timer().schedule(new TimerTask() {
                     @Override
@@ -248,7 +253,7 @@ android:pivotY="50%" />
                 gloablDialog = StyledDialog.buildMdLoading().show();
 
 
-
+                //StyledDialog.dismissLoading();
 
                 handler.postDelayed(new Runnable() {
                     @Override

@@ -16,6 +16,14 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <Button
+                android:id="@+id/btn_dismiss"
+                android:layout_margin="5dp"
+                android:visibility="gone"
+                android:text="关闭loading"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <Button
                 android:id="@+id/btn_common_progress"
                 android:layout_margin="5dp"
                 android:text="菊花loading"
