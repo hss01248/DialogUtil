@@ -6,6 +6,7 @@ import android.content.Context;
 import android.support.annotation.ColorRes;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
+import android.view.Gravity;
 import android.view.View;
 
 import com.hss01248.dialog.StyledDialog;
@@ -34,7 +35,7 @@ public class ConfigBean extends MyDialogBuilder implements Styleable {
 
     public View customView;
 
-    public int gravity;
+    public int gravity = Gravity.CENTER;
 
     public CharSequence title;
     public CharSequence msg;
@@ -64,6 +65,14 @@ public class ConfigBean extends MyDialogBuilder implements Styleable {
     public AlertDialog alertDialog;
 
 
+    public boolean dimBehind = true;
+
+    public ConfigBean setHasShadow(boolean hasShadow) {
+        this.hasShadow = hasShadow;
+        return this;
+    }
+
+    public boolean hasShadow = true;
 
 
 

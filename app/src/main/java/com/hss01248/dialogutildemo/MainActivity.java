@@ -590,7 +590,7 @@ android:pivotY="50%" />
                 break;
             case R.id.btn_customview:
                 ViewGroup customView = (ViewGroup) View.inflate(this,R.layout.customview,null);
-                final ConfigBean bean = StyledDialog.buildCustom(customView, Gravity.CENTER);
+                final ConfigBean bean = StyledDialog.buildCustom(customView, Gravity.CENTER).setHasShadow(false);
                 final Dialog dialog1 =   bean.show();
                 WebView webView = (WebView) customView.findViewById(R.id.webview);
                 final TextView textView = (TextView) customView.findViewById(R.id.tv_title);
@@ -608,7 +608,6 @@ android:pivotY="50%" />
                     public void onReceivedTitle(WebView view, String title) {
                         super.onReceivedTitle(view, title);
                         textView.setText(title);
-
                     }
                 });
 

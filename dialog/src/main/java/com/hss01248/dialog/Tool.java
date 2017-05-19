@@ -211,6 +211,7 @@ public class Tool {
         setDim(bean);
         Dialog dialog = bean.dialog ==null ? bean.alertDialog : bean.dialog;
         Window window = dialog.getWindow();
+        window.setGravity(bean.gravity);
         if(bean.context instanceof Activity){
 
         }else {
@@ -252,6 +253,10 @@ public class Tool {
                 bean.dialog.getWindow().setBackgroundDrawableResource(R.drawable.shadow);
             }
 
+        }
+
+        if(!bean.hasShadow){
+            bean.dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         }
     }
 
@@ -367,6 +372,7 @@ public class Tool {
             case DefaultConfig.TYPE_BOTTOM_SHEET_CUSTOM:
             case DefaultConfig.TYPE_BOTTOM_SHEET_GRID:
             case DefaultConfig.TYPE_BOTTOM_SHEET_LIST:
+            case DefaultConfig.TYPE_CUSTOM_VIEW:
                 return true;
             default:
                 return false;

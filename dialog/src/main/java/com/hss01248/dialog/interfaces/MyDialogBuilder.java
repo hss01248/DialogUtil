@@ -84,7 +84,7 @@ public  class MyDialogBuilder {
            case DefaultConfig.TYPE_CUSTOM_VIEW:
                Tool.newCustomDialog(bean);
                bean.dialog.setContentView(bean.customView);
-               bean.dialog.getWindow().setGravity(bean.gravity);
+
 
                break;
            case DefaultConfig.TYPE_BOTTOM_SHEET_CUSTOM:
@@ -111,7 +111,8 @@ public  class MyDialogBuilder {
 
 
        }
-       
+
+
        Tool.adjustStyle(bean);
        Tool.setCancelable(bean);
        Tool.setCancelListener(bean);
