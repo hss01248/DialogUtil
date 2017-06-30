@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.hss01248.dialog.MyActyManager;
+import com.hss01248.dialog.StyledDialog;
 import com.orhanobut.logger.LogPrintStyle;
 import com.orhanobut.logger.Logger;
 import com.orhanobut.logger.Settings;
@@ -21,6 +22,7 @@ public class BaseApp extends Application {
     public void onCreate() {
         super.onCreate();
         LeakCanary.install(this);
+        StyledDialog.init(getApplicationContext());
         registCallback();
         initlog();
     }

@@ -78,7 +78,7 @@ public class MainActivity extends Activity {
         handler = new Handler();
         activity = this;
         context = getApplication();
-        StyledDialog.init(getApplicationContext());
+
 
 
         /*<set xmlns:android="http://schemas.android.com/apk/res/android">
@@ -258,12 +258,13 @@ android:pivotY="50%" />
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                       StyledDialog.updateLoadingMsg("jjjjj"+ new Random().nextInt(100));
+                       StyledDialog
+                               .updateLoadingMsg("jjjjj"+ new Random().nextInt(100));
                     }
                 },3000);
                 break;
             case R.id.btn_context_progress_h:
-               final ProgressDialog dialog= (ProgressDialog) StyledDialog.buildProgress( "下载中...",true).show();
+               final ProgressDialog dialog= (ProgressDialog) StyledDialog.buildProgress( "下载中...",true).setCancelable(false,false).show();
                 final int[] progress = {0};
                 final Timer timer = new Timer();
                 timer.schedule(new TimerTask() {
@@ -273,6 +274,7 @@ android:pivotY="50%" />
                         StyledDialog.updateProgress(dialog, progress[0],100,"progress",true);
                         if(progress[0]>100){
                             timer.cancel();
+                            dialog.dismiss();
                         }
                     }
                 },500,500);
@@ -319,6 +321,7 @@ android:pivotY="50%" />
                         .setBtnText("i","b","3")
                         .setBtnColor(R.color.colorPrimary,R.color.colorPrimaryDark,R.color.text_black)
                         .show();
+
                 break;
             case R.id.btn_ios_alert:
                 StyledDialog.buildIosAlert( "title", msg,  new MyDialogListener() {

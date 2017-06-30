@@ -2,6 +2,7 @@ package com.hss01248.dialog;
 
 import android.app.Activity;
 import android.content.Context;
+import android.view.Gravity;
 import android.view.View;
 
 import com.hss01248.dialog.config.ConfigBean;
@@ -171,6 +172,7 @@ public class DialogAssigner implements Assignable {
         bean.itemListener = listener;
         bean.wordsIos = words;
         bean.type = DefaultConfig.TYPE_IOS_BOTTOM;
+        bean.gravity = Gravity.BOTTOM;
         return bean;
     }
 
