@@ -6,6 +6,17 @@ material风格(v7支持包中的)，ios风格，自动获取顶层activity,可�
 
 [![](https://jitpack.io/v/hss01248/DialogUtil.svg)](https://jitpack.io/#hss01248/DialogUtil)
 
+# 注意点
+* 在activity已经resume后再调用,不要在onstart里用,否则可能会不显示.
+* 如果非要在onstart里,就记得调用setActivity()
+* 如果有的国产机不显示,就调用setActivity()
+* 不要滥用loadingdialog:
+注意使用的场景:
+ 第一此进入页面,用layout内部的loadingview,有很多statelayout框架,也可以用我的这个:
+  https://github.com/hss01248/PageStateManager
+  再次刷新,用刷新头显示刷新状态
+  局部刷新或点击某按钮访问网络,用loading dialog,不影响页面本身状态,类似web中的ajax请求.
+
 # 特性
 
 loading对话框和ios风格的dialog传入context和activity均可弹出dialog.
