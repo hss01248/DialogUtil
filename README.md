@@ -7,10 +7,14 @@ material风格(v7支持包中的)，ios风格，自动获取顶层activity,可�
 [![](https://jitpack.io/v/hss01248/DialogUtil.svg)](https://jitpack.io/#hss01248/DialogUtil)
 
 # 注意点
+
 * 在activity已经resume后再调用,不要在onstart里用,否则可能会不显示.
 * 如果非要在onstart里,就记得调用setActivity()
 * 如果有的国产机不显示,就调用setActivity()
 * 不要滥用loadingdialog:
+
+## 调用时机的说明:
+
 
 > 注意使用的场景:
 
