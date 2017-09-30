@@ -22,13 +22,21 @@
                 android:text="关闭loading"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
+            <Button
+                    android:id="@+id/btn_test_badToken"
+                    android:layout_margin="5dp"
+                    android:text="BadTokenException 测试"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
 
             <Button
-                android:id="@+id/btn_common_progress"
-                android:layout_margin="5dp"
-                android:text="菊花loading"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                    android:id="@+id/btn_common_progress"
+                    android:layout_margin="5dp"
+                    android:text="菊花loading"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+
 
             <Button
                 android:id="@+id/btn_context_progress"

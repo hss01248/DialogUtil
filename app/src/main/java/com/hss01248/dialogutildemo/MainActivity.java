@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.widget.LinearLayoutManager;
@@ -223,9 +224,12 @@ android:pivotY="50%" />
     @OnClick({R.id.btn_common_progress, R.id.btn_context_progress, R.id.btn_material_alert, R.id.btn_ios_alert,
             R.id.btn_ios_alert_vertical, R.id.btn_ios_bottom_sheet, R.id.btn_ios_center_list,R.id.btn_input,
             R.id.btn_multichoose, R.id.btn_singlechoose,R.id.btn_md_bs,R.id.btn_md_bs_listview,R.id.btn_md_bs_Gridview,
-            R.id.btn_context_progress_h,R.id.btn_context_progress_c,R.id.btn_customview,R.id.btn_dismiss})
+            R.id.btn_context_progress_h,R.id.btn_context_progress_c,R.id.btn_customview,R.id.btn_dismiss,R.id.btn_test_badToken})
     public void onClick(View view) {
         switch (view.getId()) {
+            case R.id.btn_test_badToken:
+                testBadToken();
+                break;
             case R.id.btn_dismiss:
                 StyledDialog.dismissLoading();
                 break;
@@ -618,6 +622,11 @@ android:pivotY="50%" />
 
 
         }
+    }
+
+    private void testBadToken() {
+        startActivity(new Intent(this,BadTokenActy.class));
+
     }
 
 
