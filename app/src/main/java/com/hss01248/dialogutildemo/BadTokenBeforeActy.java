@@ -47,8 +47,11 @@ public class BadTokenBeforeActy extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.acty_token_before);
         ButterKnife.bind(this);
-        //new PopupWindow(View.inflate(this,R.layout.dialog_ios_alert,null)).showAsDropDown(button3);//必导致badtoken
-        new AlertDialog.Builder(this).setTitle("crash").setMessage("ddddd").show();//竟然不会导致badtoken,会等待activity就绪后再弹出
+        //new PopupWindow(View.inflate(this,R.layout.dialog_ios_alert,null)).showAsDropDown(button3);
+        // PopupWindow必导致badtoken,如果在onAttachedToWindow里弹出,则不会
+
+        new AlertDialog.Builder(this).setTitle("crash").setMessage("ddddd").show();
+        //AlertDialog测试机未出现badtoken,会等待activity界面就绪后再弹出,不知道其他手机??
 
 
         startTime = System.currentTimeMillis();

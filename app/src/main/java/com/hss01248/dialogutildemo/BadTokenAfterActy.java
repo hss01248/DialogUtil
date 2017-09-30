@@ -53,7 +53,7 @@ public class BadTokenAfterActy extends Activity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                new AlertDialog.Builder(BadTokenAfterActy.this).setTitle("crash").setMessage("after").show();
+                new AlertDialog.Builder(BadTokenAfterActy.this).setTitle("crash").setMessage("after").show();//必crash
 
             }
         },500);
