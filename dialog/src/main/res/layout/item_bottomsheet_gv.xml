@@ -17,7 +17,7 @@
     <TextView
         android:id="@+id/tv_msg"
         android:textSize="15sp"
-        android:text="item1item1item1item1item1item1item1item1item1item1item1item1"
+        android:text="@string/loading"
         android:maxLines="2"
         android:ellipsize="end"
         android:textColor="@color/text_black"

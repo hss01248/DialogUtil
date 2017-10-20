@@ -141,9 +141,15 @@
             <Button
                 android:id="@+id/btn_customview"
                 android:layout_margin="5dp"
-                android:text="customview"
+                android:text="customview_webview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
+            <Button
+                    android:id="@+id/btn_customview2"
+                    android:layout_margin="5dp"
+                    android:text="customview_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
 
 
 

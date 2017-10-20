@@ -1,5 +1,6 @@
 package com.hss01248.dialog.config;
 
+import android.content.Context;
 import android.support.annotation.ColorRes;
 
 import com.hss01248.dialog.R;
@@ -62,6 +63,12 @@ public class DefaultConfig {
     public static final int TYPE_IOS_LOADING = 14;
 
     public static final int TYPE_PROGRESS = 15;
+
+    public static void initBtnTxt(Context context){
+        btnTxt1 = context.getResources().getString(R.string.btn_sure);
+        btnTxt2 = context.getResources().getString(R.string.btn_cancel);
+        bottomTxt = context.getResources().getString(R.string.btn_cancel);
+    }
 
 
 

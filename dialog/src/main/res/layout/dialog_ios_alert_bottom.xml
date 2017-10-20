@@ -48,8 +48,8 @@
     <Button
         android:id="@+id/btn_bottom"
         android:background="@drawable/bg_ios_roundcorner_bottom"
-
-        android:text="cancle"
+        android:textAllCaps="false"
+        android:text="@string/btn_cancel"
         android:textSize="@dimen/btn_txt_size"
         android:textColor="@color/ios_btntext_blue"
         android:layout_width="match_parent"

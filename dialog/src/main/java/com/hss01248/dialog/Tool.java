@@ -77,9 +77,9 @@ public class Tool {
         Button btnNatural =
                 bean.alertDialog.getButton(DialogInterface.BUTTON_NEUTRAL);
 
-        //todo null
         if(btnPositive !=null){
-            if(TextUtils.isEmpty(bean.text1)){
+            btnPositive.setAllCaps(false);
+            if(!TextUtils.isEmpty(bean.text1)){
                 btnPositive.setText(bean.text1);
             }
             if (bean.btn1Color > 0)
@@ -89,7 +89,8 @@ public class Tool {
             }
         }
         if(btnNegative !=null){
-            if(TextUtils.isEmpty(bean.text2)){
+            btnNegative.setAllCaps(false);
+            if(!TextUtils.isEmpty(bean.text2)){
                 btnNegative.setText(bean.text2);
             }
             if (bean.btn2Color > 0 )
@@ -105,7 +106,8 @@ public class Tool {
         }
 
         if(btnNatural !=null){
-            if(TextUtils.isEmpty(bean.text3)){
+            btnNatural.setAllCaps(false);
+            if(!TextUtils.isEmpty(bean.text3)){
                 btnNatural.setText(bean.text3);
             }
             if (bean.btn3Color > 0)
@@ -239,25 +241,43 @@ public class Tool {
         }
     }
 
+    /**
+     * set background of dialog window
+     * @param bean
+     */
     private static void setBg(ConfigBean bean) {
+        //no need to modify the background
+        if(bean.type == DefaultConfig.TYPE_BOTTOM_SHEET_GRID
+            || bean.type == DefaultConfig.TYPE_BOTTOM_SHEET_LIST
+            || bean.type == DefaultConfig.TYPE_BOTTOM_SHEET_CUSTOM
+            || bean.type == DefaultConfig.TYPE_PROGRESS){
+            // No need to set backgroud
+            return;
+
+        }
+
+
         if (bean.alertDialog!= null){
-            bean.alertDialog.getWindow().setBackgroundDrawableResource(R.drawable.shadow);
+
+            if(bean.useTheShadowBg){
+                bean.alertDialog.getWindow().setBackgroundDrawableResource(R.drawable.shadow);
+            }else {
+                bean.alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            }
         }else {
-            if(bean.type == DefaultConfig.TYPE_BOTTOM_SHEET_GRID
-                    || bean.type == DefaultConfig.TYPE_BOTTOM_SHEET_LIST
-                    || bean.type == DefaultConfig.TYPE_BOTTOM_SHEET_CUSTOM
-                    || bean.type == DefaultConfig.TYPE_PROGRESS){
-            }else if(bean.type == DefaultConfig.TYPE_IOS_LOADING){//转菊花时,背景透明
+             if(bean.type == DefaultConfig.TYPE_IOS_LOADING){//转菊花时,背景透明
                 bean.dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
             }else {
-                bean.dialog.getWindow().setBackgroundDrawableResource(R.drawable.shadow);
+                if(bean.useTheShadowBg){
+                    bean.dialog.getWindow().setBackgroundDrawableResource(R.drawable.shadow);
+                }else {
+                    bean.dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                }
             }
 
         }
 
-        if(!bean.hasShadow){
-            bean.dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        }
+
     }
 
 
@@ -340,15 +360,25 @@ public class Tool {
         int width = window.getWindowManager().getDefaultDisplay().getWidth();
         int height = window.getWindowManager().getDefaultDisplay().getHeight();
         int measuredHeight = rootView.getMeasuredHeight();
+        int measuredWidth = rootView.getMeasuredWidth();
 
-        float ratio = 0.85f;
+        float widthRatio = 0.85f;
+        float heightRatio = 0f;
         if(bean.type ==DefaultConfig.TYPE_IOS_BOTTOM){
-            ratio = 0.95f;
+            widthRatio = 0.95f;
         }else if(bean.type ==DefaultConfig.TYPE_IOS_CENTER_LIST){
-            ratio = 0.9f;
+            widthRatio = 0.9f;
         }
         if(width > height){//宽屏
-            ratio = 0.5f;
+            widthRatio = 0.5f;
+        }
+
+        //set ratio as user has set
+        if(bean.widthPercent>0 && bean.widthPercent<=1.0f){
+            widthRatio = bean.widthPercent;
+        }
+        if(bean.heightPercent>0 && bean.heightPercent<=1.0f){
+            heightRatio = bean.heightPercent;
         }
 
         if(istheTypeOfNotAdjust(bean.type)){
@@ -356,10 +386,13 @@ public class Tool {
             wl.height = ViewGroup.LayoutParams.WRAP_CONTENT;*/
         }else {
            // rootView.setPadding(0,30,0,30);
-            wl.width = (int) (width * ratio);
-            if (measuredHeight > height* 0.9){
-                wl.height = (int) (height* 0.9);
+            wl.width = (int) (width * widthRatio);//stretch when the content is not enough,margin when the content is full fill the screen
+            //if (measuredHeight > height* heightRatio){//only work when the content is full fill the screen
+            if(heightRatio>0){
+                wl.height = (int) (height* heightRatio);
             }
+
+           // }
         }
 
         dialog.onWindowAttributesChanged(wl);
@@ -372,7 +405,7 @@ public class Tool {
             case DefaultConfig.TYPE_BOTTOM_SHEET_CUSTOM:
             case DefaultConfig.TYPE_BOTTOM_SHEET_GRID:
             case DefaultConfig.TYPE_BOTTOM_SHEET_LIST:
-            case DefaultConfig.TYPE_CUSTOM_VIEW:
+           // case DefaultConfig.TYPE_CUSTOM_VIEW:
                 return true;
             default:
                 return false;

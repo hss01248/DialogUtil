@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.support.annotation.ColorRes;
+import android.support.annotation.FloatRange;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.view.Gravity;
@@ -39,12 +40,65 @@ public class ConfigBean extends MyDialogBuilder implements Styleable {
 
     public CharSequence title;
     public CharSequence msg;
-    public CharSequence text1 = "确定";
-    public CharSequence text2 = "取消";
+    public CharSequence text1 = DefaultConfig.btnTxt1;
+    public CharSequence text2 = DefaultConfig.btnTxt2;
     public CharSequence text3;
 
     public CharSequence hint1;
     public CharSequence hint2;
+
+
+    /**
+     * the dialog show by wrap-content in x-axi in default
+     *
+     * you can use the widthPercent:
+     *  to stretch it in x-axi
+     *  to determine the left and right margin if the measuredWidth is greater than or the same as the phone window width
+     *
+     * do not support types:
+     *   case DefaultConfig.TYPE_IOS_LOADING:
+         case DefaultConfig.TYPE_PROGRESS:
+         case DefaultConfig.TYPE_BOTTOM_SHEET_CUSTOM:
+         case DefaultConfig.TYPE_BOTTOM_SHEET_GRID:
+         case DefaultConfig.TYPE_BOTTOM_SHEET_LIST:
+     * @param widthPercent
+     * @return
+     */
+    public ConfigBean setWidthPercent(@FloatRange(from = 0f,to = 1.0f)float widthPercent) {
+        if(widthPercent>1.0f || widthPercent<=0f){
+            return this;
+        }
+        this.widthPercent = widthPercent;
+        return this;
+    }
+
+
+    /**
+     * the dialog show by wrap-content in y-axi in default
+     *
+     * you can use the widthPercent:
+     * to determine the top and bottom margin if the measuredHeight is greater than the phone window
+     * to stretch it in y-axi,no recommend,because that is ugly!
+     *
+     * do not support types:
+     *  case DefaultConfig.TYPE_IOS_LOADING:
+         case DefaultConfig.TYPE_PROGRESS:
+         case DefaultConfig.TYPE_BOTTOM_SHEET_CUSTOM:
+         case DefaultConfig.TYPE_BOTTOM_SHEET_GRID:
+         case DefaultConfig.TYPE_BOTTOM_SHEET_LIST:
+     * @param heightPercent
+     * @return
+     */
+    public ConfigBean setHeightPercent(@FloatRange(from = 0f,to = 1.0f) float heightPercent) {
+        if(heightPercent>1.0f || heightPercent<=0f){
+            return this;
+        }
+        this.heightPercent = heightPercent;
+        return this;
+    }
+
+    public float widthPercent;
+    public float heightPercent;
 
     public ConfigBean setTransparentBehind(boolean transparentBehind) {
         isTransparentBehind = transparentBehind;
@@ -67,12 +121,19 @@ public class ConfigBean extends MyDialogBuilder implements Styleable {
 
     public boolean dimBehind = true;
 
-    public ConfigBean setHasShadow(boolean hasShadow) {
-        this.hasShadow = hasShadow;
+    /**
+     *  default background res: R.drawable.shadow,white background ,surround with shadow
+     * @param useTheShadowBg default is true. set false to disable the shadow background ,and set your own background in your xml
+     * @return
+     */
+    public ConfigBean useBackgroundWhiteWithShadow(boolean useTheShadowBg) {
+        this.useTheShadowBg = useTheShadowBg;
         return this;
     }
 
-    public boolean hasShadow = true;
+    public boolean useTheShadowBg = true;
+
+
 
 
 
@@ -87,7 +148,7 @@ public class ConfigBean extends MyDialogBuilder implements Styleable {
 
     public List<? extends CharSequence> wordsIos;
     //bottom sheet
-    public  CharSequence bottomTxt = "取消";
+    public  CharSequence bottomTxt = DefaultConfig.bottomTxt;
 
     //bottomsheet
     public SuperLvAdapter mAdapter;

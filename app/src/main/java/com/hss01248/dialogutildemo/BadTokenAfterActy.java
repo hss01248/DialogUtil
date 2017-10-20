@@ -30,6 +30,7 @@ public class BadTokenAfterActy extends Activity {
 
     }
 
+
     @Override
     protected void onDestroy() {
         super.onDestroy();

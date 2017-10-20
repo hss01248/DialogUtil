@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.hss01248.dialog.config.ConfigBean;
+import com.hss01248.dialog.config.DefaultConfig;
 import com.hss01248.dialog.interfaces.MyDialogListener;
 import com.hss01248.dialog.interfaces.MyItemDialogListener;
 
@@ -62,11 +63,13 @@ public class StyledDialog  {
             isMiUi8 = true;
         }*/
        mainHandler = new Handler(Looper.getMainLooper());
+        DefaultConfig.initBtnTxt(context);
 
     }
 
     /**
      * 内部使用
+     *
      */
      public static void setLoadingObj( DialogInterface  loading){
 
@@ -134,6 +137,7 @@ public class StyledDialog  {
             
         }
     }
+
 
 
     public static ConfigBean buildProgress( CharSequence msg,boolean isHorizontal) {

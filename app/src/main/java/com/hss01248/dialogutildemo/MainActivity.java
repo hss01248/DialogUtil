@@ -224,7 +224,7 @@ android:pivotY="50%" />
     @OnClick({R.id.btn_common_progress, R.id.btn_context_progress, R.id.btn_material_alert, R.id.btn_ios_alert,
             R.id.btn_ios_alert_vertical, R.id.btn_ios_bottom_sheet, R.id.btn_ios_center_list,R.id.btn_input,
             R.id.btn_multichoose, R.id.btn_singlechoose,R.id.btn_md_bs,R.id.btn_md_bs_listview,R.id.btn_md_bs_Gridview,
-            R.id.btn_context_progress_h,R.id.btn_context_progress_c,R.id.btn_customview,R.id.btn_dismiss,R.id.btn_test_badToken})
+            R.id.btn_context_progress_h,R.id.btn_context_progress_c,R.id.btn_customview,R.id.btn_dismiss,R.id.btn_test_badToken,R.id.btn_customview2})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_test_badToken:
@@ -268,7 +268,7 @@ android:pivotY="50%" />
                 },3000);
                 break;
             case R.id.btn_context_progress_h:
-               final ProgressDialog dialog= (ProgressDialog) StyledDialog.buildProgress( "下载中...",true).setCancelable(false,false).show();
+               final ProgressDialog dialog= (ProgressDialog) StyledDialog.buildProgress( getString(R.string.loading),true).setCancelable(false,false).show();
                 final int[] progress = {0};
                 final Timer timer = new Timer();
                 timer.schedule(new TimerTask() {
@@ -322,6 +322,8 @@ android:pivotY="50%" />
 
                 })
                         .setBtnSize(29)
+                    .setHeightPercent(0.75f)//ugly
+                    .setWidthPercent(0.90f)
                         .setBtnText("i","b","3")
                         .setBtnColor(R.color.colorPrimary,R.color.colorPrimaryDark,R.color.text_black)
                         .show();
@@ -345,7 +347,10 @@ android:pivotY="50%" />
                     }
 
 
-                }).setBtnText("sure","cancle","hhhh").show();
+                }).setBtnText("sure","cancle","hhhh")
+                    .setWidthPercent(0.99f)
+                    .setHeightPercent(0.88f)
+                    .show();
                 break;
             case R.id.btn_ios_alert_vertical:
                 StyledDialog.buildIosAlertVertical( "title", msg,  new MyDialogListener() {
@@ -597,7 +602,10 @@ android:pivotY="50%" />
                 break;
             case R.id.btn_customview:
                 ViewGroup customView = (ViewGroup) View.inflate(this,R.layout.customview,null);
-                final ConfigBean bean = StyledDialog.buildCustom(customView, Gravity.CENTER).setHasShadow(false);
+                final ConfigBean bean = StyledDialog.buildCustom(customView, Gravity.CENTER)
+                    .setHeightPercent(0.7f)
+                    .setWidthPercent(0.8f)
+                    .useBackgroundWhiteWithShadow(false);
                 final Dialog dialog1 =   bean.show();
                 WebView webView = (WebView) customView.findViewById(R.id.webview);
                 final TextView textView = (TextView) customView.findViewById(R.id.tv_title);
@@ -618,6 +626,10 @@ android:pivotY="50%" />
                     }
                 });
 
+            break;
+            case R.id.btn_customview2:
+                ViewGroup customView2 = (ViewGroup) View.inflate(this,R.layout.customview2,null);
+                StyledDialog.buildCustom(customView2,Gravity.CENTER).setWidthPercent(0.90f).setHeightPercent(0.8f).show();
                 break;
 
 

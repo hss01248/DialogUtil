@@ -20,7 +20,7 @@
 
     <TextView
         android:id="@+id/loading_msg"
-        android:text="加载中..."
+        android:text="@string/loading"
         android:textColor="#ffffff"
         android:layout_marginTop="20dp"
         android:maxLines="1"

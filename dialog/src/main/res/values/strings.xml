@@ -1,3 +1,9 @@
 <resources>
-    <string name="app_name">lib</string>
+    <string name="app_name">dialog</string>
+    <string name="btn_sure">sure</string>
+    <string name="btn_cancel">cancel</string>
+    <string name="btn_neutral">neutral</string>
+    <string name="loading">loading</string>
+    <string name="uploading">uploading</string>
+    <string name="downloading">downloading</string>
 </resources>
