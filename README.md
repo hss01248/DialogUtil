@@ -9,7 +9,7 @@ common used dialog with material style ( in support v7)，ios style，get top ac
 [中文文档](README-ch.md)
 any problem or bug, join the qq group to get a quick response:
 
-<a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=0d0717b3017b671b978cb5669443114c292b647f2289b98901adb043c24bfa41"><img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="龙舌中学04届校友" title="龙舌中学04届校友"></a>
+<a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=76d7e8396ae225861d714b7f1bb976e1a06c8a76cc35c532c113e892b2d49ff0"><img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="DialogUtil and Android" title="DialogUtil and Android"></a>
 
 # important points
 
