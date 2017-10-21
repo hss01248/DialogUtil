@@ -43,6 +43,7 @@ public  class MyDialogBuilder {
    protected  ConfigBean buildByType(ConfigBean bean){
        Tool.fixContext(bean);
 
+
        switch (bean.type){
            case DefaultConfig.TYPE_MD_LOADING:
                Tool.newCustomDialog(bean);
@@ -329,7 +330,7 @@ public  class MyDialogBuilder {
                     }
                 });
 
-        AlertDialog dialog = builder.create();
+        AlertDialog dialog = builder.create();// crash when context is not activity
         bean.alertDialog = dialog;
         //dialog.getWindow().getDecorView()
        // addShaow(bean,dialog);

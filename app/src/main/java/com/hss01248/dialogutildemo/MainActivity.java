@@ -323,8 +323,9 @@ android:pivotY="50%" />
                 })
                         .setBtnSize(29)
                     .setHeightPercent(0.75f)//ugly
-                    .setWidthPercent(0.90f)
+                    //.setWidthPercent(0.90f)
                         .setBtnText("i","b","3")
+                    //.setBtnText("i")
                         .setBtnColor(R.color.colorPrimary,R.color.colorPrimaryDark,R.color.text_black)
                         .show();
 
@@ -347,9 +348,11 @@ android:pivotY="50%" />
                     }
 
 
-                }).setBtnText("sure","cancle","hhhh")
-                    .setWidthPercent(0.99f)
-                    .setHeightPercent(0.88f)
+                })
+                    //.setBtnText("sure","cancle","hhhh")
+                    .setBtnText("sure")
+                    //.setWidthPercent(0.99f)
+                    //.setHeightPercent(0.88f)
                     //.setBgRes(R.drawable.leak_canary_icon)
                     .show();
                 break;

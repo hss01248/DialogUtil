@@ -25,6 +25,7 @@ public class BaseApp extends Application {
         StyledDialog.init(getApplicationContext());
         registCallback();
         initlog();
+        //TestTool.openStickModeIfIsDebug();
     }
 
     private void initlog() {

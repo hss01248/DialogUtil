@@ -206,7 +206,7 @@ public class StyledDialog  {
         return DialogAssigner.getInstance().assignMdLoading(null,msg,true,false);
     }
 
-     
+
     public static ConfigBean buildMdAlert( CharSequence title, CharSequence msg, MyDialogListener listener) {
         return DialogAssigner.getInstance().assignMdAlert(null,title,msg,listener);
     }

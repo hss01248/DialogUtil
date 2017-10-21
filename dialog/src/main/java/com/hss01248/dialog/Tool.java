@@ -2,13 +2,18 @@ package com.hss01248.dialog;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Color;
+import android.graphics.PixelFormat;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
@@ -20,6 +25,9 @@ import android.widget.ListView;
 
 import com.hss01248.dialog.config.ConfigBean;
 import com.hss01248.dialog.config.DefaultConfig;
+
+
+import static com.hss01248.dialog.StyledDialog.context;
 
 /**
  * Created by Administrator on 2016/10/9 0009.
@@ -83,7 +91,7 @@ public class Tool {
                 btnPositive.setText(bean.text1);
             }
             if (bean.btn1Color > 0)
-                btnPositive.setTextColor(getColor(null,bean.btn1Color));
+                btnPositive.setTextColor(getColor(bean.context,bean.btn1Color));
             if(bean.btnTxtSize >0){
                 btnPositive.setTextSize(bean.btnTxtSize);
             }
@@ -95,9 +103,9 @@ public class Tool {
             }
             if (bean.btn2Color > 0 )
                 if(bean.btn2Color == DefaultConfig.iosBtnColor ){
-                    btnNegative.setTextColor(getColor(null,R.color.text_gray));
+                    btnNegative.setTextColor(getColor(bean.context,R.color.text_gray));
                 }else {
-                    btnNegative.setTextColor(getColor(null,bean.btn2Color));
+                    btnNegative.setTextColor(getColor(bean.context,bean.btn2Color));
                 }
 
             if(bean.btnTxtSize >0){
@@ -138,16 +146,7 @@ public class Tool {
         }
 
         if (bean.context == null){
-            bean.context = StyledDialog.context;
-        }
-
-        if (bean.context instanceof Activity){
-            Activity activity1 = (Activity) bean.context;
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-                if (activity1.isDestroyed()){
-                    bean.context = StyledDialog.context;
-                }
-            }
+            bean.context = context;
         }
         return bean;
     }
@@ -186,7 +185,7 @@ public class Tool {
             Activity activity = (Activity) context;
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
                 if (activity.isDestroyed()){
-                    context = StyledDialog.context;
+                    context = context;
                 }
             }
         }
@@ -198,7 +197,7 @@ public class Tool {
         return dialog;
     }
 
-    public static void adjustStyle(ConfigBean bean) {
+    public static void adjustStyle(final ConfigBean bean) {
         /*if (bean.alertDialog!= null){
             //setMdBtnStytle(bean);
             //setListItemsStyle(bean);
@@ -218,11 +217,68 @@ public class Tool {
 
         }else {
             window.setType(WindowManager.LayoutParams.TYPE_TOAST);
-            //todo keycode to improve window level,同时要让它的后面半透明背景也拦截事件,不要传递到下面去
-            //todo 单例化,不然连续弹出两次,只能关掉第二次的
+            WindowManager.LayoutParams params = window.getAttributes();
+            if(params==null){
+                params = new WindowManager.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            }
+            params.format = PixelFormat.RGBA_8888;
+            params.flags = WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED |
+               // WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL  |
+                WindowManager.LayoutParams.FLAG_LOCAL_FOCUS_MODE  |
+                WindowManager.LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH |
+                WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD;
+            params.dimAmount = 0.2f;
+            //params.alpha = 0.5f;//the alpha of window
+
+            window.setAttributes(params);
+
+            // back key pressed
+            window.getDecorView().setOnKeyListener(new View.OnKeyListener() {
+                @Override
+                public boolean onKey(View v, int keyCode, KeyEvent event) {
+                    if (keyCode == KeyEvent.KEYCODE_BACK || event.getKeyCode() == KeyEvent.KEYCODE_SETTINGS) {
+                        StyledDialog.dismiss(bean.alertDialog,bean.dialog);
+                        return true;
+                    }
+                    return false;
+                }
+            });
+            // home key pressed
+            setHomeKeyListener(window,bean);
+
+            //todo outside not touchable
+
+            //todo dim behind
+            window.setDimAmount(0.2f);
+
         }
 
     }
+
+    private  static void setHomeKeyListener(Window window, final ConfigBean bean){
+        //在创建View时注册Receiver
+        IntentFilter homeFilter = new IntentFilter(Intent.ACTION_CLOSE_SYSTEM_DIALOGS);
+        bean.context.registerReceiver(new BroadcastReceiver() {
+            final String SYSTEM_DIALOG_REASON_KEY = "reason";
+
+            final String SYSTEM_DIALOG_REASON_HOME_KEY = "homekey";
+
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                String action = intent.getAction();
+                if (action.equals(Intent.ACTION_CLOSE_SYSTEM_DIALOGS)) {
+                    String reason = intent.getStringExtra(SYSTEM_DIALOG_REASON_KEY);
+                    if (reason != null && reason.equals(SYSTEM_DIALOG_REASON_HOME_KEY)) {
+                        // 处理自己的逻辑
+                        StyledDialog.dismiss(bean.alertDialog,bean.dialog);
+                        context.unregisterReceiver(this);
+                    }
+                }
+            }
+        }, homeFilter);
+    }
+
+
 
     private static void setDim(ConfigBean bean) {
         if(bean.type == DefaultConfig.TYPE_IOS_LOADING){//转菊花,则让背景透明
