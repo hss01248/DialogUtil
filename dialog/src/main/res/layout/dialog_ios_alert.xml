@@ -102,7 +102,7 @@
         <Button
             android:id="@+id/btn_1"
             android:textAllCaps="false"
-            android:text="@string/btn_sure"
+            android:text="@string/dialogutil_btn_sure"
             android:layout_gravity="center"
             android:padding="5dp"
             android:gravity="center"
@@ -120,7 +120,7 @@
                 android:layout_height="match_parent"/>
             <Button
                 android:id="@+id/btn_2"
-                android:text="@string/btn_cancel"
+                android:text="@string/dialogutil_btn_cancel"
                 android:layout_gravity="center"
                 android:padding="5dp"
                 android:textAllCaps="false"
@@ -142,7 +142,7 @@
                 android:layout_gravity="center"
                 android:padding="5dp"
                 android:id="@+id/btn_3"
-                android:text="@string/btn_cancel"
+                android:text="@string/dialogutil_btn_cancel"
                 android:textAllCaps="false"
                 android:gravity="center"
                 android:textSize="@dimen/btn_txt_size"

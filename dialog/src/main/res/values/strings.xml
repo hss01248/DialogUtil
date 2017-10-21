@@ -1,9 +1,9 @@
 <resources>
     <string name="app_name">dialog</string>
-    <string name="btn_sure">sure</string>
-    <string name="btn_cancel">cancel</string>
-    <string name="btn_neutral">neutral</string>
-    <string name="loading">loading</string>
-    <string name="uploading">uploading</string>
-    <string name="downloading">downloading</string>
+    <string name="dialogutil_btn_sure">sure</string>
+    <string name="dialogutil_btn_cancel">cancel</string>
+    <string name="dialogutil_btn_neutral">neutral</string>
+    <string name="dialogutil_loading">loading</string>
+    <string name="dialogutil_uploading">uploading</string>
+    <string name="dialogutil_downloading">downloading</string>
 </resources>

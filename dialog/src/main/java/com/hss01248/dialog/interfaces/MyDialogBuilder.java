@@ -27,7 +27,6 @@ import com.hss01248.dialog.bottomsheet.BsGvHolder;
 import com.hss01248.dialog.bottomsheet.BsLvHolder;
 import com.hss01248.dialog.config.ConfigBean;
 import com.hss01248.dialog.config.DefaultConfig;
-import com.hss01248.dialog.view.GifMovieView;
 import com.hss01248.dialog.view.IosActionSheetHolder;
 import com.hss01248.dialog.view.IosAlertDialogHolder;
 import com.hss01248.dialog.view.IosCenterItemHolder;
@@ -236,8 +235,8 @@ public  class MyDialogBuilder {
 
     protected  ConfigBean buildLoading(ConfigBean bean){
         View root = View.inflate(bean.context, R.layout.loading,null);
-        GifMovieView gifMovieView = (GifMovieView) root.findViewById(R.id.iv_loading);
-        gifMovieView.setOnClickListener(null);
+        /*GifMovieView gifMovieView = (GifMovieView) root.findViewById(R.id.iv_loading);
+        gifMovieView.setOnClickListener(null);*/
         TextView tvMsg = (TextView) root.findViewById(R.id.loading_msg);
         StyledDialog.setTv_msg(tvMsg);
         tvMsg.setText(bean.msg);

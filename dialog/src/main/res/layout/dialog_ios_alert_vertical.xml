@@ -52,7 +52,7 @@
         android:layout_height="wrap_content">
         <Button
             android:id="@+id/btn_1"
-            android:text="@string/btn_sure"
+            android:text="@string/dialogutil_btn_sure"
             android:layout_gravity="center"
             android:padding="5dp"
             android:textAllCaps="false"
@@ -71,7 +71,7 @@
                 android:layout_height="1px"/>
             <Button
                 android:id="@+id/btn_2"
-                android:text="@string/btn_cancel"
+                android:text="@string/dialogutil_btn_cancel"
                 android:textAllCaps="false"
                 android:layout_gravity="center"
                 android:padding="5dp"
@@ -92,7 +92,7 @@
                 android:layout_gravity="center"
                 android:padding="5dp"
                 android:id="@+id/btn_3"
-                android:text="@string/btn_cancel"
+                android:text="@string/dialogutil_btn_cancel"
                 android:textAllCaps="false"
                 android:gravity="center"
                 android:textSize="13sp"

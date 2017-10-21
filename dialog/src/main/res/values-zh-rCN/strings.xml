@@ -1,9 +1,9 @@
 <resources>
     <string name="app_name">对话框util</string>
-    <string name="btn_sure">确定</string>
-    <string name="btn_cancel">取消</string>
-    <string name="btn_neutral">再看看</string>
-    <string name="loading">加载中</string>
-    <string name="uploading">上传中</string>
-    <string name="downloading">下载中</string>
+    <string name="dialogutil_btn_sure">确定</string>
+    <string name="dialogutil_btn_cancel">取消</string>
+    <string name="dialogutil_btn_neutral">再看看</string>
+    <string name="dialogutil_loading">加载中</string>
+    <string name="dialogutil_uploading">上传中</string>
+    <string name="dialogutil_downloading">下载中</string>
 </resources>

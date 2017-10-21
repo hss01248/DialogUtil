@@ -240,8 +240,8 @@ android:pivotY="50%" />
                         StyledDialog.buildLoading( "加载中...").show();
                     }
                 }).run();
-                StyledDialog.dismissLoading();
-                showToast("dismissLoading() called ");
+                //StyledDialog.dismissLoading();
+                //showToast("dismissLoading() called ");
 
                 new Timer().schedule(new TimerTask() {
                     @Override
@@ -268,7 +268,7 @@ android:pivotY="50%" />
                 },3000);
                 break;
             case R.id.btn_context_progress_h:
-               final ProgressDialog dialog= (ProgressDialog) StyledDialog.buildProgress( getString(R.string.loading),true).setCancelable(false,false).show();
+               final ProgressDialog dialog= (ProgressDialog) StyledDialog.buildProgress( getString(R.string.dialogutil_loading),true).setCancelable(false,false).show();
                 final int[] progress = {0};
                 final Timer timer = new Timer();
                 timer.schedule(new TimerTask() {

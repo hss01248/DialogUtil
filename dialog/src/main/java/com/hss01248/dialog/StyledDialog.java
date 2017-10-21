@@ -195,11 +195,11 @@ public class StyledDialog  {
         return DialogAssigner.getInstance().assignLoading(null,msg,true,false);
     }
     public static ConfigBean buildLoading( ) {
-        return DialogAssigner.getInstance().assignLoading(null,"加载中...",true,false);
+        return DialogAssigner.getInstance().assignLoading(null,DefaultConfig.loadingTxt,true,false);
     }
 
     public static ConfigBean buildMdLoading( ) {
-        return DialogAssigner.getInstance().assignMdLoading(null,"加载中...",true,false);
+        return DialogAssigner.getInstance().assignMdLoading(null,DefaultConfig.loadingTxt,true,false);
     }
     
     public static ConfigBean buildMdLoading( CharSequence msg) {

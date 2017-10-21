@@ -15,12 +15,32 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:layout_height="30dp"
-        android:onClick="onGifClick"
+        android:onClick="@null"
         custom:gif="@drawable/loading_large"/>
+   <!-- <com.hss01248.dialog.view.MyIosloadingImageView
+            android:layout_gravity="center_horizontal"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:id="@+id/iv_loading"
+            android:src="@drawable/ios_loading_144"
+            android:layout_width="30dp"
+            android:layout_height="30dp" />-->
+
+    <!--<ProgressBar
+            android:layout_gravity="center_horizontal"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:max="10000"
+            android:indeterminateDrawable="@drawable/shape_ios_loading_center"
+            android:indeterminate="true"
+            android:indeterminateDuration="2000" />-->
+
 
     <TextView
         android:id="@+id/loading_msg"
-        android:text="@string/loading"
+        android:text="@string/dialogutil_loading"
         android:textColor="#ffffff"
         android:layout_marginTop="20dp"
         android:maxLines="1"

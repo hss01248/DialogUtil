@@ -34,10 +34,13 @@ public class DefaultConfig {
     public static int inputTxtSize = 14;
 
 
-    public static CharSequence btnTxt1 = "确定";
-    public static CharSequence btnTxt2 = "取消";
+    public static CharSequence btnTxt1 ;
+    public static CharSequence btnTxt2 ;
 
-    public static CharSequence bottomTxt = "取消";
+    public static CharSequence bottomTxt ;
+    public static CharSequence loadingTxt ;
+    public static CharSequence uploadingTxt ;
+    public static CharSequence downloadingTxt ;
 
     public static final int TYPE_MD_LOADING = 1;
     public static final int TYPE_MD_ALERT = 2;
@@ -65,9 +68,12 @@ public class DefaultConfig {
     public static final int TYPE_PROGRESS = 15;
 
     public static void initBtnTxt(Context context){
-        btnTxt1 = context.getResources().getString(R.string.btn_sure);
-        btnTxt2 = context.getResources().getString(R.string.btn_cancel);
-        bottomTxt = context.getResources().getString(R.string.btn_cancel);
+        btnTxt1 = context.getResources().getString(R.string.dialogutil_btn_sure);
+        btnTxt2 = context.getResources().getString(R.string.dialogutil_btn_cancel);
+        bottomTxt = context.getResources().getString(R.string.dialogutil_btn_cancel);
+        loadingTxt = context.getResources().getString(R.string.dialogutil_loading);
+        uploadingTxt = context.getResources().getString(R.string.dialogutil_uploading);
+        downloadingTxt = context.getResources().getString(R.string.dialogutil_downloading);
     }
 
 
