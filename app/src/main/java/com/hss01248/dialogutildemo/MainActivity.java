@@ -350,6 +350,7 @@ android:pivotY="50%" />
                 }).setBtnText("sure","cancle","hhhh")
                     .setWidthPercent(0.99f)
                     .setHeightPercent(0.88f)
+                    //.setBgRes(R.drawable.leak_canary_icon)
                     .show();
                 break;
             case R.id.btn_ios_alert_vertical:
@@ -605,7 +606,7 @@ android:pivotY="50%" />
                 final ConfigBean bean = StyledDialog.buildCustom(customView, Gravity.CENTER)
                     .setHeightPercent(0.7f)
                     .setWidthPercent(0.8f)
-                    .useBackgroundWhiteWithShadow(false);
+                    .setHasShadow(false);
                 final Dialog dialog1 =   bean.show();
                 WebView webView = (WebView) customView.findViewById(R.id.webview);
                 final TextView textView = (TextView) customView.findViewById(R.id.tv_title);

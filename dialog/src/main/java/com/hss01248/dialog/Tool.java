@@ -262,7 +262,12 @@ public class Tool {
             if(bean.useTheShadowBg){
                 bean.alertDialog.getWindow().setBackgroundDrawableResource(R.drawable.shadow);
             }else {
-                bean.alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                if(bean.bgRes>0)
+                     bean.alertDialog.getWindow().setBackgroundDrawableResource(bean.bgRes);
+                else {
+                    bean.alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                }
+
             }
         }else {
              if(bean.type == DefaultConfig.TYPE_IOS_LOADING){//转菊花时,背景透明
@@ -271,7 +276,11 @@ public class Tool {
                 if(bean.useTheShadowBg){
                     bean.dialog.getWindow().setBackgroundDrawableResource(R.drawable.shadow);
                 }else {
-                    bean.dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                    if(bean.bgRes>0)
+                        bean.dialog.getWindow().setBackgroundDrawableResource(bean.bgRes);
+                    else {
+                        bean.dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                    }
                 }
             }
 

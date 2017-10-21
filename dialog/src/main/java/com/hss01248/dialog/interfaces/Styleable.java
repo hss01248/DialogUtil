@@ -35,6 +35,7 @@ public interface Styleable {
     ConfigBean setBtnText(CharSequence btn1Text, @Nullable CharSequence btn2Text, @Nullable CharSequence btn3Text);
 
     ConfigBean setBtnText(CharSequence positiveTxt, @Nullable CharSequence negtiveText);
+    ConfigBean setBtnText(CharSequence positiveTxt);
 
     ConfigBean setListener(MyDialogListener listener);
 

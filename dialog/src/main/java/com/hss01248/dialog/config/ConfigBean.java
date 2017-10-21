@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.support.annotation.ColorRes;
+import android.support.annotation.DrawableRes;
 import android.support.annotation.FloatRange;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
@@ -121,13 +122,26 @@ public class ConfigBean extends MyDialogBuilder implements Styleable {
 
     public boolean dimBehind = true;
 
+
+
+    /*public ConfigBean setBgRes(int bgRes) {
+        this.bgRes = bgRes;
+        useTheShadowBg = false;
+        return this;
+    }*/
+
+    public @DrawableRes int bgRes;
+
     /**
      *  default background res: R.drawable.shadow,white background ,surround with shadow
-     * @param useTheShadowBg default is true. set false to disable the shadow background ,and set your own background in your xml
+     * @param useTheWhiteAndShadowBg default is true. set false to disable the shadow background ,and set your own background in your xml
      * @return
      */
-    public ConfigBean useBackgroundWhiteWithShadow(boolean useTheShadowBg) {
-        this.useTheShadowBg = useTheShadowBg;
+    public ConfigBean setHasShadow(boolean useTheWhiteAndShadowBg) {
+        if(bgRes>0){
+            return this;
+        }
+        this.useTheShadowBg = useTheWhiteAndShadowBg;
         return this;
     }
 
@@ -327,6 +341,10 @@ public class ConfigBean extends MyDialogBuilder implements Styleable {
     @Override
     public ConfigBean setBtnText(CharSequence positiveTxt, @Nullable CharSequence negtiveText) {
         return setBtnText(positiveTxt,negtiveText,"");
+    }
+    @Override
+    public ConfigBean setBtnText(CharSequence positiveTxt) {
+        return setBtnText(positiveTxt,"","");
     }
 
     @Override
