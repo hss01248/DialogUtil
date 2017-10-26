@@ -7,6 +7,12 @@ common used dialog with material style ( in support v7)，ios style，get top ac
 [![](https://jitpack.io/v/hss01248/DialogUtil.svg)](https://jitpack.io/#hss01248/DialogUtil)
 
 [中文文档](README-ch.md)
+<br>
+<br>
+any problem or bug, join the qq group to get a quick response:
+<br>
+<br>
+<a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=76d7e8396ae225861d714b7f1bb976e1a06c8a76cc35c532c113e892b2d49ff0"><img border="0" src="http://pub.idqqimg.com/wpa/images/group.png" alt="DialogUtil and Android" title="DialogUtil and Android"></a>
 
 # important points
 
