@@ -4,6 +4,7 @@ package com.hss01248.dialog.interfaces;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.BottomSheetDialog;
 import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
@@ -18,6 +19,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.hss01248.dialog.R;
+import com.hss01248.dialog.ScreenUtil;
 import com.hss01248.dialog.StyledDialog;
 import com.hss01248.dialog.Tool;
 import com.hss01248.dialog.adapter.SuperLvAdapter;
@@ -178,6 +180,7 @@ public  class MyDialogBuilder {
                     bean.itemListener.onItemClick(sheetBean.text,position);
                 }
             });
+            Tool.handleScrollInBottomSheetDialog(listView);//处理滑动冲突
 
 
             bean.mAdapter.addAll(bean.lvDatas);
@@ -213,7 +216,7 @@ public  class MyDialogBuilder {
                     bean.itemListener.onItemClick(sheetBean.text,position);
                 }
             });
-
+            Tool.handleScrollInBottomSheetDialog(listView);
 
             bean.mAdapter.addAll(bean.lvDatas);
         }
@@ -221,6 +224,14 @@ public  class MyDialogBuilder {
 
 
         dialog.setContentView(root);
+
+        //设置BottomSheetDialog的最大高度
+        View view = dialog.getWindow().findViewById(android.support.design.R.id.design_bottom_sheet);
+        if(bean.bottomSheetDialogMaxHeightPercent >0 && bean.bottomSheetDialogMaxHeightPercent <1){
+            int peekHeight = (int) (bean.bottomSheetDialogMaxHeightPercent * ScreenUtil.getScreenHeight());
+            BottomSheetBehavior.from(view).setPeekHeight(peekHeight);
+        }
+
 
 
         bean.dialog = dialog;

@@ -14,11 +14,13 @@ import android.os.Build;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.AbsListView;
 import android.widget.Button;
 import android.widget.CheckedTextView;
 import android.widget.ListView;
@@ -607,4 +609,22 @@ public class Tool {
 
 
     }
+
+    public static void handleScrollInBottomSheetDialog(final AbsListView listView){
+        listView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (!listView.canScrollVertically(-1)) {      //canScrollVertically(-1)的值表示是否能向下滚动，false表示已经滚动到顶部
+                    listView.requestDisallowInterceptTouchEvent(false);
+                }else{
+                    listView.requestDisallowInterceptTouchEvent(true);
+                }
+                return false;
+            }
+        });
+
+
+    }
+
+
 }

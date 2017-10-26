@@ -567,6 +567,14 @@ android:pivotY="50%" />
                 datas2.add(new BottomSheetBean(R.mipmap.ic_launcher,"fddsf"));
                 datas2.add(new BottomSheetBean(R.mipmap.ic_launcher,"67gfhfg"));
                 datas2.add(new BottomSheetBean(R.mipmap.ic_launcher,"oooooppp"));
+                datas2.add(new BottomSheetBean(R.mipmap.ic_launcher,"7777"));
+                datas2.add(new BottomSheetBean(R.mipmap.ic_launcher,"8"));
+                datas2.add(new BottomSheetBean(R.mipmap.ic_launcher,"9"));
+                datas2.add(new BottomSheetBean(R.mipmap.ic_launcher,"10"));
+                datas2.add(new BottomSheetBean(R.mipmap.ic_launcher,"11"));
+                datas2.add(new BottomSheetBean(R.mipmap.ic_launcher,"12"));
+                datas2.add(new BottomSheetBean(R.mipmap.ic_launcher,"13"));
+                datas2.add(new BottomSheetBean(R.mipmap.ic_launcher,"14"));
 
 
 
@@ -576,7 +584,7 @@ android:pivotY="50%" />
                     public void onItemClick(CharSequence text, int position) {
                         showToast(text+"---"+position);
                     }
-                }).show();}
+                }).setBottomSheetDialogMaxHeightPercent(0.3f).show();}
                 break;
 
             case R.id.btn_md_bs_Gridview:

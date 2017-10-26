@@ -13,6 +13,7 @@
         android:textAllCaps="false"
         android:text=""
         android:textSize="15sp"
+        android:gravity="center"
         android:textColor="@color/text_black"
         android:layout_height="wrap_content"/>
 

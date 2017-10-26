@@ -106,6 +106,13 @@ public class ConfigBean extends MyDialogBuilder implements Styleable {
         return this;
     }
 
+    public float bottomSheetDialogMaxHeightPercent;
+
+    public ConfigBean setBottomSheetDialogMaxHeightPercent(float bottomSheetDialogMaxHeightPercent) {
+        this.bottomSheetDialogMaxHeightPercent = bottomSheetDialogMaxHeightPercent;
+        return this;
+    }
+
     public boolean isTransparentBehind;
 
 
