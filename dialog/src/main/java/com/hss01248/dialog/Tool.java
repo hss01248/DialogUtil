@@ -98,7 +98,7 @@ public class Tool {
                     public void run() {
                         runnable.run(holder);
                     }
-                },800);
+                },500);
 
             }
         }
