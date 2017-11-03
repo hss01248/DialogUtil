@@ -154,8 +154,6 @@ public  class MyDialogBuilder {
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             listView.setLayoutParams(params);
             listView.setDividerHeight(0);
-            // ListView listView = (ListView) root.findViewById(R.id.lv);
-
             root.addView(listView,1);
 
             if (bean.mAdapter == null){
@@ -180,7 +178,8 @@ public  class MyDialogBuilder {
                     bean.itemListener.onItemClick(sheetBean.text,position);
                 }
             });
-            Tool.handleScrollInBottomSheetDialog(listView);//处理滑动冲突
+            Tool.handleScrollInBottomSheetDialog(listView);
+            //处理滑动冲突
 
 
             bean.mAdapter.addAll(bean.lvDatas);
@@ -188,7 +187,6 @@ public  class MyDialogBuilder {
             GridView listView = new GridView(bean.context);
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             listView.setLayoutParams(params);
-            // ListView listView = (ListView) root.findViewById(R.id.lv);
 
             listView.setNumColumns(bean.gridColumns);
 

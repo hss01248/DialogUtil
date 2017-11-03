@@ -38,6 +38,7 @@ public class IosAlertDialogHolder extends SuperHolder {
     protected Button btn3Vertical;
     protected LinearLayout llContainerVertical;
     protected ScrollView sv;
+    ConfigBean bean;
 
 
 
@@ -75,6 +76,8 @@ public class IosAlertDialogHolder extends SuperHolder {
 
     @Override
     public void assingDatasAndEvents(Context context, final ConfigBean bean) {
+        this.bean = bean;
+        bean.viewHolder = this;
 
         //style
 
@@ -139,6 +142,7 @@ public class IosAlertDialogHolder extends SuperHolder {
 
             et1.setTextColor(Tool.getColor(et1.getContext(),bean.inputTxtColor));
             et1.setTextSize(bean.inputTxtSize);
+
         }
 
         if (TextUtils.isEmpty(bean.hint2)) {
@@ -149,6 +153,7 @@ public class IosAlertDialogHolder extends SuperHolder {
             et2.setTextColor(Tool.getColor(et2.getContext(),bean.inputTxtColor));
             et2.setTextSize(bean.inputTxtSize);
         }
+
 
         //按钮数量
 
@@ -273,6 +278,19 @@ public class IosAlertDialogHolder extends SuperHolder {
         }
 
 
+    }
+
+
+    public void showKeyBorad(){
+
+        //弹出软键盘
+        if(TextUtils.isEmpty(bean.hint2) && !TextUtils.isEmpty(bean.hint1)){
+            Tool.showKeyBoard(et1);
+        }else if(TextUtils.isEmpty(bean.hint1) && !TextUtils.isEmpty(bean.hint2)){
+            Tool.showKeyBoard(et2);
+        }else if(!TextUtils.isEmpty(bean.hint2) && !TextUtils.isEmpty(bean.hint1)){
+            Tool.showKeyBoard(et1);
+        }
     }
 
 

@@ -11,6 +11,8 @@ import android.graphics.Color;
 import android.graphics.PixelFormat;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
+import android.os.Handler;
+import android.os.Looper;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -20,6 +22,7 @@ import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AbsListView;
 import android.widget.Button;
 import android.widget.CheckedTextView;
@@ -27,6 +30,7 @@ import android.widget.ListView;
 
 import com.hss01248.dialog.config.ConfigBean;
 import com.hss01248.dialog.config.DefaultConfig;
+import com.hss01248.dialog.view.IosAlertDialogHolder;
 
 
 import static com.hss01248.dialog.StyledDialog.context;
@@ -68,6 +72,19 @@ public class Tool {
                 .addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
                     @Override
                     public void onGlobalLayout() {
+
+                        if(bean.type == DefaultConfig.TYPE_IOS_INPUT){
+                            if (bean.viewHolder instanceof IosAlertDialogHolder){
+                                final IosAlertDialogHolder holder = (IosAlertDialogHolder) bean.viewHolder;
+                                new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        holder.showKeyBorad();
+                                    }
+                                },800);
+
+                            }
+                        }
                         adjustWH(dialog,bean);
                         dialog.getWindow().getDecorView().getViewTreeObserver().removeGlobalOnLayoutListener(this);
                     }
@@ -624,6 +641,16 @@ public class Tool {
         });
 
 
+    }
+
+    public static void showKeyBoard(View view){
+        InputMethodManager imm = (InputMethodManager) StyledDialog.context.getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.showSoftInput(view,InputMethodManager.SHOW_FORCED);
+    }
+
+    public static void hideKeyBoard(View view){
+        InputMethodManager imm = (InputMethodManager) StyledDialog.context.getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0); //强制隐藏键盘
     }
 
 
