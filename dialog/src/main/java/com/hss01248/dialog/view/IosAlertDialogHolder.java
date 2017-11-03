@@ -253,6 +253,7 @@ public class IosAlertDialogHolder extends SuperHolder {
             btn1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    hideKeyBoard();
                     StyledDialog.dismiss(bean.dialog,bean.alertDialog);
                     bean.listener.onFirst();
                     bean.listener.onGetInput(et1.getText().toString().trim(),et2.getText().toString().trim());
@@ -262,6 +263,7 @@ public class IosAlertDialogHolder extends SuperHolder {
             btn2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    hideKeyBoard();
                     StyledDialog.dismiss(bean.dialog,bean.alertDialog);
                     bean.listener.onSecond();
                 }
@@ -270,6 +272,7 @@ public class IosAlertDialogHolder extends SuperHolder {
             btn3.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    hideKeyBoard();
                     StyledDialog.dismiss(bean.dialog,bean.alertDialog);
                     bean.listener.onThird();
                 }
@@ -290,6 +293,16 @@ public class IosAlertDialogHolder extends SuperHolder {
             Tool.showKeyBoard(et2);
         }else if(!TextUtils.isEmpty(bean.hint2) && !TextUtils.isEmpty(bean.hint1)){
             Tool.showKeyBoard(et1);
+        }
+    }
+
+    public void hideKeyBoard(){
+        if(TextUtils.isEmpty(bean.hint2) && !TextUtils.isEmpty(bean.hint1)){
+            Tool.hideKeyBoard(et1);
+        }else if(TextUtils.isEmpty(bean.hint1) && !TextUtils.isEmpty(bean.hint2)){
+            Tool.hideKeyBoard(et2);
+        }else if(!TextUtils.isEmpty(bean.hint2) && !TextUtils.isEmpty(bean.hint1)){
+            Tool.hideKeyBoard(et1);
         }
     }
 

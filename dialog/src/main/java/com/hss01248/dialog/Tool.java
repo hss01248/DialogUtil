@@ -73,23 +73,37 @@ public class Tool {
                     @Override
                     public void onGlobalLayout() {
 
-                        if(bean.type == DefaultConfig.TYPE_IOS_INPUT){
-                            if (bean.viewHolder instanceof IosAlertDialogHolder){
-                                final IosAlertDialogHolder holder = (IosAlertDialogHolder) bean.viewHolder;
-                                new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        holder.showKeyBorad();
-                                    }
-                                },800);
-
+                        doIfIsInput(bean, new MyRunnable<IosAlertDialogHolder>() {
+                            @Override
+                            public void run(IosAlertDialogHolder iosAlertDialogHolder) {
+                                iosAlertDialogHolder.showKeyBorad();
                             }
-                        }
+                        });
                         adjustWH(dialog,bean);
                         dialog.getWindow().getDecorView().getViewTreeObserver().removeGlobalOnLayoutListener(this);
                     }
                 });
     }
+
+    interface MyRunnable<T>{
+        void run(T t);
+    }
+
+    public static void doIfIsInput(ConfigBean bean, final MyRunnable<IosAlertDialogHolder> runnable) {
+        if(bean.type == DefaultConfig.TYPE_IOS_INPUT){
+            if (bean.viewHolder instanceof IosAlertDialogHolder){
+                final IosAlertDialogHolder holder = (IosAlertDialogHolder) bean.viewHolder;
+                new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        runnable.run(holder);
+                    }
+                },800);
+
+            }
+        }
+    }
+
 
 
     /**
@@ -597,6 +611,13 @@ public class Tool {
                 bean.dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
                     @Override
                     public void onCancel(DialogInterface dialog) {
+
+                        doIfIsInput(bean, new MyRunnable<IosAlertDialogHolder>() {
+                            @Override
+                            public void run(IosAlertDialogHolder iosAlertDialogHolder) {
+                                iosAlertDialogHolder.hideKeyBoard();
+                            }
+                        });
                         if(bean.listener!=null) {
                             bean.listener.onCancle();
                         }
