@@ -464,7 +464,7 @@ android:pivotY="50%" />
                        super.onGetInput(input1, input2);
                        showToast("input1:"+ input1 +"--input2:"+input2);
                    }
-               }).show();
+               }).setCancelable(true,true).show();
 
                 break;
             case R.id.btn_multichoose:
@@ -643,6 +643,7 @@ android:pivotY="50%" />
                 ViewGroup customView2 = (ViewGroup) View.inflate(this,R.layout.customview2,null);
                 StyledDialog.buildCustom(customView2,Gravity.CENTER).setWidthPercent(0.90f).setHeightPercent(0.8f).show();
                 break;
+            default:break;
 
 
         }

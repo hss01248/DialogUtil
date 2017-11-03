@@ -611,13 +611,12 @@ public class Tool {
                 bean.dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
                     @Override
                     public void onCancel(DialogInterface dialog) {
-
-                        doIfIsInput(bean, new MyRunnable<IosAlertDialogHolder>() {
-                            @Override
-                            public void run(IosAlertDialogHolder iosAlertDialogHolder) {
+                        if(bean.type == DefaultConfig.TYPE_IOS_INPUT){
+                            IosAlertDialogHolder iosAlertDialogHolder = (IosAlertDialogHolder) bean.viewHolder;
+                            if(iosAlertDialogHolder!=null){
                                 iosAlertDialogHolder.hideKeyBoard();
                             }
-                        });
+                        }
                         if(bean.listener!=null) {
                             bean.listener.onCancle();
                         }
