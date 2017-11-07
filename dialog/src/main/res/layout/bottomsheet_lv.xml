@@ -26,14 +26,15 @@
         android:id="@+id/view_line_bottom"
         android:layout_width="match_parent"
         android:background="@color/line_dd"
-        android:layout_height="1dp"/>
+        android:layout_height="@dimen/line_1px"/>
     <TextView
         android:visibility="gone"
         android:id="@+id/tv_bottom"
         android:paddingLeft="15dp"
         android:paddingRight="15dp"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
+        android:paddingTop="15dp"
+        android:gravity="center"
+        android:paddingBottom="15dp"
         android:text="@string/dialogutil_btn_cancel"
         android:textSize="15sp"
         android:textColor="@color/text_black_light"

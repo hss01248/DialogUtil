@@ -143,11 +143,23 @@ public  class MyDialogBuilder {
         final BottomSheetDialog dialog = new BottomSheetDialog(bean.context);
         LinearLayout root = (LinearLayout) View.inflate(bean.context, R.layout.bottomsheet_lv,null);
         TextView tvTitle = (TextView) root.findViewById(R.id.tv_title);
+        TextView tvBottom = (TextView) root.findViewById(R.id.tv_bottom);
         if (TextUtils.isEmpty(bean.title)){
             tvTitle.setVisibility(View.GONE);
         }else {
             tvTitle.setText(bean.title);
         }
+        if(!TextUtils.isEmpty(bean.bottomTxt)){
+            tvBottom.setVisibility(View.VISIBLE);
+            tvBottom.setText(bean.bottomTxt);
+            tvBottom.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dialog.dismiss();
+                }
+            });
+        }
+
 
         if (bean.type == DefaultConfig.TYPE_BOTTOM_SHEET_LIST){
             ListView listView = new ListView(bean.context);

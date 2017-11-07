@@ -52,6 +52,10 @@ public class ConfigBean extends MyDialogBuilder implements Styleable {
     public CharSequence hint2;
 
 
+
+
+
+
     /**
      * the dialog show by wrap-content in x-axi in default
      *

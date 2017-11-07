@@ -605,7 +605,7 @@ android:pivotY="50%" />
 
 
 
-                StyledDialog.buildBottomSheetGv( "拉出来溜溜", datas2, "this is cancle button",3, new MyItemDialogListener() {
+                StyledDialog.buildBottomSheetGv( "  ", datas2, "this is cancle button",4, new MyItemDialogListener() {
                     @Override
                     public void onItemClick(CharSequence text, int position) {
                         showToast(text+"---"+position);
