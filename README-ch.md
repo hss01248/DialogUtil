@@ -122,6 +122,11 @@ https://github.com/android-cjj/BottomSheets
 
 * 简化多选对话框的api和回调
 
+### 2017-11-7 
+* 文本加上国际化支持
+* 解决bottomsheetdialog底部cancel不显示的问题
+* 可直接控制dialog最终显示的宽高
+
 # todo
 
 bottomsheet 图标大小和文字大小的自定义
