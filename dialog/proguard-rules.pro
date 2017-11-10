@@ -17,4 +17,5 @@
 #}
 
 
--keep public class com.hss01248.dialog.* {*;}
+-dontwarn com.hss01248.**
+-keep class com.hss01248.** {*;}
