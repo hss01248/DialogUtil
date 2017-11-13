@@ -15,6 +15,7 @@ import com.hss01248.dialog.StyledDialog;
 import com.hss01248.dialog.Tool;
 import com.hss01248.dialog.adapter.SuperLvAdapter;
 import com.hss01248.dialog.bottomsheet.BottomSheetBean;
+import com.hss01248.dialog.bottomsheet.BottomSheetStyle;
 import com.hss01248.dialog.interfaces.MyDialogBuilder;
 import com.hss01248.dialog.interfaces.MyDialogListener;
 import com.hss01248.dialog.interfaces.MyItemDialogListener;
@@ -50,6 +51,26 @@ public class ConfigBean extends MyDialogBuilder implements Styleable {
 
     public CharSequence hint1;
     public CharSequence hint2;
+
+
+    public boolean hasBehaviour  = true;
+    public BottomSheetStyle bottomSheetStyle;
+
+    public ConfigBean setBottomSheetStyle(BottomSheetStyle bottomSheetStyle){
+        this.bottomSheetStyle = bottomSheetStyle;
+        return this;
+    }
+
+
+    /**
+     * 只用于bottom_gridview和bottom_listview两种
+     * 控制是否采用
+     * @param hasBehaviour true:BottomSheetDialog  false: 采用普通dialog,无Behaviour
+     */
+    public ConfigBean setHasBehaviour(boolean hasBehaviour){
+        this.hasBehaviour = hasBehaviour;
+        return this;
+    }
 
 
 

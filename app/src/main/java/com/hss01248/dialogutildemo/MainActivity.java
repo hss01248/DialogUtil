@@ -603,9 +603,7 @@ android:pivotY="50%" />
                 datas2.add(new BottomSheetBean(R.mipmap.ic_launcher,"oooooppp"));
 
 
-
-
-                StyledDialog.buildBottomSheetGv( "  ", datas2, "this is cancle button",4, new MyItemDialogListener() {
+                StyledDialog.buildBottomSheetGv( "", datas2, "this is cancle button",4, new MyItemDialogListener() {
                     @Override
                     public void onItemClick(CharSequence text, int position) {
                         showToast(text+"---"+position);

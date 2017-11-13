@@ -1,6 +1,7 @@
 package com.hss01248.dialog.interfaces;
 
 
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -25,6 +26,7 @@ import com.hss01248.dialog.Tool;
 import com.hss01248.dialog.adapter.SuperLvAdapter;
 import com.hss01248.dialog.adapter.SuperLvHolder;
 import com.hss01248.dialog.bottomsheet.BottomSheetBean;
+import com.hss01248.dialog.bottomsheet.BottomSheetStyle;
 import com.hss01248.dialog.bottomsheet.BsGvHolder;
 import com.hss01248.dialog.bottomsheet.BsLvHolder;
 import com.hss01248.dialog.config.ConfigBean;
@@ -140,7 +142,23 @@ public  class MyDialogBuilder {
     }
 
     private void buildBottomSheetLv(final ConfigBean bean) {
-        final BottomSheetDialog dialog = new BottomSheetDialog(bean.context);
+         Dialog dialog = null;
+       if(bean.hasBehaviour){
+            dialog = new BottomSheetDialog(bean.context);
+       }else {
+           Tool.newCustomDialog(bean);
+           dialog = bean.dialog;
+           bean.gravity = Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL;
+           bean.widthPercent= 0.99f;
+           bean.heightPercent = 0;
+           bean.bgRes = R.color.bg_white;
+       }
+        final Dialog finalDialog = dialog;
+
+        if(bean.bottomSheetStyle ==null){
+            bean.bottomSheetStyle =  new BottomSheetStyle();
+        }
+
         LinearLayout root = (LinearLayout) View.inflate(bean.context, R.layout.bottomsheet_lv,null);
         TextView tvTitle = (TextView) root.findViewById(R.id.tv_title);
         TextView tvBottom = (TextView) root.findViewById(R.id.tv_bottom);
@@ -148,17 +166,24 @@ public  class MyDialogBuilder {
             tvTitle.setVisibility(View.GONE);
         }else {
             tvTitle.setText(bean.title);
+            tvTitle.setVisibility(View.VISIBLE);
         }
         if(!TextUtils.isEmpty(bean.bottomTxt)){
             tvBottom.setVisibility(View.VISIBLE);
             tvBottom.setText(bean.bottomTxt);
+            tvBottom.setTextSize(bean.bottomSheetStyle.bottomTxtSizeSp);
+            tvBottom.setTextColor(tvBottom.getContext().getResources().getColor(bean.bottomSheetStyle.bottomTxtColor));
+
             tvBottom.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    dialog.dismiss();
+                    finalDialog.dismiss();
                 }
             });
         }
+
+
+
 
 
         if (bean.type == DefaultConfig.TYPE_BOTTOM_SHEET_LIST){
@@ -182,15 +207,19 @@ public  class MyDialogBuilder {
 
             listView.setAdapter(bean.mAdapter);
 
+            final Dialog finalDialog1 = dialog;
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     BottomSheetBean sheetBean = (BottomSheetBean) bean.lvDatas.get(position);
-                    dialog.dismiss();
+                    finalDialog1.dismiss();
                     bean.itemListener.onItemClick(sheetBean.text,position);
                 }
             });
-            Tool.handleScrollInBottomSheetDialog(listView);
+            if(bean.hasBehaviour){
+                Tool.handleScrollInBottomSheetDialog(listView);
+            }
+
             //处理滑动冲突
 
 
@@ -198,9 +227,18 @@ public  class MyDialogBuilder {
         }else if(bean.type == DefaultConfig.TYPE_BOTTOM_SHEET_GRID){
             GridView listView = new GridView(bean.context);
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-            listView.setLayoutParams(params);
 
+            BottomSheetStyle bottomSheetStyle = bean.bottomSheetStyle;
+            params.topMargin = ScreenUtil.dip2px(bottomSheetStyle.gvMarginTopDp);
+            params.bottomMargin = ScreenUtil.dip2px(bottomSheetStyle.gvMarginBottomDp);
+            params.leftMargin = ScreenUtil.dip2px(bottomSheetStyle.gcMarginLRDp);
+            params.rightMargin = params.leftMargin;
+
+
+            listView.setLayoutParams(params);
             listView.setNumColumns(bean.gridColumns);
+            listView.setVerticalSpacing(ScreenUtil.dip2px(bottomSheetStyle.gvItemMargin_V));
+            listView.setHorizontalSpacing(ScreenUtil.dip2px(bottomSheetStyle.gvItemMargin_H));
 
             root.addView(listView,1);
 
@@ -208,25 +246,30 @@ public  class MyDialogBuilder {
                 SuperLvAdapter adapter = new SuperLvAdapter(bean.context) {
                     @Override
                     protected SuperLvHolder generateNewHolder(Context context, int itemViewType) {
-                        return new BsGvHolder(context);
+                        BsGvHolder holder = new BsGvHolder(context);
+                        holder.setStyle(bean.bottomSheetStyle);
+                        return holder;
                     }
                 };
-
                 bean.mAdapter = adapter;
             }
 
 
             listView.setAdapter(bean.mAdapter);
 
+            final Dialog finalDialog2 = dialog;
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     BottomSheetBean sheetBean = (BottomSheetBean) bean.lvDatas.get(position);
-                    dialog.dismiss();
+                    finalDialog2.dismiss();
                     bean.itemListener.onItemClick(sheetBean.text,position);
                 }
             });
-            Tool.handleScrollInBottomSheetDialog(listView);
+            if(bean.hasBehaviour){
+                Tool.handleScrollInBottomSheetDialog(listView);
+            }
+
 
             bean.mAdapter.addAll(bean.lvDatas);
         }
@@ -235,12 +278,15 @@ public  class MyDialogBuilder {
 
         dialog.setContentView(root);
 
-        //设置BottomSheetDialog的最大高度
-        View view = dialog.getWindow().findViewById(android.support.design.R.id.design_bottom_sheet);
-        if(bean.bottomSheetDialogMaxHeightPercent >0 && bean.bottomSheetDialogMaxHeightPercent <1){
-            int peekHeight = (int) (bean.bottomSheetDialogMaxHeightPercent * ScreenUtil.getScreenHeight());
-            BottomSheetBehavior.from(view).setPeekHeight(peekHeight);
+        if(bean.hasBehaviour){
+            //设置BottomSheetDialog的最大高度
+            View view = dialog.getWindow().findViewById(android.support.design.R.id.design_bottom_sheet);
+            if(bean.bottomSheetDialogMaxHeightPercent >0 && bean.bottomSheetDialogMaxHeightPercent <1){
+                int peekHeight = (int) (bean.bottomSheetDialogMaxHeightPercent * ScreenUtil.getScreenHeight());
+                BottomSheetBehavior.from(view).setPeekHeight(peekHeight);
+            }
         }
+
 
 
 

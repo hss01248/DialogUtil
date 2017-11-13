@@ -336,7 +336,7 @@ public class Tool {
      */
     private static void setBg(ConfigBean bean) {
         //no need to modify the background
-        if(bean.type == DefaultConfig.TYPE_BOTTOM_SHEET_GRID
+        if((bean.type == DefaultConfig.TYPE_BOTTOM_SHEET_GRID && bean.hasBehaviour)
             || bean.type == DefaultConfig.TYPE_BOTTOM_SHEET_LIST
             || bean.type == DefaultConfig.TYPE_BOTTOM_SHEET_CUSTOM
             || bean.type == DefaultConfig.TYPE_PROGRESS){
@@ -359,9 +359,11 @@ public class Tool {
 
             }
         }else {
-             if(bean.type == DefaultConfig.TYPE_IOS_LOADING){//转菊花时,背景透明
+             if(bean.type == DefaultConfig.TYPE_IOS_LOADING  ){//转菊花时,背景透明
                 bean.dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-            }else {
+            }else if((bean.type == DefaultConfig.TYPE_BOTTOM_SHEET_GRID && !bean.hasBehaviour)){
+                 bean.dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.WHITE));
+             }else {
                 if(bean.useTheShadowBg){
                     bean.dialog.getWindow().setBackgroundDrawableResource(R.drawable.shadow);
                 }else {
@@ -479,9 +481,10 @@ public class Tool {
             heightRatio = bean.heightPercent;
         }
 
-        if(istheTypeOfNotAdjust(bean.type)){
+        if(istheTypeOfNotAdjust(bean)){
             /*wl.width = ViewGroup.LayoutParams.WRAP_CONTENT;
             wl.height = ViewGroup.LayoutParams.WRAP_CONTENT;*/
+
         }else {
            // rootView.setPadding(0,30,0,30);
             wl.width = (int) (width * widthRatio);//stretch when the content is not enough,margin when the content is full fill the screen
@@ -490,21 +493,26 @@ public class Tool {
                 wl.height = (int) (height* heightRatio);
             }
 
+            if(bean.type == DefaultConfig.TYPE_BOTTOM_SHEET_GRID && !bean.hasBehaviour){
+                wl.height =measuredHeight;
+            }
+
            // }
         }
 
         dialog.onWindowAttributesChanged(wl);
     }
 
-    private static boolean istheTypeOfNotAdjust(int type) {
-        switch (type){
+    private static boolean istheTypeOfNotAdjust(ConfigBean bean) {
+        switch (bean.type){
             case DefaultConfig.TYPE_IOS_LOADING:
             case DefaultConfig.TYPE_PROGRESS:
             case DefaultConfig.TYPE_BOTTOM_SHEET_CUSTOM:
-            case DefaultConfig.TYPE_BOTTOM_SHEET_GRID:
             case DefaultConfig.TYPE_BOTTOM_SHEET_LIST:
            // case DefaultConfig.TYPE_CUSTOM_VIEW:
                 return true;
+           case DefaultConfig.TYPE_BOTTOM_SHEET_GRID:
+               return bean.hasBehaviour;
             default:
                 return false;
         }
