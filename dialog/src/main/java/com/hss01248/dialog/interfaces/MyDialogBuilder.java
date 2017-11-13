@@ -156,7 +156,7 @@ public  class MyDialogBuilder {
         final Dialog finalDialog = dialog;
 
         if(bean.bottomSheetStyle ==null){
-            bean.bottomSheetStyle =  new BottomSheetStyle();
+            bean.bottomSheetStyle =  BottomSheetStyle.newBuilder().build();
         }
 
         LinearLayout root = (LinearLayout) View.inflate(bean.context, R.layout.bottomsheet_lv,null);

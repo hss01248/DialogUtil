@@ -9,20 +9,20 @@ import com.hss01248.dialog.R;
  */
 
 public class BottomSheetStyle {
-    public int txtSizeSp = 12;
+    public int txtSizeSp ;
     public @ColorRes
-    int txtColor = R.color.text_black;
-    public int txtMarginTopDp = 4;
-    public int iconSizeDp = 60;
-    public int bottomTxtSizeSp = 16;
-    public @ColorRes int bottomTxtColor = R.color.text_black_lighter;
-    public int bottomTxtHeightDp = 49;
+    int txtColor ;
+    public int txtMarginTopDp ;
+    public int iconSizeDp ;
+    public int bottomTxtSizeSp ;
+    public @ColorRes int bottomTxtColor ;
+    public int bottomTxtHeightDp;
 
-    public int gvMarginTopDp = 25;
-    public int gvMarginBottomDp = 22;
-    public int gcMarginLRDp = 20;
-    public int gvItemMargin_H = 15;
-    public int gvItemMargin_V = 15;
+    public int gvMarginTopDp ;
+    public int gvMarginBottomDp ;
+    public int gcMarginLRDp ;
+    public int gvItemMargin_H ;
+    public int gvItemMargin_V ;
 
 
     public int getTxtSizeSp() {
@@ -111,18 +111,20 @@ public class BottomSheetStyle {
 
 
     public static final class Builder {
-        private int txtSizeSp;
-        private int txtColor;
-        private int txtMarginTopDp;
-        private int iconSizeDp;
-        private int bottomTxtSizeSp;
-        private int bottomTxtColor;
-        private int bottomTxtHeightDp;
-        private int gvMarginTopDp;
-        private int gvMarginBottomDp;
-        private int gcMarginLRDp;
-        private int gvItemMargin_H;
-        private int gvItemMargin_V;
+
+        private int txtSizeSp = 12;
+        private @ColorRes int txtColor = R.color.text_black;
+        private int txtMarginTopDp = 4;
+        private int iconSizeDp = 60;
+        private int bottomTxtSizeSp = 16;
+        private @ColorRes int bottomTxtColor = R.color.text_black_lighter;
+        private int bottomTxtHeightDp = 49;
+
+        private int gvMarginTopDp = 25;
+        private int gvMarginBottomDp = 22;
+        private int gcMarginLRDp = 20;
+        private int gvItemMargin_H = 15;
+        private int gvItemMargin_V = 15;
 
         private Builder() {
         }
