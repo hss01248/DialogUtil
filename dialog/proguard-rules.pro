@@ -17,5 +17,4 @@
 #}
 
 
--dontwarn com.hss01248.**
--keep class com.hss01248.** {*;}
+
