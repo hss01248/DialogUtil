@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.hss01248.dialog.R;
 import com.hss01248.dialog.StyledDialog;
 import com.hss01248.dialog.Tool;
+import com.hss01248.dialog.adapter.SuperLvHolder;
 import com.hss01248.dialog.config.ConfigBean;
 
 
@@ -38,6 +39,7 @@ public class IosAlertDialogHolder extends SuperHolder {
     protected Button btn3Vertical;
     protected LinearLayout llContainerVertical;
     protected ScrollView sv;
+    protected LinearLayout llContainerContent;
     ConfigBean bean;
 
 
@@ -66,6 +68,7 @@ public class IosAlertDialogHolder extends SuperHolder {
         btn3Vertical = (Button) rootView.findViewById(R.id.btn_3_vertical);
         llContainerVertical = (LinearLayout) rootView.findViewById(R.id.ll_container_vertical);
         sv = (ScrollView) rootView.findViewById(R.id.sv);
+        llContainerContent = (LinearLayout) rootView.findViewById(R.id.ll_container);
     }
 
 
@@ -116,49 +119,62 @@ public class IosAlertDialogHolder extends SuperHolder {
             tvTitle.setTextSize(bean.titleTxtSize);
         }
 
+        //自定义content
+        if(bean.customContentHolder ==null){
+            //msg
+            if (TextUtils.isEmpty(bean.msg)) {
+                tvMsg.setVisibility(View.GONE);
+            } else {
+                tvMsg.setVisibility(View.VISIBLE);
+                tvMsg.setText(bean.msg);
 
+                tvMsg.setTextColor(Tool.getColor(tvMsg.getContext(),bean.msgTxtColor));
+                tvMsg.setTextSize(bean.msgTxtSize);
+            }
 
+            //input
+            if (TextUtils.isEmpty(bean.hint1)) {
+                et1.setVisibility(View.GONE);
+            } else {
 
-        if (TextUtils.isEmpty(bean.msg)) {
+                LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) sv.getLayoutParams();
+                params.height = LinearLayout.LayoutParams.WRAP_CONTENT;
+                params.weight = 0;
+                sv.setLayoutParams(params);
+                et1.setVisibility(View.VISIBLE);
+                et1.setHint(bean.hint1);
+
+                et1.setTextColor(Tool.getColor(et1.getContext(),bean.inputTxtColor));
+                et1.setTextSize(bean.inputTxtSize);
+
+            }
+
+            if (TextUtils.isEmpty(bean.hint2)) {
+                et2.setVisibility(View.GONE);
+            } else {
+                et2.setVisibility(View.VISIBLE);
+                et2.setHint(bean.hint2);
+                et2.setTextColor(Tool.getColor(et2.getContext(),bean.inputTxtColor));
+                et2.setTextSize(bean.inputTxtSize);
+            }
+        }else {
+            //设置了content holders时,中央采用自定义view
             tvMsg.setVisibility(View.GONE);
-        } else {
-            tvMsg.setVisibility(View.VISIBLE);
-            tvMsg.setText(bean.msg);
-
-            tvMsg.setTextColor(Tool.getColor(tvMsg.getContext(),bean.msgTxtColor));
-            tvMsg.setTextSize(bean.msgTxtSize);
-        }
-
-        if (TextUtils.isEmpty(bean.hint1)) {
             et1.setVisibility(View.GONE);
-        } else {
-
-            LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) sv.getLayoutParams();
-            params.height = LinearLayout.LayoutParams.WRAP_CONTENT;
-            params.weight = 0;
-            sv.setLayoutParams(params);
-            et1.setVisibility(View.VISIBLE);
-            et1.setHint(bean.hint1);
-
-            et1.setTextColor(Tool.getColor(et1.getContext(),bean.inputTxtColor));
-            et1.setTextSize(bean.inputTxtSize);
-
-        }
-
-        if (TextUtils.isEmpty(bean.hint2)) {
             et2.setVisibility(View.GONE);
-        } else {
-            et2.setVisibility(View.VISIBLE);
-            et2.setHint(bean.hint2);
-            et2.setTextColor(Tool.getColor(et2.getContext(),bean.inputTxtColor));
-            et2.setTextSize(bean.inputTxtSize);
+
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT);
+            SuperLvHolder holder = bean.customContentHolder;
+            holder.rootView.setLayoutParams(params);
+            llContainerContent.addView(holder.rootView);
+            holder.assingDatasAndEvents(llContainerContent.getContext(),null);
         }
+
+
 
 
         //按钮数量
-
-
-
 
 
         if (TextUtils.isEmpty(bean.text3)) {

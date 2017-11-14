@@ -608,7 +608,14 @@ public class Tool {
         if (context ==null){
             context = StyledDialog.context;
         }
-       return context.getResources().getColor(colorRes);
+        try {
+            int color =  context.getResources().getColor(colorRes);
+            return color;
+        }catch (Exception e){
+            e.printStackTrace();
+            return Color.TRANSPARENT;
+        }
+
 
     }
 

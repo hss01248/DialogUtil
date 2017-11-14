@@ -14,9 +14,9 @@ import java.util.List;
 public abstract class SuperLvHolder<T> {
     public View rootView;
 
-    public SuperLvHolder(){
+    /*public SuperLvHolder(){
 
-    }
+    }*/
 
     public SuperLvHolder(Context context){
         rootView = View.inflate(context,setLayoutRes(),null);

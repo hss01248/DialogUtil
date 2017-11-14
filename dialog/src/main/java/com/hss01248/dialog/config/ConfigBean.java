@@ -14,6 +14,7 @@ import android.view.View;
 import com.hss01248.dialog.StyledDialog;
 import com.hss01248.dialog.Tool;
 import com.hss01248.dialog.adapter.SuperLvAdapter;
+import com.hss01248.dialog.adapter.SuperLvHolder;
 import com.hss01248.dialog.bottomsheet.BottomSheetBean;
 import com.hss01248.dialog.bottomsheet.BottomSheetStyle;
 import com.hss01248.dialog.interfaces.MyDialogBuilder;
@@ -58,6 +59,12 @@ public class ConfigBean extends MyDialogBuilder implements Styleable {
 
     public ConfigBean setBottomSheetStyle(BottomSheetStyle bottomSheetStyle){
         this.bottomSheetStyle = bottomSheetStyle;
+        return this;
+    }
+
+    public SuperLvHolder customContentHolder;
+    public ConfigBean setCustomContentHolder(SuperLvHolder holder){
+        this.customContentHolder = holder;
         return this;
     }
 

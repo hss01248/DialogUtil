@@ -19,6 +19,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.hss01248.dialog.MyActyManager;
 import com.hss01248.dialog.StyledDialog;
 import com.hss01248.dialog.Tool;
 import com.hss01248.dialog.adapter.SuperRcvAdapter;
@@ -331,7 +332,7 @@ android:pivotY="50%" />
 
                 break;
             case R.id.btn_ios_alert:
-                StyledDialog.buildIosAlert( "title", msg,  new MyDialogListener() {
+                StyledDialog.buildIosAlert( "", msg,  new MyDialogListener() {
                     @Override
                     public void onFirst() {
                         showToast("onFirst");
@@ -350,14 +351,16 @@ android:pivotY="50%" />
 
                 })
                     //.setBtnText("sure","cancle","hhhh")
-                    .setBtnText("sure")
+                    .setBtnText("cancel","copy")
+                    .setBtnColor(R.color.text_black,R.color.colorPrimaryDark,0)
                     //.setWidthPercent(0.99f)
                     //.setHeightPercent(0.88f)
                     //.setBgRes(R.drawable.leak_canary_icon)
+                    .setCustomContentHolder(new CustomContentHolder(MyActyManager.getInstance().getCurrentActivity()))
                     .show();
                 break;
             case R.id.btn_ios_alert_vertical:
-                StyledDialog.buildIosAlertVertical( "title", msg,  new MyDialogListener() {
+                StyledDialog.buildIosAlertVertical( "titlelll", msg,  new MyDialogListener() {
                     @Override
                     public void onFirst() {
                         showToast("onFirst");
