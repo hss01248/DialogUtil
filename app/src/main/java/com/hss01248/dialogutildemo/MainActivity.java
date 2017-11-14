@@ -353,6 +353,7 @@ android:pivotY="50%" />
                     //.setBtnText("sure","cancle","hhhh")
                     .setBtnText("cancel","copy")
                     .setBtnColor(R.color.text_black,R.color.colorPrimaryDark,0)
+
                     //.setWidthPercent(0.99f)
                     //.setHeightPercent(0.88f)
                     //.setBgRes(R.drawable.leak_canary_icon)
