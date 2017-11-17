@@ -54,9 +54,6 @@ public class BaseApp extends Application {
 
             @Override
             public void onActivityResumed(Activity activity) {
-                //MyActyManager.getInstance().setCurrentActivity(activity);
-
-
             }
 
             @Override
@@ -77,7 +74,6 @@ public class BaseApp extends Application {
             @Override
             public void onActivityDestroyed(Activity activity) {
                 ActivityStackManager.getInstance().removeActivity(activity);
-
             }
         });
     }
