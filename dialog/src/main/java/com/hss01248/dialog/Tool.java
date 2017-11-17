@@ -32,9 +32,6 @@ import com.hss01248.dialog.config.ConfigBean;
 import com.hss01248.dialog.config.DefaultConfig;
 import com.hss01248.dialog.view.IosAlertDialogHolder;
 
-
-import static com.hss01248.dialog.StyledDialog.context;
-
 /**
  * Created by Administrator on 2016/10/9 0009.
  */
@@ -162,26 +159,51 @@ public class Tool {
     }
 
     public static ConfigBean fixContext(ConfigBean bean){
-        if (bean.context instanceof Activity){
-            Activity activity1 = (Activity) bean.context;
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-                if (!activity1.isDestroyed()){
-                    return bean;
-                }
-            }else {
-                return bean;
-            }
-        }
-        Activity activity = MyActyManager.getInstance().getCurrentActivity();
-        if(activity!=null){
-            bean.context = activity;
-            return bean;
-        }
+        Activity activity1 = null;
 
-        if (bean.context == null){
-            bean.context = context;
+        if(!(bean.context instanceof  Activity)){
+            Activity activity = ActivityStackManager.getInstance().getTopActivity();
+            if(isUsable(activity)){
+                activity1 = activity;
+
+            }
+        }else {
+            Activity activity = (Activity) bean.context;
+           if(isUsable(activity)){
+               activity1 = activity;
+           }
+        }
+        if(activity1 !=null){
+            bean.context = activity1;
+        }else {
+            bean.context = StyledDialog.context;
         }
         return bean;
+    }
+
+    public static boolean isUsable(Activity activity) {
+        if(activity ==null){
+            return false;
+        }
+
+        if(activity.isFinishing()){
+            return false;
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            if (activity.isDestroyed()){
+                return false;
+            }
+        }
+
+        //是否attached
+        /*if(activity.getWindowManager() ==null){
+            return false;
+        }
+        if(!activity.getWindow().isActive()){
+            return false;
+        }*/
+
+        return true;
     }
 
     public static ConfigBean newCustomDialog(ConfigBean bean){

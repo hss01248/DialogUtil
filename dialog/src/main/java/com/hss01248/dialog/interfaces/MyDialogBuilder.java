@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.drawable.AnimationDrawable;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.BottomSheetDialog;
 import android.support.v7.app.AlertDialog;
@@ -15,6 +16,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -303,8 +305,11 @@ public  class MyDialogBuilder {
 
     protected  ConfigBean buildLoading(ConfigBean bean){
         View root = View.inflate(bean.context, R.layout.loading,null);
-        /*GifMovieView gifMovieView = (GifMovieView) root.findViewById(R.id.iv_loading);
-        gifMovieView.setOnClickListener(null);*/
+        ImageView gifMovieView = (ImageView) root.findViewById(R.id.iv_loading);
+        AnimationDrawable drawable = (AnimationDrawable) gifMovieView.getDrawable();
+        if(drawable!=null){
+            drawable.start();
+        }
         TextView tvMsg = (TextView) root.findViewById(R.id.loading_msg);
         StyledDialog.setTv_msg(tvMsg);
         tvMsg.setText(bean.msg);

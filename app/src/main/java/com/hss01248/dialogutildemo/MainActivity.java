@@ -19,7 +19,6 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.hss01248.dialog.MyActyManager;
 import com.hss01248.dialog.StyledDialog;
 import com.hss01248.dialog.Tool;
 import com.hss01248.dialog.adapter.SuperRcvAdapter;
@@ -357,7 +356,7 @@ android:pivotY="50%" />
                     //.setWidthPercent(0.99f)
                     //.setHeightPercent(0.88f)
                     //.setBgRes(R.drawable.leak_canary_icon)
-                    .setCustomContentHolder(new CustomContentHolder(MyActyManager.getInstance().getCurrentActivity()))
+                    .setCustomContentHolder(new CustomContentHolder(this))
                     .show();
                 break;
             case R.id.btn_ios_alert_vertical:
