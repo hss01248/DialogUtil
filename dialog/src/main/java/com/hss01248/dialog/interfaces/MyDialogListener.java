@@ -1,5 +1,7 @@
 package com.hss01248.dialog.interfaces;
 
+import android.widget.EditText;
+
 import java.util.List;
 
 /**
@@ -20,6 +22,19 @@ public abstract class MyDialogListener {
      */
     public void onGetInput(CharSequence input1,CharSequence input2){
 
+    }
+
+
+    /**
+     * 每次点击btn1,则传回输入值以便校验
+     * @param input1
+     * @param input2
+     * @param editText1
+     * @param editText2
+     * @return
+     */
+    public boolean onInputValid(CharSequence input1, CharSequence input2, EditText editText1,EditText editText2){
+        return true;
     }
 
     /**

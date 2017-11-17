@@ -54,7 +54,17 @@ public class ConfigBean extends MyDialogBuilder implements Styleable {
     public CharSequence hint2;
 
 
-    public boolean hasBehaviour  = true;
+    public boolean hasBehaviour  = false;
+
+    public ConfigBean setInput2HideAsPassword(boolean input2HideAsPassword) {
+        isInput2HideAsPassword = input2HideAsPassword;
+        return this;
+    }
+
+    /**
+     * 控制input类dialog中第二个框是否用*号
+     */
+    public boolean isInput2HideAsPassword = true;
     public BottomSheetStyle bottomSheetStyle;
 
     public ConfigBean setBottomSheetStyle(BottomSheetStyle bottomSheetStyle){

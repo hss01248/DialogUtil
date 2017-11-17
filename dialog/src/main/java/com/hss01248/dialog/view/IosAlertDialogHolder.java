@@ -3,6 +3,8 @@ package com.hss01248.dialog.view;
 
 import android.content.Context;
 import android.text.TextUtils;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,6 +17,7 @@ import com.hss01248.dialog.StyledDialog;
 import com.hss01248.dialog.Tool;
 import com.hss01248.dialog.adapter.SuperLvHolder;
 import com.hss01248.dialog.config.ConfigBean;
+import com.hss01248.dialog.config.DefaultConfig;
 
 
 /**
@@ -156,6 +159,13 @@ public class IosAlertDialogHolder extends SuperHolder {
                 et2.setHint(bean.hint2);
                 et2.setTextColor(Tool.getColor(et2.getContext(),bean.inputTxtColor));
                 et2.setTextSize(bean.inputTxtSize);
+                if (bean.isInput2HideAsPassword) {
+                    //设置EditText文本为可见的
+                    et2.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                } else {
+                    //设置EditText文本为隐藏的
+                    et2.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                }
             }
         }else {
             //设置了content holders时,中央采用自定义view
@@ -269,6 +279,13 @@ public class IosAlertDialogHolder extends SuperHolder {
             btn1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    boolean needDismiss = true;
+                    if(bean.type == DefaultConfig.TYPE_IOS_INPUT){
+                       needDismiss =  bean.listener.onInputValid(et1.getText().toString().trim(),et2.getText().toString().trim(),et1,et2);
+                    }
+                    if(!needDismiss){
+                        return;
+                    }
                     hideKeyBoard();
                     StyledDialog.dismiss(bean.dialog,bean.alertDialog);
                     bean.listener.onFirst();

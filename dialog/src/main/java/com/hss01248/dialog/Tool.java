@@ -269,7 +269,7 @@ public class Tool {
         Window window = dialog.getWindow();
         window.setGravity(bean.gravity);
         if(bean.context instanceof Activity){
-
+            setHomeKeyListener(window,bean);
         }else {
             window.setType(WindowManager.LayoutParams.TYPE_TOAST);
             WindowManager.LayoutParams params = window.getAttributes();
@@ -310,7 +310,7 @@ public class Tool {
 
     }
 
-    private  static void setHomeKeyListener(Window window, final ConfigBean bean){
+    private  static void setHomeKeyListener(final Window window, final ConfigBean bean){
         //在创建View时注册Receiver
         IntentFilter homeFilter = new IntentFilter(Intent.ACTION_CLOSE_SYSTEM_DIALOGS);
         bean.context.registerReceiver(new BroadcastReceiver() {
@@ -325,7 +325,13 @@ public class Tool {
                     String reason = intent.getStringExtra(SYSTEM_DIALOG_REASON_KEY);
                     if (reason != null && reason.equals(SYSTEM_DIALOG_REASON_HOME_KEY)) {
                         // 处理自己的逻辑
-                        StyledDialog.dismiss(bean.alertDialog,bean.dialog);
+                        if(bean.type == DefaultConfig.TYPE_IOS_INPUT){
+                            hideKeyBoard(window);
+                        }
+                        if(!(bean.context instanceof Activity)){
+                            StyledDialog.dismiss(bean.alertDialog,bean.dialog);
+                        }
+
                         context.unregisterReceiver(this);
                     }
                 }
@@ -708,6 +714,10 @@ public class Tool {
     public static void hideKeyBoard(View view){
         InputMethodManager imm = (InputMethodManager) StyledDialog.context.getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(view.getWindowToken(), 0); //强制隐藏键盘
+    }
+    public static void hideKeyBoard(Window window){
+        InputMethodManager imm = (InputMethodManager) StyledDialog.context.getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(window.getDecorView().getWindowToken(), 0); //强制隐藏键盘
     }
 
 

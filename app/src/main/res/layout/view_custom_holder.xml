@@ -4,15 +4,18 @@
 		android:background="@drawable/bg_ios_roundcorner_top"
 		android:layout_height="match_parent">
 	<TextView
-			android:layout_marginTop="50dp"
 			android:id="@+id/tv_content"
-			android:text="djosffdjsofjosdjfosjforerewrewrewerewrewrewrewrsjfosjfosdjfosdjfosdjfojsdofjdsfsd"
+			android:textColor="@color/ios_btntext_blue"
+			android:text="i am a custom view you can set any view here hahahah hshshhshshshhshhhhhhhhhhhhhhshhhhhhhhhhhhhhhhshhhhhhhhhhhhhhshhhhhhhhhhhhhhhh"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent" />
-	<TextView
-			android:text="title"
+	<ImageView
+
 			android:layout_centerHorizontal="true"
-			android:textSize="20sp"
+			android:src="@drawable/iosloading004"
+			android:layout_marginTop="30dp"
+			android:layout_marginRight="30dp"
+			android:layout_alignParentRight="true"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content" />
 

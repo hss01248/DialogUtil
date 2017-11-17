@@ -16,6 +16,7 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -463,11 +464,17 @@ android:pivotY="50%" />
                    }
 
                    @Override
+                   public boolean onInputValid(CharSequence input1, CharSequence input2, EditText editText1, EditText editText2) {
+                       showToast("input1--input2:"+input1+"--"+input2 +"is not accepted!");
+                       return false;
+                   }
+
+                   @Override
                    public void onGetInput(CharSequence input1, CharSequence input2) {
                        super.onGetInput(input1, input2);
                        showToast("input1:"+ input1 +"--input2:"+input2);
                    }
-               }).setCancelable(true,true).show();
+               }).setInput2HideAsPassword(false).setCancelable(true,true).show();
 
                 break;
             case R.id.btn_multichoose:
@@ -611,7 +618,7 @@ android:pivotY="50%" />
                     public void onItemClick(CharSequence text, int position) {
                         showToast(text+"---"+position);
                     }
-                }).show();
+                }).setHasBehaviour(false).show();
                 break;
             case R.id.btn_customview:
                 ViewGroup customView = (ViewGroup) View.inflate(this,R.layout.customview,null);
