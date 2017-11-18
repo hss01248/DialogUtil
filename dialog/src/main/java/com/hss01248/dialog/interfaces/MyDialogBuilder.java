@@ -36,6 +36,7 @@ import com.hss01248.dialog.config.DefaultConfig;
 import com.hss01248.dialog.view.IosActionSheetHolder;
 import com.hss01248.dialog.view.IosAlertDialogHolder;
 import com.hss01248.dialog.view.IosCenterItemHolder;
+import com.hss01248.dialog.view.MdInputHolder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,6 +60,7 @@ public  class MyDialogBuilder {
                buildProgress(bean);
                break;
            case DefaultConfig.TYPE_MD_ALERT:
+           case DefaultConfig.TYPE_MD_INPUT:
                buildMdAlert(bean);
                break;
            case DefaultConfig.TYPE_MD_SINGLE_CHOOSE:
@@ -153,7 +155,7 @@ public  class MyDialogBuilder {
            bean.gravity = Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL;
            bean.widthPercent= 0.99f;
            bean.heightPercent = 0;
-           bean.bgRes = R.color.bg_white;
+           bean.bgRes = R.color.dialogutil_bg_white;
        }
         final Dialog finalDialog = dialog;
 
@@ -328,13 +330,37 @@ public  class MyDialogBuilder {
     }
 
     protected  ConfigBean buildMdAlert(final ConfigBean bean){
-        AlertDialog.Builder builder = new AlertDialog.Builder(bean.context);
+        final AlertDialog.Builder builder = new AlertDialog.Builder(bean.context);
+        if(bean.customContentHolder ==null){
+            if(bean.type == DefaultConfig.TYPE_MD_INPUT){
+                Tool.fixContext(bean);
+                MdInputHolder holder = new MdInputHolder(bean.context);
+                bean.viewHolder = holder;
+                bean.setNeedSoftKeyboard(true);
+                holder.assingDatasAndEvents(bean.context,bean);
+                builder.setView(bean.viewHolder.rootView);
+            }else {
+                builder.setMessage(bean.msg);
+            }
+
+        }else {
+            builder.setView(bean.customContentHolder.rootView);
+            bean.customContentHolder.assingDatasAndEvents(Tool.fixContext(bean).context,bean);
+        }
         builder.setTitle(bean.title)
-                .setMessage(bean.msg)
                 .setPositiveButton(bean.text1, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        if(bean.type == DefaultConfig.TYPE_MD_INPUT){
+                            MdInputHolder holder = (MdInputHolder) bean.viewHolder;
+                            boolean isvalid = bean.listener.onInputValid(holder.getTxt1(),holder.getTxt2(),holder.getEt1(),holder.getEt2());
+                            if(!isvalid){
+                                return;
+                            }
+                        }
+
                         bean.listener.onFirst();
+                        Tool.hideKeyBorad(bean);
                         dialog.dismiss();
                     }
                 })
@@ -342,20 +368,23 @@ public  class MyDialogBuilder {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         bean.listener.onSecond();
+                        Tool.hideKeyBorad(bean);
                         dialog.dismiss();
                     }
                 }).setNeutralButton(bean.text3, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                bean.listener.onThird();
-                dialog.dismiss();
-            }
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            bean.listener.onThird();
+                            Tool.hideKeyBorad(bean);
+                            dialog.dismiss();
+                        }
         });
         AlertDialog dialog = builder.create();
         
         dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
             @Override
             public void onCancel(DialogInterface dialog) {
+                Tool.hideKeyBorad(bean);
                 if(bean.listener!=null)
                 bean.listener.onCancle();
             }
@@ -509,8 +538,6 @@ public  class MyDialogBuilder {
     }
 
     private ConfigBean buildIosCommon(ConfigBean bean){
-
-
 
         IosAlertDialogHolder holder = new IosAlertDialogHolder(bean.context);
         bean.dialog.setContentView(holder.rootView);

@@ -20,7 +20,7 @@
         android:text="@string/dialogutil_loading"
         android:maxLines="1"
         android:ellipsize="end"
-        android:textColor="@color/text_black"
+        android:textColor="@color/dialogutil_text_black"
         android:layout_gravity="center_vertical"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>

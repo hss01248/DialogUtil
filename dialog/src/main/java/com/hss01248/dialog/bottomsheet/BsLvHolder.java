@@ -18,6 +18,11 @@ public class BsLvHolder extends SuperLvHolder<BottomSheetBean> {
 
     public BsLvHolder(Context context){
         super(context);
+
+    }
+
+    @Override
+    protected void findViews() {
         ivIcon = (ImageView) rootView.findViewById(R.id.iv_icon);
         mTextView = (TextView) rootView.findViewById(R.id.tv_msg);
     }

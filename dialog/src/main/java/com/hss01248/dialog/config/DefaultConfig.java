@@ -10,17 +10,17 @@ import com.hss01248.dialog.R;
  */
 public class DefaultConfig {
 
-    public static  @ColorRes int iosBtnColor = R.color.ios_btntext_blue;
+    public static  @ColorRes int iosBtnColor = R.color.dialogutil_ios_btntext_blue;
 
 
 
-    public  static @ColorRes int lvItemTxtColor = R.color.text_item_33;
+    public  static @ColorRes int lvItemTxtColor = R.color.dialogutil_text_item_33;
 
-    public static  @ColorRes int mdBtnColor = R.color.ios_btntext_blue;
+    public static  @ColorRes int mdBtnColor = R.color.dialogutil_ios_btntext_blue;
 
-    public static @ColorRes int titleTxtColor = R.color.text_title_11;
-    public static @ColorRes int msgTxtColor = R.color.text_title_11;
-    public static @ColorRes int inputTxtColor = R.color.text_input_44;
+    public static @ColorRes int titleTxtColor = R.color.dialogutil_text_title_11;
+    public static @ColorRes int msgTxtColor = R.color.dialogutil_text_title_11;
+    public static @ColorRes int inputTxtColor = R.color.dialogutil_text_input_44;
 
 
 /* <dimen name="btn_txt_size">14sp</dimen>
@@ -66,6 +66,8 @@ public class DefaultConfig {
     public static final int TYPE_IOS_LOADING = 14;
 
     public static final int TYPE_PROGRESS = 15;
+
+    public static final int TYPE_MD_INPUT = 16;
 
     public static void initBtnTxt(Context context){
         btnTxt1 = context.getResources().getString(R.string.dialogutil_btn_sure);

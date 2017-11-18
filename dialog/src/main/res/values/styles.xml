@@ -14,14 +14,15 @@
     </style>-->
 
     <style name="mystyle" parent="android:Animation">
-    <item name="android:windowEnterAnimation">@anim/dialog_enter</item>  <!--进入时的动画-->
-    <item name="android:windowExitAnimation">@anim/dialog_exit</item>    <!--退出时的动画-->
-</style>
+        <item name="android:windowEnterAnimation">@anim/dialog_enter</item>  <!--进入时的动画-->
+        <item name="android:windowExitAnimation">@anim/dialog_exit</item>    <!--退出时的动画-->
+    </style>
 
     <style name="dialog_center" parent="android:Animation">
         <item name="android:windowEnterAnimation">@anim/dialog_enter_center</item>  <!--进入时的动画-->
         <item name="android:windowExitAnimation">@anim/dialog_exit_center</item>    <!--退出时的动画-->
     </style>
+
     <style name="notitle" >
         <item name="android:windowNoTitle">true</item>
     </style>
@@ -29,10 +30,21 @@
     <style name="Widget.GifMoviewView" parent="@android:style/Widget"></style>
 
     <style name="MyDialog" parent="AlertDialog.AppCompat.Light">
-    <item name="android:windowFrame">@null</item>
-    <item name="android:windowNoTitle">true</item>
-    <!--<item name="android:windowBackground">@drawable/hint_img</item>-->
-    <item name="android:windowIsFloating">true</item>
-    <item name="android:windowContentOverlay">@null</item>
+            <item name="android:windowFrame">@null</item>
+            <item name="android:windowNoTitle">true</item>
+            <!--<item name="android:windowBackground">@drawable/hint_img</item>-->
+            <item name="android:windowIsFloating">true</item>
+            <item name="android:windowContentOverlay">@null</item>
+    </style>
+
+    <style name="dialogutil_md_innput">
+        <item name="android:cursorVisible">true</item>
+        <item name="android:textColorHint">@color/dialogutil_text_gray_light</item>
+        <item name="android:maxLines">3</item>
+        <item name="android:textCursorDrawable">@drawable/et_cursor</item>
+        <item name="android:paddingLeft">7dp</item>
+        <item name="android:paddingRight">7dp</item>
+        <item name="android:textSize">@dimen/dialogutil_input_txt_size</item>
+        <item name="android:textColor">@color/dialogutil_text_input_44</item>
     </style>
 </resources>

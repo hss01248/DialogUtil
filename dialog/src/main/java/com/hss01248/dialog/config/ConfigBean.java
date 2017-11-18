@@ -21,7 +21,6 @@ import com.hss01248.dialog.interfaces.MyDialogBuilder;
 import com.hss01248.dialog.interfaces.MyDialogListener;
 import com.hss01248.dialog.interfaces.MyItemDialogListener;
 import com.hss01248.dialog.interfaces.Styleable;
-import com.hss01248.dialog.view.SuperHolder;
 
 import java.util.List;
 import java.util.Map;
@@ -36,7 +35,7 @@ public class ConfigBean extends MyDialogBuilder implements Styleable {
     public Context context;
     public boolean isVertical;
 
-    public SuperHolder viewHolder;
+    public SuperLvHolder viewHolder;
 
     public boolean isProgressHorzontal;
 
@@ -55,6 +54,13 @@ public class ConfigBean extends MyDialogBuilder implements Styleable {
 
 
     public boolean hasBehaviour  = false;
+
+    public ConfigBean setNeedSoftKeyboard(boolean needSoftKeyboard) {
+        this.needSoftKeyboard = needSoftKeyboard;
+        return this;
+    }
+
+    public boolean needSoftKeyboard;
 
     public ConfigBean setInput2HideAsPassword(boolean input2HideAsPassword) {
         isInput2HideAsPassword = input2HideAsPassword;

@@ -22,6 +22,6 @@
     <dimen name="shadowBottom">1px</dimen>
     <dimen name="shadowleft">1px</dimen>
     <dimen name="shadowRight">1px</dimen>
-    <dimen name="cardRadius">@dimen/round_corner</dimen>
+    <dimen name="cardRadius">@dimen/dialogutil_round_corner</dimen>
 
 </resources>

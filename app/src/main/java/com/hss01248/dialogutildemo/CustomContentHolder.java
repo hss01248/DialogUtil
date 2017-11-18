@@ -14,6 +14,11 @@ public class CustomContentHolder extends SuperLvHolder {
     }
 
     @Override
+    protected void findViews() {
+
+    }
+
+    @Override
     protected int setLayoutRes() {
         return R.layout.view_custom_holder;
     }

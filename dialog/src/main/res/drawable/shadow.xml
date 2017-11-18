@@ -90,7 +90,7 @@
     </item>
     <item>
         <shape android:shape="rectangle">
-            <corners android:radius="@dimen/round_corner" />
+            <corners android:radius="@dimen/dialogutil_round_corner" />
             <solid android:color="@color/cardBodyColor" />
             <!--<padding android:bottom="@dimen/cardRadius"
                 android:top="@dimen/cardRadius"

@@ -28,6 +28,7 @@ import android.widget.Button;
 import android.widget.CheckedTextView;
 import android.widget.ListView;
 
+import com.hss01248.dialog.adapter.SuperLvHolder;
 import com.hss01248.dialog.config.ConfigBean;
 import com.hss01248.dialog.config.DefaultConfig;
 import com.hss01248.dialog.view.IosAlertDialogHolder;
@@ -36,6 +37,12 @@ import com.hss01248.dialog.view.IosAlertDialogHolder;
  * Created by Administrator on 2016/10/9 0009.
  */
 public class Tool {
+
+    public static Handler getMainHandler() {
+        return mainHandler;
+    }
+
+    private static Handler mainHandler;
 
     /**
      * 解决badtoken问题,一劳永逸
@@ -69,13 +76,8 @@ public class Tool {
                 .addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
                     @Override
                     public void onGlobalLayout() {
-
-                        doIfIsInput(bean, new MyRunnable<IosAlertDialogHolder>() {
-                            @Override
-                            public void run(IosAlertDialogHolder iosAlertDialogHolder) {
-                                iosAlertDialogHolder.showKeyBorad();
-                            }
-                        });
+                        showSoftKeyBoardDelayed(bean.needSoftKeyboard,bean.viewHolder);
+                        showSoftKeyBoardDelayed(bean.needSoftKeyboard,bean.customContentHolder);
                         adjustWH(dialog,bean);
                         dialog.getWindow().getDecorView().getViewTreeObserver().removeGlobalOnLayoutListener(this);
                     }
@@ -86,20 +88,39 @@ public class Tool {
         void run(T t);
     }
 
-    public static void doIfIsInput(ConfigBean bean, final MyRunnable<IosAlertDialogHolder> runnable) {
-        if(bean.type == DefaultConfig.TYPE_IOS_INPUT){
-            if (bean.viewHolder instanceof IosAlertDialogHolder){
-                final IosAlertDialogHolder holder = (IosAlertDialogHolder) bean.viewHolder;
-                new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        runnable.run(holder);
-                    }
-                },500);
-
-            }
+    public static void runOnUIThread(Runnable runnable){
+        if(mainHandler ==null){
+            mainHandler = new Handler(Looper.getMainLooper());
         }
+        mainHandler.post(runnable);
     }
+
+    public static void runOnUIThreadDelayed(Runnable runnable){
+        if(mainHandler ==null){
+            mainHandler = new Handler(Looper.getMainLooper());
+        }
+        mainHandler.postDelayed(runnable,500);
+    }
+
+    public static void showSoftKeyBoardDelayed(boolean sholudShouldKeyBoard,final SuperLvHolder holder){
+        if(!sholudShouldKeyBoard){
+            return;
+        }
+        if(holder ==null){
+            return;
+        }
+        if(mainHandler ==null){
+            mainHandler = new Handler(Looper.getMainLooper());
+        }
+        mainHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                holder.showKeyBoard();
+            }
+        }, 500);
+    }
+
+
 
 
 
@@ -133,7 +154,7 @@ public class Tool {
             }
             if (bean.btn2Color > 0 )
                 if(bean.btn2Color == DefaultConfig.iosBtnColor ){
-                    btnNegative.setTextColor(getColor(bean.context,R.color.text_gray));
+                    btnNegative.setTextColor(getColor(bean.context,R.color.dialogutil_text_gray));
                 }else {
                     btnNegative.setTextColor(getColor(bean.context,bean.btn2Color));
                 }
@@ -710,6 +731,20 @@ public class Tool {
         InputMethodManager imm = (InputMethodManager) StyledDialog.context.getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.showSoftInput(view,InputMethodManager.SHOW_FORCED);
     }
+
+    public static void hideKeyBorad(ConfigBean bean){
+        if(!bean.needSoftKeyboard){
+            return;
+        }
+        if(bean.viewHolder !=null){
+            bean.viewHolder.hideKeyBoard();
+        }
+        if(bean.customContentHolder !=null){
+            bean.customContentHolder.hideKeyBoard();
+        }
+    }
+
+
 
     public static void hideKeyBoard(View view){
         InputMethodManager imm = (InputMethodManager) StyledDialog.context.getSystemService(Context.INPUT_METHOD_SERVICE);

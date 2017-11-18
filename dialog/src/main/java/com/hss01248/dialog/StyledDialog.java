@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatDialog;
 import android.view.View;
 import android.widget.TextView;
 
+import com.hss01248.dialog.adapter.SuperLvHolder;
 import com.hss01248.dialog.config.ConfigBean;
 import com.hss01248.dialog.config.DefaultConfig;
 import com.hss01248.dialog.interfaces.MyDialogListener;
@@ -249,6 +250,32 @@ public class StyledDialog  {
     public static ConfigBean buildNormalInput( CharSequence title, CharSequence hint1, CharSequence hint2,
                                                CharSequence firstTxt, CharSequence secondTxt, MyDialogListener listener) {
         return DialogAssigner.getInstance().assignNormalInput(null,title,hint1,hint2,firstTxt,secondTxt,listener);
+    }
+
+    public static ConfigBean buildMdInput(CharSequence title, CharSequence hint1, CharSequence hint2,
+                                          CharSequence firstTxt, CharSequence secondTxt, MyDialogListener listener){
+        return DialogAssigner.getInstance().buildMdInput(title,hint1,hint2,firstTxt,secondTxt,listener);
+
+    }
+
+
+    /**
+     * 将view塞到meterial alert dialog 中, 可以沿用其title和button的样式和更改方法,该view作为content显示
+     * @param customViewHolder
+     * @return
+     */
+    public static ConfigBean buildCustomInMd(SuperLvHolder customViewHolder,MyDialogListener listener){
+        return DialogAssigner.getInstance().buildCustomInMd(customViewHolder,listener);
+    }
+
+
+    /**
+     * 将view塞到ios样式的 dialog 中, 可以沿用其title和button的样式和更改方法,该view作为content显示
+     * @param customViewHolder
+     * @return
+     */
+    public static ConfigBean buildCustomInIos(SuperLvHolder customViewHolder,MyDialogListener listener){
+      return   DialogAssigner.getInstance().buildCustomInIos(customViewHolder,listener);
     }
 
     public static ConfigBean buildCustom( View contentView, int gravity) {

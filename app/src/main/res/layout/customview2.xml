@@ -8,7 +8,7 @@
         android:padding="10dp"
         android:text="哈哈哈哈"
         android:gravity="center"
-        android:background="@color/ios_btntext_blue"
+        android:background="@color/dialogutil_ios_btntext_blue"
         android:layout_width="match_parent"
         android:layout_height="50dp" />
 

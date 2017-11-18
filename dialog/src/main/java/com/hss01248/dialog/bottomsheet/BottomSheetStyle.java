@@ -113,11 +113,11 @@ public class BottomSheetStyle {
     public static final class Builder {
 
         private int txtSizeSp = 12;
-        private @ColorRes int txtColor = R.color.text_black;
+        private @ColorRes int txtColor = R.color.dialogutil_text_black;
         private int txtMarginTopDp = 4;
         private int iconSizeDp = 60;
         private int bottomTxtSizeSp = 16;
-        private @ColorRes int bottomTxtColor = R.color.text_black_lighter;
+        private @ColorRes int bottomTxtColor = R.color.dialogutil_text_black_lighter;
         private int bottomTxtHeightDp = 49;
 
         private int gvMarginTopDp = 25;

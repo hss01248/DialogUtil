@@ -5,7 +5,7 @@
 		android:layout_height="match_parent">
 	<TextView
 			android:id="@+id/tv_content"
-			android:textColor="@color/ios_btntext_blue"
+			android:textColor="@color/dialogutil_ios_btntext_blue"
 			android:text="i am a custom view you can set any view here hahahah hshshhshshshhshhhhhhhhhhhhhhshhhhhhhhhhhhhhhhshhhhhhhhhhhhhhshhhhhhhhhhhhhhhh"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent" />

@@ -23,7 +23,7 @@ import com.hss01248.dialog.config.DefaultConfig;
 /**
  * Created by Administrator on 2016/10/9 0009.
  */
-public class IosAlertDialogHolder extends SuperHolder {
+public class IosAlertDialogHolder extends SuperLvHolder<ConfigBean> {
     protected TextView tvTitle;
     public TextView tvMsg;
     public EditText et1;
@@ -85,100 +85,29 @@ public class IosAlertDialogHolder extends SuperHolder {
         this.bean = bean;
         bean.viewHolder = this;
 
-        //style
+        //btn style -size,color,oritation
+        setBtnsSytle(context,bean);
 
-        btn3Vertical.setTextSize(bean.btnTxtSize);
-        btn2Vertical.setTextSize(bean.btnTxtSize);
-        btn1Vertical.setTextSize(bean.btnTxtSize);
-        btn3.setTextSize(bean.btnTxtSize);
-        btn2.setTextSize(bean.btnTxtSize);
-        btn1.setTextSize(bean.btnTxtSize);
-
-        btn1.setTextColor(Tool.getColor(btn1.getContext(),bean.btn1Color));
-        btn2.setTextColor(Tool.getColor(btn1.getContext(),bean.btn2Color));
-        btn3.setTextColor(Tool.getColor(btn1.getContext(),bean.btn3Color));
-
-        btn1Vertical.setTextColor(Tool.getColor(btn1.getContext(),bean.btn1Color));
-        btn2Vertical.setTextColor(Tool.getColor(btn1.getContext(),bean.btn2Color));
-        btn3Vertical.setTextColor(Tool.getColor(btn1.getContext(),bean.btn3Color));
+        //set title style
+        setTitleStyle(context,bean);
 
 
 
-        //隐藏view
-        if (bean.isVertical) {
-            llContainerVertical.setVisibility(View.VISIBLE);
-            llContainerHorizontal.setVisibility(View.GONE);
-        } else {
-            llContainerVertical.setVisibility(View.GONE);
-            llContainerHorizontal.setVisibility(View.VISIBLE);
-        }
-
-        if (TextUtils.isEmpty(bean.title)) {
-            tvTitle.setVisibility(View.GONE);
-        } else {
-            tvTitle.setVisibility(View.VISIBLE);
-            tvTitle.setText(bean.title);
-            tvTitle.setTextColor(Tool.getColor(tvTitle.getContext(),bean.titleTxtColor));
-            tvTitle.setTextSize(bean.titleTxtSize);
-        }
 
         //自定义content
         if(bean.customContentHolder ==null){
             //msg
-            if (TextUtils.isEmpty(bean.msg)) {
-                tvMsg.setVisibility(View.GONE);
-            } else {
-                tvMsg.setVisibility(View.VISIBLE);
-                tvMsg.setText(bean.msg);
 
-                tvMsg.setTextColor(Tool.getColor(tvMsg.getContext(),bean.msgTxtColor));
-                tvMsg.setTextSize(bean.msgTxtSize);
-            }
+            setMsgStyleAndTxt(bean);
+
 
             //input
-            if (TextUtils.isEmpty(bean.hint1)) {
-                et1.setVisibility(View.GONE);
-            } else {
+            setInputStyle(context,bean);
 
-                LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) sv.getLayoutParams();
-                params.height = LinearLayout.LayoutParams.WRAP_CONTENT;
-                params.weight = 0;
-                sv.setLayoutParams(params);
-                et1.setVisibility(View.VISIBLE);
-                et1.setHint(bean.hint1);
-
-                et1.setTextColor(Tool.getColor(et1.getContext(),bean.inputTxtColor));
-                et1.setTextSize(bean.inputTxtSize);
-
-            }
-
-            if (TextUtils.isEmpty(bean.hint2)) {
-                et2.setVisibility(View.GONE);
-            } else {
-                et2.setVisibility(View.VISIBLE);
-                et2.setHint(bean.hint2);
-                et2.setTextColor(Tool.getColor(et2.getContext(),bean.inputTxtColor));
-                et2.setTextSize(bean.inputTxtSize);
-                if (bean.isInput2HideAsPassword) {
-                    //设置EditText文本为可见的
-                    et2.setTransformationMethod(PasswordTransformationMethod.getInstance());
-                } else {
-                    //设置EditText文本为隐藏的
-                    et2.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-                }
-            }
         }else {
-            //设置了content holders时,中央采用自定义view
-            tvMsg.setVisibility(View.GONE);
-            et1.setVisibility(View.GONE);
-            et2.setVisibility(View.GONE);
 
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT);
-            SuperLvHolder holder = bean.customContentHolder;
-            holder.rootView.setLayoutParams(params);
-            llContainerContent.addView(holder.rootView);
-            holder.assingDatasAndEvents(llContainerContent.getContext(),null);
+            addCustomView(bean,context);
+
         }
 
 
@@ -186,7 +115,128 @@ public class IosAlertDialogHolder extends SuperHolder {
 
         //按钮数量
 
+        setBtnTxt(context,bean);
 
+
+
+
+
+        //事件
+
+        if (bean.isVertical) {
+            setBtnEventVertical(bean,context);
+
+
+
+        } else {
+
+            setBtnEventH(context,bean);
+
+
+        }
+
+
+    }
+
+    private void addCustomView(ConfigBean bean, Context context) {
+        //设置了content holders时,中央采用自定义view
+        tvMsg.setVisibility(View.GONE);
+        et1.setVisibility(View.GONE);
+        et2.setVisibility(View.GONE);
+
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
+            LinearLayout.LayoutParams.WRAP_CONTENT);
+        SuperLvHolder holder = bean.customContentHolder;
+        holder.rootView.setLayoutParams(params);
+        llContainerContent.addView(holder.rootView);
+        holder.assingDatasAndEvents(llContainerContent.getContext(),null);
+
+
+        Tool.showSoftKeyBoardDelayed(bean.needSoftKeyboard,bean.customContentHolder);
+
+    }
+
+    private void setBtnEventH(Context context, final ConfigBean bean) {
+        btn1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                boolean needDismiss = true;
+                if(bean.type == DefaultConfig.TYPE_IOS_INPUT){
+                    needDismiss =  bean.listener.onInputValid(et1.getText().toString().trim(),et2.getText().toString().trim(),et1,et2);
+                }
+                if(!needDismiss){
+                    return;
+                }
+                hideKeyBoard();
+                StyledDialog.dismiss(bean.dialog,bean.alertDialog);
+                bean.listener.onFirst();
+                bean.listener.onGetInput(et1.getText().toString().trim(),et2.getText().toString().trim());
+            }
+        });
+
+        btn2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                hideKeyBoard();
+                StyledDialog.dismiss(bean.dialog,bean.alertDialog);
+                bean.listener.onSecond();
+            }
+        });
+
+        btn3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                hideKeyBoard();
+                StyledDialog.dismiss(bean.dialog,bean.alertDialog);
+                bean.listener.onThird();
+            }
+        });
+    }
+
+    private void setBtnEventVertical(final ConfigBean bean, Context context) {
+        btn1Vertical.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                StyledDialog.dismiss(bean.dialog,bean.alertDialog);
+                bean.listener.onFirst();
+
+                bean.listener.onGetInput(et1.getText().toString().trim(),et2.getText().toString().trim());
+
+
+
+            }
+        });
+
+        btn2Vertical.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                StyledDialog.dismiss(bean.dialog,bean.alertDialog);
+                bean.listener.onSecond();
+            }
+        });
+
+        btn3Vertical.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                StyledDialog.dismiss(bean.dialog,bean.alertDialog);
+                bean.listener.onThird();
+            }
+        });
+    }
+
+    private void setMsgStyleAndTxt(ConfigBean bean) {
+        if (TextUtils.isEmpty(bean.msg)) {
+            tvMsg.setVisibility(View.GONE);
+        } else {
+            tvMsg.setVisibility(View.VISIBLE);
+            tvMsg.setText(bean.msg);
+
+            tvMsg.setTextColor(Tool.getColor(tvMsg.getContext(),bean.msgTxtColor));
+            tvMsg.setTextSize(bean.msgTxtSize);
+        }
+    }
+
+    private void setBtnTxt(Context context, ConfigBean bean) {
         if (TextUtils.isEmpty(bean.text3)) {
             if (bean.isVertical) {
                 btn3Vertical.setVisibility(View.GONE);
@@ -240,86 +290,86 @@ public class IosAlertDialogHolder extends SuperHolder {
 
             btn1.setText(bean.text1);
         }
+    }
 
-
-        //事件
-
-        if (bean.isVertical) {
-            btn1Vertical.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    StyledDialog.dismiss(bean.dialog,bean.alertDialog);
-                    bean.listener.onFirst();
-
-                    bean.listener.onGetInput(et1.getText().toString().trim(),et2.getText().toString().trim());
-
-
-
-                }
-            });
-
-            btn2Vertical.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    StyledDialog.dismiss(bean.dialog,bean.alertDialog);
-                    bean.listener.onSecond();
-                }
-            });
-
-            btn3Vertical.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    StyledDialog.dismiss(bean.dialog,bean.alertDialog);
-                    bean.listener.onThird();
-                }
-            });
-
-
+    private void setTitleStyle(Context context, ConfigBean bean) {
+        if (TextUtils.isEmpty(bean.title)) {
+            tvTitle.setVisibility(View.GONE);
         } else {
-            btn1.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    boolean needDismiss = true;
-                    if(bean.type == DefaultConfig.TYPE_IOS_INPUT){
-                       needDismiss =  bean.listener.onInputValid(et1.getText().toString().trim(),et2.getText().toString().trim(),et1,et2);
-                    }
-                    if(!needDismiss){
-                        return;
-                    }
-                    hideKeyBoard();
-                    StyledDialog.dismiss(bean.dialog,bean.alertDialog);
-                    bean.listener.onFirst();
-                    bean.listener.onGetInput(et1.getText().toString().trim(),et2.getText().toString().trim());
-                }
-            });
+            tvTitle.setVisibility(View.VISIBLE);
+            tvTitle.setText(bean.title);
+            tvTitle.setTextColor(Tool.getColor(tvTitle.getContext(),bean.titleTxtColor));
+            tvTitle.setTextSize(bean.titleTxtSize);
+        }
+    }
 
-            btn2.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    hideKeyBoard();
-                    StyledDialog.dismiss(bean.dialog,bean.alertDialog);
-                    bean.listener.onSecond();
-                }
-            });
+    private void setBtnsSytle(Context context, ConfigBean bean) {
+        btn3Vertical.setTextSize(bean.btnTxtSize);
+        btn2Vertical.setTextSize(bean.btnTxtSize);
+        btn1Vertical.setTextSize(bean.btnTxtSize);
+        btn3.setTextSize(bean.btnTxtSize);
+        btn2.setTextSize(bean.btnTxtSize);
+        btn1.setTextSize(bean.btnTxtSize);
 
-            btn3.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    hideKeyBoard();
-                    StyledDialog.dismiss(bean.dialog,bean.alertDialog);
-                    bean.listener.onThird();
-                }
-            });
+        btn1.setTextColor(Tool.getColor(btn1.getContext(),bean.btn1Color));
+        btn2.setTextColor(Tool.getColor(btn1.getContext(),bean.btn2Color));
+        btn3.setTextColor(Tool.getColor(btn1.getContext(),bean.btn3Color));
+
+        btn1Vertical.setTextColor(Tool.getColor(btn1.getContext(),bean.btn1Color));
+        btn2Vertical.setTextColor(Tool.getColor(btn1.getContext(),bean.btn2Color));
+        btn3Vertical.setTextColor(Tool.getColor(btn1.getContext(),bean.btn3Color));
+
+
+
+        //隐藏view
+        if (bean.isVertical) {
+            llContainerVertical.setVisibility(View.VISIBLE);
+            llContainerHorizontal.setVisibility(View.GONE);
+        } else {
+            llContainerVertical.setVisibility(View.GONE);
+            llContainerHorizontal.setVisibility(View.VISIBLE);
+        }
+    }
+
+    private void setInputStyle(Context context, ConfigBean bean) {
+        if (TextUtils.isEmpty(bean.hint1)) {
+            et1.setVisibility(View.GONE);
+        } else {
+            bean.setNeedSoftKeyboard(true);
+            LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) sv.getLayoutParams();
+            params.height = LinearLayout.LayoutParams.WRAP_CONTENT;
+            params.weight = 0;
+            sv.setLayoutParams(params);
+            et1.setVisibility(View.VISIBLE);
+            et1.setHint(bean.hint1);
+
+            et1.setTextColor(Tool.getColor(et1.getContext(),bean.inputTxtColor));
+            et1.setTextSize(bean.inputTxtSize);
 
         }
 
-
+        if (TextUtils.isEmpty(bean.hint2)) {
+            et2.setVisibility(View.GONE);
+        } else {
+            bean.setNeedSoftKeyboard(true);
+            et2.setVisibility(View.VISIBLE);
+            et2.setHint(bean.hint2);
+            et2.setTextColor(Tool.getColor(et2.getContext(),bean.inputTxtColor));
+            et2.setTextSize(bean.inputTxtSize);
+            if (bean.isInput2HideAsPassword) {
+                //设置EditText文本为可见的
+                et2.setTransformationMethod(PasswordTransformationMethod.getInstance());
+            } else {
+                //设置EditText文本为隐藏的
+                et2.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+            }
+        }
     }
 
 
-    public void showKeyBorad(){
-
-        //弹出软键盘
+    @Override
+    public void showKeyBoard(){
+//弹出软键盘
         if(TextUtils.isEmpty(bean.hint2) && !TextUtils.isEmpty(bean.hint1)){
             Tool.showKeyBoard(et1);
         }else if(TextUtils.isEmpty(bean.hint1) && !TextUtils.isEmpty(bean.hint2)){
@@ -327,8 +377,10 @@ public class IosAlertDialogHolder extends SuperHolder {
         }else if(!TextUtils.isEmpty(bean.hint2) && !TextUtils.isEmpty(bean.hint1)){
             Tool.showKeyBoard(et1);
         }
+
     }
 
+    @Override
     public void hideKeyBoard(){
         if(TextUtils.isEmpty(bean.hint2) && !TextUtils.isEmpty(bean.hint1)){
             Tool.hideKeyBoard(et1);
@@ -338,6 +390,8 @@ public class IosAlertDialogHolder extends SuperHolder {
             Tool.hideKeyBoard(et1);
         }
     }
+
+
 
 
 }
