@@ -4,20 +4,30 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
+import android.webkit.WebChromeClient;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.hss01248.dialog.StyledDialog;
+import com.hss01248.dialog.Tool;
 import com.hss01248.dialog.adapter.SuperRcvAdapter;
 import com.hss01248.dialog.adapter.SuperRcvHolder;
 import com.hss01248.dialog.bottomsheet.BottomSheetBean;
+import com.hss01248.dialog.config.ConfigBean;
 import com.hss01248.dialog.interfaces.MyDialogListener;
 import com.hss01248.dialog.interfaces.MyItemDialogListener;
+import com.orhanobut.logger.Logger;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -69,7 +79,7 @@ public class MainActivity extends Activity {
         handler = new Handler();
         activity = this;
         context = getApplication();
-        StyledDialog.init(getApplicationContext());
+
 
 
         /*<set xmlns:android="http://schemas.android.com/apk/res/android">
@@ -214,16 +224,24 @@ android:pivotY="50%" />
     @OnClick({R.id.btn_common_progress, R.id.btn_context_progress, R.id.btn_material_alert, R.id.btn_ios_alert,
             R.id.btn_ios_alert_vertical, R.id.btn_ios_bottom_sheet, R.id.btn_ios_center_list,R.id.btn_input,
             R.id.btn_multichoose, R.id.btn_singlechoose,R.id.btn_md_bs,R.id.btn_md_bs_listview,R.id.btn_md_bs_Gridview,
-            R.id.btn_context_progress_h,R.id.btn_context_progress_c})
+            R.id.btn_context_progress_h,R.id.btn_context_progress_c,R.id.btn_customview,R.id.btn_dismiss,R.id.btn_test_badToken,R.id.btn_customview2})
     public void onClick(View view) {
         switch (view.getId()) {
+            case R.id.btn_test_badToken:
+                testBadToken();
+                break;
+            case R.id.btn_dismiss:
+                StyledDialog.dismissLoading();
+                break;
             case R.id.btn_common_progress:
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        StyledDialog.buildLoading( "加载中...").setActivity(MainActivity.this).show();
+                        StyledDialog.buildLoading( "加载中...").show();
                     }
                 }).run();
+                //StyledDialog.dismissLoading();
+                //showToast("dismissLoading() called ");
 
                 new Timer().schedule(new TimerTask() {
                     @Override
@@ -239,17 +257,18 @@ android:pivotY="50%" />
                 gloablDialog = StyledDialog.buildMdLoading().show();
 
 
-
+                //StyledDialog.dismissLoading();
 
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                       StyledDialog.updateLoadingMsg("jjjjj"+ new Random().nextInt(100));
+                       StyledDialog
+                               .updateLoadingMsg("jjjjj"+ new Random().nextInt(100));
                     }
                 },3000);
                 break;
             case R.id.btn_context_progress_h:
-               final ProgressDialog dialog= (ProgressDialog) StyledDialog.buildProgress( "下载中...",true).show();
+               final ProgressDialog dialog= (ProgressDialog) StyledDialog.buildProgress( getString(R.string.dialogutil_loading),true).setCancelable(false,false).show();
                 final int[] progress = {0};
                 final Timer timer = new Timer();
                 timer.schedule(new TimerTask() {
@@ -259,6 +278,7 @@ android:pivotY="50%" />
                         StyledDialog.updateProgress(dialog, progress[0],100,"progress",true);
                         if(progress[0]>100){
                             timer.cancel();
+                            dialog.dismiss();
                         }
                     }
                 },500,500);
@@ -302,9 +322,13 @@ android:pivotY="50%" />
 
                 })
                         .setBtnSize(29)
+                    .setHeightPercent(0.75f)//ugly
+                    //.setWidthPercent(0.90f)
                         .setBtnText("i","b","3")
+                    //.setBtnText("i")
                         .setBtnColor(R.color.colorPrimary,R.color.colorPrimaryDark,R.color.text_black)
                         .show();
+
                 break;
             case R.id.btn_ios_alert:
                 StyledDialog.buildIosAlert( "title", msg,  new MyDialogListener() {
@@ -324,7 +348,13 @@ android:pivotY="50%" />
                     }
 
 
-                }).setBtnText("sure","cancle","hhhh").show();
+                })
+                    //.setBtnText("sure","cancle","hhhh")
+                    .setBtnText("sure")
+                    //.setWidthPercent(0.99f)
+                    //.setHeightPercent(0.88f)
+                    //.setBgRes(R.drawable.leak_canary_icon)
+                    .show();
                 break;
             case R.id.btn_ios_alert_vertical:
                 StyledDialog.buildIosAlertVertical( "title", msg,  new MyDialogListener() {
@@ -434,16 +464,16 @@ android:pivotY="50%" />
                        super.onGetInput(input1, input2);
                        showToast("input1:"+ input1 +"--input2:"+input2);
                    }
-               }).show();
+               }).setCancelable(true,true).show();
 
                 break;
             case R.id.btn_multichoose:
                 String[] words = new String[]{"12","78","45","89","88","00"};
 
 
-                boolean[] choseDefault = new boolean[]{false,false,false,false,true,false};
+                //boolean[] choseDefault = new boolean[]{false,false,false,false,true,false};
 
-                StyledDialog.buildMdMultiChoose( "xuanze", words, choseDefault,  new MyDialogListener() {
+                StyledDialog.buildMdMultiChoose( "xuanze", words, new ArrayList<Integer>(),  new MyDialogListener() {
                     @Override
                     public void onFirst() {
 
@@ -454,7 +484,15 @@ android:pivotY="50%" />
 
                     }
 
+                    @Override
+                    public void onChoosen( List<Integer> selectedIndex, List<CharSequence> selectedStrs,boolean[] states) {
+                        super.onChoosen( selectedIndex, selectedStrs,states);
+                        Logger.object(states);
+                        Logger.object(selectedIndex);
+                        Logger.object(selectedStrs);
 
+
+                    }
 
                     @Override
                     public void onGetChoose(boolean[] states) {
@@ -529,6 +567,14 @@ android:pivotY="50%" />
                 datas2.add(new BottomSheetBean(R.mipmap.ic_launcher,"fddsf"));
                 datas2.add(new BottomSheetBean(R.mipmap.ic_launcher,"67gfhfg"));
                 datas2.add(new BottomSheetBean(R.mipmap.ic_launcher,"oooooppp"));
+                datas2.add(new BottomSheetBean(R.mipmap.ic_launcher,"7777"));
+                datas2.add(new BottomSheetBean(R.mipmap.ic_launcher,"8"));
+                datas2.add(new BottomSheetBean(R.mipmap.ic_launcher,"9"));
+                datas2.add(new BottomSheetBean(R.mipmap.ic_launcher,"10"));
+                datas2.add(new BottomSheetBean(R.mipmap.ic_launcher,"11"));
+                datas2.add(new BottomSheetBean(R.mipmap.ic_launcher,"12"));
+                datas2.add(new BottomSheetBean(R.mipmap.ic_launcher,"13"));
+                datas2.add(new BottomSheetBean(R.mipmap.ic_launcher,"14"));
 
 
 
@@ -538,7 +584,7 @@ android:pivotY="50%" />
                     public void onItemClick(CharSequence text, int position) {
                         showToast(text+"---"+position);
                     }
-                }).show();}
+                }).setBottomSheetDialogMaxHeightPercent(0.3f).show();}
                 break;
 
             case R.id.btn_md_bs_Gridview:
@@ -559,16 +605,53 @@ android:pivotY="50%" />
 
 
 
-                StyledDialog.buildBottomSheetGv( "拉出来溜溜", datas2, "this is cancle button",3, new MyItemDialogListener() {
+                StyledDialog.buildBottomSheetGv( "  ", datas2, "this is cancle button",4, new MyItemDialogListener() {
                     @Override
                     public void onItemClick(CharSequence text, int position) {
                         showToast(text+"---"+position);
                     }
                 }).show();
                 break;
+            case R.id.btn_customview:
+                ViewGroup customView = (ViewGroup) View.inflate(this,R.layout.customview,null);
+                final ConfigBean bean = StyledDialog.buildCustom(customView, Gravity.CENTER)
+                    .setHeightPercent(0.7f)
+                    .setWidthPercent(0.8f)
+                    .setHasShadow(false);
+                final Dialog dialog1 =   bean.show();
+                WebView webView = (WebView) customView.findViewById(R.id.webview);
+                final TextView textView = (TextView) customView.findViewById(R.id.tv_title);
+                webView.loadUrl("http://www.jianshu.com/p/bcdee5821a7f");
+
+                webView.setWebViewClient(new WebViewClient(){
+                    @Override
+                    public void onPageFinished(WebView view, String url) {
+                        super.onPageFinished(view, url);
+                        Tool.adjustWH(dialog1,bean);
+                    }
+                });
+                webView.setWebChromeClient(new WebChromeClient(){
+                    @Override
+                    public void onReceivedTitle(WebView view, String title) {
+                        super.onReceivedTitle(view, title);
+                        textView.setText(title);
+                    }
+                });
+
+            break;
+            case R.id.btn_customview2:
+                ViewGroup customView2 = (ViewGroup) View.inflate(this,R.layout.customview2,null);
+                StyledDialog.buildCustom(customView2,Gravity.CENTER).setWidthPercent(0.90f).setHeightPercent(0.8f).show();
+                break;
+            default:break;
 
 
         }
+    }
+
+    private void testBadToken() {
+        startActivity(new Intent(this,BadTokenActy.class));
+
     }
 
 

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:gravity="center_horizontal"
+        android:background="@drawable/bg_ios_roundcorner_all_bottom_gray"
+    android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/tv_title"
+        android:padding="10dp"
+        android:text="哈哈哈哈"
+        android:gravity="center"
+        android:background="@color/text_gray"
+        android:layout_width="200dp"
+        android:layout_height="50dp" />
+    <WebView
+        android:id="@+id/webview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+
+</LinearLayout>

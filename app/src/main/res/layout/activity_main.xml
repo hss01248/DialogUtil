@@ -16,11 +16,27 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <Button
-                android:id="@+id/btn_common_progress"
+                android:id="@+id/btn_dismiss"
                 android:layout_margin="5dp"
-                android:text="菊花loading"
+                android:visibility="gone"
+                android:text="关闭loading"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
+            <Button
+                    android:id="@+id/btn_test_badToken"
+                    android:layout_margin="5dp"
+                    android:text="BadTokenException 测试"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            <Button
+                    android:id="@+id/btn_common_progress"
+                    android:layout_margin="5dp"
+                    android:text="菊花loading"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+
 
             <Button
                 android:id="@+id/btn_context_progress"
@@ -122,6 +138,18 @@
                 android:text="md_bottomsheet_gridview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
+            <Button
+                android:id="@+id/btn_customview"
+                android:layout_margin="5dp"
+                android:text="customview_webview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <Button
+                    android:id="@+id/btn_customview2"
+                    android:layout_margin="5dp"
+                    android:text="customview_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
 
 
 

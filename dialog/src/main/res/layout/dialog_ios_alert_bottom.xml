@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:background="@android:color/transparent"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+
+
+
+
+        <ListView
+            android:background="@drawable/bg_ios_roundcorner_progress"
+            android:id="@+id/lv"
+            android:scrollbars="none"
+            android:overScrollMode="never"
+            android:layout_width="match_parent"
+            android:overScrollFooter="@android:color/transparent"
+            android:overScrollHeader="@android:color/transparent"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
+    <!--<LinearLayout
+        android:background="@drawable/bg_ios_roundcorner"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+        <Button
+            android:background="@android:color/transparent"
+            android:text="1"
+            android:textSize="14sp"
+            android:textColor="#444444"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:background="@android:color/transparent"
+            android:text="2"
+            android:textSize="14sp"
+            android:textColor="#444444"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>-->
+
+<View android:layout_width="match_parent"
+    android:layout_height="1px"
+    android:background="@color/line_dd"/>
+    <Button
+        android:id="@+id/btn_bottom"
+        android:background="@drawable/bg_ios_roundcorner_bottom"
+        android:textAllCaps="false"
+        android:text="@string/dialogutil_btn_cancel"
+        android:textSize="@dimen/btn_txt_size"
+        android:textColor="@color/ios_btntext_blue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+
+</LinearLayout>

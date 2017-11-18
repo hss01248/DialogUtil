@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="ios_btntext_blue">#007aff</color>
+    <color name="text_title_11">#111111</color>
+    <color name="text_msg_33">#333333</color>
+    <color name="text_input_44">#444444</color>
+
+    <color name="text_item_33">#333333</color>
+    <color name="btn_alert">#222222</color>
+
+
+
+
+    <color name="line_dd">#cccccc</color>
+
+    <color name="ios_btn_normal">#ffffff</color>
+    <color name="ios_btn_pressed">#eeeeee</color>
+
+    <color name="bg_white">#ffffff</color>
+
+    <color name="text_gray">#999999</color>
+    <color name="text_gray_light">#B3B3B3</color>
+
+    <color name="text_black">#333333</color><!--正式发布时改成666666-->
+    <color name="text_black_light" >#666666</color><!--正式发布时改成666666-->
+</resources>

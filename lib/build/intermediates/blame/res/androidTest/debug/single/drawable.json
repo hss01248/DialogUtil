@@ -1,0 +1,282 @@
+[
+    {
+        "merged": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\bg_ios_roundcorner_left_bottom_white.xml",
+        "source": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\bundles\\debug\\res\\drawable\\bg_ios_roundcorner_left_bottom_white.xml"
+    },
+    {
+        "merged": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\bg_toast.xml",
+        "source": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\bundles\\debug\\res\\drawable\\bg_toast.xml"
+    },
+    {
+        "merged": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\abc_seekbar_thumb_material.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\94ca66c38928a5baa9bb8386ddf688feb636e647\\output\\res\\drawable\\abc_seekbar_thumb_material.xml"
+    },
+    {
+        "merged": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\abc_list_selector_holo_light.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\94ca66c38928a5baa9bb8386ddf688feb636e647\\output\\res\\drawable\\abc_list_selector_holo_light.xml"
+    },
+    {
+        "merged": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\bg_ios_roundcorner_bottom.xml",
+        "source": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\bundles\\debug\\res\\drawable\\bg_ios_roundcorner_bottom.xml"
+    },
+    {
+        "merged": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\design_ic_visibility.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\103e555f8c48b11351e94094dd5dde2235640f07\\output\\res\\drawable\\design_ic_visibility.xml"
+    },
+    {
+        "merged": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\notification_bg.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\94ca66c38928a5baa9bb8386ddf688feb636e647\\output\\res\\drawable\\notification_bg.xml"
+    },
+    {
+        "merged": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\abc_ic_ab_back_material.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\94ca66c38928a5baa9bb8386ddf688feb636e647\\output\\res\\drawable\\abc_ic_ab_back_material.xml"
+    },
+    {
+        "merged": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\abc_btn_check_material.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\94ca66c38928a5baa9bb8386ddf688feb636e647\\output\\res\\drawable\\abc_btn_check_material.xml"
+    },
+    {
+        "merged": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\notification_icon_background.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\94ca66c38928a5baa9bb8386ddf688feb636e647\\output\\res\\drawable\\notification_icon_background.xml"
+    },
+    {
+        "merged": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\bg_ios_roundcorner_all_bottom_white.xml",
+        "source": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\bundles\\debug\\res\\drawable\\bg_ios_roundcorner_all_bottom_white.xml"
+    },
+    {
+        "merged": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\design_fab_background.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\103e555f8c48b11351e94094dd5dde2235640f07\\output\\res\\drawable\\design_fab_background.xml"
+    },
+    {
+        "merged": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\abc_ic_clear_material.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\94ca66c38928a5baa9bb8386ddf688feb636e647\\output\\res\\drawable\\abc_ic_clear_material.xml"
+    },
+    {
+        "merged": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\selector_btn_press_left_bottom.xml",
+        "source": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\bundles\\debug\\res\\drawable\\selector_btn_press_left_bottom.xml"
+    },
+    {
+        "merged": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\bg_ios_roundcorner_right_bottom_white.xml",
+        "source": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\bundles\\debug\\res\\drawable\\bg_ios_roundcorner_right_bottom_white.xml"
+    },
+    {
+        "merged": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\bg_ios_roundcorner_all_top_gray.xml",
+        "source": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\bundles\\debug\\res\\drawable\\bg_ios_roundcorner_all_top_gray.xml"
+    },
+    {
+        "merged": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\bg_ios_roundcorner_right_bottom_gray.xml",
+        "source": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\bundles\\debug\\res\\drawable\\bg_ios_roundcorner_right_bottom_gray.xml"
+    },
+    {
+        "merged": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\progressstyleshape.xml",
+        "source": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\bundles\\debug\\res\\drawable\\progressstyleshape.xml"
+    },
+    {
+        "merged": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\abc_list_selector_background_transition_holo_light.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\94ca66c38928a5baa9bb8386ddf688feb636e647\\output\\res\\drawable\\abc_list_selector_background_transition_holo_light.xml"
+    },
+    {
+        "merged": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\abc_spinner_textfield_background_material.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\94ca66c38928a5baa9bb8386ddf688feb636e647\\output\\res\\drawable\\abc_spinner_textfield_background_material.xml"
+    },
+    {
+        "merged": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\notification_bg_low.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\94ca66c38928a5baa9bb8386ddf688feb636e647\\output\\res\\drawable\\notification_bg_low.xml"
+    },
+    {
+        "merged": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\abc_btn_radio_material.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\94ca66c38928a5baa9bb8386ddf688feb636e647\\output\\res\\drawable\\abc_btn_radio_material.xml"
+    },
+    {
+        "merged": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\abc_btn_borderless_material.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\94ca66c38928a5baa9bb8386ddf688feb636e647\\output\\res\\drawable\\abc_btn_borderless_material.xml"
+    },
+    {
+        "merged": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\abc_textfield_search_material.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\94ca66c38928a5baa9bb8386ddf688feb636e647\\output\\res\\drawable\\abc_textfield_search_material.xml"
+    },
+    {
+        "merged": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\abc_ratingbar_small_material.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\94ca66c38928a5baa9bb8386ddf688feb636e647\\output\\res\\drawable\\abc_ratingbar_small_material.xml"
+    },
+    {
+        "merged": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\bg_ios_roundcorner_all_top_white.xml",
+        "source": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\bundles\\debug\\res\\drawable\\bg_ios_roundcorner_all_top_white.xml"
+    },
+    {
+        "merged": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\shadow.xml",
+        "source": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\bundles\\debug\\res\\drawable\\shadow.xml"
+    },
+    {
+        "merged": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\bg_ios_roundcorner_gray.xml",
+        "source": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\bundles\\debug\\res\\drawable\\bg_ios_roundcorner_gray.xml"
+    },
+    {
+        "merged": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\abc_ratingbar_material.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\94ca66c38928a5baa9bb8386ddf688feb636e647\\output\\res\\drawable\\abc_ratingbar_material.xml"
+    },
+    {
+        "merged": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\bg_ios_roundcorner_left_bottom_gray.xml",
+        "source": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\bundles\\debug\\res\\drawable\\bg_ios_roundcorner_left_bottom_gray.xml"
+    },
+    {
+        "merged": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\bg_toast_loading.xml",
+        "source": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\bundles\\debug\\res\\drawable\\bg_toast_loading.xml"
+    },
+    {
+        "merged": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\abc_btn_default_mtrl_shape.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\94ca66c38928a5baa9bb8386ddf688feb636e647\\output\\res\\drawable\\abc_btn_default_mtrl_shape.xml"
+    },
+    {
+        "merged": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\abc_item_background_holo_light.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\94ca66c38928a5baa9bb8386ddf688feb636e647\\output\\res\\drawable\\abc_item_background_holo_light.xml"
+    },
+    {
+        "merged": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\bg_ios_roundcorner_all_bottom_gray.xml",
+        "source": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\bundles\\debug\\res\\drawable\\bg_ios_roundcorner_all_bottom_gray.xml"
+    },
+    {
+        "merged": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\selector_btn_press_no_corner.xml",
+        "source": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\bundles\\debug\\res\\drawable\\selector_btn_press_no_corner.xml"
+    },
+    {
+        "merged": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\design_snackbar_background.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\103e555f8c48b11351e94094dd5dde2235640f07\\output\\res\\drawable\\design_snackbar_background.xml"
+    },
+    {
+        "merged": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\selector_btn_press_all_bottom.xml",
+        "source": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\bundles\\debug\\res\\drawable\\selector_btn_press_all_bottom.xml"
+    },
+    {
+        "merged": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\abc_seekbar_tick_mark_material.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\94ca66c38928a5baa9bb8386ddf688feb636e647\\output\\res\\drawable\\abc_seekbar_tick_mark_material.xml"
+    },
+    {
+        "merged": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\notification_tile_bg.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\94ca66c38928a5baa9bb8386ddf688feb636e647\\output\\res\\drawable\\notification_tile_bg.xml"
+    },
+    {
+        "merged": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\abc_switch_thumb_material.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\94ca66c38928a5baa9bb8386ddf688feb636e647\\output\\res\\drawable\\abc_switch_thumb_material.xml"
+    },
+    {
+        "merged": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\bg_ios_roundcorner.xml",
+        "source": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\bundles\\debug\\res\\drawable\\bg_ios_roundcorner.xml"
+    },
+    {
+        "merged": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\abc_dialog_material_background.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\94ca66c38928a5baa9bb8386ddf688feb636e647\\output\\res\\drawable\\abc_dialog_material_background.xml"
+    },
+    {
+        "merged": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\abc_tab_indicator_material.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\94ca66c38928a5baa9bb8386ddf688feb636e647\\output\\res\\drawable\\abc_tab_indicator_material.xml"
+    },
+    {
+        "merged": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\abc_list_selector_background_transition_holo_dark.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\94ca66c38928a5baa9bb8386ddf688feb636e647\\output\\res\\drawable\\abc_list_selector_background_transition_holo_dark.xml"
+    },
+    {
+        "merged": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\abc_edit_text_material.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\94ca66c38928a5baa9bb8386ddf688feb636e647\\output\\res\\drawable\\abc_edit_text_material.xml"
+    },
+    {
+        "merged": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\selector_btn_press_right_bottom.xml",
+        "source": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\bundles\\debug\\res\\drawable\\selector_btn_press_right_bottom.xml"
+    },
+    {
+        "merged": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\abc_ratingbar_indicator_material.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\94ca66c38928a5baa9bb8386ddf688feb636e647\\output\\res\\drawable\\abc_ratingbar_indicator_material.xml"
+    },
+    {
+        "merged": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\abc_seekbar_track_material.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\94ca66c38928a5baa9bb8386ddf688feb636e647\\output\\res\\drawable\\abc_seekbar_track_material.xml"
+    },
+    {
+        "merged": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\abc_ic_menu_overflow_material.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\94ca66c38928a5baa9bb8386ddf688feb636e647\\output\\res\\drawable\\abc_ic_menu_overflow_material.xml"
+    },
+    {
+        "merged": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\abc_cab_background_top_material.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\94ca66c38928a5baa9bb8386ddf688feb636e647\\output\\res\\drawable\\abc_cab_background_top_material.xml"
+    },
+    {
+        "merged": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\abc_ic_voice_search_api_material.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\94ca66c38928a5baa9bb8386ddf688feb636e647\\output\\res\\drawable\\abc_ic_voice_search_api_material.xml"
+    },
+    {
+        "merged": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\abc_vector_test.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\94ca66c38928a5baa9bb8386ddf688feb636e647\\output\\res\\drawable\\abc_vector_test.xml"
+    },
+    {
+        "merged": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\abc_btn_colored_material.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\94ca66c38928a5baa9bb8386ddf688feb636e647\\output\\res\\drawable\\abc_btn_colored_material.xml"
+    },
+    {
+        "merged": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\selector_btn_press_all_top.xml",
+        "source": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\bundles\\debug\\res\\drawable\\selector_btn_press_all_top.xml"
+    },
+    {
+        "merged": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\abc_ic_arrow_drop_right_black_24dp.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\94ca66c38928a5baa9bb8386ddf688feb636e647\\output\\res\\drawable\\abc_ic_arrow_drop_right_black_24dp.xml"
+    },
+    {
+        "merged": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\abc_ic_search_api_material.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\94ca66c38928a5baa9bb8386ddf688feb636e647\\output\\res\\drawable\\abc_ic_search_api_material.xml"
+    },
+    {
+        "merged": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\et_cursor.xml",
+        "source": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\bundles\\debug\\res\\drawable\\et_cursor.xml"
+    },
+    {
+        "merged": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\loading_large.gif",
+        "source": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\bundles\\debug\\res\\drawable\\loading_large.gif"
+    },
+    {
+        "merged": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\design_bottom_navigation_item_background.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\103e555f8c48b11351e94094dd5dde2235640f07\\output\\res\\drawable\\design_bottom_navigation_item_background.xml"
+    },
+    {
+        "merged": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\bg_ios_roundcorner_top.xml",
+        "source": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\bundles\\debug\\res\\drawable\\bg_ios_roundcorner_top.xml"
+    },
+    {
+        "merged": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\bg_ios_roundcorner_progress.xml",
+        "source": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\bundles\\debug\\res\\drawable\\bg_ios_roundcorner_progress.xml"
+    },
+    {
+        "merged": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\abc_item_background_holo_dark.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\94ca66c38928a5baa9bb8386ddf688feb636e647\\output\\res\\drawable\\abc_item_background_holo_dark.xml"
+    },
+    {
+        "merged": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\abc_text_cursor_material.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\94ca66c38928a5baa9bb8386ddf688feb636e647\\output\\res\\drawable\\abc_text_cursor_material.xml"
+    },
+    {
+        "merged": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\selector_btn_press_all.xml",
+        "source": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\bundles\\debug\\res\\drawable\\selector_btn_press_all.xml"
+    },
+    {
+        "merged": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\abc_list_selector_holo_dark.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\94ca66c38928a5baa9bb8386ddf688feb636e647\\output\\res\\drawable\\abc_list_selector_holo_dark.xml"
+    },
+    {
+        "merged": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\navigation_empty_icon.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\103e555f8c48b11351e94094dd5dde2235640f07\\output\\res\\drawable\\navigation_empty_icon.xml"
+    },
+    {
+        "merged": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\abc_cab_background_internal_bg.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\94ca66c38928a5baa9bb8386ddf688feb636e647\\output\\res\\drawable\\abc_cab_background_internal_bg.xml"
+    },
+    {
+        "merged": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\loading_small.gif",
+        "source": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\bundles\\debug\\res\\drawable\\loading_small.gif"
+    },
+    {
+        "merged": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\abc_ic_go_search_api_material.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\94ca66c38928a5baa9bb8386ddf688feb636e647\\output\\res\\drawable\\abc_ic_go_search_api_material.xml"
+    },
+    {
+        "merged": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\edittext_nomal.xml",
+        "source": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\bundles\\debug\\res\\drawable\\edittext_nomal.xml"
+    }
+]

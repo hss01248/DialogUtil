@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:background="@drawable/bg_ios_roundcorner"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/tv_title"
+        android:textSize="17sp"
+        android:textColor="#111111"
+        android:gravity="center"
+        android:text="支持自定义边框圆角、背景透明度、字体大小与色值等。 列表选择框可以接收List与Arrays的数据源，详细见demo"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <ScrollView
+        android:overScrollMode="never"
+        android:scrollbars="none"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="0dp">
+        <TextView
+            android:id="@+id/tv_msg"
+            android:textSize="14sp"
+            android:textColor="#333333"
+            android:gravity="center"
+            android:text="支持自定义边框圆角、背景透明度、字体大小与色值等。 列表选择框可以接收List与Arrays的数据源，详细见demo"
+            android:paddingTop="5dp"
+            android:paddingBottom="15dp"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </ScrollView>
+
+
+    <View
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:background="@android:color/darker_gray"
+        android:layout_height="1px"/>
+
+    <LinearLayout
+        android:id="@+id/ll_container"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:minHeight="48dp"
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/btn_1"
+            android:text="1"
+            android:layout_gravity="center"
+            android:padding="5dp"
+            android:gravity="center"
+            android:textSize="13sp"
+            android:textColor="#444444"
+            android:background="@android:color/transparent"
+            android:layout_width="match_parent"
+            android:minHeight="48dp"
+            android:layout_height="wrap_content"/>
+
+            <View
+                android:id="@+id/line_btn2"
+                android:background="@android:color/darker_gray"
+                android:layout_width="match_parent"
+                android:layout_height="1px"/>
+            <Button
+                android:id="@+id/btn_2"
+                android:text="2"
+                android:layout_gravity="center"
+                android:padding="5dp"
+                android:textSize="13sp"
+                android:textColor="#444444"
+                android:background="@android:color/transparent"
+                android:layout_width="match_parent"
+                android:gravity="center"
+                android:minHeight="48dp"
+                android:layout_height="wrap_content"/>
+
+            <View
+                android:id="@+id/line_btn3"
+                android:background="@android:color/darker_gray"
+                android:layout_width="match_parent"
+                android:layout_height="1px"/>
+            <Button
+                android:layout_gravity="center"
+                android:padding="5dp"
+                android:id="@+id/btn_3"
+                android:text="3"
+                android:gravity="center"
+                android:textSize="13sp"
+                android:textColor="#444444"
+                android:background="@android:color/transparent"
+                android:layout_width="match_parent"
+                android:minHeight="48dp"
+                android:layout_height="wrap_content"/>
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

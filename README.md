@@ -2,191 +2,170 @@
 
 
 # DialogUtil
-material风格(v7支持包中的)，ios风格，自动获取顶层activity,可在任意界面弹出,可在任意线程弹出
+common used dialog with material style ( in support v7)，ios style，get top activity automatically,can invoke show() everywhere (any thread , any window)
 
 [![](https://jitpack.io/v/hss01248/DialogUtil.svg)](https://jitpack.io/#hss01248/DialogUtil)
 
-# 特性
+[中文文档](README-ch.md)
+<br>
+<br>
+any problem or bug, join the qq group to get a quick response:
+<br>
+<br>
+<a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=76d7e8396ae225861d714b7f1bb976e1a06c8a76cc35c532c113e892b2d49ff0"><img border="0" src="http://pub.idqqimg.com/wpa/images/group.png" alt="DialogUtil and Android" title="DialogUtil and Android"></a>
 
-loading对话框和ios风格的dialog传入context和activity均可弹出dialog.
+# important points
 
-样式包括常用的ios风格dialog和meterial design风格的dialog.
-
-自定义样式:可以传入自定义的view,定义好事件,本工具负责显示
-
-考虑了显示内容超多时的滑动和与屏幕的间隙.
-
-
-
-# 更新
-
-1.ios风格的按钮颜色改成ios的蓝色(图中蓝色不正是因为total control 截图后偏色)
-
-2.按钮添加按下的效果
-
-3.增加meterial design的单选和多选,增加ios风格的输入框
-
-4.增加传入自定义的view(此时工具类作为一个壳,view相关数据样式和回调自己实现.)
-
-## 2016-10-20
-
-1.增加转菊花的loading效果
-
-2.bottomsheet 加上listview和gridview,只需要设置图标和文字
-
-参考:
-
-http://blog.csdn.net/qibin0506/article/details/51002241
-http://www.cnblogs.com/warnier-zhang/p/4904296.html
-http://www.jianshu.com/p/21bb14e3be94/comments/1570995  坑
-
-https://github.com/android-cjj/BottomSheets
+* if you do not invoke setActivity(activit), please  invoke show() after in or after the activity onResume,or it may show in previous activity!
+* about BadWindowTokenException,see the blog:[关于dialog,PopupWindow,SoftInputBoard的弹出时机的问题](http://www.jianshu.com/p/bd98cee2854b)
+* if some chinese phone do not show dialog ,please invoke  setActivity(activit)
+* do not abuse loadingdialog:
 
 
 
-## 2016-11-2
-
-1. 修改: 点击半透明背景处,默认动作改成不消失.(outsideTouchable默认值改成false)
-2. 增加: loading对话框--无须对象即可关闭:StyledDialog.dismissLoading()
-3. fix bug: 原先的两个loading对话框第一层api设置cancelable和outsideTouchable无效,如今有效.
-4. 移除对butterknife的依赖
-
-## 2017-2-15
-
-1.添加获取app顶层activity的工具MyActyManager,从此构建dialog时不用再传特定activity,自动去拿顶层activity使用,同时也规避了miui对TYPE_TOAST的种种限制.
-
-2.调整菊花loading的UI
-
-3.简化所有api,取消context引用的传入.
-
-
-
-###  2017-04-06
-
-* 支持任意线程调用
-
-* 支持带进度的dialog,以及进度更新
-
-  ```
-  StyledDialog.buildProgress(CharSequence msg,boolean isHorizontal)
-
-  StyledDialog.updateProgress(Dialog dialog, int progress, int max, CharSequence msg,  boolean isHorizontal)
-  ```
-
-### 2017-04-10
-
-* loading 对话框更新msg:
-```
-    StyledDialog.updateLoadingMsg(String msg)
+> the right usage is :
 
 ```
-### 2017-04-18
-* 添加功能: 在指定的activity上弹出dialog:
+ fist into the page/activity/fragment,use the loadingview inside your layout/xml,there is many statelayout lib,or you can use my: https://github.com/hss01248/PageStateManager
+ refresh a part of the contentView,or click a button to request http,which has no effect on the whole contentview,then you can use the loadingDialog, just like the ajax in web.
 ```
-   .setActivity(MainActivity.this)
+
+# features
+
+* include commo dialogs with material style ( in support v7)，ios style
+* support  custom dialog ,just deliver a view
+
+
+* get the top activity automatically ,so no need to deliver the activity , but you also can  invoke setActivity(activit) if in oncreate()
+* when the content is fullScreen ,it can adjust the margin automatically
+* also can set the height percent and width percent
+* has a shadow backgroud incase of the dimlayer not work,you can also disable it to show your own background in customview
+* chained api, easy to use
+* adapt to phone and tablet,high and low  resolution ratio screen 
+
+
+
+
+# effect pics
+
+ios  style - loading
+
 ```
-### 2017-04-24
-* 适配横屏,平板,以及高低分辨率屏幕
-* 解决原先alertdialog的按钮的样式无法自定义的bug. "取消"按钮默认灰色
-* 转菊花时,背景变透明,不再有变暗
+buildLoading( )
+buildLoading( CharSequence msg)
 
+updateLoadingMsg(final String msg)
+```
 
-# todo
+ ![loading-common](img0/loading-common.jpg)
 
-bottomsheet 图标大小和文字大小的自定义
-ios action sheet 加上标题
-md 单选多选颜色自定义
-md 增加自定义输入框+勾选功能
-所有dialog 增加oncancellistener
-progressdialog改成完全自定义的
-所有dialog : 增加动画的自定义
+android style-loading
 
-选择https://github.com/liangchengcheng/android-loading-dialog中的一些好的效果加进来
+```
+buildMdLoading( )
+buildMdLoading( CharSequence msg) 
 
+updateLoadingMsg(final String msg)
+```
 
-
-
-
-
-
-
-
-
-# 示例图
-
-ios 样式的 loading
-
- ![loading-common](loading-common.jpg)
-
-android 样式的loading
-
-  ![loading](loading.jpg)
+  ![loading](img0/loading.jpg)
 
 ProgressDialog of horizontal
 
- ![progress_h](progress_h.jpg)
+```
+buildProgress( CharSequence msg,boolean isHorizontal)
 
-ProgressDialog of spinner,用文字显示的进度(自动计算):
 
- ![progress_c](progress_c.jpg)
+updateProgress(final Dialog dialog, final int progress, final int max, final CharSequence msg, final boolean isHorizontal)
+```
+
+ ![progress_h](img0/progress_h.jpg)
+
+ProgressDialog of spinner
+
+ ![progress_c](img0/progress_c.jpg)
 
 AlertDialog of appcompat-v7
 
- ![md_alert](md_alert.jpg)
+```
+buildMdAlert( CharSequence title, CharSequence msg, MyDialogListener listener)
+```
+
+ ![md_alert](img0/md_alert.jpg)
+
+
+
+```
+buildMdSingleChoose( CharSequence title, int defaultChosen, CharSequence[] words, MyItemDialogListener listener)
+```
+
+ ![md_single_choose](img0/md_single_choose.jpg)
+
+```
+buildMdMultiChoose( CharSequence title, CharSequence[] words, List<Integer> selectedIndexs, MyDialogListener btnListener)
+```
+
+ ![md_multi_choose](img0/md_multi_choose.jpg)
 
 
 
 
 
- ![md_single_choose](md_single_choose.jpg)
+ios style
+
+```
+buildIosAlert( CharSequence title, CharSequence msg, MyDialogListener listener)
+```
+
+ ![ios_alert](img0/ios_alert.jpg)
 
 
 
- ![md_multi_choose](md_multi_choose.jpg)
+```
+buildIosAlertVertical( CharSequence title, CharSequence msg, MyDialogListener listener) 
+```
+
+ ![ios_alert_v](img0/ios_alert_v.jpg)
+
+```
+buildNormalInput( CharSequence title, CharSequence hint1, CharSequence hint2, CharSequence firstTxt, CharSequence secondTxt, MyDialogListener listener
+```
+
+ ![ios_input](img0/ios_input.jpg)
 
 
 
+```
+buildIosSingleChoose( List<? extends CharSequence> words, MyItemDialogListener listener)
+```
 
+ ![ios_centerlist](img0/ios_centerlist.jpg)
 
-ios风格(含按下效果)
+```
+buildBottomItemDialog( List<? extends CharSequence> words, CharSequence bottomTxt, MyItemDialogListener listener)
+```
 
-
-
- ![ios_alert](ios_alert.jpg)
-
-
-
-
-
- ![ios_alert_v](ios_alert_v.jpg)
-
-
-
- ![ios_input](ios_input.jpg)
-
-
-
-
-
- ![ios_centerlist](ios_centerlist.jpg)
-
-
-
- ![ios_bottom](ios_bottom.jpg)
+ ![ios_bottom](img0/ios_bottom.jpg)
 
 
 
 BottomSheetDialog of design
 
-  ![btnsheet-lv](btnsheet-lv.jpg)
+```
+buildBottomSheetLv(CharSequence title, List datas, CharSequence bottomTxt, MyItemDialogListener listener)
+```
+
+  ![btnsheet-lv](img0/btnsheet-lv.jpg)
 
 
 
 
 
+```
+buildBottomSheetGv( CharSequence title, List datas, CharSequence bottomTxt,int columnsNum ,MyItemDialogListener listener)
+```
 
-
- ![btnsheet-gv](btnsheet-gv.jpg)
+ ![btnsheet-gv](img0/btnsheet-gv.jpg)
 
 
 
@@ -194,7 +173,77 @@ BottomSheetDialog of design
 
 gridview拉出来时:
 
- ![btnsheet-gv-out](btnsheet-gv-out.jpg)
+ ![btnsheet-gv-out](img0/btnsheet-gv-out.jpg)
+
+
+
+ show a custom view:( the demo below contains a webview)
+
+```
+ ViewGroup customView = (ViewGroup) View.inflate(this,R.layout.customview,null);
+final ConfigBean bean = StyledDialog.buildCustom(customView, Gravity.CENTER);
+final Dialog dialog1 =   bean.show();
+```
+
+ ![customview-webview](img0/customview-webview.jpg)
+
+
+
+# screen adapt
+
+![ios_loading](imgs/ios_loading.jpg)
+
+
+
+![md_loading](imgs/md_loading.jpg)
+
+![progress_h](imgs/progress_h.jpg)
+
+![progress_c](imgs/progress_c.jpg)
+
+
+
+![md_alert](imgs/md_alert.jpg)
+
+![md_multi_choose](imgs/md_multi_choose.jpg)
+
+![md_single_chooose](imgs/md_single_chooose.jpg)
+
+
+
+![ios_alert_h](imgs/ios_alert_h.jpg)
+
+
+
+![ios_alert_v](imgs/ios_alert_v.jpg)
+
+
+
+![ios_input](imgs/ios_input.jpg)
+
+
+
+![ios_bottom](imgs/ios_bottom.jpg)
+
+
+
+![ios_centerlist](imgs/ios_centerlist.jpg)
+
+
+
+![md_bottom_list](imgs/md_bottom_list2.jpg)
+
+
+
+![md_bottom_grid](imgs/md_bottom_grid.jpg)
+
+> if do not need the haf transparent layer(by setTransparentBehind(true),or the haf transparent layer(dimlayer) do not funtion well,the shadow effect show as below :
+
+![nodim_1](imgs/nodim_1.jpg)
+
+
+
+![nodim_2](imgs/nodim_2.jpg)
 
 
 
@@ -226,14 +275,14 @@ Add it in your root build.gradle at the end of repositories:
 ```
 lastest release: https://github.com/hss01248/DialogUtil/releases
 
-## 初始化
+## init
 
 ```
-//在Application的oncreate方法里:
-传入context
+//in oncreate() of BaseApplication:
+
 StyledDialog.init(this);
 
-在activity生命周期callback中拿到顶层activity引用:
+get activity instance in ActivityLifecycleCallbacks:
  registerActivityLifecycleCallbacks(new ActivityLifecycleCallbacks() {
             @Override
             public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
@@ -247,7 +296,7 @@ StyledDialog.init(this);
 
             @Override
             public void onActivityResumed(Activity activity) {
-            	//在这里保存顶层activity的引用(内部以软引用实现)
+            	//keep a softReference inside
                 MyActyManager.getInstance().setCurrentActivity(activity);
 
             }
@@ -272,16 +321,15 @@ StyledDialog.init(this);
 
             }
         });
-
 ```
 
-## 示例代码(MainActivity里)
+## demo code( in MainActivity)
 
 ```
-        //使用默认样式时,无须.setxxx:
+        //use default style:
         StyledDialog.buildLoading().show();
         
-        //自定义部分样式时:
+        //set some style:
         StyledDialog.buildMdAlert("title", msg,  new MyDialogListener() {
                     @Override
                     public void onFirst() {
@@ -305,31 +353,88 @@ StyledDialog.init(this);
                         .show();
 ```
 
+# callback
+
+## MyDialogListener
+
+```
+	public abstract void onFirst();//md-sure button
+    public abstract void onSecond();//md-cancel button
+    public void onThird(){}//md-netural button
+
+    public void onCancle(){}
+
+    /**
+     * callback for Input
+     * @param input1
+     * @param input2
+     */
+    public void onGetInput(CharSequence input1,CharSequence input2){
+
+    }
+
+    /**
+     * callback for MdSingleChoose
+     * @param chosen
+     * @param chosenTxt
+     */
+    public void onGetChoose(int chosen,CharSequence chosenTxt){
+
+    }
+
+    /**
+     * callback for MdMultiChoose
+     * @param states
+     */
+    public void onChoosen( List<Integer> selectedIndex, List<CharSequence> selectedStrs,boolean[] states){
+
+    }
+```
+
+## MyItemDialogListener
+
+```
+ /**
+     * for IosSingleChoose,BottomItemDialog
+     * @param text
+     * @param position
+     */
+   public abstract void onItemClick(CharSequence text, int position);
 
 
-# 提供的api
-
-### 各类dialog的初始参数传递和回调:StyledDialog.buildxxx:
-
- ![methodsofstyledialog](methodsofstyledialog.jpg)
-
-
-
-## 自定义样式:setXxx
+    /**
+     * for BottomItemDialog
+     */
+   public void onBottomBtnClick(){}
+```
 
 
 
-![methodsofconfig](methodsofconfig.jpg)
+
+
+# apis
+
+### build different dialogs :StyledDialog.buildxxx:
+
+ ![methodsofstyledialog](img0/methodsofstyledialog.jpg)
+
+
+
+## set custom style:setXxx
+
+
+
+![methodsofconfig](img0/methodsofconfig.jpg)
 
  
 
-## 最后必须调用show(),返回dialog对象
+##  finally ,you must invoke show(),it returns a dialog pbject
 
 
 
 
 
-# 对话框的消失
+# dismiss
 
 ```
 StyledDialog.dismiss(DialogInterface... dialogs);
@@ -337,22 +442,17 @@ StyledDialog.dismiss(DialogInterface... dialogs);
 
 
 
-## 两个loading对话框不需要对象就可以直接dismisss:
+## the loading dialog can be dismissed by call :
 
 ```
 StyledDialog.dismissLoading();
 ```
 
-### progress dialog 的进度更新
+### progress dialog  
 
 ```
 /**
- *  可以在任何线程调用
- * @param dialog 传入show方法返回的对象
- * @param progress
- * @param max
- * @param msg 如果是转圈圈,会将msg变成msg:78%的形式.如果是水平,msg不起作用
- * @param isHorizontal 是水平线状,还是转圈圈
+ *  call anywhere
  */
 public static void updateProgress( Dialog dialog, int progress,  int max,  CharSequence msg,  boolean isHorizontal)
 ```

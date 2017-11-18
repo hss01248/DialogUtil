@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:custom="http://schemas.android.com/apk/res-auto"
+                android:orientation="vertical"
+                android:background="@drawable/bg_toast_loading"
+                android:minWidth="130dp"
+                android:minHeight="100dp"
+
+                android:layout_width="100dp"
+                android:layout_height="100dp">
+    <com.hss01248.dialog.view.GifMovieView
+        android:id="@+id/iv_loading"
+        android:layout_width="30dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:layout_height="30dp"
+        android:onClick="@null"
+        custom:gif="@drawable/loading_large"/>
+   <!-- <com.hss01248.dialog.view.MyIosloadingImageView
+            android:layout_gravity="center_horizontal"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:id="@+id/iv_loading"
+            android:src="@drawable/ios_loading_144"
+            android:layout_width="30dp"
+            android:layout_height="30dp" />-->
+
+    <!--<ProgressBar
+            android:layout_gravity="center_horizontal"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:max="10000"
+            android:indeterminateDrawable="@drawable/shape_ios_loading_center"
+            android:indeterminate="true"
+            android:indeterminateDuration="2000" />-->
+
+
+    <TextView
+        android:id="@+id/loading_msg"
+        android:text="@string/dialogutil_loading"
+        android:textColor="#ffffff"
+        android:layout_marginTop="20dp"
+        android:maxLines="1"
+        android:textSize="12sp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="15dp"
+
+        android:ellipsize="end"
+        android:maxWidth="300dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <!--http://loadingapng.com/-->
+   <!-- <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+
+
+       &lt;!&ndash; <ImageView
+           android:id="@+id/iv_loading"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/loading_large"
+            android:layout_width="25dp"
+            android:layout_height="25dp"/>&ndash;&gt;
+
+        
+    </LinearLayout>-->
+
+</LinearLayout>

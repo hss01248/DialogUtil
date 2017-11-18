@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:gravity="center_horizontal"
+    android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/tv_title"
+        android:padding="10dp"
+        android:text="哈哈哈哈"
+        android:gravity="center"
+        android:background="@color/ios_btntext_blue"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+
+    <TextView
+            android:text="维吾尔文（中国）：values-ug-rCN\n
+
+            中文（中国）：values-zh-rCN\n
+
+            中文（台湾）：values-zh-rTW\n
+
+            中文（香港）：values-zh-rHK\n
+
+            英语（美国）：values-en-rUS\n
+
+            英语（英国）：values-en-rGB\n"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView2" />
+
+    <Button
+            android:text="Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/button4" />
+
+
+</LinearLayout>
