@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+		android:layout_width="match_parent"
+		android:background="@drawable/bg_ios_roundcorner_top"
+		android:layout_height="match_parent">
+	<TextView
+			android:id="@+id/tv_content"
+			android:textColor="@color/dialogutil_ios_btntext_blue"
+			android:text="i am a custom view you can set any view here hahahah hshshhshshshhshhhhhhhhhhhhhhshhhhhhhhhhhhhhhhshhhhhhhhhhhhhhshhhhhhhhhhhhhhhh"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent" />
+	<ImageView
+
+			android:layout_centerHorizontal="true"
+			android:src="@drawable/iosloading004"
+			android:layout_marginTop="30dp"
+			android:layout_marginRight="30dp"
+			android:layout_alignParentRight="true"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content" />
+
+
+</RelativeLayout>

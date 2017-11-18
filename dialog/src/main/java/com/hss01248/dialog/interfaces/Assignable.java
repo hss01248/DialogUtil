@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.view.View;
 
+import com.hss01248.dialog.adapter.SuperLvHolder;
 import com.hss01248.dialog.config.ConfigBean;
 
 import java.util.List;
@@ -49,8 +50,12 @@ public interface Assignable {
 
     ConfigBean assignBottomSheetGv(Context context, CharSequence title, List datas,CharSequence bottomTxt,int columnsNum,MyItemDialogListener listener);
 
+     ConfigBean buildCustomInMd(SuperLvHolder customViewHolder,MyDialogListener btnListener);
 
+     ConfigBean buildCustomInIos(SuperLvHolder customViewHolder,MyDialogListener btnListener);
 
+    ConfigBean buildMdInput(CharSequence title, CharSequence hint1, CharSequence hint2,
+                            CharSequence firstTxt, CharSequence secondTxt, MyDialogListener listener);
 
 
     

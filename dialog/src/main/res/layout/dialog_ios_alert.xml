@@ -7,8 +7,8 @@
     <!-- android:background="@drawable/bg_ios_roundcorner"-->
     <TextView
         android:id="@+id/tv_title"
-        android:textSize="@dimen/title_txt_size"
-        android:textColor="@color/text_title_11"
+        android:textSize="@dimen/dialogutil_title_txt_size"
+        android:textColor="@color/dialogutil_text_title_11"
         android:gravity="center"
         android:text="i am title"
         android:paddingTop="12dp"
@@ -30,13 +30,14 @@
         android:layout_weight="1"
         android:layout_height="0dp">
         <LinearLayout
+                android:id="@+id/ll_container"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView
                 android:id="@+id/tv_msg"
-                android:textSize="@dimen/msg_txt_size"
-                android:textColor="@color/text_msg_33"
+                android:textSize="@dimen/dialogutil_msg_txt_size"
+                android:textColor="@color/dialogutil_text_msg_33"
                 android:gravity="center"
                 android:text="i am msg"
                 android:paddingTop="5dp"
@@ -50,37 +51,27 @@
             <EditText
                 android:layout_marginTop="5dp"
                 android:id="@+id/et_1"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:maxLines="1"
-                android:cursorVisible="true"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp"
-                android:textColorHint="@color/text_gray_light"
-                android:textCursorDrawable="@drawable/et_cursor"
+                 style="@style/dialogutil_md_innput"
                 android:background="@drawable/edittext_nomal"
                 android:layout_marginBottom="15dp"
                 android:layout_width="match_parent"
-                android:textSize="@dimen/input_txt_size"
-                android:textColor="@color/text_input_44"
-                android:layout_height="35dp" />
+                android:layout_height="wrap_content" />
 
             <EditText
                 android:id="@+id/et_2"
-                android:maxLines="1"
-                android:textSize="@dimen/input_txt_size"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp"
-                android:cursorVisible="true"
-                android:textColor="@color/text_input_44"
-                android:textColorHint="@color/text_gray_light"
-                android:textCursorDrawable="@drawable/et_cursor"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
+                style="@style/dialogutil_md_innput"
                 android:background="@drawable/edittext_nomal"
                 android:layout_marginBottom="15dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_width="match_parent"
-                android:layout_height="35dp" />
+                android:layout_height="wrap_content" /><!--35dp-->
 
 
         </LinearLayout>
@@ -91,7 +82,7 @@
     <View
         android:id="@+id/line"
         android:layout_width="match_parent"
-        android:background="@color/line_dd"
+        android:background="@color/dialogutil_line_dd"
         android:layout_height="1px"/>
 
     <LinearLayout
@@ -106,9 +97,10 @@
             android:text="@string/dialogutil_btn_sure"
             android:layout_gravity="center"
             android:padding="5dp"
+            android:textStyle="normal"
             android:gravity="center"
-            android:textSize="@dimen/btn_txt_size"
-            android:textColor="@color/ios_btntext_blue"
+            android:textSize="@dimen/dialogutil_btn_txt_size"
+            android:textColor="@color/dialogutil_ios_btntext_blue"
             android:background="@drawable/selector_btn_press_left_bottom"
             android:layout_width="0dp"
             android:layout_weight="1"
@@ -116,7 +108,7 @@
 
             <View
                 android:id="@+id/line_btn2"
-                android:background="@color/line_dd"
+                android:background="@color/dialogutil_line_dd"
                 android:layout_width="1px"
                 android:layout_height="match_parent"/>
             <Button
@@ -124,9 +116,10 @@
                 android:text="@string/dialogutil_btn_cancel"
                 android:layout_gravity="center"
                 android:padding="5dp"
+                android:textStyle="normal"
                 android:textAllCaps="false"
-                android:textSize="@dimen/btn_txt_size"
-                android:textColor="@color/ios_btntext_blue"
+                android:textSize="@dimen/dialogutil_btn_txt_size"
+                android:textColor="@color/dialogutil_ios_btntext_blue"
                 android:background="@drawable/selector_btn_press_no_corner"
                 android:layout_width="0dp"
                 android:gravity="center"
@@ -136,7 +129,7 @@
 
             <View
                 android:id="@+id/line_btn3"
-                android:background="@color/line_dd"
+                android:background="@color/dialogutil_line_dd"
                 android:layout_width="1px"
                 android:layout_height="match_parent"/>
             <Button
@@ -144,10 +137,11 @@
                 android:padding="5dp"
                 android:id="@+id/btn_3"
                 android:text="@string/dialogutil_btn_cancel"
+                android:textStyle="normal"
                 android:textAllCaps="false"
                 android:gravity="center"
-                android:textSize="@dimen/btn_txt_size"
-                android:textColor="@color/ios_btntext_blue"
+                android:textSize="@dimen/dialogutil_btn_txt_size"
+                android:textColor="@color/dialogutil_ios_btntext_blue"
                 android:background="@drawable/selector_btn_press_right_bottom"
                 android:layout_width="0dp"
                 android:layout_weight="1"
@@ -170,17 +164,17 @@
             android:layout_gravity="center"
             android:padding="5dp"
             android:gravity="center"
-            android:textSize="@dimen/btn_txt_size"
-            android:textColor="@color/ios_btntext_blue"
+            android:textSize="@dimen/dialogutil_btn_txt_size"
+            android:textColor="@color/dialogutil_ios_btntext_blue"
             android:background="@drawable/selector_btn_press_no_corner"
-
+                android:textStyle="normal"
             android:layout_width="match_parent"
             android:minHeight="48dp"
             android:layout_height="wrap_content"/>
 
         <View
             android:id="@+id/line_btn2_vertical"
-            android:background="@color/line_dd"
+            android:background="@color/dialogutil_line_dd"
             android:layout_width="match_parent"
             android:layout_height="1px"/>
         <Button
@@ -188,8 +182,9 @@
             android:text="2"
             android:layout_gravity="center"
             android:padding="5dp"
-            android:textSize="@dimen/btn_txt_size"
-            android:textColor="@color/ios_btntext_blue"
+            android:textStyle="normal"
+            android:textSize="@dimen/dialogutil_btn_txt_size"
+            android:textColor="@color/dialogutil_ios_btntext_blue"
             android:background="@drawable/selector_btn_press_no_corner"
 
             android:layout_width="match_parent"
@@ -199,7 +194,7 @@
 
         <View
             android:id="@+id/line_btn3_vertical"
-            android:background="@color/line_dd"
+            android:background="@color/dialogutil_line_dd"
             android:layout_width="match_parent"
             android:layout_height="1px"/>
         <Button
@@ -207,9 +202,10 @@
             android:padding="5dp"
             android:id="@+id/btn_3_vertical"
             android:text="3"
+                android:textStyle="normal"
             android:gravity="center"
-            android:textSize="@dimen/btn_txt_size"
-            android:textColor="@color/ios_btntext_blue"
+            android:textSize="@dimen/dialogutil_btn_txt_size"
+            android:textColor="@color/dialogutil_ios_btntext_blue"
             android:background="@drawable/selector_btn_press_all_bottom"
 
             android:layout_width="match_parent"

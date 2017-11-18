@@ -11,12 +11,13 @@ import android.widget.RelativeLayout;
 
 import com.hss01248.dialog.R;
 import com.hss01248.dialog.StyledDialog;
+import com.hss01248.dialog.adapter.SuperLvHolder;
 import com.hss01248.dialog.config.ConfigBean;
 
 /**
  * Created by Administrator on 2016/10/9 0009.
  */
-public class IosCenterItemHolder extends SuperHolder {
+public class IosCenterItemHolder extends SuperLvHolder<ConfigBean> {
     public ListView lv;
 
     public IosCenterItemHolder(Context context) {
@@ -27,7 +28,7 @@ public class IosCenterItemHolder extends SuperHolder {
     protected void findViews() {
         lv = (ListView) rootView.findViewById(R.id.lv);
 
-        lv.setDivider(new ColorDrawable(lv.getResources().getColor(R.color.line_dd)));
+        lv.setDivider(new ColorDrawable(lv.getResources().getColor(R.color.dialogutil_line_dd)));
         lv.setDividerHeight(1);
     }
 

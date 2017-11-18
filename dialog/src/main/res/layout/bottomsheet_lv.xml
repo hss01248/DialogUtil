@@ -11,10 +11,10 @@
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
         android:textAllCaps="false"
-        android:text=""
+        android:text="56546546"
         android:textSize="15sp"
         android:gravity="center"
-        android:textColor="@color/text_black"
+        android:textColor="@color/dialogutil_text_black"
         android:layout_height="wrap_content"/>
 
     <!--<ListView
@@ -25,8 +25,8 @@
     <View
         android:id="@+id/view_line_bottom"
         android:layout_width="match_parent"
-        android:background="@color/line_dd"
-        android:layout_height="@dimen/line_1px"/>
+        android:background="@color/dialogutil_line_dd"
+        android:layout_height="@dimen/dialogutil_line_1px"/>
     <TextView
         android:visibility="gone"
         android:id="@+id/tv_bottom"
@@ -37,7 +37,7 @@
         android:paddingBottom="15dp"
         android:text="@string/dialogutil_btn_cancel"
         android:textSize="15sp"
-        android:textColor="@color/text_black_light"
+        android:textColor="@color/dialogutil_text_black_light"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 

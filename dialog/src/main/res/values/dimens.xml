@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <dimen name="round_corner">5dp</dimen>
-    <dimen name="line_1px">1px</dimen>
+    <dimen name="dialogutil_round_corner">5dp</dimen>
+    <dimen name="dialogutil_line_1px">1px</dimen>
 
-    <dimen name="btn_txt_size">14sp</dimen>
-    <dimen name="title_txt_size">17sp</dimen>
-    <dimen name="msg_txt_size">14sp</dimen>
-    <dimen name="item_txt_size">14sp</dimen>
-    <dimen name="input_txt_size">14sp</dimen>
+    <dimen name="dialogutil_btn_txt_size">14sp</dimen>
+    <dimen name="dialogutil_title_txt_size">17sp</dimen>
+    <dimen name="dialogutil_msg_txt_size">14sp</dimen>
+    <dimen name="dialogutil_item_txt_size">14sp</dimen>
+    <dimen name="dialogutil_input_txt_size">14sp</dimen>
 
 
 

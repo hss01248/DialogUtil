@@ -8,7 +8,15 @@
 
                 android:layout_width="100dp"
                 android:layout_height="100dp">
-    <com.hss01248.dialog.view.GifMovieView
+    <ImageView
+            android:id="@+id/iv_loading"
+            android:src="@drawable/ios_loading_center_gif"
+            android:layout_width="30dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:layout_height="30dp" />
+   <!-- <com.hss01248.dialog.view.GifMovieView
         android:id="@+id/iv_loading"
         android:layout_width="30dp"
         android:layout_gravity="center_horizontal"
@@ -16,7 +24,7 @@
         android:layout_marginTop="20dp"
         android:layout_height="30dp"
         android:onClick="@null"
-        custom:gif="@drawable/loading_large"/>
+        custom:gif="@drawable/loading_large"/>-->
    <!-- <com.hss01248.dialog.view.MyIosloadingImageView
             android:layout_gravity="center_horizontal"
             android:layout_centerHorizontal="true"

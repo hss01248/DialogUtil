@@ -16,6 +16,7 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -224,7 +225,8 @@ android:pivotY="50%" />
     @OnClick({R.id.btn_common_progress, R.id.btn_context_progress, R.id.btn_material_alert, R.id.btn_ios_alert,
             R.id.btn_ios_alert_vertical, R.id.btn_ios_bottom_sheet, R.id.btn_ios_center_list,R.id.btn_input,
             R.id.btn_multichoose, R.id.btn_singlechoose,R.id.btn_md_bs,R.id.btn_md_bs_listview,R.id.btn_md_bs_Gridview,
-            R.id.btn_context_progress_h,R.id.btn_context_progress_c,R.id.btn_customview,R.id.btn_dismiss,R.id.btn_test_badToken,R.id.btn_customview2})
+            R.id.btn_context_progress_h,R.id.btn_context_progress_c,R.id.btn_customview,R.id.btn_dismiss,
+        R.id.btn_test_badToken,R.id.btn_customview2,R.id.btn_material_input})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_test_badToken:
@@ -326,12 +328,12 @@ android:pivotY="50%" />
                     //.setWidthPercent(0.90f)
                         .setBtnText("i","b","3")
                     //.setBtnText("i")
-                        .setBtnColor(R.color.colorPrimary,R.color.colorPrimaryDark,R.color.text_black)
+                        .setBtnColor(R.color.colorPrimary,R.color.colorPrimaryDark,R.color.dialogutil_text_black)
                         .show();
 
                 break;
             case R.id.btn_ios_alert:
-                StyledDialog.buildIosAlert( "title", msg,  new MyDialogListener() {
+                StyledDialog.buildIosAlert( "", msg,  new MyDialogListener() {
                     @Override
                     public void onFirst() {
                         showToast("onFirst");
@@ -350,14 +352,17 @@ android:pivotY="50%" />
 
                 })
                     //.setBtnText("sure","cancle","hhhh")
-                    .setBtnText("sure")
+                    .setBtnText("cancel","copy")
+                    .setBtnColor(R.color.dialogutil_text_black,R.color.colorPrimaryDark,0)
+
                     //.setWidthPercent(0.99f)
                     //.setHeightPercent(0.88f)
                     //.setBgRes(R.drawable.leak_canary_icon)
+                    .setCustomContentHolder(new CustomContentHolder(this))
                     .show();
                 break;
             case R.id.btn_ios_alert_vertical:
-                StyledDialog.buildIosAlertVertical( "title", msg,  new MyDialogListener() {
+                StyledDialog.buildIosAlertVertical( "titlelll", msg,  new MyDialogListener() {
                     @Override
                     public void onFirst() {
                         showToast("onFirst");
@@ -448,7 +453,8 @@ android:pivotY="50%" />
 
                 break;
             case R.id.btn_input:
-               StyledDialog.buildNormalInput("登录", "请输入用户名", "请输入密码", "登录", "取消",  new MyDialogListener() {
+               StyledDialog.buildNormalInput("登录", "请输入用户名", "请输入密码",
+                   "登录", "取消",  new MyDialogListener() {
                    @Override
                    public void onFirst() {
 
@@ -460,13 +466,54 @@ android:pivotY="50%" />
                    }
 
                    @Override
+                   public boolean onInputValid(CharSequence input1, CharSequence input2, EditText editText1, EditText editText2) {
+                       showToast("input1--input2:"+input1+"--"+input2 +"is not accepted!");
+                       return false;
+                   }
+
+                   @Override
                    public void onGetInput(CharSequence input1, CharSequence input2) {
                        super.onGetInput(input1, input2);
                        showToast("input1:"+ input1 +"--input2:"+input2);
                    }
-               }).setCancelable(true,true).show();
+               })
+                   .setInput2HideAsPassword(false)
+                   .setCancelable(true,true)
+                   .show();
 
                 break;
+
+            case R.id.btn_material_input:
+                StyledDialog.buildMdInput("登录", "fefe", "请输入密码",
+                    "登录", "取消",  new MyDialogListener() {
+                        @Override
+                        public void onFirst() {
+
+                        }
+
+                        @Override
+                        public void onSecond() {
+
+                        }
+
+                        @Override
+                        public boolean onInputValid(CharSequence input1, CharSequence input2, EditText editText1, EditText editText2) {
+                            showToast("input1--input2:"+input1+"--"+input2 +"is not accepted!");
+                            return false;
+                        }
+
+                        @Override
+                        public void onGetInput(CharSequence input1, CharSequence input2) {
+                            super.onGetInput(input1, input2);
+                            showToast("input1:"+ input1 +"--input2:"+input2);
+                        }
+                    })
+                    .setInput2HideAsPassword(true)
+                    .setCancelable(true,true)
+                    .show();
+
+                break;
+
             case R.id.btn_multichoose:
                 String[] words = new String[]{"12","78","45","89","88","00"};
 
@@ -603,14 +650,12 @@ android:pivotY="50%" />
                 datas2.add(new BottomSheetBean(R.mipmap.ic_launcher,"oooooppp"));
 
 
-
-
-                StyledDialog.buildBottomSheetGv( "  ", datas2, "this is cancle button",4, new MyItemDialogListener() {
+                StyledDialog.buildBottomSheetGv( "", datas2, "this is cancle button",4, new MyItemDialogListener() {
                     @Override
                     public void onItemClick(CharSequence text, int position) {
                         showToast(text+"---"+position);
                     }
-                }).show();
+                }).setHasBehaviour(false).show();
                 break;
             case R.id.btn_customview:
                 ViewGroup customView = (ViewGroup) View.inflate(this,R.layout.customview,null);

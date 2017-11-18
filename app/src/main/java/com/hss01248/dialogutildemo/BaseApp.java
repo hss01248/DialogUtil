@@ -5,7 +5,7 @@ import android.app.Application;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.hss01248.dialog.MyActyManager;
+import com.hss01248.dialog.ActivityStackManager;
 import com.hss01248.dialog.StyledDialog;
 import com.orhanobut.logger.LogPrintStyle;
 import com.orhanobut.logger.Logger;
@@ -43,6 +43,7 @@ public class BaseApp extends Application {
         registerActivityLifecycleCallbacks(new ActivityLifecycleCallbacks() {
             @Override
             public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
+                ActivityStackManager.getInstance().addActivity(activity);
 
             }
 
@@ -53,9 +54,6 @@ public class BaseApp extends Application {
 
             @Override
             public void onActivityResumed(Activity activity) {
-                MyActyManager.getInstance().setCurrentActivity(activity);
-
-
             }
 
             @Override
@@ -75,7 +73,7 @@ public class BaseApp extends Application {
 
             @Override
             public void onActivityDestroyed(Activity activity) {
-
+                ActivityStackManager.getInstance().removeActivity(activity);
             }
         });
     }

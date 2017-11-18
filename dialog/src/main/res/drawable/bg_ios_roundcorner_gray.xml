@@ -3,6 +3,6 @@
     android:shape="rectangle">
 
     <corners android:radius="8dp"/>
-    <solid android:color="@color/ios_btn_pressed"/>
+    <solid android:color="@color/dialogutil_ios_btn_pressed"/>
 
 </shape>

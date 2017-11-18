@@ -28,17 +28,21 @@ import android.widget.Button;
 import android.widget.CheckedTextView;
 import android.widget.ListView;
 
+import com.hss01248.dialog.adapter.SuperLvHolder;
 import com.hss01248.dialog.config.ConfigBean;
 import com.hss01248.dialog.config.DefaultConfig;
 import com.hss01248.dialog.view.IosAlertDialogHolder;
-
-
-import static com.hss01248.dialog.StyledDialog.context;
 
 /**
  * Created by Administrator on 2016/10/9 0009.
  */
 public class Tool {
+
+    public static Handler getMainHandler() {
+        return mainHandler;
+    }
+
+    private static Handler mainHandler;
 
     /**
      * 解决badtoken问题,一劳永逸
@@ -72,13 +76,8 @@ public class Tool {
                 .addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
                     @Override
                     public void onGlobalLayout() {
-
-                        doIfIsInput(bean, new MyRunnable<IosAlertDialogHolder>() {
-                            @Override
-                            public void run(IosAlertDialogHolder iosAlertDialogHolder) {
-                                iosAlertDialogHolder.showKeyBorad();
-                            }
-                        });
+                        showSoftKeyBoardDelayed(bean.needSoftKeyboard,bean.viewHolder);
+                        showSoftKeyBoardDelayed(bean.needSoftKeyboard,bean.customContentHolder);
                         adjustWH(dialog,bean);
                         dialog.getWindow().getDecorView().getViewTreeObserver().removeGlobalOnLayoutListener(this);
                     }
@@ -89,20 +88,39 @@ public class Tool {
         void run(T t);
     }
 
-    public static void doIfIsInput(ConfigBean bean, final MyRunnable<IosAlertDialogHolder> runnable) {
-        if(bean.type == DefaultConfig.TYPE_IOS_INPUT){
-            if (bean.viewHolder instanceof IosAlertDialogHolder){
-                final IosAlertDialogHolder holder = (IosAlertDialogHolder) bean.viewHolder;
-                new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        runnable.run(holder);
-                    }
-                },500);
-
-            }
+    public static void runOnUIThread(Runnable runnable){
+        if(mainHandler ==null){
+            mainHandler = new Handler(Looper.getMainLooper());
         }
+        mainHandler.post(runnable);
     }
+
+    public static void runOnUIThreadDelayed(Runnable runnable){
+        if(mainHandler ==null){
+            mainHandler = new Handler(Looper.getMainLooper());
+        }
+        mainHandler.postDelayed(runnable,500);
+    }
+
+    public static void showSoftKeyBoardDelayed(boolean sholudShouldKeyBoard,final SuperLvHolder holder){
+        if(!sholudShouldKeyBoard){
+            return;
+        }
+        if(holder ==null){
+            return;
+        }
+        if(mainHandler ==null){
+            mainHandler = new Handler(Looper.getMainLooper());
+        }
+        mainHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                holder.showKeyBoard();
+            }
+        }, 500);
+    }
+
+
 
 
 
@@ -136,7 +154,7 @@ public class Tool {
             }
             if (bean.btn2Color > 0 )
                 if(bean.btn2Color == DefaultConfig.iosBtnColor ){
-                    btnNegative.setTextColor(getColor(bean.context,R.color.text_gray));
+                    btnNegative.setTextColor(getColor(bean.context,R.color.dialogutil_text_gray));
                 }else {
                     btnNegative.setTextColor(getColor(bean.context,bean.btn2Color));
                 }
@@ -162,26 +180,51 @@ public class Tool {
     }
 
     public static ConfigBean fixContext(ConfigBean bean){
-        if (bean.context instanceof Activity){
-            Activity activity1 = (Activity) bean.context;
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-                if (!activity1.isDestroyed()){
-                    return bean;
-                }
-            }else {
-                return bean;
-            }
-        }
-        Activity activity = MyActyManager.getInstance().getCurrentActivity();
-        if(activity!=null){
-            bean.context = activity;
-            return bean;
-        }
+        Activity activity1 = null;
 
-        if (bean.context == null){
-            bean.context = context;
+        if(!(bean.context instanceof  Activity)){
+            Activity activity = ActivityStackManager.getInstance().getTopActivity();
+            if(isUsable(activity)){
+                activity1 = activity;
+
+            }
+        }else {
+            Activity activity = (Activity) bean.context;
+           if(isUsable(activity)){
+               activity1 = activity;
+           }
+        }
+        if(activity1 !=null){
+            bean.context = activity1;
+        }else {
+            bean.context = StyledDialog.context;
         }
         return bean;
+    }
+
+    public static boolean isUsable(Activity activity) {
+        if(activity ==null){
+            return false;
+        }
+
+        if(activity.isFinishing()){
+            return false;
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            if (activity.isDestroyed()){
+                return false;
+            }
+        }
+
+        //是否attached
+        /*if(activity.getWindowManager() ==null){
+            return false;
+        }
+        if(!activity.getWindow().isActive()){
+            return false;
+        }*/
+
+        return true;
     }
 
     public static ConfigBean newCustomDialog(ConfigBean bean){
@@ -247,7 +290,7 @@ public class Tool {
         Window window = dialog.getWindow();
         window.setGravity(bean.gravity);
         if(bean.context instanceof Activity){
-
+            setHomeKeyListener(window,bean);
         }else {
             window.setType(WindowManager.LayoutParams.TYPE_TOAST);
             WindowManager.LayoutParams params = window.getAttributes();
@@ -288,7 +331,7 @@ public class Tool {
 
     }
 
-    private  static void setHomeKeyListener(Window window, final ConfigBean bean){
+    private  static void setHomeKeyListener(final Window window, final ConfigBean bean){
         //在创建View时注册Receiver
         IntentFilter homeFilter = new IntentFilter(Intent.ACTION_CLOSE_SYSTEM_DIALOGS);
         bean.context.registerReceiver(new BroadcastReceiver() {
@@ -303,7 +346,13 @@ public class Tool {
                     String reason = intent.getStringExtra(SYSTEM_DIALOG_REASON_KEY);
                     if (reason != null && reason.equals(SYSTEM_DIALOG_REASON_HOME_KEY)) {
                         // 处理自己的逻辑
-                        StyledDialog.dismiss(bean.alertDialog,bean.dialog);
+                        if(bean.type == DefaultConfig.TYPE_IOS_INPUT){
+                            hideKeyBoard(window);
+                        }
+                        if(!(bean.context instanceof Activity)){
+                            StyledDialog.dismiss(bean.alertDialog,bean.dialog);
+                        }
+
                         context.unregisterReceiver(this);
                     }
                 }
@@ -336,7 +385,7 @@ public class Tool {
      */
     private static void setBg(ConfigBean bean) {
         //no need to modify the background
-        if(bean.type == DefaultConfig.TYPE_BOTTOM_SHEET_GRID
+        if((bean.type == DefaultConfig.TYPE_BOTTOM_SHEET_GRID && bean.hasBehaviour)
             || bean.type == DefaultConfig.TYPE_BOTTOM_SHEET_LIST
             || bean.type == DefaultConfig.TYPE_BOTTOM_SHEET_CUSTOM
             || bean.type == DefaultConfig.TYPE_PROGRESS){
@@ -359,9 +408,11 @@ public class Tool {
 
             }
         }else {
-             if(bean.type == DefaultConfig.TYPE_IOS_LOADING){//转菊花时,背景透明
+             if(bean.type == DefaultConfig.TYPE_IOS_LOADING  ){//转菊花时,背景透明
                 bean.dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-            }else {
+            }else if((bean.type == DefaultConfig.TYPE_BOTTOM_SHEET_GRID && !bean.hasBehaviour)){
+                 bean.dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.WHITE));
+             }else {
                 if(bean.useTheShadowBg){
                     bean.dialog.getWindow().setBackgroundDrawableResource(R.drawable.shadow);
                 }else {
@@ -479,9 +530,10 @@ public class Tool {
             heightRatio = bean.heightPercent;
         }
 
-        if(istheTypeOfNotAdjust(bean.type)){
+        if(istheTypeOfNotAdjust(bean)){
             /*wl.width = ViewGroup.LayoutParams.WRAP_CONTENT;
             wl.height = ViewGroup.LayoutParams.WRAP_CONTENT;*/
+
         }else {
            // rootView.setPadding(0,30,0,30);
             wl.width = (int) (width * widthRatio);//stretch when the content is not enough,margin when the content is full fill the screen
@@ -490,21 +542,26 @@ public class Tool {
                 wl.height = (int) (height* heightRatio);
             }
 
+            if(bean.type == DefaultConfig.TYPE_BOTTOM_SHEET_GRID && !bean.hasBehaviour){
+                wl.height =measuredHeight;
+            }
+
            // }
         }
 
         dialog.onWindowAttributesChanged(wl);
     }
 
-    private static boolean istheTypeOfNotAdjust(int type) {
-        switch (type){
+    private static boolean istheTypeOfNotAdjust(ConfigBean bean) {
+        switch (bean.type){
             case DefaultConfig.TYPE_IOS_LOADING:
             case DefaultConfig.TYPE_PROGRESS:
             case DefaultConfig.TYPE_BOTTOM_SHEET_CUSTOM:
-            case DefaultConfig.TYPE_BOTTOM_SHEET_GRID:
             case DefaultConfig.TYPE_BOTTOM_SHEET_LIST:
            // case DefaultConfig.TYPE_CUSTOM_VIEW:
                 return true;
+           case DefaultConfig.TYPE_BOTTOM_SHEET_GRID:
+               return bean.hasBehaviour;
             default:
                 return false;
         }
@@ -600,7 +657,14 @@ public class Tool {
         if (context ==null){
             context = StyledDialog.context;
         }
-       return context.getResources().getColor(colorRes);
+        try {
+            int color =  context.getResources().getColor(colorRes);
+            return color;
+        }catch (Exception e){
+            e.printStackTrace();
+            return Color.TRANSPARENT;
+        }
+
 
     }
 
@@ -668,9 +732,27 @@ public class Tool {
         imm.showSoftInput(view,InputMethodManager.SHOW_FORCED);
     }
 
+    public static void hideKeyBorad(ConfigBean bean){
+        if(!bean.needSoftKeyboard){
+            return;
+        }
+        if(bean.viewHolder !=null){
+            bean.viewHolder.hideKeyBoard();
+        }
+        if(bean.customContentHolder !=null){
+            bean.customContentHolder.hideKeyBoard();
+        }
+    }
+
+
+
     public static void hideKeyBoard(View view){
         InputMethodManager imm = (InputMethodManager) StyledDialog.context.getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(view.getWindowToken(), 0); //强制隐藏键盘
+    }
+    public static void hideKeyBoard(Window window){
+        InputMethodManager imm = (InputMethodManager) StyledDialog.context.getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(window.getDecorView().getWindowToken(), 0); //强制隐藏键盘
     }
 
 

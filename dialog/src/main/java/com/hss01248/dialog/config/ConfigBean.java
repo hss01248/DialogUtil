@@ -14,12 +14,13 @@ import android.view.View;
 import com.hss01248.dialog.StyledDialog;
 import com.hss01248.dialog.Tool;
 import com.hss01248.dialog.adapter.SuperLvAdapter;
+import com.hss01248.dialog.adapter.SuperLvHolder;
 import com.hss01248.dialog.bottomsheet.BottomSheetBean;
+import com.hss01248.dialog.bottomsheet.BottomSheetStyle;
 import com.hss01248.dialog.interfaces.MyDialogBuilder;
 import com.hss01248.dialog.interfaces.MyDialogListener;
 import com.hss01248.dialog.interfaces.MyItemDialogListener;
 import com.hss01248.dialog.interfaces.Styleable;
-import com.hss01248.dialog.view.SuperHolder;
 
 import java.util.List;
 import java.util.Map;
@@ -34,7 +35,7 @@ public class ConfigBean extends MyDialogBuilder implements Styleable {
     public Context context;
     public boolean isVertical;
 
-    public SuperHolder viewHolder;
+    public SuperLvHolder viewHolder;
 
     public boolean isProgressHorzontal;
 
@@ -50,6 +51,49 @@ public class ConfigBean extends MyDialogBuilder implements Styleable {
 
     public CharSequence hint1;
     public CharSequence hint2;
+
+
+    public boolean hasBehaviour  = false;
+
+    public ConfigBean setNeedSoftKeyboard(boolean needSoftKeyboard) {
+        this.needSoftKeyboard = needSoftKeyboard;
+        return this;
+    }
+
+    public boolean needSoftKeyboard;
+
+    public ConfigBean setInput2HideAsPassword(boolean input2HideAsPassword) {
+        isInput2HideAsPassword = input2HideAsPassword;
+        return this;
+    }
+
+    /**
+     * 控制input类dialog中第二个框是否用*号
+     */
+    public boolean isInput2HideAsPassword = true;
+    public BottomSheetStyle bottomSheetStyle;
+
+    public ConfigBean setBottomSheetStyle(BottomSheetStyle bottomSheetStyle){
+        this.bottomSheetStyle = bottomSheetStyle;
+        return this;
+    }
+
+    public SuperLvHolder customContentHolder;
+    public ConfigBean setCustomContentHolder(SuperLvHolder holder){
+        this.customContentHolder = holder;
+        return this;
+    }
+
+
+    /**
+     * 只用于bottom_gridview和bottom_listview两种
+     * 控制是否采用
+     * @param hasBehaviour true:BottomSheetDialog  false: 采用普通dialog,无Behaviour
+     */
+    public ConfigBean setHasBehaviour(boolean hasBehaviour){
+        this.hasBehaviour = hasBehaviour;
+        return this;
+    }
 
 
 

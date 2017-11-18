@@ -5,6 +5,7 @@ import android.content.Context;
 import android.view.Gravity;
 import android.view.View;
 
+import com.hss01248.dialog.adapter.SuperLvHolder;
 import com.hss01248.dialog.config.ConfigBean;
 import com.hss01248.dialog.config.DefaultConfig;
 import com.hss01248.dialog.interfaces.Assignable;
@@ -245,6 +246,38 @@ public class DialogAssigner implements Assignable {
         bean.itemListener = listener;
         bean.gridColumns = columnsNum;
         bean.type = DefaultConfig.TYPE_BOTTOM_SHEET_GRID;
+        return bean;
+    }
+
+    @Override
+    public ConfigBean buildCustomInMd(SuperLvHolder customViewHolder,MyDialogListener btnListener) {
+        ConfigBean bean = new ConfigBean();
+        bean.type = DefaultConfig.TYPE_MD_ALERT;
+        bean.customContentHolder = customViewHolder;
+        bean.listener = btnListener;
+        return bean;
+    }
+
+    @Override
+    public ConfigBean buildCustomInIos(SuperLvHolder customViewHolder,MyDialogListener btnListener) {
+        ConfigBean bean = new ConfigBean();
+        bean.type = DefaultConfig.TYPE_IOS_HORIZONTAL;
+        bean.customContentHolder = customViewHolder;
+        bean.listener = btnListener;
+        return bean;
+    }
+
+    @Override
+    public ConfigBean buildMdInput(CharSequence title, CharSequence hint1, CharSequence hint2, CharSequence firstTxt, CharSequence secondTxt, MyDialogListener listener) {
+        ConfigBean bean = new ConfigBean();
+        bean.type = DefaultConfig.TYPE_MD_INPUT;
+        bean.listener = listener;
+        bean.title = title;
+        bean.hint1 = hint1;
+        bean.hint2 = hint2;
+        bean.text1 = firstTxt;
+        bean.text2 = secondTxt;
+        //bean.viewHolder = new MdInputHolder(ActivityStackManager.getInstance().getTopActivity());
         return bean;
     }
 

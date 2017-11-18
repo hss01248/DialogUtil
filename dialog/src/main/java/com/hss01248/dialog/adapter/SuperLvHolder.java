@@ -14,14 +14,17 @@ import java.util.List;
 public abstract class SuperLvHolder<T> {
     public View rootView;
 
-    public SuperLvHolder(){
+    /*public SuperLvHolder(){
 
-    }
+    }*/
 
     public SuperLvHolder(Context context){
         rootView = View.inflate(context,setLayoutRes(),null);
         //ButterKnife.bind(this,rootView);
+        findViews();
     }
+
+    protected abstract void findViews();
 
     protected abstract  @LayoutRes  int setLayoutRes();
 
@@ -31,6 +34,14 @@ public abstract class SuperLvHolder<T> {
      * @param bean
      */
     public  abstract void assingDatasAndEvents(Context context, T bean);
+
+    public void showKeyBoard(){
+
+    }
+
+    public void hideKeyBoard(){
+
+    }
 
     /**
      * 如果有需要，才实现这个方法

@@ -44,14 +44,14 @@
 
 <View android:layout_width="match_parent"
     android:layout_height="1px"
-    android:background="@color/line_dd"/>
+    android:background="@color/dialogutil_line_dd"/>
     <Button
         android:id="@+id/btn_bottom"
         android:background="@drawable/bg_ios_roundcorner_bottom"
         android:textAllCaps="false"
         android:text="@string/dialogutil_btn_cancel"
-        android:textSize="@dimen/btn_txt_size"
-        android:textColor="@color/ios_btntext_blue"
+        android:textSize="@dimen/dialogutil_btn_txt_size"
+        android:textColor="@color/dialogutil_ios_btntext_blue"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 

@@ -48,4 +48,35 @@ public class ScreenUtil {
     public static WindowManager getWindowManager() {
         return (WindowManager) StyledDialog.context.getSystemService(Context.WINDOW_SERVICE);
     }
+
+    public static int px2dip( float pxValue) {
+        final float scale = StyledDialog.context.getResources().getDisplayMetrics().density;
+        return (int) (pxValue / scale + 0.5f);
+    }
+
+    public static int dip2px( float dipValue) {
+        final float scale = StyledDialog.context.getResources().getDisplayMetrics().density;
+        return (int) (dipValue * scale + 0.5f);
+    }
+
+    /**
+     * 将sp值转换为px值，保证文字大小不变
+     *
+     * @param spValue
+     * @param fontScale（DisplayMetrics类中属性scaledDensity）
+     * @return
+     */
+    private static float sp2px(float spValue, float fontScale) {
+        return  (spValue * fontScale + 0.5f);
+    }
+    /**
+     * 将sp值转换为px值，保证文字大小不变
+     *
+
+     * @return
+     */
+    public static float sp2px(float spValue) {
+        float scale = StyledDialog.context.getResources().getDisplayMetrics().density;
+        return  sp2px( spValue,  scale);
+    }
 }
