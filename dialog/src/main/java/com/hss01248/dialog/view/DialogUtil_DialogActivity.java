@@ -24,17 +24,6 @@ public class DialogUtil_DialogActivity extends Activity {
 
     public void show(ConfigBean bean){
         this.bean = bean;
-       /* View view = null;
-        if(bean.viewHolder !=null){
-            view = bean.viewHolder.rootView;
-        }else if(bean.customContentHolder !=null){
-            view = bean.customContentHolder.rootView;
-        }else if(bean.customView !=null){
-            view = bean.customView;
-        }
-        if(view!=null){
-            setContentView(view);
-        }*/
         View view = null;
         if(bean.dialog !=null){
             view =bean.dialog.getWindow().getDecorView();
@@ -43,8 +32,9 @@ public class DialogUtil_DialogActivity extends Activity {
         }
         if(view!=null){
             setContentView(view);
+        }else {
+            finish();
         }
-
     }
 
     @Override

@@ -56,12 +56,9 @@ public class ConfigBean extends MyDialogBuilder implements Styleable {
     public CharSequence hint1;
     public CharSequence hint2;
 
-    public boolean showAsActivity = true;
+    public boolean showAsActivity ;
 
-    public ConfigBean setShowAsActivity(boolean showAsActivity) {
-        this.showAsActivity = showAsActivity;
-        return this;
-    }
+
 
 
     public boolean hasBehaviour  = false;
@@ -367,12 +364,11 @@ public class ConfigBean extends MyDialogBuilder implements Styleable {
         return this;
     }
 
-    private void showAsActivity(){
+    private void showAsActivityNow(){
         Activity activity = ActivityStackManager.getInstance().getTopActivity();
         if(activity!=null){
             Intent intent = new Intent(activity, DialogUtil_DialogActivity.class);
             activity.startActivity(intent);
-
             showViewWhenActivityIsReady();
 
         }
@@ -394,24 +390,22 @@ public class ConfigBean extends MyDialogBuilder implements Styleable {
         },300);
     }
 
+    public void showAsActivity() {
+        this.showAsActivity = true;
+        show();
+    }
+
     @Override
     public Dialog show() {
 
-        //Build dialog by tyle :
 
-
-
-
-
-        //内部保存loadingdialog对象
         if(showAsActivity){
-            showAsActivity();
+            showAsActivityNow();
             return null;
         }
-
+//Build dialog by tyle :
+        //内部保存loadingdialog对象
         buildByType(this);
-
-
         if(type ==DefaultConfig.TYPE_PROGRESS){
 
         }
