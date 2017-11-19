@@ -16,4 +16,10 @@
     <color name="dialogutil_text_black">#333333</color>
     <color name="dialogutil_text_black_light" >#666666</color>
     <color name="dialogutil_text_black_lighter" >#999999</color>
+
+    <color name="card_background">#ffffff</color>
+    <color name="card_shadow">#10000000</color>
+    <color name="lite_blue">#ff359ff2</color>
+    <color name="window_background">#00000000</color>
+    <color name="black_de">#DE000000</color>
 </resources>

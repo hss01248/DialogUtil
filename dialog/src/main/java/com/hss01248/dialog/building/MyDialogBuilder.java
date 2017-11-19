@@ -1,6 +1,7 @@
-package com.hss01248.dialog.interfaces;
+package com.hss01248.dialog.building;
 
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -33,6 +34,7 @@ import com.hss01248.dialog.bottomsheet.BsGvHolder;
 import com.hss01248.dialog.bottomsheet.BsLvHolder;
 import com.hss01248.dialog.config.ConfigBean;
 import com.hss01248.dialog.config.DefaultConfig;
+import com.hss01248.dialog.material.MaterialDialogHolder;
 import com.hss01248.dialog.view.IosActionSheetHolder;
 import com.hss01248.dialog.view.IosAlertDialogHolder;
 import com.hss01248.dialog.view.IosCenterItemHolder;
@@ -61,13 +63,28 @@ public  class MyDialogBuilder {
                break;
            case DefaultConfig.TYPE_MD_ALERT:
            case DefaultConfig.TYPE_MD_INPUT:
-               buildMdAlert(bean);
+               if(bean.context instanceof Activity && !bean.showAsActivity){
+                   buildMdAlert(bean);
+               }else {
+                   buildMyMd(bean);
+               }
+
                break;
            case DefaultConfig.TYPE_MD_SINGLE_CHOOSE:
-               buildMdSingleChoose(bean);
+               if(bean.context instanceof Activity && !bean.showAsActivity){
+                   buildMdSingleChoose(bean);
+               }else {
+                   buildMyMd(bean);
+               }
+
                break;
            case DefaultConfig.TYPE_MD_MULTI_CHOOSE:
-               buildMdMultiChoose(bean);
+               if(bean.context instanceof Activity && !bean.showAsActivity){
+                   buildMdMultiChoose(bean);
+               }else {
+                   buildMyMd(bean);
+               }
+
                break;
            case DefaultConfig.TYPE_IOS_HORIZONTAL:
                Tool.newCustomDialog(bean);
@@ -132,6 +149,15 @@ public  class MyDialogBuilder {
        Tool.adjustStyle(bean);
        return bean;
    }
+
+    private void buildMyMd(ConfigBean bean) {
+        Tool.newCustomDialog(bean);
+        MaterialDialogHolder holder = new MaterialDialogHolder(bean.context);
+        bean.viewHolder = holder;
+        holder.assingDatasAndEvents(bean.context,bean);
+        bean.dialog.setContentView(holder.rootView);
+    }
+
 
     private void buildProgress(ConfigBean bean) {
         ProgressDialog dialog = new ProgressDialog(bean.context);

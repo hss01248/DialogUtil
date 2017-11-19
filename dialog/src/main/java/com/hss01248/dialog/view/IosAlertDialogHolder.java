@@ -159,24 +159,24 @@ public class IosAlertDialogHolder extends SuperLvHolder<ConfigBean> {
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                boolean needDismiss = true;
+
                 if(bean.type == DefaultConfig.TYPE_IOS_INPUT){
-                    needDismiss =  bean.listener.onInputValid(et1.getText().toString().trim(),et2.getText().toString().trim(),et1,et2);
+                  boolean  needDismiss =  bean.listener.onInputValid(et1.getText().toString().trim(),et2.getText().toString().trim(),et1,et2);
+                  if(!needDismiss){
+                      return;
+                  }
+                    bean.listener.onGetInput(et1.getText().toString().trim(),et2.getText().toString().trim());
                 }
-                if(!needDismiss){
-                    return;
-                }
-                hideKeyBoard();
                 Tool.dismiss(bean);
                 bean.listener.onFirst();
-                bean.listener.onGetInput(et1.getText().toString().trim(),et2.getText().toString().trim());
+
             }
         });
 
         btn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                hideKeyBoard();
+
                 Tool.dismiss(bean);
                 bean.listener.onSecond();
             }
@@ -185,7 +185,6 @@ public class IosAlertDialogHolder extends SuperLvHolder<ConfigBean> {
         btn3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                hideKeyBoard();
                 Tool.dismiss(bean);
                 bean.listener.onThird();
             }
@@ -196,13 +195,16 @@ public class IosAlertDialogHolder extends SuperLvHolder<ConfigBean> {
         btn1Vertical.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                if(bean.type == DefaultConfig.TYPE_IOS_INPUT){
+                    boolean  needDismiss =  bean.listener.onInputValid(et1.getText().toString().trim(),et2.getText().toString().trim(),et1,et2);
+                    if(!needDismiss){
+                        return;
+                    }
+                    bean.listener.onGetInput(et1.getText().toString().trim(),et2.getText().toString().trim());
+                }
                 Tool.dismiss(bean);
                 bean.listener.onFirst();
-
-                bean.listener.onGetInput(et1.getText().toString().trim(),et2.getText().toString().trim());
-
-
-
             }
         });
 

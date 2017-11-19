@@ -6,12 +6,14 @@ import android.view.Gravity;
 import android.view.View;
 
 import com.hss01248.dialog.adapter.SuperLvHolder;
+import com.hss01248.dialog.config.ChooseBean;
 import com.hss01248.dialog.config.ConfigBean;
 import com.hss01248.dialog.config.DefaultConfig;
 import com.hss01248.dialog.interfaces.Assignable;
 import com.hss01248.dialog.interfaces.MyDialogListener;
 import com.hss01248.dialog.interfaces.MyItemDialogListener;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -93,6 +95,18 @@ public class DialogAssigner implements Assignable {
         bean.text1 = "";
         bean.text2 = "";
         bean.text3 = "";
+        bean.chooseBeans = new ArrayList<>(words.length);
+        for (int i = 0; i < words.length; i++) {
+            ChooseBean chooseBean = new ChooseBean();
+            if(defaultChosen ==i){
+                chooseBean.choosen = true;
+            }else {
+                chooseBean.choosen = false;
+            }
+            chooseBean.txt = words[i];
+            bean.chooseBeans.add(chooseBean);
+        }
+
         return bean;
     }
 
@@ -111,6 +125,18 @@ public class DialogAssigner implements Assignable {
         bean.btn1Color = DefaultConfig.mdBtnColor;
         bean.btn2Color = DefaultConfig.mdBtnColor;
         bean.btn3Color = DefaultConfig.mdBtnColor;
+
+        bean.chooseBeans = new ArrayList<>(words.length);
+        for (int i = 0; i < words.length; i++) {
+            ChooseBean chooseBean = new ChooseBean();
+            if(checkedItems[i]){
+                chooseBean.choosen = true;
+            }else {
+                chooseBean.choosen = false;
+            }
+            chooseBean.txt = words[i];
+            bean.chooseBeans.add(chooseBean);
+        }
 
 
         return bean;

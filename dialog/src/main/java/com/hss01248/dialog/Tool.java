@@ -186,8 +186,7 @@ public class Tool {
                         bean.listener.onGetInput(holder.getTxt1(),holder.getTxt2());
                     }
                     bean.listener.onFirst();
-                    Tool.hideKeyBorad(bean);
-                    bean.alertDialog.dismiss();
+                    dismiss(bean);
                 }
             });
         }

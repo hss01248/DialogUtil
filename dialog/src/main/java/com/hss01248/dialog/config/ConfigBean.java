@@ -19,7 +19,7 @@ import com.hss01248.dialog.Tool;
 import com.hss01248.dialog.adapter.SuperLvAdapter;
 import com.hss01248.dialog.adapter.SuperLvHolder;
 import com.hss01248.dialog.bottomsheet.BottomSheetBean;
-import com.hss01248.dialog.interfaces.MyDialogBuilder;
+import com.hss01248.dialog.building.MyDialogBuilder;
 import com.hss01248.dialog.interfaces.MyDialogListener;
 import com.hss01248.dialog.interfaces.MyItemDialogListener;
 import com.hss01248.dialog.interfaces.Styleable;
@@ -42,6 +42,7 @@ public class ConfigBean extends MyDialogBuilder implements Styleable {
     public SuperLvHolder customContentHolder;
 
     public boolean isProgressHorzontal;
+    public List<ChooseBean> chooseBeans;
 
     public View customView;
 
@@ -56,7 +57,7 @@ public class ConfigBean extends MyDialogBuilder implements Styleable {
     public CharSequence hint1;
     public CharSequence hint2;
 
-    public boolean showAsActivity ;
+    public boolean showAsActivity  = true;
 
 
 
@@ -390,6 +391,10 @@ public class ConfigBean extends MyDialogBuilder implements Styleable {
         },300);
     }
 
+
+    /**
+     * is not usable for md style dialog
+     */
     public void showAsActivity() {
         this.showAsActivity = true;
         show();
