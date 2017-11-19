@@ -203,6 +203,15 @@ public class DialogAssigner implements Assignable {
     }
 
     @Override
+    public ConfigBean assignCustom(Context context, SuperLvHolder viewHolder) {
+        ConfigBean bean = new ConfigBean();
+        bean.context = context;
+        bean.customContentHolder = viewHolder;
+        bean.type = DefaultConfig.TYPE_CUSTOM_VIEW;
+        return bean;
+    }
+
+    @Override
     public ConfigBean assignCustomBottomSheet(Activity context, View contentView) {
         ConfigBean bean = new ConfigBean();
         bean.context = context;

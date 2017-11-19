@@ -47,4 +47,13 @@
         <item name="android:textSize">@dimen/dialogutil_input_txt_size</item>
         <item name="android:textColor">@color/dialogutil_text_input_44</item>
     </style>
+
+    <style name="dialogutil_dialog_activity_style" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowCloseOnTouchOutside">false</item>
+        <item name="android:windowIsFloating">true</item>
+    </style>
 </resources>

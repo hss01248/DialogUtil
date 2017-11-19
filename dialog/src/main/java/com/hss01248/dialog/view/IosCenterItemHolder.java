@@ -10,7 +10,7 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 
 import com.hss01248.dialog.R;
-import com.hss01248.dialog.StyledDialog;
+import com.hss01248.dialog.Tool;
 import com.hss01248.dialog.adapter.SuperLvHolder;
 import com.hss01248.dialog.config.ConfigBean;
 
@@ -75,7 +75,7 @@ public class IosCenterItemHolder extends SuperLvHolder<ConfigBean> {
                 view.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        StyledDialog.dismiss(bean.alertDialog,bean.dialog);
+                        Tool.dismiss(bean);
                         bean.itemListener.onItemClick(bean.wordsIos.get(position),position);
 
                     }

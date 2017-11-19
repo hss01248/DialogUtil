@@ -9,6 +9,7 @@ import android.widget.TextView;
 import com.hss01248.dialog.R;
 import com.hss01248.dialog.ScreenUtil;
 import com.hss01248.dialog.adapter.SuperLvHolder;
+import com.hss01248.dialog.config.BottomSheetStyle;
 
 /**
  * Created by Administrator on 2016/10/19.

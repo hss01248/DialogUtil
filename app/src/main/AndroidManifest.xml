@@ -20,6 +20,7 @@
         <activity android:name=".BadTokenActy"/>
         <activity android:name=".BadTokenAfterActy"/>
         <activity android:name=".BadTokenBeforeActy"/>
+        <activity android:name="com.hss01248.dialog.view.DialogUtil_DialogActivity" android:theme="@style/dialogutil_dialog_activity_style"/>
     </application>
 
 </manifest>

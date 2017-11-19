@@ -1,4 +1,4 @@
-package com.hss01248.dialog.bottomsheet;
+package com.hss01248.dialog.config;
 
 import android.support.annotation.ColorRes;
 

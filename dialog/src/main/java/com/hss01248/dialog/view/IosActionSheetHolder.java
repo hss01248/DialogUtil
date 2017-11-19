@@ -12,6 +12,7 @@ import android.widget.RelativeLayout;
 
 import com.hss01248.dialog.R;
 import com.hss01248.dialog.StyledDialog;
+import com.hss01248.dialog.Tool;
 import com.hss01248.dialog.adapter.SuperLvHolder;
 import com.hss01248.dialog.config.ConfigBean;
 
@@ -96,7 +97,8 @@ public class IosActionSheetHolder extends SuperLvHolder<ConfigBean> {
                 view.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        StyledDialog.dismiss(bean.dialog,bean.alertDialog);
+                        //StyledDialog.dismiss(bean.dialog,bean.alertDialog);
+                        Tool.dismiss(bean);
                         bean.itemListener.onItemClick(bean.wordsIos.get(position),position);
 
                     }

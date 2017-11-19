@@ -278,9 +278,23 @@ public class StyledDialog  {
       return   DialogAssigner.getInstance().buildCustomInIos(customViewHolder,listener);
     }
 
+    /**
+     * use buildCustom( SuperLvHolder viewHolder)  instead
+     * @param contentView
+     * @param gravity
+     * @return
+     */
+    @Deprecated
     public static ConfigBean buildCustom( View contentView, int gravity) {
         return DialogAssigner.getInstance().assignCustom(null,contentView,gravity);
     }
+
+
+    public static ConfigBean buildCustom( SuperLvHolder viewHolder) {
+        return DialogAssigner.getInstance().assignCustom(null,viewHolder);
+    }
+
+
 
     public static ConfigBean buildCustomBottomSheet( View contentView){
         return DialogAssigner.getInstance().assignCustomBottomSheet(null,contentView);

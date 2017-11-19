@@ -28,7 +28,7 @@ import com.hss01248.dialog.Tool;
 import com.hss01248.dialog.adapter.SuperLvAdapter;
 import com.hss01248.dialog.adapter.SuperLvHolder;
 import com.hss01248.dialog.bottomsheet.BottomSheetBean;
-import com.hss01248.dialog.bottomsheet.BottomSheetStyle;
+import com.hss01248.dialog.config.BottomSheetStyle;
 import com.hss01248.dialog.bottomsheet.BsGvHolder;
 import com.hss01248.dialog.bottomsheet.BsLvHolder;
 import com.hss01248.dialog.config.ConfigBean;
@@ -91,7 +91,13 @@ public  class MyDialogBuilder {
                break;
            case DefaultConfig.TYPE_CUSTOM_VIEW:
                Tool.newCustomDialog(bean);
-               bean.dialog.setContentView(bean.customView);
+               if(bean.customContentHolder!=null){
+                   bean.dialog.setContentView(bean.customContentHolder.rootView);
+                   bean.customContentHolder.assingDatasAndEvents(bean.context,null);
+               }else {
+                   bean.dialog.setContentView(bean.customView);
+               }
+
 
 
                break;
@@ -120,10 +126,10 @@ public  class MyDialogBuilder {
 
        }
 
-
-       Tool.adjustStyle(bean);
+       Tool.setWindowAnimation(bean);
        Tool.setCancelable(bean);
        Tool.setCancelListener(bean);
+       Tool.adjustStyle(bean);
        return bean;
    }
 
@@ -323,10 +329,10 @@ public  class MyDialogBuilder {
     }
 
     protected  ConfigBean buildMdAlert(final ConfigBean bean){
+        Tool.fixContext(bean);
         final AlertDialog.Builder builder = new AlertDialog.Builder(bean.context);
         if(bean.customContentHolder ==null){
             if(bean.type == DefaultConfig.TYPE_MD_INPUT){
-                Tool.fixContext(bean);
                 MdInputHolder holder = new MdInputHolder(bean.context);
                 bean.viewHolder = holder;
                 bean.setNeedSoftKeyboard(true);
@@ -341,22 +347,7 @@ public  class MyDialogBuilder {
             bean.customContentHolder.assingDatasAndEvents(Tool.fixContext(bean).context,bean);
         }
         builder.setTitle(bean.title)
-                .setPositiveButton(bean.text1, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        if(bean.type == DefaultConfig.TYPE_MD_INPUT){
-                            MdInputHolder holder = (MdInputHolder) bean.viewHolder;
-                            boolean isvalid = bean.listener.onInputValid(holder.getTxt1(),holder.getTxt2(),holder.getEt1(),holder.getEt2());
-                            if(!isvalid){
-                                return;
-                            }
-                        }
-
-                        bean.listener.onFirst();
-                        Tool.hideKeyBorad(bean);
-                        dialog.dismiss();
-                    }
-                })
+                .setPositiveButton(bean.text1, null)//不让点击默认消失，而是做出判断，见Tool.setMdBtnStytle
                 .setNegativeButton(bean.text2, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -500,6 +491,8 @@ public  class MyDialogBuilder {
 
     protected  ConfigBean buildIosSingleChoose(ConfigBean bean){
         IosCenterItemHolder holder = new IosCenterItemHolder(bean.context);
+        bean.viewHolder = holder;
+
         bean.dialog.setContentView(holder.rootView);
         holder.assingDatasAndEvents(bean.context,bean);
 
@@ -512,6 +505,7 @@ public  class MyDialogBuilder {
 
     protected  ConfigBean buildBottomItemDialog(ConfigBean bean){
         IosActionSheetHolder holder = new IosActionSheetHolder(bean.context);
+        bean.viewHolder = holder;
         bean.dialog.setContentView(holder.rootView);
 
         holder.assingDatasAndEvents(bean.context,bean);
@@ -533,6 +527,7 @@ public  class MyDialogBuilder {
     private ConfigBean buildIosCommon(ConfigBean bean){
 
         IosAlertDialogHolder holder = new IosAlertDialogHolder(bean.context);
+        bean.viewHolder = holder;
         bean.dialog.setContentView(holder.rootView);
         holder.assingDatasAndEvents(bean.context,bean);
 

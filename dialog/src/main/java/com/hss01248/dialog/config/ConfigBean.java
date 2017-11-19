@@ -2,7 +2,9 @@ package com.hss01248.dialog.config;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.ColorRes;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.FloatRange;
@@ -11,16 +13,17 @@ import android.support.v7.app.AlertDialog;
 import android.view.Gravity;
 import android.view.View;
 
+import com.hss01248.dialog.ActivityStackManager;
 import com.hss01248.dialog.StyledDialog;
 import com.hss01248.dialog.Tool;
 import com.hss01248.dialog.adapter.SuperLvAdapter;
 import com.hss01248.dialog.adapter.SuperLvHolder;
 import com.hss01248.dialog.bottomsheet.BottomSheetBean;
-import com.hss01248.dialog.bottomsheet.BottomSheetStyle;
 import com.hss01248.dialog.interfaces.MyDialogBuilder;
 import com.hss01248.dialog.interfaces.MyDialogListener;
 import com.hss01248.dialog.interfaces.MyItemDialogListener;
 import com.hss01248.dialog.interfaces.Styleable;
+import com.hss01248.dialog.view.DialogUtil_DialogActivity;
 
 import java.util.List;
 import java.util.Map;
@@ -36,6 +39,7 @@ public class ConfigBean extends MyDialogBuilder implements Styleable {
     public boolean isVertical;
 
     public SuperLvHolder viewHolder;
+    public SuperLvHolder customContentHolder;
 
     public boolean isProgressHorzontal;
 
@@ -51,6 +55,13 @@ public class ConfigBean extends MyDialogBuilder implements Styleable {
 
     public CharSequence hint1;
     public CharSequence hint2;
+
+    public boolean showAsActivity = true;
+
+    public ConfigBean setShowAsActivity(boolean showAsActivity) {
+        this.showAsActivity = showAsActivity;
+        return this;
+    }
 
 
     public boolean hasBehaviour  = false;
@@ -78,7 +89,7 @@ public class ConfigBean extends MyDialogBuilder implements Styleable {
         return this;
     }
 
-    public SuperLvHolder customContentHolder;
+
     public ConfigBean setCustomContentHolder(SuperLvHolder holder){
         this.customContentHolder = holder;
         return this;
@@ -227,6 +238,8 @@ public class ConfigBean extends MyDialogBuilder implements Styleable {
     public List<BottomSheetBean> lvDatas;
     public int gridColumns = 4;
 
+    public BroadcastReceiver homeKeyReceiver;
+
 
 
     //样式
@@ -354,6 +367,33 @@ public class ConfigBean extends MyDialogBuilder implements Styleable {
         return this;
     }
 
+    private void showAsActivity(){
+        Activity activity = ActivityStackManager.getInstance().getTopActivity();
+        if(activity!=null){
+            Intent intent = new Intent(activity, DialogUtil_DialogActivity.class);
+            activity.startActivity(intent);
+
+            showViewWhenActivityIsReady();
+
+        }
+    }
+
+    private void showViewWhenActivityIsReady() {
+        Tool.getMainHandler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Activity activity1 = ActivityStackManager.getInstance().getTopActivity(DialogUtil_DialogActivity.class);
+                if(activity1!=null){
+                    buildByType(ConfigBean.this);
+                    DialogUtil_DialogActivity activity2 = (DialogUtil_DialogActivity) activity1;
+                    activity2.show(ConfigBean.this);
+                }else {
+                    showViewWhenActivityIsReady();
+                }
+            }
+        },300);
+    }
+
     @Override
     public Dialog show() {
 
@@ -362,8 +402,14 @@ public class ConfigBean extends MyDialogBuilder implements Styleable {
 
 
 
-        buildByType(this);
+
         //内部保存loadingdialog对象
+        if(showAsActivity){
+            showAsActivity();
+            return null;
+        }
+
+        buildByType(this);
 
 
         if(type ==DefaultConfig.TYPE_PROGRESS){

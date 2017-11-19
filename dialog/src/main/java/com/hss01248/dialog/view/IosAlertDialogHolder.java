@@ -13,7 +13,6 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.hss01248.dialog.R;
-import com.hss01248.dialog.StyledDialog;
 import com.hss01248.dialog.Tool;
 import com.hss01248.dialog.adapter.SuperLvHolder;
 import com.hss01248.dialog.config.ConfigBean;
@@ -168,7 +167,7 @@ public class IosAlertDialogHolder extends SuperLvHolder<ConfigBean> {
                     return;
                 }
                 hideKeyBoard();
-                StyledDialog.dismiss(bean.dialog,bean.alertDialog);
+                Tool.dismiss(bean);
                 bean.listener.onFirst();
                 bean.listener.onGetInput(et1.getText().toString().trim(),et2.getText().toString().trim());
             }
@@ -178,7 +177,7 @@ public class IosAlertDialogHolder extends SuperLvHolder<ConfigBean> {
             @Override
             public void onClick(View view) {
                 hideKeyBoard();
-                StyledDialog.dismiss(bean.dialog,bean.alertDialog);
+                Tool.dismiss(bean);
                 bean.listener.onSecond();
             }
         });
@@ -187,7 +186,7 @@ public class IosAlertDialogHolder extends SuperLvHolder<ConfigBean> {
             @Override
             public void onClick(View view) {
                 hideKeyBoard();
-                StyledDialog.dismiss(bean.dialog,bean.alertDialog);
+                Tool.dismiss(bean);
                 bean.listener.onThird();
             }
         });
@@ -197,7 +196,7 @@ public class IosAlertDialogHolder extends SuperLvHolder<ConfigBean> {
         btn1Vertical.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                StyledDialog.dismiss(bean.dialog,bean.alertDialog);
+                Tool.dismiss(bean);
                 bean.listener.onFirst();
 
                 bean.listener.onGetInput(et1.getText().toString().trim(),et2.getText().toString().trim());
@@ -210,7 +209,7 @@ public class IosAlertDialogHolder extends SuperLvHolder<ConfigBean> {
         btn2Vertical.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                StyledDialog.dismiss(bean.dialog,bean.alertDialog);
+                Tool.dismiss(bean);
                 bean.listener.onSecond();
             }
         });
@@ -218,7 +217,7 @@ public class IosAlertDialogHolder extends SuperLvHolder<ConfigBean> {
         btn3Vertical.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                StyledDialog.dismiss(bean.dialog,bean.alertDialog);
+                Tool.dismiss(bean);
                 bean.listener.onThird();
             }
         });
