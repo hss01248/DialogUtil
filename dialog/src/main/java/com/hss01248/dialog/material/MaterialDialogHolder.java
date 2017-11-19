@@ -3,6 +3,7 @@ package com.hss01248.dialog.material;
 import android.content.Context;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
+import android.util.SparseBooleanArray;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -15,9 +16,13 @@ import com.hss01248.dialog.R;
 import com.hss01248.dialog.Tool;
 import com.hss01248.dialog.adapter.SuperLvAdapter;
 import com.hss01248.dialog.adapter.SuperLvHolder;
+import com.hss01248.dialog.config.ChooseBean;
 import com.hss01248.dialog.config.ConfigBean;
 import com.hss01248.dialog.config.DefaultConfig;
 import com.hss01248.dialog.view.MdInputHolder;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Administrator on 2017/11/19.
@@ -98,6 +103,9 @@ public class MaterialDialogHolder extends SuperLvHolder<ConfigBean> {
             btnP.setVisibility(View.VISIBLE);
             btnP.setText(bean.text1);
             btnP.setTextColor(Tool.getColor(bean.context,bean.btn1Color));
+            if(bean.type == DefaultConfig.TYPE_MD_MULTI_CHOOSE){
+                return;
+            }
             btnP.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -167,7 +175,7 @@ public class MaterialDialogHolder extends SuperLvHolder<ConfigBean> {
     private void buildChoose(Context context, final ConfigBean bean) {
 
         messageContentRoot.setVisibility(View.GONE);
-        ListView listView = new ListView(context);
+        final ListView listView = new ListView(context);
         listView.setDivider(null);
         SuperLvAdapter adapter = buildAdapterByType(bean);
         listView.setAdapter(adapter);
@@ -181,37 +189,63 @@ public class MaterialDialogHolder extends SuperLvHolder<ConfigBean> {
         if(bean.type == DefaultConfig.TYPE_MD_SINGLE_CHOOSE){
             listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
             listView.setSelection(bean.defaultChosen);
-            listView.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            //todo 点击一个item即可消失
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
-                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                    bean.listener.onGetChoose(position,bean.chooseBeans.get(position).txt);
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    if(bean.listener !=null){
+                        bean.listener.onGetChoose(position,bean.chooseBeans.get(position).txt);
+                    }
+                    if(bean.itemListener !=null){
+                        bean.itemListener.onItemClick(bean.chooseBeans.get(position).txt,position);
+                    }
                     Tool.dismiss(bean);
-                }
-
-                @Override
-                public void onNothingSelected(AdapterView<?> parent) {
-
                 }
             });
         }else {
             listView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+            btnP.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                   SparseBooleanArray booleanArray =  listView.getCheckedItemPositions();
+                   //todo 回传多选结果
+                    List<Integer> selectedIndexs = new ArrayList<>(booleanArray.size());
+                    List<CharSequence> selectStrs = new ArrayList<>(booleanArray.size());
+                    boolean[] states = new boolean[bean.chooseBeans.size()];
+                    for (int i = 0; i < booleanArray.size(); i++) {
+                        Boolean selected = booleanArray.get(i);
+                        if(selected){
+                            selectedIndexs.add(i);
+                            selectStrs.add(bean.chooseBeans.get(i).txt);
+                        }
+                        states[i] = selected;
+                    }
+                    bean.listener.onChoosen(selectedIndexs,selectStrs,states);
+                    Tool.dismiss(bean);
+                }
+            });
+        }
+        //初始化其选择状态
+        for (int i = 0; i < bean.chooseBeans.size(); i++) {
+            ChooseBean chooseBean = bean.chooseBeans.get(i);
+            listView.setItemChecked(i,chooseBean.choosen);
         }
     }
 
-    private SuperLvAdapter buildAdapterByType(ConfigBean bean) {
+    private SuperLvAdapter buildAdapterByType(final ConfigBean bean) {
         SuperLvAdapter adapter = null;
         if(bean.type == DefaultConfig.TYPE_MD_SINGLE_CHOOSE){
             adapter = new SuperLvAdapter(bean.context) {
                 @Override
                 protected SuperLvHolder generateNewHolder(Context context, int itemViewType) {
-                    return new SingleChooseHolder(context);
+                    return new SingleChooseHolder(bean.context);
                 }
             };
         }else  if(bean.type == DefaultConfig.TYPE_MD_MULTI_CHOOSE){
             adapter = new SuperLvAdapter(bean.context) {
                 @Override
                 protected SuperLvHolder generateNewHolder(Context context, int itemViewType) {
-                    return new MultiChooseHolder(context);
+                    return new MultiChooseHolder(bean.context);
                 }
             };
         }

@@ -57,7 +57,7 @@ public class ConfigBean extends MyDialogBuilder implements Styleable {
     public CharSequence hint1;
     public CharSequence hint2;
 
-    public boolean showAsActivity  = true;
+    public boolean showAsActivity  ;
 
 
 
@@ -244,7 +244,7 @@ public class ConfigBean extends MyDialogBuilder implements Styleable {
 
     //三个以下按钮,颜色按此顺序
     public  @ColorRes int btn1Color = DefaultConfig.iosBtnColor;
-    public  @ColorRes int btn2Color= DefaultConfig.iosBtnColor;
+    public  @ColorRes int btn2Color= DefaultConfig.mdBtnCancelColor;
     public  @ColorRes int btn3Color= DefaultConfig.iosBtnColor;
 
 

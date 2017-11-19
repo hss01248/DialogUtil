@@ -40,7 +40,7 @@ public class SingleChooseHolder extends SuperLvHolder<ChooseBean> {
     @Override
     public void assingDatasAndEvents(Context context, final ChooseBean bean, final int position, boolean isLast, boolean isListViewFling, final List datas, final SuperLvAdapter superAdapter) {
         super.assingDatasAndEvents(context, bean, position, isLast, isListViewFling, datas, superAdapter);
-        checkedTextView.setChecked(bean.choosen);
+        //checkedTextView.setChecked(bean.choosen);
         checkedTextView.setText(bean.txt);
 
     }
