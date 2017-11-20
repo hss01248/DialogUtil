@@ -7,6 +7,7 @@ common used dialog with material style ( in support v7)，ios style，get top ac
 [![](https://jitpack.io/v/hss01248/DialogUtil.svg)](https://jitpack.io/#hss01248/DialogUtil)
 
 [中文ReadMe](README-ch.md)
+<br>
 [wiki](https://github.com/hss01248/DialogUtil/wiki)
 <br>
 <br>
