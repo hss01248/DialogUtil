@@ -6,6 +6,8 @@ material风格(v7支持包中的)，ios风格，自动获取顶层activity,可�
 
 [![](https://jitpack.io/v/hss01248/DialogUtil.svg)](https://jitpack.io/#hss01248/DialogUtil)
 
+[wiki](https://github.com/hss01248/DialogUtil/wiki)
+
 # 注意点
 
 * 在activity已经resume后再调用,不要在onstart里用,否则可能会不显示. 见[关于dialog,PopupWindow,SoftInputBoard的弹出时机的问题](http://www.jianshu.com/p/bd98cee2854b)
