@@ -53,16 +53,12 @@ public class Tool {
             @Override
             public void run() {
                 try {
+
+                    showSoftKeyBoardDelayed(bean.needSoftKeyboard,bean.viewHolder);
+                    showSoftKeyBoardDelayed(bean.needSoftKeyboard,bean.customContentHolder);
                     dialog.show();
-                    if (bean.alertDialog!= null){
-                        setMdBtnStytle(bean);
-                        //setListItemsStyle(bean);
-                    }
+
                     adjustWindow(dialog,bean);
-
-
-
-
                 }catch (Exception e){
                     e.printStackTrace();
                 }
@@ -76,8 +72,11 @@ public class Tool {
                 .addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
                     @Override
                     public void onGlobalLayout() {
-                        showSoftKeyBoardDelayed(bean.needSoftKeyboard,bean.viewHolder);
-                        showSoftKeyBoardDelayed(bean.needSoftKeyboard,bean.customContentHolder);
+
+                        if (bean.alertDialog!= null){
+                            setMdBtnStytle(bean);
+                            //setListItemsStyle(bean);
+                        }
                         adjustWH(dialog,bean);
                         dialog.getWindow().getDecorView().getViewTreeObserver().removeGlobalOnLayoutListener(this);
                     }
@@ -290,7 +289,7 @@ public class Tool {
         Window window = dialog.getWindow();
         window.setGravity(bean.gravity);
         if(bean.context instanceof Activity){
-            setHomeKeyListener(window,bean);
+            //setHomeKeyListener(window,bean);
         }else {
             window.setType(WindowManager.LayoutParams.TYPE_TOAST);
             WindowManager.LayoutParams params = window.getAttributes();
