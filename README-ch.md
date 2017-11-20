@@ -104,7 +104,7 @@ StyledDialog.init(this);
  registerActivityLifecycleCallbacks(new ActivityLifecycleCallbacks() {
             @Override
             public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
-
+                ActivityStackManager.getInstance().addActivity(activity);
             }
 
             @Override
@@ -114,9 +114,6 @@ StyledDialog.init(this);
 
             @Override
             public void onActivityResumed(Activity activity) {
-            	//在这里保存顶层activity的引用(内部以软引用实现)
-                MyActyManager.getInstance().setCurrentActivity(activity);
-
             }
 
             @Override
@@ -136,7 +133,7 @@ StyledDialog.init(this);
 
             @Override
             public void onActivityDestroyed(Activity activity) {
-
+                ActivityStackManager.getInstance().removeActivity(activity);
             }
         });
 
