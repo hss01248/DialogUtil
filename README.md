@@ -94,11 +94,11 @@ lastest release: https://github.com/hss01248/DialogUtil/releases
 
 StyledDialog.init(this);
 
-get activity instance in ActivityLifecycleCallbacks:
+//get activity instance in ActivityLifecycleCallbacks:
  registerActivityLifecycleCallbacks(new ActivityLifecycleCallbacks() {
             @Override
             public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
-
+                ActivityStackManager.getInstance().addActivity(activity);
             }
 
             @Override
@@ -108,9 +108,6 @@ get activity instance in ActivityLifecycleCallbacks:
 
             @Override
             public void onActivityResumed(Activity activity) {
-            	//keep a softReference inside
-                MyActyManager.getInstance().setCurrentActivity(activity);
-
             }
 
             @Override
@@ -130,7 +127,7 @@ get activity instance in ActivityLifecycleCallbacks:
 
             @Override
             public void onActivityDestroyed(Activity activity) {
-
+                ActivityStackManager.getInstance().removeActivity(activity);
             }
         });
 ```
