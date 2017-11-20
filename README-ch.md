@@ -27,32 +27,23 @@ material风格(v7支持包中的)，ios风格，自动获取顶层activity,可�
 
 # 特性
 
-* 自动获取顶层activity,无需传入activity也可弹出dialog.如果传入,则指定在此activity弹出.
-* 安全,任意线程均可调用.
-
-* 类型丰富,包括常用的ios风格dialog和meterial design风格的dialog,且按钮和文字样式可便捷地修改
-
-* 自定义view:可以传入自定义的view,定义好事件,本工具负责安全地显示
-* 也可以保留iso样式的底部按钮,上方的view完全自定义
-
+* **自动获取顶层activity,**无需传入activity也可弹出dialog.如果传入,则指定在此activity弹出.
+* 安全,**任意线程**均可调用.
+* 类型丰富,包括常用的ios风格dialog和material design风格的dialog,且按钮和文字样式可便捷地修改
+* **自定义view**:可以传入自定义的view,定义好事件,本工具负责安全地显示
+* 也可以保留iso样式或material 样式的底部按钮和上方title(可隐藏),中间的view可以完全自定义
 * 考虑了显示内容超多时的滑动和与屏幕的间隙.
-
-* 也可以设置宽高百分比来自定义宽高
-
-* 可以关闭默认的阴影背景,从而能使用xml中自定义的背景(弹出自定义view的dialog时常用)
-
+* 也可以设置宽高百分比来**自定义宽高**
+* 可以关闭默认的阴影背景,从而能使用xml中**自定义的背景**(弹出自定义view的dialog时常用)
 * 支持国际化
-
-* input dialog 智能弹出和隐藏软键盘
+* **智能弹出和隐藏软键盘**.自定义view的dialog只要设置setNeedSoftKeyboard为true,即可自动处理软键盘的弹出和隐藏
+* ios样式和material 样式的均**可以在三种状态下显示**: 普通dialog,TYPE_TOAST,作为activity.(原生ProgressDialog和Design包下的BottomSheetDialog除外,其在TYPE_TOAST或activity显示有异样)
 
 
 # todo
 
-bottomsheet 图标大小和文字大小的自定义
-ios action sheet 加上标题
+
 md 单选多选颜色自定义
-md 增加自定义输入框+勾选功能
-所有dialog 增加oncancellistener
 progressdialog改成完全自定义的
 所有dialog : 增加动画的自定义
 

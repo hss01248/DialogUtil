@@ -33,15 +33,18 @@ any problem or bug, join the qq group to get a quick response:
 # features
 
 * include commo dialogs with material style ( in support v7)，ios style
-* support  custom dialog ,just deliver a view
+* **support  custom dialog** ,just deliver a view. you can retain the buttons and title with ios or material style,or hide them.
 
 
-* get the top activity automatically ,so no need to deliver the activity , but you also can  invoke setActivity(activit) if in oncreate()
-* when the content is fullScreen ,it can adjust the margin automatically
-* also can set the height percent and width percent
-* has a shadow backgroud incase of the dimlayer not work,you can also disable it to show your own background in customview
+* get the top activity automatically ,so no need to deliver the activity,also support show in paticular activity by setActivity(activity)
+* safety :can be invoked in any thread 
+* when the content is fullScreen ,it can adjust the margin automatically,also support set the **height percent and width percent**
+* has a shadow **backgroud** incase of the dimlayer not work,you can also disable it to show your own background in customview
 * chained api, easy to use
 * adapt to phone and tablet,high and low  resolution ratio screen 
+* support localization
+* **support three window types**: as a common dialog ,as a widow with TYPE_TOAST,as a activity with dialog style.
+* support show **softKeyboard** automatically ,just setNeedSoftKeyboard(true)
 
 
 
