@@ -44,7 +44,6 @@ public class BaseApp extends Application {
             @Override
             public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
                 ActivityStackManager.getInstance().addActivity(activity);
-
             }
 
             @Override

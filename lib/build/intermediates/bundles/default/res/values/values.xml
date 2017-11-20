@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="bg_white">#ffffff</color>
+    <color name="btn_alert">#222222</color>
+    <color name="cardBodyColor">#FFFFFF</color>
+    <color name="cardShadowColor_1">#0a8c8c8c</color>
+    <color name="cardShadowColor_2">#0f898989</color>
+    <color name="cardShadowColor_3">#14898989</color>
+    <color name="cardShadowColor_4">#19898989</color>
+    <color name="cardShadowColor_5">#1e898989</color>
+    <color name="cardShadowColor_6">#23898989</color>
+    <color name="cardShadowColor_7">#28898989</color>
+    <color name="cardShadowColor_8">#2d898989</color>
+    <color name="ios_btn_normal">#ffffff</color>
+    <color name="ios_btn_pressed">#eeeeee</color>
+    <color name="ios_btntext_blue">#007aff</color>
+    <color name="line_dd">#cccccc</color>
+    <color name="text_black">#333333</color>
+    <color name="text_black_light">#666666</color>
+    <color name="text_gray">#999999</color>
+    <color name="text_gray_light">#B3B3B3</color>
+    <color name="text_input_44">#444444</color>
+    <color name="text_item_33">#333333</color>
+    <color name="text_msg_33">#333333</color>
+    <color name="text_title_11">#111111</color>
+    <declare-styleable name="CustomTheme"><attr format="reference" name="gifMoviewViewStyle"/></declare-styleable>
+    <declare-styleable name="GifMoviewView"><attr format="reference" name="gif"/><attr format="boolean" name="paused"/></declare-styleable>
+    <dimen name="btn_txt_size">14sp</dimen>
+    <dimen name="cardPadding">1px</dimen>
+    <dimen name="cardRadius">@dimen/round_corner</dimen>
+    <dimen name="input_txt_size">14sp</dimen>
+    <dimen name="item_txt_size">14sp</dimen>
+    <dimen name="line_1px">1px</dimen>
+    <dimen name="msg_txt_size">14sp</dimen>
+    <dimen name="round_corner">5dp</dimen>
+    <dimen name="title_txt_size">17sp</dimen>
+    <string name="app_name">lib</string>
+    <style name="MyDialog" parent="AlertDialog.AppCompat.Light">
+    <item name="android:windowFrame">@null</item>
+    <item name="android:windowNoTitle">true</item>
+    <!--<item name="android:windowBackground">@drawable/hint_img</item>-->
+    <item name="android:windowIsFloating">true</item>
+    <item name="android:windowContentOverlay">@null</item>
+    </style>
+    <style name="Widget.GifMoviewView" parent="@android:style/Widget"/>
+    <style name="dialog_center" parent="android:Animation">
+        <item name="@android:windowEnterAnimation">@anim/dialog_enter_center</item>  //进入时的动画
+      <!--  <item name="@android:windowExitAnimation">@anim/dialog_exit_center</item>    //退出时的动画-->
+    </style>
+    <style name="mystyle" parent="android:Animation">
+    <item name="@android:windowEnterAnimation">@anim/dialog_enter</item>  //进入时的动画
+    <item name="@android:windowExitAnimation">@anim/dialog_exit</item>    //退出时的动画
+</style>
+    <style name="notitle">
+        <item name="android:windowNoTitle">true</item>
+    </style>
+</resources>

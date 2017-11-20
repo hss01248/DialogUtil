@@ -17,6 +17,7 @@ public class DefaultConfig {
     public  static @ColorRes int lvItemTxtColor = R.color.dialogutil_text_item_33;
 
     public static  @ColorRes int mdBtnColor = R.color.dialogutil_ios_btntext_blue;
+    public static  @ColorRes int mdBtnCancelColor = R.color.dialogutil_text_gray_light;
 
     public static @ColorRes int titleTxtColor = R.color.dialogutil_text_title_11;
     public static @ColorRes int msgTxtColor = R.color.dialogutil_text_title_11;

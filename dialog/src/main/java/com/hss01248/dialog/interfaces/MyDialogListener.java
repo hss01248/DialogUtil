@@ -9,11 +9,22 @@ import java.util.List;
  */
 public abstract class MyDialogListener {
 
-    public abstract void onFirst();//md-确定,ios-第一个
-    public abstract void onSecond();//md-取消,ios-第二个
+    /**
+     * md-positive button ,ios-first button
+     */
+    public abstract void onFirst();//
+
+    /**
+     * md-negative button,ios-second
+     */
+    public abstract void onSecond();//
     public void onThird(){}//md-netural,ios-第三个
 
     public void onCancle(){}
+
+
+
+
 
     /**
      * 提供给Input的回调
@@ -39,10 +50,10 @@ public abstract class MyDialogListener {
 
     /**
      * 提供给MdSingleChoose的回调
-     * @param chosen
+     * @param chosenIdx
      * @param chosenTxt
      */
-    public void onGetChoose(int chosen,CharSequence chosenTxt){
+    public void onGetChoose(int chosenIdx,CharSequence chosenTxt){
 
     }
 
@@ -55,6 +66,12 @@ public abstract class MyDialogListener {
 
     }
 
+    /**
+     * 提供给MdMultiChoose的更详细的回调
+     * @param selectedIndex
+     * @param selectedStrs
+     * @param states
+     */
     public void onChoosen( List<Integer> selectedIndex, List<CharSequence> selectedStrs,boolean[] states){
 
     }

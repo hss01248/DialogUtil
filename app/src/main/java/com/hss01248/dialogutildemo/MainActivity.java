@@ -537,8 +537,6 @@ android:pivotY="50%" />
                         Logger.object(states);
                         Logger.object(selectedIndex);
                         Logger.object(selectedStrs);
-
-
                     }
 
                     @Override

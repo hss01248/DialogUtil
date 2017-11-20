@@ -31,14 +31,38 @@ import android.widget.ListView;
 import com.hss01248.dialog.adapter.SuperLvHolder;
 import com.hss01248.dialog.config.ConfigBean;
 import com.hss01248.dialog.config.DefaultConfig;
+import com.hss01248.dialog.view.DialogUtil_DialogActivity;
 import com.hss01248.dialog.view.IosAlertDialogHolder;
+import com.hss01248.dialog.view.MdInputHolder;
 
 /**
  * Created by Administrator on 2016/10/9 0009.
  */
 public class Tool {
 
+    public static void dismiss(ConfigBean bean){
+
+        //先隐藏keyboard
+        hideKeyBorad(bean);
+        if(bean.showAsActivity){
+            Activity activity = ActivityStackManager.getInstance().getTopActivity(DialogUtil_DialogActivity.class);
+            if(activity!=null){
+                activity.finish();
+            }
+            return;
+        }
+        if(bean.dialog!=null){
+            bean.dialog.dismiss();
+        }
+        if(bean.alertDialog !=null){
+            bean.alertDialog.dismiss();
+        }
+    }
+
     public static Handler getMainHandler() {
+        if(mainHandler ==null){
+            mainHandler = new Handler(Looper.getMainLooper());
+        }
         return mainHandler;
     }
 
@@ -53,17 +77,19 @@ public class Tool {
             @Override
             public void run() {
                 try {
-
-                    showSoftKeyBoardDelayed(bean.needSoftKeyboard,bean.viewHolder);
-                    showSoftKeyBoardDelayed(bean.needSoftKeyboard,bean.customContentHolder);
                     dialog.show();
-
+                    if (bean.alertDialog!= null){
+                        setMdBtnStytle(bean);
+                        //setListItemsStyle(bean);
+                    }
                     adjustWindow(dialog,bean);
                 }catch (Exception e){
                     e.printStackTrace();
                 }
             }
         });
+
+
 
     }
 
@@ -72,15 +98,16 @@ public class Tool {
                 .addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
                     @Override
                     public void onGlobalLayout() {
-
-                        if (bean.alertDialog!= null){
-                            setMdBtnStytle(bean);
-                            //setListItemsStyle(bean);
-                        }
                         adjustWH(dialog,bean);
+                        showSoftKeyBoardDelayed(bean.needSoftKeyboard,bean.viewHolder);
+                        showSoftKeyBoardDelayed(bean.needSoftKeyboard,bean.customContentHolder);
                         dialog.getWindow().getDecorView().getViewTreeObserver().removeGlobalOnLayoutListener(this);
                     }
                 });
+    }
+
+    public static void setWindowAnimation(ConfigBean bean) {
+
     }
 
     interface MyRunnable<T>{
@@ -120,14 +147,11 @@ public class Tool {
     }
 
 
-
-
-
     /**
      * 必须在show之后,button才不会返回null
      * @param bean
      */
-    public static void setMdBtnStytle(ConfigBean bean){
+    public static void setMdBtnStytle(final ConfigBean bean){
         Button btnPositive =
                 bean.alertDialog.getButton(DialogInterface.BUTTON_POSITIVE);
         Button btnNegative =
@@ -145,6 +169,21 @@ public class Tool {
             if(bean.btnTxtSize >0){
                 btnPositive.setTextSize(bean.btnTxtSize);
             }
+            btnPositive.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(bean.type == DefaultConfig.TYPE_MD_INPUT){
+                        MdInputHolder holder = (MdInputHolder) bean.viewHolder;
+                        boolean isvalid = bean.listener.onInputValid(holder.getTxt1(),holder.getTxt2(),holder.getEt1(),holder.getEt2());
+                        if(!isvalid){
+                            return;
+                        }
+                        bean.listener.onGetInput(holder.getTxt1(),holder.getTxt2());
+                    }
+                    bean.listener.onFirst();
+                    dismiss(bean);
+                }
+            });
         }
         if(btnNegative !=null){
             btnNegative.setAllCaps(false);
@@ -333,7 +372,7 @@ public class Tool {
     private  static void setHomeKeyListener(final Window window, final ConfigBean bean){
         //在创建View时注册Receiver
         IntentFilter homeFilter = new IntentFilter(Intent.ACTION_CLOSE_SYSTEM_DIALOGS);
-        bean.context.registerReceiver(new BroadcastReceiver() {
+        bean.homeKeyReceiver = new BroadcastReceiver() {
             final String SYSTEM_DIALOG_REASON_KEY = "reason";
 
             final String SYSTEM_DIALOG_REASON_HOME_KEY = "homekey";
@@ -356,7 +395,8 @@ public class Tool {
                     }
                 }
             }
-        }, homeFilter);
+        };
+        bean.context.registerReceiver(bean.homeKeyReceiver, homeFilter);
     }
 
 

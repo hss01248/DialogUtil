@@ -1,0 +1,82 @@
+[
+    {
+        "merged": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\anim\\abc_grow_fade_in_from_bottom.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\94ca66c38928a5baa9bb8386ddf688feb636e647\\output\\res\\anim\\abc_grow_fade_in_from_bottom.xml"
+    },
+    {
+        "merged": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\anim\\dialog_exit.xml",
+        "source": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\bundles\\debug\\res\\anim\\dialog_exit.xml"
+    },
+    {
+        "merged": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\anim\\dialog_exit_center.xml",
+        "source": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\bundles\\debug\\res\\anim\\dialog_exit_center.xml"
+    },
+    {
+        "merged": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\anim\\abc_shrink_fade_out_from_bottom.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\94ca66c38928a5baa9bb8386ddf688feb636e647\\output\\res\\anim\\abc_shrink_fade_out_from_bottom.xml"
+    },
+    {
+        "merged": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\anim\\design_snackbar_out.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\103e555f8c48b11351e94094dd5dde2235640f07\\output\\res\\anim\\design_snackbar_out.xml"
+    },
+    {
+        "merged": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\anim\\design_bottom_sheet_slide_in.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\103e555f8c48b11351e94094dd5dde2235640f07\\output\\res\\anim\\design_bottom_sheet_slide_in.xml"
+    },
+    {
+        "merged": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\anim\\abc_slide_out_top.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\94ca66c38928a5baa9bb8386ddf688feb636e647\\output\\res\\anim\\abc_slide_out_top.xml"
+    },
+    {
+        "merged": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\anim\\abc_slide_in_top.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\94ca66c38928a5baa9bb8386ddf688feb636e647\\output\\res\\anim\\abc_slide_in_top.xml"
+    },
+    {
+        "merged": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\anim\\design_bottom_sheet_slide_out.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\103e555f8c48b11351e94094dd5dde2235640f07\\output\\res\\anim\\design_bottom_sheet_slide_out.xml"
+    },
+    {
+        "merged": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\anim\\abc_slide_in_bottom.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\94ca66c38928a5baa9bb8386ddf688feb636e647\\output\\res\\anim\\abc_slide_in_bottom.xml"
+    },
+    {
+        "merged": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\anim\\design_fab_out.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\103e555f8c48b11351e94094dd5dde2235640f07\\output\\res\\anim\\design_fab_out.xml"
+    },
+    {
+        "merged": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\anim\\dialog_enter.xml",
+        "source": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\bundles\\debug\\res\\anim\\dialog_enter.xml"
+    },
+    {
+        "merged": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\anim\\abc_fade_in.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\94ca66c38928a5baa9bb8386ddf688feb636e647\\output\\res\\anim\\abc_fade_in.xml"
+    },
+    {
+        "merged": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\anim\\abc_slide_out_bottom.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\94ca66c38928a5baa9bb8386ddf688feb636e647\\output\\res\\anim\\abc_slide_out_bottom.xml"
+    },
+    {
+        "merged": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\anim\\dialog_enter_center.xml",
+        "source": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\bundles\\debug\\res\\anim\\dialog_enter_center.xml"
+    },
+    {
+        "merged": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\anim\\abc_popup_exit.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\94ca66c38928a5baa9bb8386ddf688feb636e647\\output\\res\\anim\\abc_popup_exit.xml"
+    },
+    {
+        "merged": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\anim\\abc_fade_out.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\94ca66c38928a5baa9bb8386ddf688feb636e647\\output\\res\\anim\\abc_fade_out.xml"
+    },
+    {
+        "merged": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\anim\\design_snackbar_in.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\103e555f8c48b11351e94094dd5dde2235640f07\\output\\res\\anim\\design_snackbar_in.xml"
+    },
+    {
+        "merged": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\anim\\design_fab_in.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\103e555f8c48b11351e94094dd5dde2235640f07\\output\\res\\anim\\design_fab_in.xml"
+    },
+    {
+        "merged": "G:\\dev\\as\\hss01248\\DialogUtil\\lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\anim\\abc_popup_enter.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\94ca66c38928a5baa9bb8386ddf688feb636e647\\output\\res\\anim\\abc_popup_enter.xml"
+    }
+]

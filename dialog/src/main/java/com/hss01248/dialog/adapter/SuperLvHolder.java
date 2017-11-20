@@ -2,6 +2,7 @@ package com.hss01248.dialog.adapter;
 
 import android.content.Context;
 import android.support.annotation.LayoutRes;
+import android.support.annotation.Nullable;
 import android.view.View;
 
 import java.util.List;
@@ -30,10 +31,11 @@ public abstract class SuperLvHolder<T> {
 
     /**
      * 一般情况下，实现这个方法就足够了
+     * if use as custom view holder ,the bean will return as null,do not use it
      * @param context
      * @param bean
      */
-    public  abstract void assingDatasAndEvents(Context context, T bean);
+    public  abstract void assingDatasAndEvents(Context context, @Nullable T bean);
 
     public void showKeyBoard(){
 

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <Button
+        android:id="@+id/btn"
+        android:layout_centerInParent="true"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:background="@drawable/selector_btn_press_no_corner"
+        android:text="2"
+        android:textSize="@dimen/item_txt_size"
+        android:textColor="@color/text_item_33"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+</RelativeLayout>
+
+
+
