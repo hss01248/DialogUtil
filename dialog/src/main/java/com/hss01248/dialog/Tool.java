@@ -27,6 +27,7 @@ import android.widget.AbsListView;
 import android.widget.Button;
 import android.widget.CheckedTextView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.hss01248.dialog.adapter.SuperLvHolder;
 import com.hss01248.dialog.config.ConfigBean;
@@ -80,6 +81,7 @@ public class Tool {
                     dialog.show();
                     if (bean.alertDialog!= null){
                         setMdBtnStytle(bean);
+                        setTitleMessageStyle(bean.alertDialog,bean);
                         //setListItemsStyle(bean);
                     }
                     adjustWindow(dialog,bean);
@@ -91,6 +93,28 @@ public class Tool {
 
 
 
+    }
+
+    private static void setTitleMessageStyle(final Dialog dialog,ConfigBean bean) {
+       TextView tvMessage =  ((TextView)dialog.getWindow().getDecorView().findViewById(android.R.id.message));
+        TextView tvTitle =  ((TextView)dialog.getWindow().getDecorView().findViewById(android.R.id.title));
+        if(tvMessage!=null){
+            if(bean.msgTxtColor !=0){
+                tvMessage.setTextColor(getColor(bean.context,bean.msgTxtColor));
+            }
+            if(bean.msgTxtSize !=0){
+                tvMessage.setTextSize(bean.msgTxtSize);
+            }
+        }
+
+        if(tvTitle!=null){
+            if(bean.titleTxtColor !=0){
+                tvTitle.setTextColor(getColor(bean.context,bean.titleTxtColor));
+            }
+            if(bean.titleTxtSize !=0){
+                tvTitle.setTextSize(bean.titleTxtSize);
+            }
+        }
     }
 
     private static void adjustWindow(final Dialog dialog, final ConfigBean bean) {
