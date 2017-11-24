@@ -6,7 +6,9 @@ common used dialog with material style ( in support v7)，ios style，get top ac
 
 [![](https://jitpack.io/v/hss01248/DialogUtil.svg)](https://jitpack.io/#hss01248/DialogUtil)
 
-[中文文档](README-ch.md)
+[中文ReadMe](README-ch.md)
+<br>
+[wiki](https://github.com/hss01248/DialogUtil/wiki)
 <br>
 <br>
 any problem or bug, join the qq group to get a quick response:
@@ -92,11 +94,11 @@ lastest release: https://github.com/hss01248/DialogUtil/releases
 
 StyledDialog.init(this);
 
-get activity instance in ActivityLifecycleCallbacks:
+//get activity instance in ActivityLifecycleCallbacks:
  registerActivityLifecycleCallbacks(new ActivityLifecycleCallbacks() {
             @Override
             public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
-
+                ActivityStackManager.getInstance().addActivity(activity);
             }
 
             @Override
@@ -106,9 +108,6 @@ get activity instance in ActivityLifecycleCallbacks:
 
             @Override
             public void onActivityResumed(Activity activity) {
-            	//keep a softReference inside
-                MyActyManager.getInstance().setCurrentActivity(activity);
-
             }
 
             @Override
@@ -128,7 +127,7 @@ get activity instance in ActivityLifecycleCallbacks:
 
             @Override
             public void onActivityDestroyed(Activity activity) {
-
+                ActivityStackManager.getInstance().removeActivity(activity);
             }
         });
 ```
