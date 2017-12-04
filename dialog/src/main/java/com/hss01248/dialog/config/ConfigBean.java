@@ -9,6 +9,7 @@ import android.support.annotation.ColorRes;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.FloatRange;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AlertDialog;
 import android.view.Gravity;
 import android.view.View;
@@ -23,6 +24,7 @@ import com.hss01248.dialog.building.MyDialogBuilder;
 import com.hss01248.dialog.interfaces.MyDialogListener;
 import com.hss01248.dialog.interfaces.MyItemDialogListener;
 import com.hss01248.dialog.interfaces.Styleable;
+import com.hss01248.dialog.view.DialogUtilDialogFragment;
 import com.hss01248.dialog.view.DialogUtil_DialogActivity;
 
 import java.util.List;
@@ -58,6 +60,8 @@ public class ConfigBean extends MyDialogBuilder implements Styleable {
     public CharSequence hint2;
 
     public boolean showAsActivity ;
+    public boolean showAsFragment = false;
+    public DialogUtilDialogFragment mDialogFragment;
 
 
 
@@ -397,20 +401,32 @@ public class ConfigBean extends MyDialogBuilder implements Styleable {
      */
     public void showAsActivity() {
         this.showAsActivity = true;
-        show();
+        showAsActivityNow();
+    }
+
+    public DialogUtilDialogFragment showAsFragment() {
+        this.showAsFragment = true;
+        return showAsFragmentNow();
     }
 
     @Override
     public Dialog show() {
-
-
+        Tool.fixContext(this);
+        buildByType(this);
         if(showAsActivity){
             showAsActivityNow();
             return null;
         }
+
+        if(showAsFragment  && context instanceof FragmentActivity){
+            showAsFragment();
+            return null;
+        }
+
+
 //Build dialog by tyle :
         //内部保存loadingdialog对象
-        buildByType(this);
+
         if(type ==DefaultConfig.TYPE_PROGRESS){
 
         }
@@ -428,6 +444,27 @@ public class ConfigBean extends MyDialogBuilder implements Styleable {
                 StyledDialog.setLoadingObj(dialog);
             }
             return alertDialog;
+        }
+        return null;
+    }
+
+    private DialogUtilDialogFragment showAsFragmentNow() {
+
+        if(context instanceof FragmentActivity){
+            FragmentActivity activity = (FragmentActivity) context;
+            DialogUtilDialogFragment fragment = new DialogUtilDialogFragment();
+            Dialog dialog = this.dialog;
+            if(dialog ==null){
+                dialog = alertDialog;
+            }
+            if(dialog ==null){
+                return null;
+            }
+            fragment.setConfigbean(this);
+            fragment.setRootView(dialog.getWindow().getDecorView());
+            fragment.show(activity.getSupportFragmentManager(),this.toString());
+            mDialogFragment = fragment;
+            return fragment;
         }
         return null;
     }

@@ -14,7 +14,6 @@ import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
@@ -25,8 +24,6 @@ import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AbsListView;
 import android.widget.Button;
-import android.widget.CheckedTextView;
-import android.widget.ListView;
 
 import com.hss01248.dialog.adapter.SuperLvHolder;
 import com.hss01248.dialog.config.ConfigBean;
@@ -50,6 +47,12 @@ public class Tool {
                 activity.finish();
             }
             return;
+        }
+        if(bean.showAsFragment){
+            if(bean.mDialogFragment !=null ){
+                bean.mDialogFragment.dismiss();
+                return;
+            }
         }
         if(bean.dialog!=null){
             bean.dialog.dismiss();
@@ -110,9 +113,7 @@ public class Tool {
 
     }
 
-    interface MyRunnable<T>{
-        void run(T t);
-    }
+
 
     public static void runOnUIThread(Runnable runnable){
         if(mainHandler ==null){
@@ -292,24 +293,7 @@ public class Tool {
 
 
 
-    public static Dialog buildDialog(Context context, boolean cancleable, boolean outsideTouchable) {
 
-
-        if (context instanceof Activity){//todo keycode
-            Activity activity = (Activity) context;
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-                if (activity.isDestroyed()){
-                    context = context;
-                }
-            }
-        }
-
-        Dialog dialog = new Dialog(context);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setCancelable(cancleable);
-        dialog.setCanceledOnTouchOutside(outsideTouchable);
-        return dialog;
-    }
 
     public static void adjustStyle(final ConfigBean bean) {
         /*if (bean.alertDialog!= null){
@@ -388,7 +372,7 @@ public class Tool {
                             hideKeyBoard(window);
                         }
                         if(!(bean.context instanceof Activity)){
-                            StyledDialog.dismiss(bean.alertDialog,bean.dialog);
+                           Tool.dismiss(bean);
                         }
 
                         context.unregisterReceiver(this);
@@ -470,70 +454,9 @@ public class Tool {
 
 
 
-    private static void addShaow(ConfigBean bean) {
-        /**/
-        if(bean.type == DefaultConfig.TYPE_IOS_LOADING
-                || bean.type == DefaultConfig.TYPE_PROGRESS
-                || bean.type == DefaultConfig.TYPE_BOTTOM_SHEET_CUSTOM
-                || bean.type == DefaultConfig.TYPE_BOTTOM_SHEET_LIST
-                || bean.type == DefaultConfig.TYPE_BOTTOM_SHEET_GRID
-                || bean.type == DefaultConfig.TYPE_IOS_BOTTOM){
-            return;
-        }
 
-        Dialog dialog = bean.dialog;
-        if(dialog ==null){
-            dialog = bean.alertDialog;
-        }
 
-        /*ShadowProperty sp = new ShadowProperty()
-                .setShadowColor(0x77000000)
-                .setShadowDy(3)
-                .setShadowRadius(3)
-                .setShadowSide(ShadowProperty.ALL);
 
-        ShadowViewDrawable sd = new ShadowViewDrawable(sp, bean.alertDialog ==null ? Color.TRANSPARENT : Color.WHITE, 0, 0);
-       // ShadowViewDrawable sd = new ShadowViewDrawable(sp,Color.TRANSPARENT, 0, 0);
-        ViewCompat.setBackground(dialog.getWindow().getDecorView(), sd);
-        ViewCompat.setLayerType(dialog.getWindow().getDecorView(), ViewCompat.LAYER_TYPE_SOFTWARE, null);*/
-
-       /* ShadowViewHelper.bindShadowHelper(
-                new ShadowProperty()
-                        .setShadowColor(0x77000000)
-                        .setShadowDy(3)
-                        .setShadowRadius(3)
-                , dialog.getWindow().getDecorView());*/
-
-    }
-
-    private static void setListItemsStyle(ConfigBean bean) {
-        if(bean.type == DefaultConfig.TYPE_MD_SINGLE_CHOOSE || bean.type == DefaultConfig.TYPE_MD_MULTI_CHOOSE){
-            ListView listView =  bean.alertDialog.getListView();
-           // listView.getAdapter().
-            if(listView!=null && listView.getAdapter() !=null){
-                int count = listView.getChildCount();
-                for(int i=0;i<count;i++){
-                    View childAt = listView.getChildAt(i);
-                    if(childAt ==null){
-                        continue;
-                    }
-                    CheckedTextView itemView = (CheckedTextView) childAt.findViewById(android.R.id.text1);
-                    Log.e("dd",itemView+"-----"+ i);
-                    if(itemView !=null) {
-                        itemView.setCheckMarkDrawable(R.drawable.bg_toast);
-                        //itemView.setCheckMarkTintList();
-
-                       // itemView.setCheckMarkTintList();
-                        //itemView.setCheckMarkTintList();
-
-                    }
-
-                }
-
-            }
-
-        }
-    }
 
     public static void adjustWH( Dialog dialog,  ConfigBean bean ) {
         if (dialog == null){

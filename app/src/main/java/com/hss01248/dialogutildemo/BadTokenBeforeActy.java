@@ -1,29 +1,29 @@
 package com.hss01248.dialogutildemo;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.orhanobut.logger.Logger;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
  * Created by huangshuisheng on 2017/9/30.
  */
 
-public class BadTokenBeforeActy extends Activity {
+public class BadTokenBeforeActy extends AppCompatActivity {
 
 
     long startTime;
-    @Bind(R.id.textView)
+    @BindView(R.id.textView)
     TextView textView;
-    @Bind(R.id.button3)
+    @BindView(R.id.button3)
     Button button3;
 
     @Override

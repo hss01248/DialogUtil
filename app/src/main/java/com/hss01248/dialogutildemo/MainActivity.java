@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
@@ -37,24 +38,24 @@ import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 
-public class MainActivity extends Activity {
+public class MainActivity extends AppCompatActivity {
 
-    @Bind(R.id.btn_common_progress)
+    @BindView(R.id.btn_common_progress)
     Button btnCommonProgress;
-    @Bind(R.id.btn_context_progress)
+    @BindView(R.id.btn_context_progress)
     Button btnContextProgress;
-    @Bind(R.id.btn_material_alert)
+    @BindView(R.id.btn_material_alert)
     Button btnMaterialAlert;
-    @Bind(R.id.btn_ios_alert)
+    @BindView(R.id.btn_ios_alert)
     Button btnIosAlert;
-    @Bind(R.id.btn_ios_bottom_sheet)
+    @BindView(R.id.btn_ios_bottom_sheet)
     Button btnIosBottomSheet;
-    @Bind(R.id.btn_ios_center_list)
+    @BindView(R.id.btn_ios_center_list)
     Button btnIosCenterList;
 
     /**
@@ -64,11 +65,11 @@ public class MainActivity extends Activity {
 
     Activity activity;
     Context context;
-    @Bind(R.id.btn_ios_alert_vertical)
+    @BindView(R.id.btn_ios_alert_vertical)
     Button btnIosAlertVertical;
-    @Bind(R.id.btn_input)
+    @BindView(R.id.btn_input)
     Button btnIosAlert2;
-    @Bind(R.id.btn_multichoose)
+    @BindView(R.id.btn_multichoose)
     Button btnIosAlertVertical2;
     Handler handler ;
 

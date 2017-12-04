@@ -2,11 +2,11 @@ apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion '25.0.0'
+    buildToolsVersion '26.0.2'
     resourcePrefix "dialogutil_"
 
     defaultConfig {
-        minSdkVersion 14
+        minSdkVersion 15
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"
@@ -24,14 +24,12 @@ repositories {
     flatDir {
         dirs 'libs'
     }
-    mavenCentral();
+    mavenCentral()
     maven {
         url "https://jitpack.io"
-    };
-
-    maven {
-        url  "http://dl.bintray.com/lukaville/maven"
     }
+
+
 
 
 
@@ -44,6 +42,7 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:25.0.0'
     //compile 'com.jakewharton:butterknife:8.4.0'
     compile 'com.android.support:design:25.0.0'
+    //compile 'com.github.hss01248:SuperAdapter:1.0.4'
     //compile 'com.github.wangjiegulu:ShadowViewhelper:1.0.4'
     //compile 'com.github.wangjiegulu:ShadowViewHelper:1.0.2'
 }
