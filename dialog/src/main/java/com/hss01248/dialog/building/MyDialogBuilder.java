@@ -110,7 +110,7 @@ public  class MyDialogBuilder {
                Tool.newCustomDialog(bean);
                if(bean.customContentHolder!=null){
                    bean.dialog.setContentView(bean.customContentHolder.rootView);
-                   bean.customContentHolder.assingDatasAndEvents(bean.context,null);
+                   //bean.customContentHolder.assingDatasAndEvents(bean.context,null);
                }else {
                    bean.dialog.setContentView(bean.customView);
                }
@@ -179,7 +179,7 @@ public  class MyDialogBuilder {
            dialog = bean.dialog;
            bean.gravity = Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL;
            bean.widthPercent= 0.99f;
-           bean.heightPercent = 0;
+           bean.forceHeightPercent = 0;
            bean.bgRes = R.color.dialogutil_bg_white;
        }
         final Dialog finalDialog = dialog;
@@ -374,7 +374,7 @@ public  class MyDialogBuilder {
 
         }else {
             builder.setView(bean.customContentHolder.rootView);
-            bean.customContentHolder.assingDatasAndEvents(Tool.fixContext(bean).context,bean);
+            //bean.customContentHolder.assingDatasAndEvents(Tool.fixContext(bean).context,bean);
         }
         builder.setTitle(bean.title)
                 .setPositiveButton(bean.text1, null)//不让点击默认消失，而是做出判断，见Tool.setMdBtnStytle

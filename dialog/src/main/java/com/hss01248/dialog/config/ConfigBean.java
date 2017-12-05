@@ -151,19 +151,28 @@ public class ConfigBean extends MyDialogBuilder implements Styleable {
          case DefaultConfig.TYPE_BOTTOM_SHEET_CUSTOM:
          case DefaultConfig.TYPE_BOTTOM_SHEET_GRID:
          case DefaultConfig.TYPE_BOTTOM_SHEET_LIST:
-     * @param heightPercent
+     * @param forceHeightPercent
      * @return
      */
-    public ConfigBean setHeightPercent(@FloatRange(from = 0f,to = 1.0f) float heightPercent) {
-        if(heightPercent>1.0f || heightPercent<=0f){
+    public ConfigBean setForceHeightPercent(@FloatRange(from = 0f,to = 1.0f) float forceHeightPercent) {
+        if(forceHeightPercent >1.0f || forceHeightPercent <=0f){
             return this;
         }
-        this.heightPercent = heightPercent;
+        this.forceHeightPercent = forceHeightPercent;
+        return this;
+    }
+
+    public ConfigBean setMaxHeightPercent(@FloatRange(from = 0f,to = 1.0f) float maxHeightPercent) {
+        if(maxHeightPercent >1.0f || maxHeightPercent <=0f){
+            return this;
+        }
+        this.maxHeightPercent = maxHeightPercent;
         return this;
     }
 
     public float widthPercent;
-    public float heightPercent;
+    public float forceHeightPercent;
+    public float maxHeightPercent;
 
     public ConfigBean setTransparentBehind(boolean transparentBehind) {
         isTransparentBehind = transparentBehind;

@@ -56,7 +56,6 @@ public class DialogUtilDialogFragment extends DialogFragment {
                         DialogUtilDialogFragment.this.dismiss();
                         return true;
                     }
-
                 }
                 return false;
             }

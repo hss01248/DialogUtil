@@ -488,8 +488,11 @@ public class Tool {
         if(bean.widthPercent>0 && bean.widthPercent<=1.0f){
             widthRatio = bean.widthPercent;
         }
-        if(bean.heightPercent>0 && bean.heightPercent<=1.0f){
-            heightRatio = bean.heightPercent;
+        if(measuredHeight > bean.maxHeightPercent * height){
+            heightRatio = bean.maxHeightPercent;
+        }
+        if(bean.forceHeightPercent >0 && bean.forceHeightPercent <=1.0f){
+            heightRatio = bean.forceHeightPercent;
         }
 
         if(istheTypeOfNotAdjust(bean)){

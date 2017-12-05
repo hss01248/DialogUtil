@@ -325,7 +325,7 @@ android:pivotY="50%" />
 
                 })
                         .setBtnSize(29)
-                    .setHeightPercent(0.75f)//ugly
+                    .setForceHeightPercent(0.75f)//ugly
                     //.setWidthPercent(0.90f)
                         .setBtnText("i","b","3")
                     //.setBtnText("i")
@@ -357,7 +357,7 @@ android:pivotY="50%" />
                     .setBtnColor(R.color.dialogutil_text_black,R.color.colorPrimaryDark,0)
 
                     //.setWidthPercent(0.99f)
-                    //.setHeightPercent(0.88f)
+                    //.setForceHeightPercent(0.88f)
                     //.setBgRes(R.drawable.leak_canary_icon)
                     .setCustomContentHolder(new CustomContentHolder(this))
                     .show();
@@ -404,7 +404,7 @@ android:pivotY="50%" />
                 strings.add("13");
                 strings.add(msg);*/
 
-                StyledDialog.buildBottomItemDialog( strings, "cancle",  new MyItemDialogListener() {
+                StyledDialog.buildBottomItemDialog( strings, "好的",  new MyItemDialogListener() {
                     @Override
                     public void onItemClick(CharSequence text, int position) {
                         showToast(text);
@@ -659,7 +659,7 @@ android:pivotY="50%" />
             case R.id.btn_customview:
                 ViewGroup customView = (ViewGroup) View.inflate(this,R.layout.customview,null);
                 final ConfigBean bean = StyledDialog.buildCustom(customView, Gravity.CENTER)
-                    .setHeightPercent(0.7f)
+                    .setForceHeightPercent(0.7f)
                     .setWidthPercent(0.8f)
                     .setHasShadow(false);
                 final Dialog dialog1 =   bean.show();
@@ -685,7 +685,7 @@ android:pivotY="50%" />
             break;
             case R.id.btn_customview2:
                 ViewGroup customView2 = (ViewGroup) View.inflate(this,R.layout.customview2,null);
-                StyledDialog.buildCustom(customView2,Gravity.CENTER).setWidthPercent(0.90f).setHeightPercent(0.8f).show();
+                StyledDialog.buildCustom(customView2,Gravity.CENTER).setWidthPercent(0.90f).setForceHeightPercent(0.8f).show();
                 break;
             default:break;
 
