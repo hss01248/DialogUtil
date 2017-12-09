@@ -23,7 +23,7 @@ import android.view.ViewTreeObserver;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.AbsListView;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -730,7 +730,7 @@ public class Tool {
 
     }
 
-    public static void handleScrollInBottomSheetDialog(final AbsListView listView){
+    public static void handleScrollInBottomSheetDialog(final AdapterView listView){
         listView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
