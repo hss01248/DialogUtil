@@ -200,6 +200,7 @@ public class DialogAssigner implements Assignable {
         bean.wordsIos = words;
         bean.type = DefaultConfig.TYPE_IOS_BOTTOM;
         bean.gravity = Gravity.BOTTOM;
+        bean.bottomTxt = bottomTxt;
         return bean;
     }
 

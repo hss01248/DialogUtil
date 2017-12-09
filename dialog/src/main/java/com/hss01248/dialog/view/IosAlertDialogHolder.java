@@ -148,7 +148,7 @@ public class IosAlertDialogHolder extends SuperLvHolder<ConfigBean> {
         SuperLvHolder holder = bean.customContentHolder;
         holder.rootView.setLayoutParams(params);
         llContainerContent.addView(holder.rootView);
-        holder.assingDatasAndEvents(llContainerContent.getContext(),null);
+        //holder.assingDatasAndEvents(llContainerContent.getContext(),null);
 
 
         Tool.showSoftKeyBoardDelayed(bean.needSoftKeyboard,bean.customContentHolder);

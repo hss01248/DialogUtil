@@ -50,7 +50,7 @@ public  class MyDialogBuilder {
 
     protected static int singleChosen;
    protected  ConfigBean buildByType(ConfigBean bean){
-       Tool.fixContext(bean);
+
 
 
        switch (bean.type){
@@ -110,7 +110,7 @@ public  class MyDialogBuilder {
                Tool.newCustomDialog(bean);
                if(bean.customContentHolder!=null){
                    bean.dialog.setContentView(bean.customContentHolder.rootView);
-                   bean.customContentHolder.assingDatasAndEvents(bean.context,null);
+                   //bean.customContentHolder.assingDatasAndEvents(bean.context,null);
                }else {
                    bean.dialog.setContentView(bean.customView);
                }
@@ -143,9 +143,12 @@ public  class MyDialogBuilder {
 
        }
 
-       Tool.setWindowAnimation(bean);
+       Dialog dialog = bean.dialog ==null ? bean.alertDialog : bean.dialog;
+       Window window = dialog.getWindow();
+       Tool.setWindowAnimation(window, bean);
        Tool.setCancelable(bean);
        Tool.setCancelListener(bean);
+
        Tool.adjustStyle(bean);
        return bean;
    }
@@ -179,7 +182,7 @@ public  class MyDialogBuilder {
            dialog = bean.dialog;
            bean.gravity = Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL;
            bean.widthPercent= 0.99f;
-           bean.heightPercent = 0;
+           bean.forceHeightPercent = 0;
            bean.bgRes = R.color.dialogutil_bg_white;
        }
         final Dialog finalDialog = dialog;
@@ -206,7 +209,11 @@ public  class MyDialogBuilder {
             tvBottom.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    finalDialog.dismiss();
+                    //finalDialog.dismiss();
+                    if(bean.itemListener!=null){
+                        bean.itemListener.onBottomBtnClick();
+                    }
+                    Tool.dismiss(bean);
                 }
             });
         }
@@ -241,7 +248,7 @@ public  class MyDialogBuilder {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     BottomSheetBean sheetBean = (BottomSheetBean) bean.lvDatas.get(position);
-                    finalDialog1.dismiss();
+                    Tool.dismiss(bean);
                     bean.itemListener.onItemClick(sheetBean.text,position);
                 }
             });
@@ -291,7 +298,7 @@ public  class MyDialogBuilder {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     BottomSheetBean sheetBean = (BottomSheetBean) bean.lvDatas.get(position);
-                    finalDialog2.dismiss();
+                   Tool.dismiss(bean);
                     bean.itemListener.onItemClick(sheetBean.text,position);
                 }
             });
@@ -370,7 +377,7 @@ public  class MyDialogBuilder {
 
         }else {
             builder.setView(bean.customContentHolder.rootView);
-            bean.customContentHolder.assingDatasAndEvents(Tool.fixContext(bean).context,bean);
+            //bean.customContentHolder.assingDatasAndEvents(Tool.fixContext(bean).context,bean);
         }
         builder.setTitle(bean.title)
                 .setPositiveButton(bean.text1, null)//不让点击默认消失，而是做出判断，见Tool.setMdBtnStytle
@@ -399,6 +406,17 @@ public  class MyDialogBuilder {
                 bean.listener.onCancle();
             }
         });
+
+        dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                if(bean.listener !=null){
+                    bean.listener.onDismiss();
+                }
+            }
+        });
+
+
         bean.alertDialog = dialog;
         return bean;
     }
@@ -410,20 +428,21 @@ public  class MyDialogBuilder {
                 .setPositiveButton(bean.text1, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+
                         if (bean.listener != null){
-                            StyledDialog.dismiss(dialogInterface);
                             bean.listener.onFirst();
                             bean.listener.onGetChoose(singleChosen,bean.wordsMd[singleChosen]);
                         }
+                        Tool.dismiss(bean);
                     }
                 })
                 .setNegativeButton(bean.text2, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         if (bean.listener != null){
-                            StyledDialog.dismiss(dialogInterface);
                             bean.listener.onSecond();
                         }
+                        Tool.dismiss(bean);
                     }
                 })
                 .setSingleChoiceItems( bean.wordsMd, bean.defaultChosen, new DialogInterface.OnClickListener() {
@@ -433,10 +452,7 @@ public  class MyDialogBuilder {
                         if (bean.itemListener != null){
                             bean.itemListener.onItemClick(bean.wordsMd[i],i);
                         }
-
-                        if (bean.listener == null){
-                            StyledDialog.dismiss(dialogInterface);
-                        }
+                        Tool.dismiss(bean);
 
                     }
                 });
@@ -460,7 +476,6 @@ public  class MyDialogBuilder {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         if (bean.listener != null){
-                            StyledDialog.dismiss(dialogInterface);
                             bean.listener.onFirst();
                             bean.listener.onGetChoose(bean.checkedItems);
                             List<Integer> selectedIndex = new ArrayList<Integer>();
@@ -472,18 +487,17 @@ public  class MyDialogBuilder {
                                 }
                             }
                             bean.listener.onChoosen(selectedIndex,selectedStrs,bean.checkedItems);
-
-
                         }
+                        Tool.dismiss(bean);
                     }
                 })
                 .setNegativeButton(bean.text2, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         if (bean.listener != null){
-                            StyledDialog.dismiss(dialogInterface);
                             bean.listener.onSecond();
                         }
+                        Tool.dismiss(bean);
                     }
                 })
                 .setMultiChoiceItems(bean.wordsMd, bean.checkedItems, new DialogInterface.OnMultiChoiceClickListener() {

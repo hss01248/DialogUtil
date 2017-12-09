@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
@@ -37,24 +38,24 @@ import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 
-public class MainActivity extends Activity {
+public class MainActivity extends AppCompatActivity {
 
-    @Bind(R.id.btn_common_progress)
+    @BindView(R.id.btn_common_progress)
     Button btnCommonProgress;
-    @Bind(R.id.btn_context_progress)
+    @BindView(R.id.btn_context_progress)
     Button btnContextProgress;
-    @Bind(R.id.btn_material_alert)
+    @BindView(R.id.btn_material_alert)
     Button btnMaterialAlert;
-    @Bind(R.id.btn_ios_alert)
+    @BindView(R.id.btn_ios_alert)
     Button btnIosAlert;
-    @Bind(R.id.btn_ios_bottom_sheet)
+    @BindView(R.id.btn_ios_bottom_sheet)
     Button btnIosBottomSheet;
-    @Bind(R.id.btn_ios_center_list)
+    @BindView(R.id.btn_ios_center_list)
     Button btnIosCenterList;
 
     /**
@@ -64,11 +65,11 @@ public class MainActivity extends Activity {
 
     Activity activity;
     Context context;
-    @Bind(R.id.btn_ios_alert_vertical)
+    @BindView(R.id.btn_ios_alert_vertical)
     Button btnIosAlertVertical;
-    @Bind(R.id.btn_input)
+    @BindView(R.id.btn_input)
     Button btnIosAlert2;
-    @Bind(R.id.btn_multichoose)
+    @BindView(R.id.btn_multichoose)
     Button btnIosAlertVertical2;
     Handler handler ;
 
@@ -324,7 +325,7 @@ android:pivotY="50%" />
 
                 })
                         .setBtnSize(29)
-                    .setHeightPercent(0.75f)//ugly
+                    .setForceHeightPercent(0.75f)//ugly
                     //.setWidthPercent(0.90f)
                         .setBtnText("i","b","3")
                     //.setBtnText("i")
@@ -356,7 +357,7 @@ android:pivotY="50%" />
                     .setBtnColor(R.color.dialogutil_text_black,R.color.colorPrimaryDark,0)
 
                     //.setWidthPercent(0.99f)
-                    //.setHeightPercent(0.88f)
+                    //.setForceHeightPercent(0.88f)
                     //.setBgRes(R.drawable.leak_canary_icon)
                     .setCustomContentHolder(new CustomContentHolder(this))
                     .show();
@@ -403,7 +404,7 @@ android:pivotY="50%" />
                 strings.add("13");
                 strings.add(msg);*/
 
-                StyledDialog.buildBottomItemDialog( strings, "cancle",  new MyItemDialogListener() {
+                StyledDialog.buildBottomItemDialog( strings, "好的",  new MyItemDialogListener() {
                     @Override
                     public void onItemClick(CharSequence text, int position) {
                         showToast(text);
@@ -658,7 +659,7 @@ android:pivotY="50%" />
             case R.id.btn_customview:
                 ViewGroup customView = (ViewGroup) View.inflate(this,R.layout.customview,null);
                 final ConfigBean bean = StyledDialog.buildCustom(customView, Gravity.CENTER)
-                    .setHeightPercent(0.7f)
+                    .setForceHeightPercent(0.7f)
                     .setWidthPercent(0.8f)
                     .setHasShadow(false);
                 final Dialog dialog1 =   bean.show();
@@ -684,7 +685,7 @@ android:pivotY="50%" />
             break;
             case R.id.btn_customview2:
                 ViewGroup customView2 = (ViewGroup) View.inflate(this,R.layout.customview2,null);
-                StyledDialog.buildCustom(customView2,Gravity.CENTER).setWidthPercent(0.90f).setHeightPercent(0.8f).show();
+                StyledDialog.buildCustom(customView2,Gravity.CENTER).setWidthPercent(0.90f).setForceHeightPercent(0.8f).show();
                 break;
             default:break;
 

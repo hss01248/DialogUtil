@@ -1,13 +1,13 @@
 package com.hss01248.dialogutildemo;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -15,11 +15,11 @@ import butterknife.OnClick;
  * Created by huangshuisheng on 2017/9/30.
  */
 
-public class BadTokenActy extends Activity {
+public class BadTokenActy extends AppCompatActivity {
 
-    @Bind(R.id.button)
+    @BindView(R.id.button)
     Button button;
-    @Bind(R.id.button2)
+    @BindView(R.id.button2)
     Button button2;
 
     @Override

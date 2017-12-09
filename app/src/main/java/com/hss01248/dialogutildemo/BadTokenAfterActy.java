@@ -1,16 +1,16 @@
 package com.hss01248.dialogutildemo;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 
 /**
  * Created by huangshuisheng on 2017/9/30.
  */
 
-public class BadTokenAfterActy extends Activity {
+public class BadTokenAfterActy extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

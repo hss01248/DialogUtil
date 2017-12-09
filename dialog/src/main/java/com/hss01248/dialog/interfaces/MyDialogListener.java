@@ -22,6 +22,8 @@ public abstract class MyDialogListener {
 
     public void onCancle(){}
 
+    public void onDismiss(){}
+
 
 
 

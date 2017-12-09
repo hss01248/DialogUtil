@@ -18,6 +18,11 @@
         <item name="android:windowExitAnimation">@anim/dialog_exit</item>    <!--退出时的动画-->
     </style>
 
+    <style name="ani_bottom" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/pop_in</item>  <!--进入时的动画-->
+        <item name="android:windowExitAnimation">@anim/pop_out</item>    <!--退出时的动画-->
+    </style>
+
     <style name="dialog_center" parent="android:Animation">
         <item name="android:windowEnterAnimation">@anim/dialog_enter_center</item>  <!--进入时的动画-->
         <item name="android:windowExitAnimation">@anim/dialog_exit_center</item>    <!--退出时的动画-->
