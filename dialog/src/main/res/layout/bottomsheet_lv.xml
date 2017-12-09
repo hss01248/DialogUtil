@@ -37,6 +37,7 @@
         android:paddingBottom="15dp"
         android:text="@string/dialogutil_btn_cancel"
         android:textSize="15sp"
+            android:background="@drawable/selector_btn_press_no_corner"
         android:textColor="@color/dialogutil_text_black_light"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
