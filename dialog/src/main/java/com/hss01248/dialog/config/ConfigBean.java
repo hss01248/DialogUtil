@@ -48,6 +48,8 @@ public class ConfigBean extends MyDialogBuilder implements Styleable {
 
     public View customView;
 
+    public View contentView;
+
     public int gravity = Gravity.CENTER;
 
     public CharSequence title;
@@ -59,7 +61,7 @@ public class ConfigBean extends MyDialogBuilder implements Styleable {
     public CharSequence hint1;
     public CharSequence hint2;
 
-    public boolean showAsActivity =false;
+    public boolean showAsActivity =true;
     public boolean showAsFragment = false;
     public DialogUtilDialogFragment mDialogFragment;
 
@@ -116,7 +118,7 @@ public class ConfigBean extends MyDialogBuilder implements Styleable {
     /**
      * the dialog show by wrap-content in x-axi in default
      *
-     * you can use the widthPercent:
+     * you can use the forceWidthPercent:
      *  to stretch it in x-axi
      *  to determine the left and right margin if the measuredWidth is greater than or the same as the phone window width
      *
@@ -126,14 +128,14 @@ public class ConfigBean extends MyDialogBuilder implements Styleable {
          case DefaultConfig.TYPE_BOTTOM_SHEET_CUSTOM:
          case DefaultConfig.TYPE_BOTTOM_SHEET_GRID:
          case DefaultConfig.TYPE_BOTTOM_SHEET_LIST:
-     * @param widthPercent
+     * @param forceWidthPercent
      * @return
      */
-    public ConfigBean setWidthPercent(@FloatRange(from = 0f,to = 1.0f)float widthPercent) {
-        if(widthPercent>1.0f || widthPercent<=0f){
+    public ConfigBean setForceWidthPercent(@FloatRange(from = 0f,to = 1.0f)float forceWidthPercent) {
+        if(forceWidthPercent >1.0f || forceWidthPercent <=0f){
             return this;
         }
-        this.widthPercent = widthPercent;
+        this.forceWidthPercent = forceWidthPercent;
         return this;
     }
 
@@ -141,7 +143,7 @@ public class ConfigBean extends MyDialogBuilder implements Styleable {
     /**
      * the dialog show by wrap-content in y-axi in default
      *
-     * you can use the widthPercent:
+     * you can use the forceWidthPercent:
      * to determine the top and bottom margin if the measuredHeight is greater than the phone window
      * to stretch it in y-axi,no recommend,because that is ugly!
      *
@@ -170,9 +172,18 @@ public class ConfigBean extends MyDialogBuilder implements Styleable {
         return this;
     }
 
-    public float widthPercent;
+    public ConfigBean setMaxWidthPercent(@FloatRange(from = 0f,to = 1.0f) float maxWidthPercent) {
+        if(maxWidthPercent >1.0f || maxWidthPercent <=0f){
+            return this;
+        }
+        this.maxWidthPercent = maxWidthPercent;
+        return this;
+    }
+
+    public float forceWidthPercent;
     public float forceHeightPercent;
     public float maxHeightPercent;
+    public float maxWidthPercent;
 
     public ConfigBean setTransparentBehind(boolean transparentBehind) {
         isTransparentBehind = transparentBehind;
@@ -394,14 +405,14 @@ public class ConfigBean extends MyDialogBuilder implements Styleable {
             public void run() {
                 Activity activity1 = ActivityStackManager.getInstance().getTopActivity(DialogUtil_DialogActivity.class);
                 if(activity1!=null){
-                    buildByType(ConfigBean.this);
+                    //buildByType(ConfigBean.this);
                     DialogUtil_DialogActivity activity2 = (DialogUtil_DialogActivity) activity1;
                     activity2.show(ConfigBean.this);
                 }else {
                     showViewWhenActivityIsReady();
                 }
             }
-        },300);
+        },100);
     }
 
 

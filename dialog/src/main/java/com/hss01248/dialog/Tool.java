@@ -23,6 +23,7 @@ import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewParent;
 import android.view.ViewTreeObserver;
 import android.view.Window;
 import android.view.WindowManager;
@@ -529,8 +530,8 @@ public class Tool {
         }
 
         //set ratio as user has set
-        if(bean.widthPercent>0 && bean.widthPercent<=1.0f){
-            widthRatio = bean.widthPercent;
+        if(bean.forceWidthPercent >0 && bean.forceWidthPercent <=1.0f){
+            widthRatio = bean.forceWidthPercent;
         }
         if(measuredHeight > bean.maxHeightPercent * height){
             heightRatio = bean.maxHeightPercent;
@@ -561,7 +562,7 @@ public class Tool {
         dialog.onWindowAttributesChanged(wl);
     }
 
-    private static boolean istheTypeOfNotAdjust(ConfigBean bean) {
+    public static boolean istheTypeOfNotAdjust(ConfigBean bean) {
         switch (bean.type){
             case DefaultConfig.TYPE_IOS_LOADING:
             case DefaultConfig.TYPE_PROGRESS:
@@ -772,7 +773,7 @@ public class Tool {
                 @Override
                 public void onStateChanged(@NonNull View bottomSheet, int newState) {
                     if (newState == BottomSheetBehavior.STATE_HIDDEN) {
-                        bean.dialog.dismiss();
+                        Tool.dismiss(bean);
                         bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
                     }
                 }
@@ -817,4 +818,11 @@ public class Tool {
     }
 
 
+    public static void removeFromParent(View customView) {
+        ViewParent parent =  customView.getParent();
+        if(parent !=null){
+            ViewGroup group = (ViewGroup) parent;
+            group.removeView(customView);
+        }
+    }
 }

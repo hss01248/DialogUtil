@@ -98,9 +98,11 @@ public  class MyDialogBuilder {
            case DefaultConfig.TYPE_CUSTOM_VIEW:
                Tool.newCustomDialog(bean);
                if(bean.customContentHolder!=null){
+                   Tool.removeFromParent(bean.customContentHolder.rootView);
                    bean.dialog.setContentView(bean.customContentHolder.rootView);
                    //bean.customContentHolder.assingDatasAndEvents(bean.context,null);
                }else {
+                   Tool.removeFromParent(bean.customView);
                    bean.dialog.setContentView(bean.customView);
                }
 
@@ -167,11 +169,12 @@ public  class MyDialogBuilder {
          Dialog dialog = null;
        if(bean.hasBehaviour){
             dialog = new RightMdBottomSheetDialog(bean.context);
+           bean.forceWidthPercent = 1.0f;
        }else {
            Tool.newCustomDialog(bean);
            dialog = bean.dialog;
            bean.gravity = Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL;
-           bean.widthPercent= 1.0f;
+           bean.forceWidthPercent = 1.0f;
            bean.bgRes = R.color.dialogutil_bg_white;
        }
         bean.dialog = dialog;
@@ -192,7 +195,9 @@ public  class MyDialogBuilder {
 
     private void buildBottomSheet(ConfigBean bean) {
         final BottomSheetDialog dialog = new BottomSheetDialog(bean.context);
+        Tool.removeFromParent(bean.customView);
         dialog.setContentView(bean.customView);
+        bean.forceWidthPercent = 1.0f;
         dialog.setCancelable(bean.cancelable);
         dialog.setCanceledOnTouchOutside(bean.outsideTouchable);
         bean.dialog = dialog;
