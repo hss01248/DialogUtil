@@ -1,8 +1,8 @@
 package com.hss01248.dialog.view;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.hss01248.dialog.config.ConfigBean;
@@ -11,7 +11,7 @@ import com.hss01248.dialog.config.ConfigBean;
  * Created by Administrator on 2017/11/19.
  */
 
-public class DialogUtil_DialogActivity extends Activity {
+public class DialogUtil_DialogActivity extends AppCompatActivity {
 
     ConfigBean bean;
 
@@ -43,5 +43,14 @@ public class DialogUtil_DialogActivity extends Activity {
         if(bean!=null && bean.homeKeyReceiver!=null){
             unregisterReceiver(bean.homeKeyReceiver);
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        if(bean.cancelable){
+            super.onBackPressed();
+        }
+
     }
 }

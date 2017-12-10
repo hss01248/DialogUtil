@@ -1,7 +1,8 @@
-package com.hss01248.dialog.view;
+package com.hss01248.dialog.ios;
 
 import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -17,10 +18,11 @@ import com.hss01248.dialog.config.ConfigBean;
 /**
  * Created by Administrator on 2016/10/9 0009.
  */
-public class IosCenterItemHolder extends SuperLvHolder<ConfigBean> {
+public class IosActionSheetHolder extends SuperLvHolder<ConfigBean> {
     public ListView lv;
+    protected Button btnBottom;
 
-    public IosCenterItemHolder(Context context) {
+    public IosActionSheetHolder(Context context) {
         super(context);
     }
 
@@ -30,16 +32,33 @@ public class IosCenterItemHolder extends SuperLvHolder<ConfigBean> {
 
         lv.setDivider(new ColorDrawable(lv.getResources().getColor(R.color.dialogutil_line_dd)));
         lv.setDividerHeight(1);
+        btnBottom = (Button) rootView.findViewById(R.id.btn_bottom);
     }
 
     @Override
     protected int setLayoutRes() {
-        return R.layout.dialog_ios_center_item;
+        return R.layout.dialog_ios_alert_bottom;
     }
 
     @Override
     public void assingDatasAndEvents(final Context context, final ConfigBean bean) {
-        lv.setAdapter(new BaseAdapter() {
+        if (TextUtils.isEmpty(bean.bottomTxt)){
+            btnBottom.setVisibility(View.GONE);
+        }else {
+            btnBottom.setVisibility(View.VISIBLE);
+            btnBottom.setText(bean.bottomTxt);
+            btnBottom.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Tool.dismiss(bean);
+                    bean.itemListener.onBottomBtnClick();
+
+                }
+            });
+        }
+
+
+        BaseAdapter adapter = new BaseAdapter() {
             @Override
             public int getCount() {
                 return bean.wordsIos.size();
@@ -47,16 +66,17 @@ public class IosCenterItemHolder extends SuperLvHolder<ConfigBean> {
 
             @Override
             public Object getItem(int position) {
-                return bean.wordsIos.get(position);
+                return null;
             }
 
             @Override
             public long getItemId(int position) {
-                return position;
+                return 0;
             }
 
             @Override
             public View getView(final int position, View convertView, ViewGroup parent) {
+
                 RelativeLayout root = (RelativeLayout) View.inflate(context,R.layout.item_btn_bottomalert,null);
                 Button view = (Button) root.findViewById(R.id.btn);
                 if (getCount() >=2){
@@ -71,10 +91,12 @@ public class IosCenterItemHolder extends SuperLvHolder<ConfigBean> {
                 }else {
                     view.setBackgroundResource(R.drawable.selector_btn_press_all);
                 }
+
                 view.setText(bean.wordsIos.get(position));
                 view.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        //StyledDialog.dismiss(bean.dialog,bean.alertDialog);
                         Tool.dismiss(bean);
                         bean.itemListener.onItemClick(bean.wordsIos.get(position),position);
 
@@ -83,7 +105,9 @@ public class IosCenterItemHolder extends SuperLvHolder<ConfigBean> {
 
                 return root;
             }
-        });
+        };
+
+        lv.setAdapter(adapter);
     }
 
 

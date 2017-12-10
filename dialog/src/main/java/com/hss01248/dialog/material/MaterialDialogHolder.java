@@ -19,7 +19,6 @@ import com.hss01248.dialog.adapter.SuperLvHolder;
 import com.hss01248.dialog.config.ChooseBean;
 import com.hss01248.dialog.config.ConfigBean;
 import com.hss01248.dialog.config.DefaultConfig;
-import com.hss01248.dialog.view.MdInputHolder;
 
 import java.util.ArrayList;
 import java.util.List;

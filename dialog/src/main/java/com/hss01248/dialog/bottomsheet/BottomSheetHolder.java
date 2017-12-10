@@ -2,7 +2,7 @@ package com.hss01248.dialog.bottomsheet;
 
 import android.content.Context;
 import android.support.annotation.Nullable;
-import android.support.design.widget.BottomSheetBehavior;
+import android.support.design.widget.BottomSheetDialog;
 import android.support.v4.view.ViewPager;
 import android.text.TextUtils;
 import android.view.View;
@@ -73,19 +73,15 @@ public class BottomSheetHolder extends SuperLvHolder<ConfigBean> {
 
     }
 
-    private void setMdBottomSheetDialogBehaviour(AdapterView adapterView, Context context, ConfigBean bean) {
-        if(bean.hasBehaviour){
+    private void setMdBottomSheetDialogBehaviour(AdapterView adapterView, Context context, final ConfigBean bean) {
+        if(bean.hasBehaviour && bean.dialog instanceof BottomSheetDialog){
             //Tool.handleScrollInBottomSheetDialog(listView);
             if(adapterView !=null){
                 Tool.handleScrollInBottomSheetDialog(adapterView);
             }
 
-            //设置BottomSheetDialog的初始最大高度
-            View view = bean.dialog.getWindow().findViewById(android.support.design.R.id.design_bottom_sheet);
-            if(bean.bottomSheetDialogMaxHeightPercent >0f && bean.bottomSheetDialogMaxHeightPercent <1f){
-                int peekHeight = (int) (bean.bottomSheetDialogMaxHeightPercent * ScreenUtil.getScreenHeight());
-                BottomSheetBehavior.from(view).setPeekHeight(peekHeight);
-            }
+            //
+
         }
     }
 
@@ -101,6 +97,7 @@ public class BottomSheetHolder extends SuperLvHolder<ConfigBean> {
 
     private AdapterView buildGridViewWithViewPager(Context context, final ConfigBean bean) {
         ViewPager viewPager = new ViewPager(context);
+        viewPager.setOverScrollMode(View.OVER_SCROLL_NEVER);
         BottomSheetStyle style = bean.bottomSheetStyle;
         int height = ScreenUtil.dip2px( style.iconSizeDp+style.txtMarginTopDp+style.txtSizeSp+5)*2+ScreenUtil.dip2px(style.gvItemMargin_V);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, height);
@@ -135,6 +132,28 @@ public class BottomSheetHolder extends SuperLvHolder<ConfigBean> {
         viewPager.setAdapter(pagerAdapter);
         pagerAdapter.addAll(datas);
         ((ViewGroup)rootView).addView(viewPager,1);
+
+        final BottomVpIndicatorHolder indicatorHolder = new BottomVpIndicatorHolder(context);
+        indicatorHolder.assingDatasAndEvents(context,datas);
+        indicatorHolder.onPageSelected(0);
+        ((ViewGroup)rootView).addView(indicatorHolder.mLinearLayout,2);
+
+        viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                indicatorHolder.onPageSelected(position);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
         return null;
     }
 

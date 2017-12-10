@@ -1,4 +1,4 @@
-package com.hss01248.dialog.view;
+package com.hss01248.dialog.ios;
 
 
 import android.content.Context;

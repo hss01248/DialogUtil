@@ -59,14 +59,14 @@ public class ConfigBean extends MyDialogBuilder implements Styleable {
     public CharSequence hint1;
     public CharSequence hint2;
 
-    public boolean showAsActivity ;
+    public boolean showAsActivity =false;
     public boolean showAsFragment = false;
     public DialogUtilDialogFragment mDialogFragment;
 
 
 
 
-    public boolean hasBehaviour  = false;
+    public boolean hasBehaviour  = true;
 
     public ConfigBean setNeedSoftKeyboard(boolean needSoftKeyboard) {
         this.needSoftKeyboard = needSoftKeyboard;

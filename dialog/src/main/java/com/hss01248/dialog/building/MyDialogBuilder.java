@@ -11,6 +11,7 @@ import android.support.v7.app.AlertDialog;
 import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -18,14 +19,15 @@ import com.hss01248.dialog.R;
 import com.hss01248.dialog.StyledDialog;
 import com.hss01248.dialog.Tool;
 import com.hss01248.dialog.bottomsheet.BottomSheetHolder;
+import com.hss01248.dialog.bottomsheet.RightMdBottomSheetDialog;
 import com.hss01248.dialog.config.BottomSheetStyle;
 import com.hss01248.dialog.config.ConfigBean;
 import com.hss01248.dialog.config.DefaultConfig;
+import com.hss01248.dialog.ios.IosActionSheetHolder;
+import com.hss01248.dialog.ios.IosAlertDialogHolder;
+import com.hss01248.dialog.ios.IosCenterItemHolder;
 import com.hss01248.dialog.material.MaterialDialogHolder;
-import com.hss01248.dialog.view.IosActionSheetHolder;
-import com.hss01248.dialog.view.IosAlertDialogHolder;
-import com.hss01248.dialog.view.IosCenterItemHolder;
-import com.hss01248.dialog.view.MdInputHolder;
+import com.hss01248.dialog.material.MdInputHolder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +40,7 @@ public  class MyDialogBuilder {
     protected static int singleChosen;
    protected  ConfigBean buildByType(ConfigBean bean){
 
-
+        Tool.fixContext(bean);
 
        switch (bean.type){
            case DefaultConfig.TYPE_MD_LOADING:
@@ -132,6 +134,7 @@ public  class MyDialogBuilder {
 
        Dialog dialog = bean.dialog ==null ? bean.alertDialog : bean.dialog;
        Window window = dialog.getWindow();
+       window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
        Tool.setWindowAnimation(window, bean);
        Tool.setCancelable(bean);
        Tool.setCancelListener(bean);
@@ -163,7 +166,7 @@ public  class MyDialogBuilder {
     private void buildBottomSheetLv(final ConfigBean bean) {
          Dialog dialog = null;
        if(bean.hasBehaviour){
-            dialog = new BottomSheetDialog(bean.context);
+            dialog = new RightMdBottomSheetDialog(bean.context);
        }else {
            Tool.newCustomDialog(bean);
            dialog = bean.dialog;
@@ -171,6 +174,7 @@ public  class MyDialogBuilder {
            bean.widthPercent= 1.0f;
            bean.bgRes = R.color.dialogutil_bg_white;
        }
+        bean.dialog = dialog;
 
 
         if(bean.bottomSheetStyle ==null){
@@ -183,7 +187,7 @@ public  class MyDialogBuilder {
 
         dialog.setContentView(bottomSheetHolder.rootView);
 
-        bean.dialog = dialog;
+
     }
 
     private void buildBottomSheet(ConfigBean bean) {
