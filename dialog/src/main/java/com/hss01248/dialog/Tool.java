@@ -84,6 +84,17 @@ public class Tool {
      */
     public static void showDialog(final Dialog dialog, final ConfigBean bean) {
         Log.e("tool","showDialog:"+dialog);
+
+        //dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE | WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+
+        dialog.setOnShowListener(new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(DialogInterface dialog) {
+                showSoftKeyBoardDelayed(bean.needSoftKeyboard,bean.viewHolder);
+                showSoftKeyBoardDelayed(bean.needSoftKeyboard,bean.customContentHolder);
+            }
+        });
+
         StyledDialog.getMainHandler().post(new Runnable() {
             @Override
             public void run() {
@@ -100,6 +111,10 @@ public class Tool {
                 }
             }
         });
+       /* dialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM,
+            WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM);*/
+
+
 
 
 
@@ -134,8 +149,7 @@ public class Tool {
                     public void onGlobalLayout() {
                         setBottomSheetDialogPeekHeight(bean);
                         adjustWH(dialog,bean);
-                        showSoftKeyBoardDelayed(bean.needSoftKeyboard,bean.viewHolder);
-                        showSoftKeyBoardDelayed(bean.needSoftKeyboard,bean.customContentHolder);
+
                         dialog.getWindow().getDecorView().getViewTreeObserver().removeGlobalOnLayoutListener(this);
                     }
                 });
@@ -181,7 +195,7 @@ public class Tool {
             public void run() {
                 holder.showKeyBoard();
             }
-        }, 500);
+        }, 100);
     }
 
 

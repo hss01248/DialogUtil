@@ -23,6 +23,8 @@ public class WindowAdjuster {
         setAnimation(window,bean);
 
         setStyleOnLayout(window,bean);
+
+
     }
 
     private static void setStyleOnLayout(final Window window, final ConfigBean bean) {
@@ -37,6 +39,7 @@ public class WindowAdjuster {
     }
 
     private static void showKeyBorarIfNeed(Window window, ConfigBean bean) {
+        window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING);
         Tool.showSoftKeyBoardDelayed(bean.needSoftKeyboard,bean.viewHolder);
         Tool.showSoftKeyBoardDelayed(bean.needSoftKeyboard,bean.customContentHolder);
 

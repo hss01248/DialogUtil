@@ -100,14 +100,10 @@ public  class MyDialogBuilder {
                if(bean.customContentHolder!=null){
                    Tool.removeFromParent(bean.customContentHolder.rootView);
                    bean.dialog.setContentView(bean.customContentHolder.rootView);
-                   //bean.customContentHolder.assingDatasAndEvents(bean.context,null);
                }else {
                    Tool.removeFromParent(bean.customView);
                    bean.dialog.setContentView(bean.customView);
                }
-
-
-
                break;
            case DefaultConfig.TYPE_BOTTOM_SHEET_CUSTOM:
               buildBottomSheet(bean);

@@ -61,7 +61,7 @@ public class ConfigBean extends MyDialogBuilder implements Styleable {
     public CharSequence hint1;
     public CharSequence hint2;
 
-    public boolean showAsActivity =true;
+    public boolean showAsActivity =false;
     public boolean showAsFragment = false;
     public DialogUtilDialogFragment mDialogFragment;
 
@@ -424,6 +424,12 @@ public class ConfigBean extends MyDialogBuilder implements Styleable {
         showAsActivityNow();
     }
 
+
+    /**
+     * 开发中,暂时支持不全
+     * @return
+     */
+    @Deprecated
     public DialogUtilDialogFragment showAsFragment() {
         this.showAsFragment = true;
         return showAsFragmentNow();
