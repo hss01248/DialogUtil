@@ -20,9 +20,18 @@ public abstract class SuperLvHolder<T> {
     }*/
 
     public SuperLvHolder(Context context){
-        rootView = View.inflate(context,setLayoutRes(),null);
+        if(setLayoutRes() !=0){
+            rootView = View.inflate(context,setLayoutRes(),null);
+        }else {
+            rootView = setRootView(context);
+        }
+
         //ButterKnife.bind(this,rootView);
         findViews();
+    }
+
+    protected View setRootView(Context context) {
+        return null;
     }
 
     protected abstract void findViews();

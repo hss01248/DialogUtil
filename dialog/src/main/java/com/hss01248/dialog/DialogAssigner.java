@@ -269,6 +269,7 @@ public class DialogAssigner implements Assignable {
         bean.bottomTxt = bottomTxt;
         bean.itemListener = listener;
         bean.type = DefaultConfig.TYPE_BOTTOM_SHEET_LIST;
+        bean.hasBehaviour = true;
         return bean;
     }
 

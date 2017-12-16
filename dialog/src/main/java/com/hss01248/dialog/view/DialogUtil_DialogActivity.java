@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 
+import com.hss01248.dialog.WindowAdjuster;
 import com.hss01248.dialog.config.ConfigBean;
 
 /**
@@ -32,6 +33,7 @@ public class DialogUtil_DialogActivity extends Activity {
         }
         if(view!=null){
             setContentView(view);
+            WindowAdjuster.adjust(getWindow(),bean);
         }else {
             finish();
         }
@@ -41,7 +43,21 @@ public class DialogUtil_DialogActivity extends Activity {
     protected void onDestroy() {
         super.onDestroy();
         if(bean!=null && bean.homeKeyReceiver!=null){
-            unregisterReceiver(bean.homeKeyReceiver);
+            try {
+                unregisterReceiver(bean.homeKeyReceiver);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        if(bean.cancelable){
+            super.onBackPressed();
+        }
+
     }
 }

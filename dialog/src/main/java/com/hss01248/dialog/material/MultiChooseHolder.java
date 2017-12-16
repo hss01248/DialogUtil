@@ -32,7 +32,6 @@ public class MultiChooseHolder extends SuperLvHolder<ChooseBean> {
     public void assingDatasAndEvents(Context context, @Nullable ChooseBean bean) {
         //checkedTextView.setChecked(bean.choosen);
         checkedTextView.setText(bean.txt);
-
     }
 
 

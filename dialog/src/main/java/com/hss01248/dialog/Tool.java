@@ -13,26 +13,31 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomSheetBehavior;
+import android.support.design.widget.BottomSheetDialog;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewParent;
 import android.view.ViewTreeObserver;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.AbsListView;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.hss01248.dialog.adapter.SuperLvHolder;
 import com.hss01248.dialog.config.ConfigBean;
 import com.hss01248.dialog.config.DefaultConfig;
+import com.hss01248.dialog.ios.IosAlertDialogHolder;
+import com.hss01248.dialog.material.MdInputHolder;
 import com.hss01248.dialog.view.DialogUtil_DialogActivity;
-import com.hss01248.dialog.view.IosAlertDialogHolder;
-import com.hss01248.dialog.view.MdInputHolder;
 
 /**
  * Created by Administrator on 2016/10/9 0009.
@@ -78,6 +83,7 @@ public class Tool {
      * @param dialog
      */
     public static void showDialog(final Dialog dialog, final ConfigBean bean) {
+        Log.e("tool","showDialog:"+dialog);
         StyledDialog.getMainHandler().post(new Runnable() {
             @Override
             public void run() {
@@ -126,6 +132,7 @@ public class Tool {
                 .addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
                     @Override
                     public void onGlobalLayout() {
+                        setBottomSheetDialogPeekHeight(bean);
                         adjustWH(dialog,bean);
                         showSoftKeyBoardDelayed(bean.needSoftKeyboard,bean.viewHolder);
                         showSoftKeyBoardDelayed(bean.needSoftKeyboard,bean.customContentHolder);
@@ -274,6 +281,8 @@ public class Tool {
         }else {
             bean.context = StyledDialog.context;
         }
+
+        Log.e("tool","fixContext:"+bean.context);
         return bean;
     }
 
@@ -521,8 +530,8 @@ public class Tool {
         }
 
         //set ratio as user has set
-        if(bean.widthPercent>0 && bean.widthPercent<=1.0f){
-            widthRatio = bean.widthPercent;
+        if(bean.forceWidthPercent >0 && bean.forceWidthPercent <=1.0f){
+            widthRatio = bean.forceWidthPercent;
         }
         if(measuredHeight > bean.maxHeightPercent * height){
             heightRatio = bean.maxHeightPercent;
@@ -553,7 +562,7 @@ public class Tool {
         dialog.onWindowAttributesChanged(wl);
     }
 
-    private static boolean istheTypeOfNotAdjust(ConfigBean bean) {
+    public static boolean istheTypeOfNotAdjust(ConfigBean bean) {
         switch (bean.type){
             case DefaultConfig.TYPE_IOS_LOADING:
             case DefaultConfig.TYPE_PROGRESS:
@@ -730,7 +739,7 @@ public class Tool {
 
     }
 
-    public static void handleScrollInBottomSheetDialog(final AbsListView listView){
+    public static void handleScrollInBottomSheetDialog(final AdapterView listView){
         listView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -744,6 +753,40 @@ public class Tool {
         });
 
 
+    }
+
+
+    /**
+     * 设置BottomSheetDialog的初始最大高度,解决dismiss后无法再show的问题
+     * @param bean
+     */
+    public static void setBottomSheetDialogPeekHeight(final ConfigBean bean){
+        if(bean.hasBehaviour && bean.dialog instanceof BottomSheetDialog){
+            View view = bean.dialog.getWindow().findViewById(android.support.design.R.id.design_bottom_sheet);
+
+            if(view ==null){
+                return;
+            }
+
+            final BottomSheetBehavior bottomSheetBehavior = BottomSheetBehavior.from(view);
+            bottomSheetBehavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
+                @Override
+                public void onStateChanged(@NonNull View bottomSheet, int newState) {
+                    if (newState == BottomSheetBehavior.STATE_HIDDEN) {
+                        Tool.dismiss(bean);
+                        bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+                    }
+                }
+                @Override
+                public void onSlide(@NonNull View bottomSheet, float slideOffset) {
+                }
+            });
+
+            if(bean.bottomSheetDialogMaxHeightPercent >0f && bean.bottomSheetDialogMaxHeightPercent <1f){
+                int peekHeight = (int) (bean.bottomSheetDialogMaxHeightPercent * ScreenUtil.getScreenHeight());
+                bottomSheetBehavior.setPeekHeight(peekHeight);
+            }
+        }
     }
 
     public static void showKeyBoard(View view){
@@ -775,4 +818,11 @@ public class Tool {
     }
 
 
+    public static void removeFromParent(View customView) {
+        ViewParent parent =  customView.getParent();
+        if(parent !=null){
+            ViewGroup group = (ViewGroup) parent;
+            group.removeView(customView);
+        }
+    }
 }

@@ -11,7 +11,7 @@
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
         android:textAllCaps="false"
-        android:text="56546546"
+        android:text="title"
         android:textSize="15sp"
         android:gravity="center"
         android:textColor="@color/dialogutil_text_black"
@@ -28,7 +28,6 @@
         android:background="@color/dialogutil_line_dd"
         android:layout_height="@dimen/dialogutil_line_1px"/>
     <TextView
-        android:visibility="gone"
         android:id="@+id/tv_bottom"
         android:paddingLeft="15dp"
         android:paddingRight="15dp"

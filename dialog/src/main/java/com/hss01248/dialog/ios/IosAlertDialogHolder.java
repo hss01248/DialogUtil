@@ -1,4 +1,4 @@
-package com.hss01248.dialog.view;
+package com.hss01248.dialog.ios;
 
 
 import android.content.Context;
@@ -6,6 +6,7 @@ import android.text.TextUtils;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -147,7 +148,13 @@ public class IosAlertDialogHolder extends SuperLvHolder<ConfigBean> {
             LinearLayout.LayoutParams.WRAP_CONTENT);
         SuperLvHolder holder = bean.customContentHolder;
         holder.rootView.setLayoutParams(params);
-        llContainerContent.addView(holder.rootView);
+        if(holder.rootView.getParent() ==null){
+            llContainerContent.addView(holder.rootView);
+        }else {
+            ((ViewGroup)(holder.rootView.getParent())).removeView(holder.rootView);
+            llContainerContent.addView(holder.rootView);
+        }
+
         //holder.assingDatasAndEvents(llContainerContent.getContext(),null);
 
 
