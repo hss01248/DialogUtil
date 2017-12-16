@@ -195,7 +195,7 @@ public class Tool {
             public void run() {
                 holder.showKeyBoard();
             }
-        }, 100);
+        }, 500);
     }
 
 

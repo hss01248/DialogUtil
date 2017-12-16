@@ -450,6 +450,14 @@ public class ConfigBean extends MyDialogBuilder implements Styleable {
         }
 
 
+        /*Dialog dialog2 = this.dialog ==null ? alertDialog : this.dialog;
+        Window window = dialog2.getWindow();
+        window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        WindowAdjuster.adjust(window,this);
+        Tool.setCancelable(this);
+        Tool.setCancelListener(this);*/
+
+
 //Build dialog by tyle :
         //内部保存loadingdialog对象
 

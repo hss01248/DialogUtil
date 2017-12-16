@@ -280,6 +280,7 @@ public class StyledDialog  {
 
     /**
      * use buildCustom( SuperLvHolder viewHolder)  instead
+     * 建议使用SuperLvHolder 对自定义view进行包装,如果有输入框,则实现控制软键盘的显示和隐藏方法,框架会在合适的时间帮你显示和隐藏
      * @param contentView
      * @param gravity
      * @return

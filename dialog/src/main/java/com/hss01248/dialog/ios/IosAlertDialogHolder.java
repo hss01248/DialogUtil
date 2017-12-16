@@ -84,58 +84,27 @@ public class IosAlertDialogHolder extends SuperLvHolder<ConfigBean> {
     public void assingDatasAndEvents(Context context, final ConfigBean bean) {
         this.bean = bean;
         bean.viewHolder = this;
-
         //btn style -size,color,oritation
         setBtnsSytle(context,bean);
-
         //set title style
         setTitleStyle(context,bean);
-
-
-
-
         //自定义content
         if(bean.customContentHolder ==null){
             //msg
-
             setMsgStyleAndTxt(bean);
-
-
             //input
             setInputStyle(context,bean);
-
         }else {
-
             addCustomView(bean,context);
-
         }
-
-
-
-
         //按钮数量
-
         setBtnTxt(context,bean);
-
-
-
-
-
         //事件
-
         if (bean.isVertical) {
             setBtnEventVertical(bean,context);
-
-
-
         } else {
-
             setBtnEventH(context,bean);
-
-
         }
-
-
     }
 
     private void addCustomView(ConfigBean bean, Context context) {
