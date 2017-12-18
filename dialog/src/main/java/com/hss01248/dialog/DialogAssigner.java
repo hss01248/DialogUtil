@@ -90,10 +90,10 @@ public class DialogAssigner implements Assignable {
         bean.defaultChosen = defaultChosen;
 
         bean.btn1Color = DefaultConfig.mdBtnColor;
-        bean.btn2Color = DefaultConfig.mdBtnColor;
+        bean.btn2Color = DefaultConfig.mdBtnCancelColor;
         bean.btn3Color = DefaultConfig.mdBtnColor;
         bean.text1 = "";
-        bean.text2 = "";
+        //bean.text2 = "取消";
         bean.text3 = "";
         bean.chooseBeans = new ArrayList<>(words.length);
         for (int i = 0; i < words.length; i++) {
