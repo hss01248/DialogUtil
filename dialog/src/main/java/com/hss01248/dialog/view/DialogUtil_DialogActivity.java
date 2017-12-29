@@ -34,6 +34,7 @@ public class DialogUtil_DialogActivity extends Activity {
         if(view!=null){
             setContentView(view);
             WindowAdjuster.adjust(getWindow(),bean);
+            bean.listener.onShow();
         }else {
             finish();
         }

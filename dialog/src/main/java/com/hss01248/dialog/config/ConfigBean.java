@@ -427,7 +427,7 @@ public class ConfigBean extends MyDialogBuilder implements Styleable {
 
 
     /**
-     * 开发中,暂时支持不全
+     * 开发中,暂时支持不全,请勿用
      * @return
      */
     @Deprecated

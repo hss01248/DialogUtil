@@ -90,8 +90,9 @@ public class Tool {
         dialog.setOnShowListener(new DialogInterface.OnShowListener() {
             @Override
             public void onShow(DialogInterface dialog) {
-                showSoftKeyBoardDelayed(bean.needSoftKeyboard,bean.viewHolder);
-                showSoftKeyBoardDelayed(bean.needSoftKeyboard,bean.customContentHolder);
+                bean.listener.onShow();
+                //showSoftKeyBoardDelayed(bean.needSoftKeyboard,bean.viewHolder);
+                //showSoftKeyBoardDelayed(bean.needSoftKeyboard,bean.customContentHolder);
             }
         });
 

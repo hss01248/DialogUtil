@@ -24,6 +24,11 @@ public abstract class MyDialogListener {
 
     public void onDismiss(){}
 
+    /**
+     * 可以在这里弹出键盘
+     */
+    public void onShow(){}
+
 
 
 
