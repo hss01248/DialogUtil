@@ -91,7 +91,9 @@ public class MaterialDialogHolder extends SuperLvHolder<ConfigBean> {
                 @Override
                 public void onClick(View v) {
                     Tool.dismiss(bean);
-                    bean.listener.onSecond();
+                    if(bean.listener!=null){
+                        bean.listener.onSecond();
+                    }
                 }
             });
         }
@@ -116,7 +118,9 @@ public class MaterialDialogHolder extends SuperLvHolder<ConfigBean> {
                         bean.listener.onGetInput(mdInputHolder.getTxt1(),mdInputHolder.getTxt2());
                     }
                     Tool.dismiss(bean);
-                    bean.listener.onFirst();
+                    if(bean.listener!=null){
+                        bean.listener.onFirst();
+                    }
                 }
             });
         }

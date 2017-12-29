@@ -11,6 +11,7 @@ import android.support.annotation.FloatRange;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 
@@ -438,6 +439,20 @@ public class ConfigBean extends MyDialogBuilder implements Styleable {
     @Override
     public Dialog show() {
         Tool.fixContext(this);
+        if(listener ==null){
+            Log.w("dialogutil","dialog listener is null!");
+            listener = new MyDialogListener() {
+                @Override
+                public void onFirst() {
+
+                }
+
+                @Override
+                public void onSecond() {
+
+                }
+            };
+        }
         buildByType(this);
         if(showAsActivity){
             showAsActivityNow();
