@@ -415,7 +415,7 @@ android:pivotY="50%" />
                     public void onBottomBtnClick() {
                         showToast("onItemClick");
                     }
-                }).show();
+                }).setTitle("人生若只如初见").show();
             }
             break;
             case R.id.btn_ios_center_list:
@@ -451,7 +451,7 @@ android:pivotY="50%" />
                     public void onBottomBtnClick() {
                         showToast("onItemClick");
                     }
-                }).show();
+                }).setTitle("任选一个").show();
 
                 break;
             case R.id.btn_input:

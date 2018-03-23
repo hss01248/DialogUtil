@@ -76,6 +76,11 @@ public class ConfigBean extends MyDialogBuilder implements Styleable {
         return this;
     }
 
+    public ConfigBean setTitle(String title) {
+        this.title = title;
+        return this;
+    }
+
     public boolean needSoftKeyboard;
 
     public ConfigBean setInput2HideAsPassword(boolean input2HideAsPassword) {
@@ -208,7 +213,7 @@ public class ConfigBean extends MyDialogBuilder implements Styleable {
     public boolean cancelable = true;//默认可以点击后退键来dismiss对话框
     public boolean outsideTouchable = true;//默认外部半透明处点击消失
 
-    public boolean dismissAfterButtonClick = false;
+    public boolean dismissAfterButtonClick = true;
 
     public Dialog dialog;
     public AlertDialog alertDialog;
@@ -228,6 +233,14 @@ public class ConfigBean extends MyDialogBuilder implements Styleable {
     }*/
 
     public @DrawableRes int bgRes;
+
+    public ConfigBean setBackground(int bgRes) {
+        this.bgRes = bgRes;
+        useTheShadowBg = false;
+        return this;
+    }
+
+
 
     /**
      *  default background res: R.drawable.shadow,white background ,surround with shadow

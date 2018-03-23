@@ -2,14 +2,27 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:background="@android:color/transparent"
+    android:background="@drawable/bg_ios_roundcorner"
     android:layout_width="match_parent"
 
     android:layout_height="wrap_content">
-<!--android:paddingTop="10dp"
-    android:paddingBottom="10dp"-->
+    <TextView
+            android:id="@+id/tv_title"
+            android:textColor="@color/dialogutil_ios_btntext_blue"
+            android:textSize="@dimen/dialogutil_title_txt_size"
+            android:gravity="center"
+            android:paddingBottom="12dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="12dp"
+            android:paddingTop="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    <View
+            android:id="@+id/v_line"
+            android:background="@color/dialogutil_line_dd"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dialogutil_line_1px"/>
     <ListView
-        android:background="@drawable/bg_ios_roundcorner"
         android:id="@+id/lv"
         android:scrollbars="none"
         android:overScrollMode="never"

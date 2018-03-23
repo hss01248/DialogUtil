@@ -9,8 +9,10 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.hss01248.dialog.R;
+import com.hss01248.dialog.StyledDialog;
 import com.hss01248.dialog.Tool;
 import com.hss01248.dialog.adapter.SuperLvHolder;
 import com.hss01248.dialog.config.ConfigBean;
@@ -21,6 +23,8 @@ import com.hss01248.dialog.config.ConfigBean;
 public class IosActionSheetHolder extends SuperLvHolder<ConfigBean> {
     public ListView lv;
     protected Button btnBottom;
+    public TextView textView;
+    private View line;
 
     public IosActionSheetHolder(Context context) {
         super(context);
@@ -29,6 +33,8 @@ public class IosActionSheetHolder extends SuperLvHolder<ConfigBean> {
     @Override
     protected void findViews() {
         lv = (ListView) rootView.findViewById(R.id.lv);
+        textView = rootView.findViewById(R.id.tv_title);
+        line = rootView.findViewById(R.id.v_line);
 
         lv.setDivider(new ColorDrawable(lv.getResources().getColor(R.color.dialogutil_line_dd)));
         lv.setDividerHeight(1);
@@ -42,6 +48,23 @@ public class IosActionSheetHolder extends SuperLvHolder<ConfigBean> {
 
     @Override
     public void assingDatasAndEvents(final Context context, final ConfigBean bean) {
+
+        if(TextUtils.isEmpty(bean.title)){
+            textView.setVisibility(View.GONE);
+            line.setVisibility(View.GONE);
+        }else {
+            textView.setVisibility(View.VISIBLE);
+            line.setVisibility(View.VISIBLE);
+            textView.setText(bean.title);
+            if(bean.titleTxtSize>0){
+                textView.setTextSize(bean.titleTxtSize);
+            }
+            if(bean.titleTxtColor !=0){
+                textView.setTextColor(StyledDialog.context.getResources().getColor(bean.titleTxtColor));
+            }
+        }
+
+
         if (TextUtils.isEmpty(bean.bottomTxt)){
             btnBottom.setVisibility(View.GONE);
         }else {
@@ -81,7 +104,7 @@ public class IosActionSheetHolder extends SuperLvHolder<ConfigBean> {
                 Button view = (Button) root.findViewById(R.id.btn);
                 if (getCount() >=2){
                     if (position ==0){
-                        view.setBackgroundResource(R.drawable.selector_btn_press_all_top);
+                        view.setBackgroundResource(R.drawable.selector_btn_press_no_corner);
                     }else if (position == getCount() -1){
                         view.setBackgroundResource(R.drawable.selector_btn_press_all_bottom);
                     }else {

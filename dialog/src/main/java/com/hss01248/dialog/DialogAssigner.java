@@ -188,6 +188,7 @@ public class DialogAssigner implements Assignable {
         bean.itemListener = listener;
         bean.wordsIos = words;
         bean.type = DefaultConfig.TYPE_IOS_CENTER_LIST;
+        bean.titleTxtColor = R.color.dialogutil_ios_btntext_blue;
 
         return bean;
     }
@@ -201,6 +202,8 @@ public class DialogAssigner implements Assignable {
         bean.type = DefaultConfig.TYPE_IOS_BOTTOM;
         bean.gravity = Gravity.BOTTOM;
         bean.bottomTxt = bottomTxt;
+        bean.titleTxtColor = R.color.dialogutil_ios_btntext_blue;
+        bean.useTheShadowBg = false;
         return bean;
     }
 

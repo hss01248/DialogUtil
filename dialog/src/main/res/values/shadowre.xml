@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="cardBodyColor">#FFFFFF</color>
+    <color name="cardBodyColor_gray">#cccccc</color>
     <color name="cardShadowColor_1">#00222222</color>
     <color name="cardShadowColor_2">#02222222</color>
     <color name="cardShadowColor_3">#10222222</color>
