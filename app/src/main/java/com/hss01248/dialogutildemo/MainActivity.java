@@ -237,10 +237,11 @@ android:pivotY="50%" />
                 StyledDialog.dismissLoading();
                 break;
             case R.id.btn_common_progress:
+                final Dialog[] dialog00 = new Dialog[1];
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        StyledDialog.buildLoading( "加载中...").show();
+                        dialog00[0] =  StyledDialog.buildLoading( "加载中...").show();
                     }
                 }).run();
                 //StyledDialog.dismissLoading();
@@ -249,7 +250,7 @@ android:pivotY="50%" />
                 new Timer().schedule(new TimerTask() {
                     @Override
                     public void run() {
-                        StyledDialog.updateLoadingMsg("jjjjj"+ new Random().nextInt(100));
+                        StyledDialog.updateLoadingMsg("jjjjj"+ new Random().nextInt(100),dialog00[0]);
                     }
                 },50,2000);
 
@@ -266,7 +267,7 @@ android:pivotY="50%" />
                     @Override
                     public void run() {
                        StyledDialog
-                               .updateLoadingMsg("jjjjj"+ new Random().nextInt(100));
+                               .updateLoadingMsg("jjjjj"+ new Random().nextInt(100),gloablDialog);
                     }
                 },3000);
                 break;

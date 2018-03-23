@@ -16,7 +16,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.hss01248.dialog.R;
-import com.hss01248.dialog.StyledDialog;
 import com.hss01248.dialog.Tool;
 import com.hss01248.dialog.bottomsheet.BottomSheetHolder;
 import com.hss01248.dialog.bottomsheet.RightMdBottomSheetDialog;
@@ -207,7 +206,6 @@ public  class MyDialogBuilder {
             drawable.start();
         }
         TextView tvMsg = (TextView) root.findViewById(R.id.loading_msg);
-        StyledDialog.setTv_msg(tvMsg);
         tvMsg.setText(bean.msg);
         bean.dialog.setContentView(root);
         return bean;
@@ -217,7 +215,6 @@ public  class MyDialogBuilder {
     protected  ConfigBean buildMdLoading(ConfigBean bean){
         View root = View.inflate(bean.context, R.layout.progressview_wrapconent,null);
         TextView tvMsg = (TextView) root.findViewById(R.id.loading_msg);
-        StyledDialog.setTv_msg(tvMsg);
         tvMsg.setText(bean.msg);
         bean.dialog.setContentView(root);
         return bean;

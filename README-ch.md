@@ -88,7 +88,13 @@ Add it in your root build.gradle at the end of repositories:
 
 ```
 	dependencies {
-	        compile 'com.github.hss01248:DialogUtil:lastest release'
+	        compile ('com.github.hss01248:DialogUtil:lastest release'){
+              exclude group: 'com.android.support'
+	        }
+	         compile 'com.android.support:appcompat-v7:26.1.0'
+   			 compile 'com.android.support:recyclerview-v7:26.1.0'
+    		 compile 'com.android.support:design:26.1.0'
+    		 //将26.1.0: 改为自己项目中一致的版本
 	}
 ```
 lastest release: https://github.com/hss01248/DialogUtil/releases

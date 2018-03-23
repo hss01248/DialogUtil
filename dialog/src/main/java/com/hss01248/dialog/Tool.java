@@ -46,6 +46,9 @@ public class Tool {
 
     public static void dismiss(ConfigBean bean){
 
+        if(!bean.dismissAfterButtonClick){
+            return;
+        }
         //先隐藏keyboard
         hideKeyBorad(bean);
         if(bean.showAsActivity){

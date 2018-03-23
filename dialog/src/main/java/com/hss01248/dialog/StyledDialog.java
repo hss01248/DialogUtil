@@ -35,16 +35,11 @@ public class StyledDialog  {
     }
 
     private static DialogInterface loadingDialog;//缓存加载中的dialog,便于以后可以不需要对象就让它消失
-    private static TextView tv_msg;
+    //private static TextView tv_msg;
     private static long startTime;
 
-    /**
-     * 内部使用
-     * @param tv_msg
-     */
-    public static void setTv_msg(TextView tv_msg) {
-        StyledDialog.tv_msg = tv_msg;
-    }
+
+
 
     private static boolean isMiUi8 = false;//miui8用非activity的Context时,无法以TYPE_TOAST的形式弹出对话框.没有好的解决办法.....
 
@@ -77,9 +72,6 @@ public class StyledDialog  {
         dismiss(loadingDialog);
         loadingDialog = loading;
          startTime = System.currentTimeMillis();
-         if(loading==null){
-             tv_msg=null;
-         }
     }
 
 
@@ -90,7 +82,6 @@ public class StyledDialog  {
      */
     public static void dismissLoading(){
         if (loadingDialog != null ){
-            tv_msg=null;
             long timePassed = System.currentTimeMillis() - startTime;
             if(timePassed >= 500){//500ms
                 dismiss(loadingDialog);
@@ -145,21 +136,30 @@ public class StyledDialog  {
         return DialogAssigner.getInstance().assignProgress(null,msg,isHorizontal);
     }
 
-    public static void updateLoadingMsg(final String msg){
-        if(tv_msg!=null){//&& tv_msg.getVisibility() == View.VISIBLE
-            getMainHandler().post(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        tv_msg.setText(msg);
-                    }catch (Exception e){
-                        e.printStackTrace();
-                    }
-
-                }
-            });
-
+    public static void updateLoadingMsg(final String msg, final Dialog dialog){
+        if(dialog ==null){
+            return;
         }
+        if(!dialog.isShowing()){
+            return;
+        }
+        getMainHandler().post(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    View view = dialog.getWindow().getDecorView().findViewById(R.id.loading_msg);
+                    if(view instanceof TextView){
+                        TextView textView = (TextView) view;
+                        textView.setText(msg);
+                    }
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+
+            }
+        });
+
+
     }
 
     /**

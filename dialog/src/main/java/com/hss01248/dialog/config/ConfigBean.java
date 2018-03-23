@@ -206,7 +206,9 @@ public class ConfigBean extends MyDialogBuilder implements Styleable {
     public MyItemDialogListener itemListener;
 
     public boolean cancelable = true;//默认可以点击后退键来dismiss对话框
-    public boolean outsideTouchable = false;//默认外部半透明处点击不消失
+    public boolean outsideTouchable = true;//默认外部半透明处点击消失
+
+    public boolean dismissAfterButtonClick = false;
 
     public Dialog dialog;
     public AlertDialog alertDialog;
@@ -214,7 +216,10 @@ public class ConfigBean extends MyDialogBuilder implements Styleable {
 
     public boolean dimBehind = true;
 
-
+    public ConfigBean setDismissAfterButtonClicked(boolean dismissAfterButtonClick) {
+        this.dismissAfterButtonClick = dismissAfterButtonClick;
+        return this;
+    }
 
     /*public ConfigBean setBgRes(int bgRes) {
         this.bgRes = bgRes;
