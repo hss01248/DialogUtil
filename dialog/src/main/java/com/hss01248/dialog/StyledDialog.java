@@ -82,7 +82,13 @@ public class StyledDialog  {
      */
     public static void dismissLoading(){
         if (loadingDialog != null ){
-            long timePassed = System.currentTimeMillis() - startTime;
+            getMainHandler().post(new Runnable() {
+                @Override
+                public void run() {
+                    dismiss(loadingDialog);
+                }
+            });
+            /*long timePassed = System.currentTimeMillis() - startTime;
             if(timePassed >= 500){//500ms
                 dismiss(loadingDialog);
                 loadingDialog = null;
@@ -94,7 +100,7 @@ public class StyledDialog  {
                         loadingDialog = null;
                     }
                 },500 -timePassed);
-            }
+            }*/
 
         }
     }

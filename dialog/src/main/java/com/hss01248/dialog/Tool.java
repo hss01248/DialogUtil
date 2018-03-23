@@ -39,6 +39,9 @@ import com.hss01248.dialog.ios.IosAlertDialogHolder;
 import com.hss01248.dialog.material.MdInputHolder;
 import com.hss01248.dialog.view.DialogUtil_DialogActivity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Administrator on 2016/10/9 0009.
  */
@@ -238,7 +241,16 @@ public class Tool {
                         }
                         bean.listener.onGetInput(holder.getTxt1(),holder.getTxt2());
                     }
-                    bean.listener.onFirst();
+                    bean.listener.onGetChoose(bean.checkedItems);
+                    List<Integer> selectedIndex = new ArrayList<Integer>();
+                    List<CharSequence> selectedStrs = new ArrayList<CharSequence>();
+                    for(int j=0;j<bean.checkedItems.length;j++){
+                        if(bean.checkedItems[j]){
+                            selectedIndex.add(j);
+                            selectedStrs.add(bean.wordsMd[j]);
+                        }
+                    }
+                    bean.listener.onChoosen(selectedIndex,selectedStrs,bean.checkedItems);
                     dismiss(bean);
                 }
             });
