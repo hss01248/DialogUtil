@@ -86,6 +86,7 @@ public class StyledDialog  {
                 @Override
                 public void run() {
                     dismiss(loadingDialog);
+                    loadingDialog = null;
                 }
             });
         }
