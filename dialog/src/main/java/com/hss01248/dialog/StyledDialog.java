@@ -88,20 +88,6 @@ public class StyledDialog  {
                     dismiss(loadingDialog);
                 }
             });
-            /*long timePassed = System.currentTimeMillis() - startTime;
-            if(timePassed >= 500){//500ms
-                dismiss(loadingDialog);
-                loadingDialog = null;
-            }else {
-                getMainHandler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        dismiss(loadingDialog);
-                        loadingDialog = null;
-                    }
-                },500 -timePassed);
-            }*/
-
         }
     }
 
