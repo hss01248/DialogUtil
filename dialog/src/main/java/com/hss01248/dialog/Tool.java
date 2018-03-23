@@ -16,6 +16,7 @@ import android.os.Looper;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.BottomSheetDialog;
+import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
@@ -39,6 +40,7 @@ import com.hss01248.dialog.ios.IosAlertDialogHolder;
 import com.hss01248.dialog.material.MdInputHolder;
 import com.hss01248.dialog.view.DialogUtil_DialogActivity;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -96,6 +98,11 @@ public class Tool {
         dialog.setOnShowListener(new DialogInterface.OnShowListener() {
             @Override
             public void onShow(DialogInterface dialog) {
+                if (bean.alertDialog!= null){
+                    setMdBtnStytle(bean);
+                    setTitleMessageStyle(bean.alertDialog,bean);
+                    //setListItemsStyle(bean);
+                }
                 bean.listener.onShow();
                 //showSoftKeyBoardDelayed(bean.needSoftKeyboard,bean.viewHolder);
                 //showSoftKeyBoardDelayed(bean.needSoftKeyboard,bean.customContentHolder);
@@ -107,11 +114,7 @@ public class Tool {
             public void run() {
                 try {
                     dialog.show();
-                    if (bean.alertDialog!= null){
-                        setMdBtnStytle(bean);
-                        setTitleMessageStyle(bean.alertDialog,bean);
-                        //setListItemsStyle(bean);
-                    }
+
                     adjustWindow(dialog,bean);
                 }catch (Exception e){
                     e.printStackTrace();
@@ -128,25 +131,37 @@ public class Tool {
     }
 
     private static void setTitleMessageStyle(final Dialog dialog,ConfigBean bean) {
-       TextView tvMessage =  ((TextView)dialog.getWindow().getDecorView().findViewById(android.R.id.message));
-        TextView tvTitle =  ((TextView)dialog.getWindow().getDecorView().findViewById(android.R.id.title));
-        if(tvMessage!=null){
+
+        try {
+            Field mAlert = AlertDialog.class.getDeclaredField("mAlert");
+            mAlert.setAccessible(true);
+            Object mAlertController = mAlert.get(dialog);
+
+
+            Field mMessage = mAlertController.getClass().getDeclaredField("mMessageView");
+            mMessage.setAccessible(true);
+            TextView tvMessage = (TextView) mMessage.get(mAlertController);
             if(bean.msgTxtColor !=0){
                 tvMessage.setTextColor(getColor(bean.context,bean.msgTxtColor));
             }
             if(bean.msgTxtSize !=0){
                 tvMessage.setTextSize(bean.msgTxtSize);
             }
-        }
 
-        if(tvTitle!=null){
+            Field titleView = mAlertController.getClass().getDeclaredField("mTitleView");
+            titleView.setAccessible(true);
+            TextView tvTitle = (TextView) titleView.get(mAlertController);
             if(bean.titleTxtColor !=0){
                 tvTitle.setTextColor(getColor(bean.context,bean.titleTxtColor));
             }
             if(bean.titleTxtSize !=0){
                 tvTitle.setTextSize(bean.titleTxtSize);
             }
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+
     }
 
     private static void adjustWindow(final Dialog dialog, final ConfigBean bean) {
@@ -156,6 +171,8 @@ public class Tool {
                     public void onGlobalLayout() {
                         setBottomSheetDialogPeekHeight(bean);
                         adjustWH(dialog,bean);
+
+
 
                         dialog.getWindow().getDecorView().getViewTreeObserver().removeGlobalOnLayoutListener(this);
                     }

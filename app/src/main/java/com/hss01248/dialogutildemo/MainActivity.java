@@ -545,7 +545,7 @@ android:pivotY="50%" />
                     public void onGetChoose(boolean[] states) {
                         super.onGetChoose(states);
                     }
-                }).show();
+                }).setTitleColor(R.color.dialogutil_ios_btntext_blue).show();
                 break;
             case R.id.btn_singlechoose:
                 String[] words2 = new String[]{"12","78","45","89","88","00"};
