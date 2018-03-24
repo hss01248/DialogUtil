@@ -104,7 +104,11 @@ public class IosActionSheetHolder extends SuperLvHolder<ConfigBean> {
                 Button view = (Button) root.findViewById(R.id.btn);
                 if (getCount() >=2){
                     if (position ==0){
-                        view.setBackgroundResource(R.drawable.selector_btn_press_no_corner);
+                        if(TextUtils.isEmpty(bean.title)){
+                            view.setBackgroundResource(R.drawable.selector_btn_press_all_top);
+                        }else {
+                            view.setBackgroundResource(R.drawable.selector_btn_press_no_corner);
+                        }
                     }else if (position == getCount() -1){
                         view.setBackgroundResource(R.drawable.selector_btn_press_all_bottom);
                     }else {
