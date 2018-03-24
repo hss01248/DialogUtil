@@ -49,11 +49,12 @@ import java.util.List;
  */
 public class Tool {
 
-    public static void dismiss(ConfigBean bean){
+    public static void dismiss(ConfigBean bean,boolean isAfterResult){
 
-        if(!bean.dismissAfterButtonClick){
+        if(isAfterResult && !bean.dismissAfterResultCallback){
             return;
         }
+
         //先隐藏keyboard
         hideKeyBorad(bean);
         if(bean.showAsActivity){
@@ -76,6 +77,11 @@ public class Tool {
             bean.alertDialog.dismiss();
         }
     }
+
+    public static void dismiss(ConfigBean bean){
+        dismiss(bean,false);
+    }
+
 
     public static Handler getMainHandler() {
         if(mainHandler ==null){
@@ -257,18 +263,22 @@ public class Tool {
                             return;
                         }
                         bean.listener.onGetInput(holder.getTxt1(),holder.getTxt2());
-                    }
-                    bean.listener.onGetChoose(bean.checkedItems);
-                    List<Integer> selectedIndex = new ArrayList<Integer>();
-                    List<CharSequence> selectedStrs = new ArrayList<CharSequence>();
-                    for(int j=0;j<bean.checkedItems.length;j++){
-                        if(bean.checkedItems[j]){
-                            selectedIndex.add(j);
-                            selectedStrs.add(bean.wordsMd[j]);
+                    }else if(bean.type == DefaultConfig.TYPE_MD_SINGLE_CHOOSE){
+
+                    }else if(bean.type == DefaultConfig.TYPE_MD_MULTI_CHOOSE){
+                        bean.listener.onGetChoose(bean.checkedItems);
+                        List<Integer> selectedIndex = new ArrayList<Integer>();
+                        List<CharSequence> selectedStrs = new ArrayList<CharSequence>();
+                        for(int j=0;j<bean.checkedItems.length;j++){
+                            if(bean.checkedItems[j]){
+                                selectedIndex.add(j);
+                                selectedStrs.add(bean.wordsMd[j]);
+                            }
                         }
+                        bean.listener.onChoosen(selectedIndex,selectedStrs,bean.checkedItems);
                     }
-                    bean.listener.onChoosen(selectedIndex,selectedStrs,bean.checkedItems);
-                    dismiss(bean);
+                    bean.listener.onFirst();
+                    dismiss(bean,true);
                 }
             });
         }

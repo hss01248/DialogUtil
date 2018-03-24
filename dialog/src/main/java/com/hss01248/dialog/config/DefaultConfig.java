@@ -24,6 +24,23 @@ public class DefaultConfig {
     public static @ColorRes int inputTxtColor = R.color.dialogutil_text_input_44;
 
 
+    public static boolean cancelable = true;//默认可以点击后退键来dismiss对话框
+    public static boolean outsideTouchable = false;//默认外部半透明处点击消失
+
+    /**
+     * 是否在点击按钮后自动消失
+     * 针对有的情况下点击按钮/item拿到回调后,需要dialog不消失
+     */
+    public static boolean dismissAfterResultCallback = false;
+    /**
+     * 半透明遮罩
+     */
+    public static boolean dimBehind = true;
+    /**
+     * 是否使用带阴影的背景(以防有的手机无法显示后面的半透明遮罩,而与下方界面黏连)
+     */
+    public static boolean useTheShadowBg = true;
+
 /* <dimen name="btn_txt_size">14sp</dimen>
     <dimen name="title_txt_size">17sp</dimen>
     <dimen name="msg_txt_size">14sp</dimen>

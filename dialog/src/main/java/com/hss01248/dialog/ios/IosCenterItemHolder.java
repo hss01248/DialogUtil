@@ -96,8 +96,8 @@ public class IosCenterItemHolder extends SuperLvHolder<ConfigBean> {
                 view.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Tool.dismiss(bean);
                         bean.itemListener.onItemClick(bean.wordsIos.get(position),position);
+                        Tool.dismiss(bean,true);
 
                     }
                 });

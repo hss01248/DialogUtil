@@ -138,7 +138,7 @@ public class IosAlertDialogHolder extends SuperLvHolder<ConfigBean> {
                   }
                     bean.listener.onGetInput(et1.getText().toString().trim(),et2.getText().toString().trim());
                 }
-                Tool.dismiss(bean);
+                Tool.dismiss(bean,true);
                 bean.listener.onFirst();
 
             }
@@ -174,7 +174,7 @@ public class IosAlertDialogHolder extends SuperLvHolder<ConfigBean> {
                     }
                     bean.listener.onGetInput(et1.getText().toString().trim(),et2.getText().toString().trim());
                 }
-                Tool.dismiss(bean);
+                Tool.dismiss(bean,true);
                 bean.listener.onFirst();
             }
         });

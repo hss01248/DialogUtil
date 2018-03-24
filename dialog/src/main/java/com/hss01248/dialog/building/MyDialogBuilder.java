@@ -292,7 +292,7 @@ public  class MyDialogBuilder {
                             bean.listener.onFirst();
                             bean.listener.onGetChoose(singleChosen,bean.wordsMd[singleChosen]);
                         }
-                        Tool.dismiss(bean);
+                        Tool.dismiss(bean,true);
                     }
                 })
                 .setNegativeButton(bean.text2, new DialogInterface.OnClickListener() {
@@ -311,7 +311,7 @@ public  class MyDialogBuilder {
                         if (bean.itemListener != null){
                             bean.itemListener.onItemClick(bean.wordsMd[i],i);
                         }
-                        Tool.dismiss(bean);
+                        Tool.dismiss(bean,true);
 
                     }
                 });
@@ -347,7 +347,7 @@ public  class MyDialogBuilder {
                             }
                             bean.listener.onChoosen(selectedIndex,selectedStrs,bean.checkedItems);
                         }
-                        Tool.dismiss(bean);
+                        Tool.dismiss(bean,true);
                     }
                 })
                 .setNegativeButton(bean.text2, new DialogInterface.OnClickListener() {

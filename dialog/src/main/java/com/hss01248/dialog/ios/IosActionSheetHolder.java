@@ -120,7 +120,7 @@ public class IosActionSheetHolder extends SuperLvHolder<ConfigBean> {
                     @Override
                     public void onClick(View v) {
                         //StyledDialog.dismiss(bean.dialog,bean.alertDialog);
-                        Tool.dismiss(bean);
+                        Tool.dismiss(bean,true);
                         bean.itemListener.onItemClick(bean.wordsIos.get(position),position);
 
                     }

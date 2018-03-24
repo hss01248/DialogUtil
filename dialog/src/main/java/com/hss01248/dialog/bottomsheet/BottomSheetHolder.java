@@ -219,7 +219,7 @@ public class BottomSheetHolder extends SuperLvHolder<ConfigBean> {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 BottomSheetBean sheetBean =  bean.lvDatas.get(position);
                 bean.itemListener.onItemClick(sheetBean.text,position);
-                Tool.dismiss(bean);
+                Tool.dismiss(bean,true);
             }
         });
 

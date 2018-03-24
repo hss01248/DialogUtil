@@ -74,7 +74,7 @@ public class BottomSheetPagerHolder extends SuperPagerHolder<List<BottomSheetBea
                          int actualPosition = pageNum * bean.gridColumns * 2 +position;
                          bean.itemListener.onItemClick(bean.lvDatas.get(actualPosition).text,actualPosition);
                      }
-                     Tool.dismiss(bean);
+                     Tool.dismiss(bean,true);
                  }
              });
 

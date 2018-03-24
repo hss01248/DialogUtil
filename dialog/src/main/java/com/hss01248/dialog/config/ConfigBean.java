@@ -82,15 +82,15 @@ public class ConfigBean extends MyDialogBuilder implements Styleable {
     public boolean isTransparentBehind;
     public MyDialogListener listener;
     public MyItemDialogListener itemListener;
-    public boolean cancelable = true;//默认可以点击后退键来dismiss对话框
-    public boolean outsideTouchable = true;//默认外部半透明处点击消失
-    public boolean dismissAfterButtonClick = true;
+    public boolean cancelable = DefaultConfig.cancelable;//默认可以点击后退键来dismiss对话框
+    public boolean outsideTouchable = DefaultConfig.outsideTouchable;//默认外部半透明处点击消失
+    public boolean dismissAfterResultCallback = DefaultConfig.dismissAfterResultCallback;
     public Dialog dialog;
     public AlertDialog alertDialog;
-    public boolean dimBehind = true;
+    public boolean dimBehind = DefaultConfig.dimBehind;
     public @DrawableRes
     int bgRes;
-    public boolean useTheShadowBg = true;
+    public boolean useTheShadowBg = DefaultConfig.useTheShadowBg;
     public int viewHeight;
     //各类对话框特有的参数
     public CharSequence[] wordsMd;
@@ -253,8 +253,8 @@ public class ConfigBean extends MyDialogBuilder implements Styleable {
         return this;
     }
 
-    public ConfigBean setDismissAfterButtonClicked(boolean dismissAfterButtonClick) {
-        this.dismissAfterButtonClick = dismissAfterButtonClick;
+    public ConfigBean setDismissAfterResultCallback(boolean dismissAfterResultCallback) {
+        this.dismissAfterResultCallback = dismissAfterResultCallback;
         return this;
     }
 

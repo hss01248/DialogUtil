@@ -117,7 +117,7 @@ public class MaterialDialogHolder extends SuperLvHolder<ConfigBean> {
                         }
                         bean.listener.onGetInput(mdInputHolder.getTxt1(),mdInputHolder.getTxt2());
                     }
-                    Tool.dismiss(bean);
+                    Tool.dismiss(bean,true);
                     if(bean.listener!=null){
                         bean.listener.onFirst();
                     }

@@ -554,7 +554,7 @@ android:pivotY="50%" />
                     public void onItemClick(CharSequence text, int position) {
                         showToast(text + "--" + position);
                     }
-                }).show();
+                }).setDismissAfterResultCallback(false).show();
 
                 break;
             case R.id.btn_md_bs:
