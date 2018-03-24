@@ -72,9 +72,11 @@ public class Tool {
         }
         if(bean.dialog!=null){
             bean.dialog.dismiss();
+            DialogsMaintainer.removeWhenDismiss(bean.dialog);
         }
         if(bean.alertDialog !=null){
             bean.alertDialog.dismiss();
+            DialogsMaintainer.removeWhenDismiss(bean.alertDialog);
         }
     }
 
@@ -120,6 +122,7 @@ public class Tool {
             public void run() {
                 try {
                     dialog.show();
+                    DialogsMaintainer.addWhenShow(dialog);
 
                     adjustWindow(dialog,bean);
                 }catch (Exception e){
@@ -751,10 +754,7 @@ public class Tool {
                         if(bean.listener!=null) {
                             bean.listener.onCancle();
                         }
-                        if (bean.dialog == StyledDialog.getLoadingDialog()) {
-                            StyledDialog.setLoadingObj(null);
 
-                        }
 
                     }
                 });
@@ -774,9 +774,6 @@ public class Tool {
                     public void onCancel(DialogInterface dialog) {
                         if (bean.listener != null) {
                             bean.listener.onCancle();
-                        }
-                        if (bean.alertDialog == StyledDialog.getLoadingDialog()) {
-                            StyledDialog.setLoadingObj(null);
                         }
                     }
                 });

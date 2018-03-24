@@ -16,6 +16,7 @@ import android.view.Gravity;
 import android.view.View;
 
 import com.hss01248.dialog.ActivityStackManager;
+import com.hss01248.dialog.DialogsMaintainer;
 import com.hss01248.dialog.StyledDialog;
 import com.hss01248.dialog.Tool;
 import com.hss01248.dialog.adapter.SuperLvAdapter;
@@ -469,13 +470,13 @@ public class ConfigBean extends MyDialogBuilder implements Styleable {
         if (dialog != null && !dialog.isShowing()) {
             Tool.showDialog(dialog, this);
             if (type == DefaultConfig.TYPE_IOS_LOADING || type == DefaultConfig.TYPE_MD_LOADING) {
-                StyledDialog.setLoadingObj(dialog);
+                DialogsMaintainer.addLoadingDialog(dialog);
             }
             return dialog;
         } else if (alertDialog != null && !alertDialog.isShowing()) {
             Tool.showDialog(alertDialog, this);
             if (type == DefaultConfig.TYPE_IOS_LOADING || type == DefaultConfig.TYPE_MD_LOADING) {
-                StyledDialog.setLoadingObj(dialog);
+                DialogsMaintainer.addLoadingDialog(alertDialog);
             }
             return alertDialog;
         }

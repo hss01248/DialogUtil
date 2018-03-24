@@ -1,10 +1,13 @@
 package com.hss01248.dialog;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.os.Build;
 import android.util.Log;
 
 import java.lang.ref.WeakReference;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Stack;
 
 /**
@@ -19,6 +22,7 @@ public class ActivityStackManager {
     private static ActivityStackManager sInstance = new ActivityStackManager();
     private WeakReference<Activity> topAttachedActivityWeakRef;
     private static Stack<Activity> mActivityStack = new Stack<>();
+
 
 
     private ActivityStackManager() {
@@ -193,6 +197,7 @@ public class ActivityStackManager {
      */
     public void removeActivity(Activity activity) {
         mActivityStack.remove(activity);
+        DialogsMaintainer.onDestory(activity);
         Log.e("dialog","mActivityStack.size()--removeActivity:"+activity.getClass().getSimpleName()+mActivityStack.size());
     }
 
