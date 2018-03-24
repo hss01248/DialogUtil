@@ -31,7 +31,7 @@ public class DefaultConfig {
      * 是否在点击按钮后自动消失
      * 针对有的情况下点击按钮/item拿到回调后,需要dialog不消失
      */
-    public static boolean dismissAfterResultCallback = false;
+    public static boolean dismissAfterResultCallback = true;
     /**
      * 半透明遮罩
      */
