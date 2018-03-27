@@ -3,13 +3,12 @@ package com.hss01248.dialog;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
 
-import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * Created by hss on 2018/3/24.
@@ -17,109 +16,164 @@ import java.util.ListIterator;
 
 public class DialogsMaintainer {
 
-    private static HashMap<Activity,List<Dialog>> dialogsOfActivity = new HashMap<>();
-    private static List<Dialog> loadingDialogs = new ArrayList<>();
+    private static HashMap<Activity, Set<Dialog>> dialogsOfActivity = new HashMap<>();
+    private static HashMap<Activity, Set<Dialog>> loadingDialogs = new HashMap<>();
 
 
+    public static void addLoadingDialog(Context context, Dialog dialog) {
 
-    public static void addLoadingDialog(Dialog dialog){
-        if(dialog.getOwnerActivity() instanceof Activity){
-            loadingDialogs.add(dialog);
-        }
-
-    }
-
-    public static void dismissLoading(Activity activity){
-        if(activity ==null){
+        if (!(context instanceof Activity)) {
             return;
         }
-        ListIterator<Dialog> iterator = loadingDialogs.listIterator();
-        while (iterator.hasNext()){
-            Dialog dialog = iterator.next();
-            if(dialog.getOwnerActivity().equals(activity)){
-                dialog.dismiss();
-                iterator.remove();
-                removeWhenDismiss(dialog);
-            }
-        }
-    }
+        Activity activity = (Activity) context;
 
-    public static void addWhenShow(Dialog dialog){
-
-        Activity activity = dialog.getOwnerActivity();
-        if(activity ==null){
-            return;
+        Set<Dialog> dialogs = null;
+        if (loadingDialogs.containsKey(activity)) {
+            dialogs = loadingDialogs.get(activity);
         }
-        List<Dialog> dialogs =  null;
-        if(dialogsOfActivity.containsKey(activity)){
-            dialogs = dialogsOfActivity.get(activity);
-        }
-        if(dialogs == null){
-            dialogs = new ArrayList<>();
-            dialogsOfActivity.put(activity,dialogs);
+        if (dialogs == null) {
+            dialogs = new HashSet<>();
+            loadingDialogs.put(activity, dialogs);
         }
         dialogs.add(dialog);
+
+
     }
 
-    public static void removeWhenDismiss(Dialog dialog){
-       Activity activity =  dialog.getOwnerActivity();
-       if(activity ==null){
-           return;
-       }
-        if(!dialogsOfActivity.containsKey(activity)){
+    public static void dismissLoading(Activity activity) {
+
+        if (activity == null) {
             return;
         }
-        List<Dialog> dialogInterfaces  =  dialogsOfActivity.get(activity);
-        if(dialogInterfaces==null || dialogInterfaces.isEmpty()){
+        if (!loadingDialogs.containsKey(activity)) {
             return;
         }
-        ListIterator<Dialog> iterator = dialogInterfaces.listIterator();
-        while (iterator.hasNext()){
-            Dialog dialog0 = iterator.next();
-            if(dialog.equals(dialog0)){
-                iterator.remove();
+        Set<Dialog> dialogSet = loadingDialogs.get(activity);
+        for (Dialog dialog : dialogSet) {
+            dialog.dismiss();
+            //在callback内部自动会去移除在dialogsOfActivity的引用
+        }
+        loadingDialogs.remove(activity);
+
+    }
+
+    public static void dismissLoading(Dialog dialog) {
+        Iterator<Map.Entry<Activity, Set<Dialog>>> entryIterator = loadingDialogs.entrySet().iterator();
+        while (entryIterator.hasNext()) {
+            Map.Entry<Activity, Set<Dialog>> entry = entryIterator.next();
+            Set<Dialog> dialogInterfaces = entry.getValue();
+            if (dialogInterfaces == null || dialogInterfaces.isEmpty()) {
+                entryIterator.remove();
+                return;
+            }
+            Iterator<Dialog> iterator = dialogInterfaces.iterator();
+            while (iterator.hasNext()) {
+                Dialog dialog0 = iterator.next();
+                if (dialog.equals(dialog0)) {
+                    iterator.remove();
+                }
+            }
+            if (dialogInterfaces == null || dialogInterfaces.isEmpty()) {
+                entryIterator.remove();
+                return;
             }
         }
+    }
+
+    public static void addWhenShow(Context context, Dialog dialog) {
+
+        if (!(context instanceof Activity)) {
+            return;
+        }
+
+        Activity activity = (Activity) context;
+
+        Set<Dialog> dialogs = null;
+        if (dialogsOfActivity.containsKey(activity)) {
+            dialogs = dialogsOfActivity.get(activity);
+        }
+        if (dialogs == null) {
+            dialogs = new HashSet<>();
+            dialogsOfActivity.put(activity, dialogs);
+        }
+        dialogs.add(dialog);
+
+    }
+
+    public static void removeWhenDismiss(Dialog dialog) {
+
+        try {
+            Iterator<Map.Entry<Activity, Set<Dialog>>> entryIterator = dialogsOfActivity.entrySet().iterator();
+            while (entryIterator.hasNext()) {
+                Map.Entry<Activity, Set<Dialog>> entry = entryIterator.next();
+                Set<Dialog> dialogInterfaces = entry.getValue();
+                if (dialogInterfaces == null || dialogInterfaces.isEmpty()) {
+                    entryIterator.remove();
+                    return;
+                }
+                Iterator<Dialog> iterator = dialogInterfaces.iterator();
+                while (iterator.hasNext()) {
+                    Dialog dialog0 = iterator.next();
+                    if (dialog.equals(dialog0)) {
+                        iterator.remove();
+                    }
+                }
+                if (dialogInterfaces == null || dialogInterfaces.isEmpty()) {
+                    entryIterator.remove();
+                    return;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
 
     }
 
     /**
      * 在这里移除已经dismiss的dialog引用
+     *
      * @param activity
      */
-    public static void onPause(Activity activity){
-        if(!dialogsOfActivity.containsKey(activity)){
+    public static void onPause(Activity activity) {
+        if (!dialogsOfActivity.containsKey(activity)) {
             return;
         }
-        List<Dialog> dialogInterfaces  =  dialogsOfActivity.get(activity);
-        if(dialogInterfaces==null || dialogInterfaces.isEmpty()){
+        Set<Dialog> dialogInterfaces = dialogsOfActivity.get(activity);
+        if (dialogInterfaces == null || dialogInterfaces.isEmpty()) {
             dialogInterfaces.remove(activity);
             return;
         }
-        ListIterator<Dialog> iterator = dialogInterfaces.listIterator();
-        while (iterator.hasNext()){
+        Iterator<Dialog> iterator = dialogInterfaces.iterator();
+        while (iterator.hasNext()) {
             Dialog dialog = iterator.next();
-            if(!dialog.isShowing()){
+            if (!dialog.isShowing()) {
                 iterator.remove();
             }
+        }
+        if (dialogInterfaces == null || dialogInterfaces.isEmpty()) {
+            dialogInterfaces.remove(activity);
+            return;
         }
 
     }
 
-    public static void onDestory(Activity activity){
-        if(!dialogsOfActivity.containsKey(activity)){
+    public static void onDestory(Activity activity) {
+
+        if (!dialogsOfActivity.containsKey(activity)) {
             return;
         }
-        List<Dialog> dialogInterfaces  =  dialogsOfActivity.get(activity);
-        if(dialogInterfaces==null || dialogInterfaces.isEmpty()){
+        Set<Dialog> dialogInterfaces = dialogsOfActivity.get(activity);
+        if (dialogInterfaces == null || dialogInterfaces.isEmpty()) {
             dialogInterfaces.remove(activity);
             return;
         }
         for (Dialog dialog : dialogInterfaces) {
-            if(dialog!=null){
+            if (dialog != null && dialog.isShowing()) {
                 dialog.dismiss();
             }
         }
         dialogInterfaces.remove(activity);
+
     }
 }

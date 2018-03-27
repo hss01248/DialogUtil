@@ -53,6 +53,6 @@ dependencies {
     compile project(path: ':dialog')
     debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5'
     releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
-    compile 'com.github.tianzhijiexian:logger:1.1.9'
-    compile 'com.jakewharton.timber:timber:4.5.1'
+    compile 'com.github.hss01248:Mylog:1.0.1'
+    compile 'com.alibaba:fastjson:1.1.54.android'
 }

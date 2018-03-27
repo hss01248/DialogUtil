@@ -133,7 +133,7 @@ public  class DialogViewBuilder {
        window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
        Tool.setWindowAnimation(window, bean);
        Tool.setCancelable(bean);
-       Tool.setCancelListener(bean);
+       Tool.setListener(bean);
 
        Tool.adjustStyle(bean);*/
        return bean;
