@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * Created by Administrator on 2016/4/15 0015.
  */
-public abstract class SuperLvHolder<T> {
+public abstract class SuperLvHolder<T> implements View.OnAttachStateChangeListener{
     public View rootView;
 
     /*public SuperLvHolder(){
@@ -25,6 +25,7 @@ public abstract class SuperLvHolder<T> {
         }else {
             rootView = setRootView(context);
         }
+        rootView.addOnAttachStateChangeListener(this);
 
         //ButterKnife.bind(this,rootView);
         findViews();
@@ -67,5 +68,15 @@ public abstract class SuperLvHolder<T> {
     public void assingDatasAndEvents(Context context, T bean, int position , boolean isLast,
                                      boolean isListViewFling, List datas, SuperLvAdapter superAdapter){
         assingDatasAndEvents(context,bean);
+    }
+
+    @Override
+    public void onViewAttachedToWindow(View v) {
+
+    }
+
+    @Override
+    public void onViewDetachedFromWindow(View v) {
+
     }
 }

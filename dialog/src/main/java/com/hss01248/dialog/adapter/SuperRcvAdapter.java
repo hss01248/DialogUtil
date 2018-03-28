@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * Created by Administrator on 2016/8/22 0022.
  */
-public  abstract   class SuperRcvAdapter extends RecyclerView.Adapter<SuperRcvHolder> implements Refreshable {
+public  abstract   class SuperRcvAdapter extends RecyclerView.Adapter<SuperRcvHolder> implements Refreshable,ILifeCycle {
 
 
     private List datas;
@@ -123,6 +123,13 @@ public  abstract   class SuperRcvAdapter extends RecyclerView.Adapter<SuperRcvHo
     public List getListData(){
         return datas;
     }
+
+    @Override
+    public void onDestory() {
+
+    }
+
+
 
     /*public class  ViewHolder extends RecyclerView.ViewHolder {
         public  ViewGroup rootView;

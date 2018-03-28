@@ -12,7 +12,7 @@ import java.util.List;
  * 单一的item
  * Created by Administrator on 2016/4/15 0015.
  */
-public abstract class SuperLvAdapter extends BaseAdapter implements Refreshable {
+public abstract class SuperLvAdapter extends BaseAdapter implements Refreshable ,ILifeCycle{
     List datas;
     Context context;
     boolean isListViewFling;
@@ -126,5 +126,10 @@ public abstract class SuperLvAdapter extends BaseAdapter implements Refreshable 
         }catch (Exception e){
 
         }
+    }
+
+    @Override
+    public void onDestory() {
+
     }
 }

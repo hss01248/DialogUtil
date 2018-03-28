@@ -13,7 +13,7 @@ import java.util.List;
  * Created by Administrator on 2017/12/9.
  */
 
-public abstract class SuperPagerAdapter extends PagerAdapter implements Refreshable{
+public abstract class SuperPagerAdapter extends PagerAdapter implements Refreshable,ILifeCycle{
 
     List datas = new ArrayList();
     List<SuperPagerHolder> mPagerHolders = new ArrayList<>();
@@ -89,5 +89,10 @@ public abstract class SuperPagerAdapter extends PagerAdapter implements Refresha
     public void add(Object object) {
         datas.add(object);
         notifyDataSetChanged();
+    }
+
+    @Override
+    public void onDestory() {
+
     }
 }

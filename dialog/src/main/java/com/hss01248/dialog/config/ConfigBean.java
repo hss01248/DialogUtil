@@ -145,6 +145,11 @@ public class ConfigBean extends MyDialogBuilder implements Styleable {
         return this;
     }
 
+    public ConfigBean setGravity(int gravity) {
+        this.gravity = gravity;
+        return this;
+    }
+
 
     //样式
 

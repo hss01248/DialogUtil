@@ -10,13 +10,14 @@ import java.util.List;
 /**
  * Created by Administrator on 2016/8/22 0022.
  */
-public abstract  class SuperRcvHolder<T> extends RecyclerView.ViewHolder {
+public abstract  class SuperRcvHolder<T> extends RecyclerView.ViewHolder implements View.OnAttachStateChangeListener{
 
     public  View rootView;
 
     public SuperRcvHolder(View itemView) {
         super(itemView);
         rootView = itemView;
+        rootView.addOnAttachStateChangeListener(this);
        // ButterKnife.bind(this,rootView);
     }
 
@@ -41,6 +42,16 @@ public abstract  class SuperRcvHolder<T> extends RecyclerView.ViewHolder {
      * @param data
      */
     public  abstract   void assignDatasAndEvents(Activity context, T data);
+
+    @Override
+    public void onViewAttachedToWindow(View v) {
+
+    }
+
+    @Override
+    public void onViewDetachedFromWindow(View v) {
+
+    }
 
 
 }
