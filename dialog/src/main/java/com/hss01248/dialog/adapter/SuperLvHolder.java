@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * Created by Administrator on 2016/4/15 0015.
  */
-public abstract class SuperLvHolder<T> implements View.OnAttachStateChangeListener{
+public abstract class SuperLvHolder<T> implements View.OnAttachStateChangeListener,ILifeCycle{
     public View rootView;
 
     /*public SuperLvHolder(){
@@ -77,6 +77,11 @@ public abstract class SuperLvHolder<T> implements View.OnAttachStateChangeListen
 
     @Override
     public void onViewDetachedFromWindow(View v) {
+
+    }
+
+    @Override
+    public void onDestory() {
 
     }
 }

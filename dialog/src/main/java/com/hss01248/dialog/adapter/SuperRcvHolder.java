@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Created by Administrator on 2016/8/22 0022.
  */
-public abstract  class SuperRcvHolder<T> extends RecyclerView.ViewHolder implements View.OnAttachStateChangeListener{
+public abstract  class SuperRcvHolder<T> extends RecyclerView.ViewHolder implements View.OnAttachStateChangeListener,ILifeCycle{
 
     public  View rootView;
 
@@ -53,5 +53,8 @@ public abstract  class SuperRcvHolder<T> extends RecyclerView.ViewHolder impleme
 
     }
 
+    @Override
+    public void onDestory() {
 
+    }
 }

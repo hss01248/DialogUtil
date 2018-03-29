@@ -9,7 +9,7 @@ import android.view.ViewGroup;
  * Created by Administrator on 2017/12/9.
  */
 
-public abstract class SuperPagerHolder<T> implements View.OnAttachStateChangeListener{
+public abstract class SuperPagerHolder<T> implements View.OnAttachStateChangeListener,ILifeCycle{
 
     public ViewGroup rootView;
 
@@ -42,6 +42,11 @@ public abstract class SuperPagerHolder<T> implements View.OnAttachStateChangeLis
 
     @Override
     public void onViewDetachedFromWindow(View v) {
+
+    }
+
+    @Override
+    public void onDestory() {
 
     }
 }
