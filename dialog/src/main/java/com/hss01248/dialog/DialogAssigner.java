@@ -209,15 +209,15 @@ public class DialogAssigner implements Assignable {
 
     @Override
     public ConfigBean assignNormalInput(Context context, CharSequence title, CharSequence hint1, CharSequence hint2,
-                                        CharSequence firstTxt, CharSequence secondTxt, MyDialogListener listener) {
+                                        CharSequence inputText1, CharSequence inputText2, MyDialogListener listener) {
         ConfigBean bean = new ConfigBean();
         bean.context = context;
         bean.listener = listener;
         bean.title = title;
         bean.hint1 = hint1;
         bean.hint2 = hint2;
-        bean.text1 = firstTxt;
-        bean.text2 = secondTxt;
+        bean.inputText1 = inputText1;
+        bean.inputText2 = inputText2;
         bean.type = DefaultConfig.TYPE_IOS_INPUT;
         return bean;
     }
@@ -308,15 +308,15 @@ public class DialogAssigner implements Assignable {
     }
 
     @Override
-    public ConfigBean buildMdInput(CharSequence title, CharSequence hint1, CharSequence hint2, CharSequence firstTxt, CharSequence secondTxt, MyDialogListener listener) {
+    public ConfigBean buildMdInput(CharSequence title, CharSequence hint1, CharSequence hint2, CharSequence inputText1, CharSequence inputText2, MyDialogListener listener) {
         ConfigBean bean = new ConfigBean();
         bean.type = DefaultConfig.TYPE_MD_INPUT;
         bean.listener = listener;
         bean.title = title;
         bean.hint1 = hint1;
         bean.hint2 = hint2;
-        bean.text1 = firstTxt;
-        bean.text2 = secondTxt;
+        bean.inputText1 = inputText1;
+        bean.inputText2 = inputText2;
         //bean.viewHolder = new MdInputHolder(ActivityStackManager.getInstance().getTopActivity());
         return bean;
     }

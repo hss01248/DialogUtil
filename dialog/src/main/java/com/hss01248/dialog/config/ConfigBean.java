@@ -63,6 +63,8 @@ public class ConfigBean extends MyDialogBuilder implements Styleable {
 
     public CharSequence hint1;
     public CharSequence hint2;
+    public CharSequence inputText1;
+    public CharSequence inputText2;
 
     public boolean showAsActivity = false;
     public boolean showAsFragment = false;

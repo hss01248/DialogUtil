@@ -317,6 +317,10 @@ public class IosAlertDialogHolder extends SuperLvHolder<ConfigBean> {
 
             et1.setTextColor(Tool.getColor(et1.getContext(),bean.inputTxtColor));
             et1.setTextSize(bean.inputTxtSize);
+            if(TextUtils.isEmpty(bean.inputText1)){
+                et1.setText(bean.inputText1);
+            }
+
 
         }
 
@@ -334,6 +338,9 @@ public class IosAlertDialogHolder extends SuperLvHolder<ConfigBean> {
             } else {
                 //设置EditText文本为隐藏的
                 et2.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+            }
+            if(TextUtils.isEmpty(bean.inputText2)){
+                et2.setText(bean.inputText2);
             }
         }
     }
