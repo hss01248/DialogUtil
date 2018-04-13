@@ -122,15 +122,17 @@ public class Tool {
                 if (bean.alertDialog!= null){
                     setMdBtnStytle(bean);
                     setTitleMessageStyle(bean.alertDialog,bean);
-                    //setListItemsStyle(bean);
                 }
                 bean.listener.onShow();
                 DialogsMaintainer.addWhenShow(bean.context,dialog);
                 if (bean.type == DefaultConfig.TYPE_IOS_LOADING || bean.type == DefaultConfig.TYPE_MD_LOADING) {
                     DialogsMaintainer.addLoadingDialog(bean.context,dialog);
                 }
-                //showSoftKeyBoardDelayed(bean.needSoftKeyboard,bean.viewHolder);
-                //showSoftKeyBoardDelayed(bean.needSoftKeyboard,bean.customContentHolder);
+
+                 /*dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE |
+                     WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+                Tool.showSoftKeyBoardDelayed(bean.needSoftKeyboard,bean.viewHolder);
+                Tool.showSoftKeyBoardDelayed(bean.needSoftKeyboard,bean.customContentHolder);*/
             }
         });
 
@@ -213,6 +215,9 @@ public class Tool {
                         setBottomSheetDialogPeekHeight(bean);
                         adjustWH(dialog,bean);
                         dialog.getWindow().getDecorView().getViewTreeObserver().removeGlobalOnLayoutListener(this);
+
+
+
                     }
                 });
     }
@@ -249,7 +254,7 @@ public class Tool {
         if(holder ==null){
             return;
         }
-        if(mainHandler ==null){
+        /*if(mainHandler ==null){
             mainHandler = new Handler(Looper.getMainLooper());
         }
         mainHandler.postDelayed(new Runnable() {
@@ -257,7 +262,8 @@ public class Tool {
             public void run() {
                 holder.showKeyBoard();
             }
-        }, 500);
+        }, 0);*/
+        holder.showKeyBoard();
     }
 
 
@@ -424,11 +430,11 @@ public class Tool {
         if (bean.alertDialog != null){
             bean.alertDialog.setCancelable(bean.cancelable);
             bean.alertDialog.setCanceledOnTouchOutside(bean.outsideTouchable);
-            bean.alertDialog.getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED);
+           // bean.alertDialog.getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED);
         }else if (bean.dialog != null){
             bean.dialog.setCancelable(bean.cancelable);
             bean.dialog.setCanceledOnTouchOutside(bean.outsideTouchable);
-            bean.dialog.getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED);
+          //  bean.dialog.getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED);
         }
         return bean;
     }
@@ -830,9 +836,16 @@ public class Tool {
         }
     }
 
-    public static void showKeyBoard(View view){
+    public static void showKeyBoard(View edCount){
+
+        //设置可获得焦点
+        edCount.setFocusable(true);
+        edCount.setFocusableInTouchMode(true);
+        //请求获得焦点
+        edCount.requestFocus();
+        //调用系统输入法
         InputMethodManager imm = (InputMethodManager) StyledDialog.context.getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.showSoftInput(view,InputMethodManager.SHOW_FORCED);
+        imm.showSoftInput(edCount,InputMethodManager.RESULT_SHOWN);
     }
 
     public static void hideKeyBorad(ConfigBean bean){

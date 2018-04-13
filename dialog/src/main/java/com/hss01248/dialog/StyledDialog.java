@@ -8,7 +8,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Handler;
 import android.os.Looper;
-import android.support.v7.app.AppCompatDialog;
 import android.view.View;
 import android.widget.TextView;
 
@@ -203,13 +202,13 @@ public class StyledDialog {
 
 
     public static ConfigBean buildNormalInput(CharSequence title, CharSequence hint1, CharSequence hint2,
-                                              CharSequence firstTxt, CharSequence secondTxt, MyDialogListener listener) {
-        return DialogAssigner.getInstance().assignNormalInput(null, title, hint1, hint2, firstTxt, secondTxt, listener);
+                                              CharSequence inputText1, CharSequence inputText2, MyDialogListener listener) {
+        return DialogAssigner.getInstance().assignNormalInput(null, title, hint1, hint2, inputText1, inputText2, listener);
     }
 
     public static ConfigBean buildMdInput(CharSequence title, CharSequence hint1, CharSequence hint2,
-                                          CharSequence firstTxt, CharSequence secondTxt, MyDialogListener listener) {
-        return DialogAssigner.getInstance().buildMdInput(title, hint1, hint2, firstTxt, secondTxt, listener);
+                                          CharSequence inputText1, CharSequence inputText2, MyDialogListener listener) {
+        return DialogAssigner.getInstance().buildMdInput(title, hint1, hint2, inputText1, inputText2, listener);
 
     }
 

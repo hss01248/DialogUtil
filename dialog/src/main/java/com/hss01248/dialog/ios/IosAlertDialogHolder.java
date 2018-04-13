@@ -319,6 +319,7 @@ public class IosAlertDialogHolder extends SuperLvHolder<ConfigBean> {
             et1.setTextSize(bean.inputTxtSize);
             if(!TextUtils.isEmpty(bean.inputText1)){
                 et1.setText(bean.inputText1);
+                et1.setSelection(bean.inputText1.length());
             }
 
 
@@ -341,6 +342,7 @@ public class IosAlertDialogHolder extends SuperLvHolder<ConfigBean> {
             }
             if(!TextUtils.isEmpty(bean.inputText2)){
                 et2.setText(bean.inputText2);
+                et2.setSelection(bean.inputText2.length());
             }
         }
     }

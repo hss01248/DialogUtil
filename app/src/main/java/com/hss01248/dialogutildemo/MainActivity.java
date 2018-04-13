@@ -460,7 +460,7 @@ android:pivotY="50%" />
                 break;
             case R.id.btn_input:
                StyledDialog.buildNormalInput("登录", "请输入用户名", "请输入密码",
-                   "登录", "取消",  new MyDialogListener() {
+                   "dashedsen", "51420",  new MyDialogListener() {
                    @Override
                    public void onFirst() {
 
@@ -491,7 +491,7 @@ android:pivotY="50%" />
 
             case R.id.btn_material_input:
                 StyledDialog.buildMdInput("登录", "fefe", "请输入密码",
-                    "登录", "取消",  new MyDialogListener() {
+                    "fee544es", "fesfeee",  new MyDialogListener() {
                         @Override
                         public void onFirst() {
 
