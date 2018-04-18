@@ -56,6 +56,7 @@ public class AdXHolder extends SuperLvHolder<ConfigBean> {
             @Override
             public void onClick(View v) {
                 Tool.dismiss(bean);
+                bean.listener.onFirst();
             }
         });
     }
