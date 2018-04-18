@@ -74,6 +74,16 @@ public class IosAlertDialogHolder extends SuperLvHolder<ConfigBean> {
         llContainerContent = (LinearLayout) rootView.findViewById(R.id.ll_container);
     }
 
+    public void showOnlyTitleAndMsg(String title, String msg){
+        et2.setVisibility(View.GONE);
+        et1.setVisibility(View.GONE);
+        llContainerHorizontal.setVisibility(View.GONE);
+        llContainerVertical.setVisibility(View.GONE);
+        line.setVisibility(View.GONE);
+        tvTitle.setText(title);
+        tvMsg.setText(msg);
+    }
+
 
     @Override
     protected int setLayoutRes() {

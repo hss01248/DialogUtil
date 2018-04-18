@@ -43,6 +43,64 @@ public class ConfigBean extends MyDialogBuilder implements Styleable {
     public Context context;
     public boolean isVertical;
 
+    /**
+     * 是不是带x的广告样式
+     */
+    public boolean asAdXStyle;
+    /**
+     * 广告样式中,关闭按钮的位置,默认底部居中
+     */
+    public int xGravity = Gravity.CENTER_HORIZONTAL | Gravity.BOTTOM;
+
+    public ConfigBean setxMarginTB(int xMarginTB) {
+        this.xMarginTB = xMarginTB;
+        return this;
+    }
+
+    /**
+     * 广告的关闭按钮跟主界面的上/下margin,dp,默认10dp
+     */
+    public int xMarginTB = 15;
+
+    /**
+     * 边际的实际
+     * @param xMarginLR
+     * @return
+     */
+    public ConfigBean setxMarginLR(int xMarginLR) {
+        this.xMarginLR = xMarginLR;
+        return this;
+    }
+
+    /**
+     * 广告的关闭按钮跟主界面的左右margin
+     */
+    public int xMarginLR  = 0;
+
+
+
+
+    /**
+     * x按钮的图标,默认有一个白色图标
+     */
+    public int xResId;
+
+    public ConfigBean setxWidth(int xWidth) {
+        this.xWidth = xWidth;
+        return this;
+    }
+
+    /**
+     * 外部包裹的relativelayout默认50dp,这里是控制内部图标的实际大小
+     */
+    public int xWidth = 25;
+
+    public ConfigBean setxResId(int xResId) {
+        this.xResId = xResId;
+        return this;
+    }
+
+
     public SuperLvHolder viewHolder;
     public SuperLvHolder customContentHolder;
 

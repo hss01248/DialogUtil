@@ -227,7 +227,7 @@ android:pivotY="50%" />
             R.id.btn_ios_alert_vertical, R.id.btn_ios_bottom_sheet, R.id.btn_ios_center_list,R.id.btn_input,
             R.id.btn_multichoose, R.id.btn_singlechoose,R.id.btn_md_bs,R.id.btn_md_bs_listview,R.id.btn_md_bs_Gridview,
             R.id.btn_context_progress_h,R.id.btn_context_progress_c,R.id.btn_customview,R.id.btn_dismiss,
-        R.id.btn_test_badToken,R.id.btn_customview2,R.id.btn_material_input})
+        R.id.btn_test_badToken,R.id.btn_customview2,R.id.btn_material_input,R.id.btn_ad,R.id.btn_ad_msg})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_test_badToken:
@@ -691,6 +691,18 @@ android:pivotY="50%" />
             case R.id.btn_customview2:
                 ViewGroup customView2 = (ViewGroup) View.inflate(this,R.layout.customview2,null);
                 StyledDialog.buildCustom(customView2,Gravity.CENTER).setForceWidthPercent(0.90f).setForceHeightPercent(0.8f).show();
+                break;
+            case R.id.btn_ad:
+                ViewGroup customView3 = (ViewGroup) View.inflate(this,R.layout.customview2,null);
+                StyledDialog.buildCustomAsAdStyle(customView3,Gravity.RIGHT|Gravity.TOP)
+                    .setxMarginLR(15)
+                    .setxMarginTB(30)
+                    .setxWidth(55).show();
+                break;
+            case R.id.btn_ad_msg:
+
+                StyledDialog.buildAlertAsAdStyle("title","hahahhahahahahha",Gravity.CENTER_HORIZONTAL|Gravity.BOTTOM)
+                    .setxWidth(25).show();
                 break;
             default:break;
 

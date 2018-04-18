@@ -40,6 +40,7 @@ material风格(v7支持包中的)，ios风格，自动获取顶层activity,可�
 * 支持国际化
 * **智能弹出和隐藏软键盘**.自定义view的dialog只要设置setNeedSoftKeyboard为true,即可自动处理软键盘的弹出和隐藏
 * ios样式和material 样式的均**可以在三种状态下显示**: 普通dialog,TYPE_TOAST,作为activity.(原生ProgressDialog和Design包下的BottomSheetDialog除外,其在TYPE_TOAST或activity显示有异样)
+* 支持带x的**广告样式**的动画
 
 
 # todo

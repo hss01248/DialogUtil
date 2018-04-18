@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:gravity="center_horizontal"
+        android:background="@color/dialogutil_bg_white"
     android:layout_height="match_parent">
     <TextView
         android:id="@+id/tv_title"

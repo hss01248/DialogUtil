@@ -470,7 +470,7 @@ public class Tool {
                 params = new WindowManager.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             }
             params.format = PixelFormat.RGBA_8888;
-            params.flags = WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED |
+            params.flags =
                // WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL  |
                 WindowManager.LayoutParams.FLAG_LOCAL_FOCUS_MODE  |
                 WindowManager.LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH |
@@ -543,12 +543,10 @@ public class Tool {
            if(bean.isTransparentBehind){
                bean.alertDialog.getWindow().setDimAmount(0);
            }
-            bean.alertDialog.getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED );
         }else {
             if(bean.isTransparentBehind){
                 bean.dialog.getWindow().setDimAmount(0);
             }
-            bean.dialog.getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED );
         }
     }
 
