@@ -26,6 +26,7 @@ import com.hss01248.dialog.ios.IosAlertDialogHolder;
 import com.hss01248.dialog.ios.IosCenterItemHolder;
 import com.hss01248.dialog.material.MaterialDialogHolder;
 import com.hss01248.dialog.material.MdInputHolder;
+import com.hss01248.dialog.view.AdXHolder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -95,13 +96,11 @@ public  class DialogViewBuilder {
                break;
            case DefaultConfig.TYPE_CUSTOM_VIEW:
                Tool.newCustomDialog(bean);
-               if(bean.customContentHolder!=null){
-                   Tool.removeFromParent(bean.customContentHolder.rootView);
-                   bean.dialog.setContentView(bean.customContentHolder.rootView);
-               }else {
-                   Tool.removeFromParent(bean.customView);
-                   bean.dialog.setContentView(bean.customView);
-               }
+               View rootView = getCustomRootView(bean);
+               bean.dialog.setContentView(rootView);
+
+
+
                break;
            case DefaultConfig.TYPE_BOTTOM_SHEET_CUSTOM:
               buildBottomSheet(bean);
@@ -133,11 +132,33 @@ public  class DialogViewBuilder {
        window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
        Tool.setWindowAnimation(window, bean);
        Tool.setCancelable(bean);
-       Tool.setCancelListener(bean);
+       Tool.setListener(bean);
 
        Tool.adjustStyle(bean);*/
        return bean;
    }
+
+    private View getCustomRootView(ConfigBean bean) {
+
+        if(bean.customContentHolder!=null){
+            Tool.removeFromParent(bean.customContentHolder.rootView);
+            if(bean.asAdXStyle){
+                AdXHolder adXHolder = new AdXHolder(bean.context);
+                adXHolder.assingDatasAndEvents(bean.context,bean);
+                return adXHolder.rootView;
+            }
+            return bean.customContentHolder.rootView;
+        }else {
+            Tool.removeFromParent(bean.customView);
+            if(bean.asAdXStyle){
+                AdXHolder adXHolder = new AdXHolder(bean.context);
+                adXHolder.assingDatasAndEvents(bean.context,bean);
+                return adXHolder.rootView;
+            }
+            return bean.customView;
+
+        }
+    }
 
     private void buildMyMd(ConfigBean bean) {
         Tool.newCustomDialog(bean);

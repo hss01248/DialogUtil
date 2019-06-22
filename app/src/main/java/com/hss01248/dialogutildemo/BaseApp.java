@@ -3,13 +3,13 @@ package com.hss01248.dialogutildemo;
 import android.app.Activity;
 import android.app.Application;
 import android.os.Bundle;
-import android.util.Log;
 
+import com.alibaba.fastjson.JSON;
 import com.hss01248.dialog.ActivityStackManager;
+import com.hss01248.dialog.DialogsMaintainer;
 import com.hss01248.dialog.StyledDialog;
-import com.orhanobut.logger.LogPrintStyle;
-import com.orhanobut.logger.Logger;
-import com.orhanobut.logger.Settings;
+import com.orhanobut.logger.Jsonfy;
+import com.orhanobut.logger.XLogUtil;
 import com.squareup.leakcanary.LeakCanary;
 
 /**
@@ -29,14 +29,12 @@ public class BaseApp extends Application {
     }
 
     private void initlog() {
-        Logger.initialize(
-                new Settings()
-                        .setStyle(new LogPrintStyle())
-                        .isShowMethodLink(true)
-                        .isShowThreadInfo(false)
-                        .setMethodOffset(0)
-                        .setLogPriority(BuildConfig.DEBUG ? Log.VERBOSE : Log.ASSERT)
-        );
+        XLogUtil.init(true, "dialog", new Jsonfy() {
+            @Override
+            public String toJson(Object o) {
+                return JSON.toJSONString(o);
+            }
+        });
     }
 
     private void registCallback() {
@@ -57,6 +55,7 @@ public class BaseApp extends Application {
 
             @Override
             public void onActivityPaused(Activity activity) {
+                DialogsMaintainer.onPause(activity);
 
             }
 

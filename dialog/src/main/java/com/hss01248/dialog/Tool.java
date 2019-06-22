@@ -72,11 +72,9 @@ public class Tool {
         }
         if(bean.dialog!=null){
             bean.dialog.dismiss();
-            DialogsMaintainer.removeWhenDismiss(bean.dialog);
         }
         if(bean.alertDialog !=null){
             bean.alertDialog.dismiss();
-            DialogsMaintainer.removeWhenDismiss(bean.alertDialog);
         }
     }
 
@@ -99,42 +97,78 @@ public class Tool {
      * @param dialog
      */
     public static void showDialog(final Dialog dialog, final ConfigBean bean) {
-        Log.e("tool","showDialog:"+dialog);
-
-        //dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE | WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
-
-        dialog.setOnShowListener(new DialogInterface.OnShowListener() {
-            @Override
-            public void onShow(DialogInterface dialog) {
-                if (bean.alertDialog!= null){
-                    setMdBtnStytle(bean);
-                    setTitleMessageStyle(bean.alertDialog,bean);
-                    //setListItemsStyle(bean);
-                }
-                bean.listener.onShow();
-                //showSoftKeyBoardDelayed(bean.needSoftKeyboard,bean.viewHolder);
-                //showSoftKeyBoardDelayed(bean.needSoftKeyboard,bean.customContentHolder);
-            }
-        });
-
         StyledDialog.getMainHandler().post(new Runnable() {
             @Override
             public void run() {
                 try {
                     dialog.show();
-                    DialogsMaintainer.addWhenShow(dialog);
-
                     adjustWindow(dialog,bean);
                 }catch (Exception e){
                     e.printStackTrace();
                 }
             }
         });
-       /* dialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM,
-            WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM);*/
+    }
 
 
+    public static void setListener(final Dialog dialog, final ConfigBean bean) {
+        if(dialog ==null){
+            return;
+        }
 
+        dialog.setOnShowListener(new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(DialogInterface dialog0) {
+                if (bean.alertDialog!= null){
+                    setMdBtnStytle(bean);
+                    setTitleMessageStyle(bean.alertDialog,bean);
+                }
+                bean.listener.onShow();
+                DialogsMaintainer.addWhenShow(bean.context,dialog);
+                if (bean.type == DefaultConfig.TYPE_IOS_LOADING || bean.type == DefaultConfig.TYPE_MD_LOADING) {
+                    DialogsMaintainer.addLoadingDialog(bean.context,dialog);
+                }
+
+                 /*dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE |
+                     WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+                Tool.showSoftKeyBoardDelayed(bean.needSoftKeyboard,bean.viewHolder);
+                Tool.showSoftKeyBoardDelayed(bean.needSoftKeyboard,bean.customContentHolder);*/
+            }
+        });
+
+        dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            @Override
+            public void onCancel(DialogInterface dialog0) {
+                if(bean.type == DefaultConfig.TYPE_IOS_INPUT){
+                    IosAlertDialogHolder iosAlertDialogHolder = (IosAlertDialogHolder) bean.viewHolder;
+                    if(iosAlertDialogHolder!=null){
+                        iosAlertDialogHolder.hideKeyBoard();
+                    }
+                }
+                if(bean.listener!=null) {
+                    bean.listener.onCancle();
+                }
+                /*DialogsMaintainer.removeWhenDismiss(dialog);
+                if (bean.type == DefaultConfig.TYPE_IOS_LOADING || bean.type == DefaultConfig.TYPE_MD_LOADING) {
+                    DialogsMaintainer.dismissLoading(dialog);
+
+                }*/
+            }
+        });
+
+        dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog0) {
+                if(bean.listener !=null){
+                    bean.listener.onDismiss();
+                }
+                DialogsMaintainer.removeWhenDismiss(dialog);
+                if (bean.type == DefaultConfig.TYPE_IOS_LOADING || bean.type == DefaultConfig.TYPE_MD_LOADING) {
+                    DialogsMaintainer.dismissLoading(dialog);
+
+                }
+            }
+        });
 
 
     }
@@ -180,10 +214,10 @@ public class Tool {
                     public void onGlobalLayout() {
                         setBottomSheetDialogPeekHeight(bean);
                         adjustWH(dialog,bean);
-
-
-
                         dialog.getWindow().getDecorView().getViewTreeObserver().removeGlobalOnLayoutListener(this);
+
+
+
                     }
                 });
     }
@@ -220,7 +254,7 @@ public class Tool {
         if(holder ==null){
             return;
         }
-        if(mainHandler ==null){
+        /*if(mainHandler ==null){
             mainHandler = new Handler(Looper.getMainLooper());
         }
         mainHandler.postDelayed(new Runnable() {
@@ -228,7 +262,8 @@ public class Tool {
             public void run() {
                 holder.showKeyBoard();
             }
-        }, 500);
+        }, 0);*/
+        holder.showKeyBoard();
     }
 
 
@@ -371,6 +406,18 @@ public class Tool {
         return true;
     }
 
+
+    /**
+     * ViewRootImpl.checkThread:只有创建View层次结构的线程才能修改View
+     * 如何保证new Dialog在UI线程执行?或者说,保证构建dialog view的线程和dismiss在同一线程?
+     * 查看源码知道,dismiss回强制在UI线程,所以,构建dialogview的线程也必须是UI线程.
+     * 什么时候构建dialog的viewroot?
+     * 普通dialog: new Dialog()方法中: Window w = new PhoneWindow(mContext)
+     * alertdialog: dialogbuilder.build()方法中
+     *
+     * @param bean
+     * @return
+     */
     public static ConfigBean newCustomDialog(ConfigBean bean){
         Dialog dialog = new Dialog(bean.context);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -383,14 +430,12 @@ public class Tool {
         if (bean.alertDialog != null){
             bean.alertDialog.setCancelable(bean.cancelable);
             bean.alertDialog.setCanceledOnTouchOutside(bean.outsideTouchable);
-            bean.alertDialog.getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED);
+           // bean.alertDialog.getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED);
         }else if (bean.dialog != null){
             bean.dialog.setCancelable(bean.cancelable);
             bean.dialog.setCanceledOnTouchOutside(bean.outsideTouchable);
-            bean.dialog.getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED);
+          //  bean.dialog.getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED);
         }
-
-
         return bean;
     }
 
@@ -425,7 +470,7 @@ public class Tool {
                 params = new WindowManager.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             }
             params.format = PixelFormat.RGBA_8888;
-            params.flags = WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED |
+            params.flags =
                // WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL  |
                 WindowManager.LayoutParams.FLAG_LOCAL_FOCUS_MODE  |
                 WindowManager.LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH |
@@ -498,12 +543,10 @@ public class Tool {
            if(bean.isTransparentBehind){
                bean.alertDialog.getWindow().setDimAmount(0);
            }
-            bean.alertDialog.getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED );
         }else {
             if(bean.isTransparentBehind){
                 bean.dialog.getWindow().setDimAmount(0);
             }
-            bean.dialog.getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED );
         }
     }
 
@@ -739,59 +782,7 @@ public class Tool {
     }
 
 
-    public static void setCancelListener(final ConfigBean bean) {
 
-            if(bean.dialog!=null){
-                bean.dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
-                    @Override
-                    public void onCancel(DialogInterface dialog) {
-                        if(bean.type == DefaultConfig.TYPE_IOS_INPUT){
-                            IosAlertDialogHolder iosAlertDialogHolder = (IosAlertDialogHolder) bean.viewHolder;
-                            if(iosAlertDialogHolder!=null){
-                                iosAlertDialogHolder.hideKeyBoard();
-                            }
-                        }
-                        if(bean.listener!=null) {
-                            bean.listener.onCancle();
-                        }
-
-
-                    }
-                });
-
-                bean.dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                    @Override
-                    public void onDismiss(DialogInterface dialog) {
-                        if(bean.listener !=null){
-                            bean.listener.onDismiss();
-                        }
-                    }
-                });
-            }
-            if(bean.alertDialog!=null){
-                bean.alertDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
-                    @Override
-                    public void onCancel(DialogInterface dialog) {
-                        if (bean.listener != null) {
-                            bean.listener.onCancle();
-                        }
-                    }
-                });
-
-                bean.alertDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                    @Override
-                    public void onDismiss(DialogInterface dialog) {
-                        if(bean.listener !=null){
-                            bean.listener.onDismiss();
-                        }
-                    }
-                });
-
-
-            }
-
-
-    }
 
     public static void handleScrollInBottomSheetDialog(final AdapterView listView){
         listView.setOnTouchListener(new View.OnTouchListener() {
@@ -843,9 +834,16 @@ public class Tool {
         }
     }
 
-    public static void showKeyBoard(View view){
+    public static void showKeyBoard(View edCount){
+
+        //设置可获得焦点
+        edCount.setFocusable(true);
+        edCount.setFocusableInTouchMode(true);
+        //请求获得焦点
+        edCount.requestFocus();
+        //调用系统输入法
         InputMethodManager imm = (InputMethodManager) StyledDialog.context.getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.showSoftInput(view,InputMethodManager.SHOW_FORCED);
+        imm.showSoftInput(edCount,InputMethodManager.RESULT_SHOWN);
     }
 
     public static void hideKeyBorad(ConfigBean bean){

@@ -74,6 +74,16 @@ public class IosAlertDialogHolder extends SuperLvHolder<ConfigBean> {
         llContainerContent = (LinearLayout) rootView.findViewById(R.id.ll_container);
     }
 
+    public void showOnlyTitleAndMsg(String title, String msg){
+        et2.setVisibility(View.GONE);
+        et1.setVisibility(View.GONE);
+        llContainerHorizontal.setVisibility(View.GONE);
+        llContainerVertical.setVisibility(View.GONE);
+        line.setVisibility(View.GONE);
+        tvTitle.setText(title);
+        tvMsg.setText(msg);
+    }
+
 
     @Override
     protected int setLayoutRes() {
@@ -317,6 +327,11 @@ public class IosAlertDialogHolder extends SuperLvHolder<ConfigBean> {
 
             et1.setTextColor(Tool.getColor(et1.getContext(),bean.inputTxtColor));
             et1.setTextSize(bean.inputTxtSize);
+            if(!TextUtils.isEmpty(bean.inputText1)){
+                et1.setText(bean.inputText1);
+                et1.setSelection(bean.inputText1.length());
+            }
+
 
         }
 
@@ -334,6 +349,10 @@ public class IosAlertDialogHolder extends SuperLvHolder<ConfigBean> {
             } else {
                 //设置EditText文本为隐藏的
                 et2.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+            }
+            if(!TextUtils.isEmpty(bean.inputText2)){
+                et2.setText(bean.inputText2);
+                et2.setSelection(bean.inputText2.length());
             }
         }
     }

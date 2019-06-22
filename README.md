@@ -47,6 +47,7 @@ any problem or bug, join the qq group to get a quick response:
 * support localization
 * **support three window types**: as a common dialog ,as a widow with TYPE_TOAST,as a activity with dialog style.
 * support show **softKeyboard** automatically ,just setNeedSoftKeyboard(true)
+* support **ad style** dialog
 
 
 

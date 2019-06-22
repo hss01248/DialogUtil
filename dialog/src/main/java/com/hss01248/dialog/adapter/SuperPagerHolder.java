@@ -9,7 +9,7 @@ import android.view.ViewGroup;
  * Created by Administrator on 2017/12/9.
  */
 
-public abstract class SuperPagerHolder<T> {
+public abstract class SuperPagerHolder<T> implements View.OnAttachStateChangeListener,ILifeCycle{
 
     public ViewGroup rootView;
 
@@ -20,7 +20,7 @@ public abstract class SuperPagerHolder<T> {
         }else {
             rootView = setRootView(context);
         }
-
+        rootView.addOnAttachStateChangeListener(this);
         //ButterKnife.bind(this,rootView);
         findViews();
     }
@@ -34,4 +34,19 @@ public abstract class SuperPagerHolder<T> {
     protected abstract void findViews();
 
     public  abstract void assingDatasAndEvents(Context context, @Nullable T bean,int position);
+
+    @Override
+    public void onViewAttachedToWindow(View v) {
+
+    }
+
+    @Override
+    public void onViewDetachedFromWindow(View v) {
+
+    }
+
+    @Override
+    public void onDestory() {
+
+    }
 }

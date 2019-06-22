@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+		xmlns:tools="http://schemas.android.com/tools"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		tools:ignore="ResourceName">
+	<FrameLayout
+			android:id="@+id/fl_ad_container"
+			android:layout_centerHorizontal="true"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"/>
+	<RelativeLayout
+			android:id="@+id/rl_close_ad_container"
+			android:layout_width="50dp"
+			android:layout_height="50dp">
+		<ImageView
+				android:id="@+id/iv_close_ad_real"
+				android:src="@drawable/dialogutil_icon_close_x_ad"
+				android:layout_width="wrap_content"
+				android:scaleType="fitCenter"
+
+				android:layout_centerInParent="true"
+				android:layout_height="wrap_content" />
+	</RelativeLayout>
+
+
+</RelativeLayout>

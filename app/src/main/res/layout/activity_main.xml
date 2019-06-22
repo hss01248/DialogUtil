@@ -157,6 +157,19 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
+            <Button
+                    android:id="@+id/btn_ad"
+                    android:layout_margin="5dp"
+                    android:text="ad"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            <Button
+                    android:id="@+id/btn_ad_msg"
+                    android:layout_margin="5dp"
+                    android:text="ad_title_msg"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
 
 
         </LinearLayout>

@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Looper;
 import android.support.annotation.ColorRes;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.FloatRange;
@@ -16,7 +17,6 @@ import android.view.Gravity;
 import android.view.View;
 
 import com.hss01248.dialog.ActivityStackManager;
-import com.hss01248.dialog.DialogsMaintainer;
 import com.hss01248.dialog.StyledDialog;
 import com.hss01248.dialog.Tool;
 import com.hss01248.dialog.adapter.SuperLvAdapter;
@@ -31,6 +31,7 @@ import com.hss01248.dialog.view.DialogUtil_DialogActivity;
 
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.CountDownLatch;
 
 /**
  * Created by Administrator on 2016/10/9 0009.
@@ -41,6 +42,64 @@ public class ConfigBean extends MyDialogBuilder implements Styleable {
 
     public Context context;
     public boolean isVertical;
+
+    /**
+     * 是不是带x的广告样式
+     */
+    public boolean asAdXStyle;
+    /**
+     * 广告样式中,关闭按钮的位置,默认底部居中
+     */
+    public int xGravity = Gravity.CENTER_HORIZONTAL | Gravity.BOTTOM;
+
+    public ConfigBean setxMarginTB(int xMarginTB) {
+        this.xMarginTB = xMarginTB;
+        return this;
+    }
+
+    /**
+     * 广告的关闭按钮跟主界面的上/下margin,dp,默认10dp
+     */
+    public int xMarginTB = 15;
+
+    /**
+     * 边际的实际
+     * @param xMarginLR
+     * @return
+     */
+    public ConfigBean setxMarginLR(int xMarginLR) {
+        this.xMarginLR = xMarginLR;
+        return this;
+    }
+
+    /**
+     * 广告的关闭按钮跟主界面的左右margin
+     */
+    public int xMarginLR  = 0;
+
+
+
+
+    /**
+     * x按钮的图标,默认有一个白色图标
+     */
+    public int xResId;
+
+    public ConfigBean setxWidth(int xWidth) {
+        this.xWidth = xWidth;
+        return this;
+    }
+
+    /**
+     * 外部包裹的relativelayout默认50dp,这里是控制内部图标的实际大小
+     */
+    public int xWidth = 25;
+
+    public ConfigBean setxResId(int xResId) {
+        this.xResId = xResId;
+        return this;
+    }
+
 
     public SuperLvHolder viewHolder;
     public SuperLvHolder customContentHolder;
@@ -62,6 +121,8 @@ public class ConfigBean extends MyDialogBuilder implements Styleable {
 
     public CharSequence hint1;
     public CharSequence hint2;
+    public CharSequence inputText1;
+    public CharSequence inputText2;
 
     public boolean showAsActivity = false;
     public boolean showAsFragment = false;
@@ -86,8 +147,8 @@ public class ConfigBean extends MyDialogBuilder implements Styleable {
     public boolean cancelable = DefaultConfig.cancelable;//默认可以点击后退键来dismiss对话框
     public boolean outsideTouchable = DefaultConfig.outsideTouchable;//默认外部半透明处点击消失
     public boolean dismissAfterResultCallback = DefaultConfig.dismissAfterResultCallback;
-    public Dialog dialog;
-    public AlertDialog alertDialog;
+    public volatile Dialog dialog;
+    public volatile AlertDialog alertDialog;
     public boolean dimBehind = DefaultConfig.dimBehind;
     public @DrawableRes
     int bgRes;
@@ -141,6 +202,11 @@ public class ConfigBean extends MyDialogBuilder implements Styleable {
 
     public ConfigBean setTitle(String title) {
         this.title = title;
+        return this;
+    }
+
+    public ConfigBean setGravity(int gravity) {
+        this.gravity = gravity;
         return this;
     }
 
@@ -424,6 +490,31 @@ public class ConfigBean extends MyDialogBuilder implements Styleable {
 
     @Override
     public Dialog show() {
+        if(Thread.currentThread().getId() == Looper.getMainLooper().getThread().getId()){
+           return showInMainThread();
+        }
+//说明不是主线程,需要做处理
+        final CountDownLatch latch = new CountDownLatch(1);
+        final Dialog[] dialog = new Dialog[1];
+
+        StyledDialog.getMainHandler().post(new Runnable() {
+            @Override
+            public void run() {
+                dialog[0] =   showInMainThread();
+                latch.countDown();
+            }
+        });
+        try {
+            latch.await();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return dialog[0];
+
+
+    }
+
+    private Dialog showInMainThread() {
         Tool.fixContext(this);
         if (listener == null) {
             Log.w("dialogutil", "dialog listener is null!");
@@ -449,35 +540,12 @@ public class ConfigBean extends MyDialogBuilder implements Styleable {
             showAsFragment();
             return null;
         }
-
-
-        /*Dialog dialog2 = this.dialog ==null ? alertDialog : this.dialog;
-        Window window = dialog2.getWindow();
-        window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        WindowAdjuster.adjust(window,this);
-        Tool.setCancelable(this);
-        Tool.setCancelListener(this);*/
-
-
-//Build dialog by tyle :
-        //内部保存loadingdialog对象
-
-        if (type == DefaultConfig.TYPE_PROGRESS) {
-
-        }
-
-
         if (dialog != null && !dialog.isShowing()) {
             Tool.showDialog(dialog, this);
-            if (type == DefaultConfig.TYPE_IOS_LOADING || type == DefaultConfig.TYPE_MD_LOADING) {
-                DialogsMaintainer.addLoadingDialog(dialog);
-            }
+
             return dialog;
         } else if (alertDialog != null && !alertDialog.isShowing()) {
             Tool.showDialog(alertDialog, this);
-            if (type == DefaultConfig.TYPE_IOS_LOADING || type == DefaultConfig.TYPE_MD_LOADING) {
-                DialogsMaintainer.addLoadingDialog(alertDialog);
-            }
             return alertDialog;
         }
         return null;

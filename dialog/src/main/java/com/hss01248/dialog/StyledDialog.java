@@ -8,7 +8,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Handler;
 import android.os.Looper;
-import android.support.v7.app.AppCompatDialog;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.TextView;
 
@@ -17,6 +17,7 @@ import com.hss01248.dialog.config.ConfigBean;
 import com.hss01248.dialog.config.DefaultConfig;
 import com.hss01248.dialog.interfaces.MyDialogListener;
 import com.hss01248.dialog.interfaces.MyItemDialogListener;
+import com.hss01248.dialog.ios.IosAlertDialogHolder;
 
 import java.util.List;
 
@@ -203,13 +204,13 @@ public class StyledDialog {
 
 
     public static ConfigBean buildNormalInput(CharSequence title, CharSequence hint1, CharSequence hint2,
-                                              CharSequence firstTxt, CharSequence secondTxt, MyDialogListener listener) {
-        return DialogAssigner.getInstance().assignNormalInput(null, title, hint1, hint2, firstTxt, secondTxt, listener);
+                                              CharSequence inputText1, CharSequence inputText2, MyDialogListener listener) {
+        return DialogAssigner.getInstance().assignNormalInput(null, title, hint1, hint2, inputText1, inputText2, listener);
     }
 
     public static ConfigBean buildMdInput(CharSequence title, CharSequence hint1, CharSequence hint2,
-                                          CharSequence firstTxt, CharSequence secondTxt, MyDialogListener listener) {
-        return DialogAssigner.getInstance().buildMdInput(title, hint1, hint2, firstTxt, secondTxt, listener);
+                                          CharSequence inputText1, CharSequence inputText2, MyDialogListener listener) {
+        return DialogAssigner.getInstance().buildMdInput(title, hint1, hint2, inputText1, inputText2, listener);
 
     }
 
@@ -246,6 +247,35 @@ public class StyledDialog {
     @Deprecated
     public static ConfigBean buildCustom(View contentView, int gravity) {
         return DialogAssigner.getInstance().assignCustom(null, contentView, gravity);
+    }
+
+    /**
+     * 带x的view,x的位置可以配置
+     * @param contentView
+     * @return
+     */
+    public static ConfigBean buildCustomAsAdStyle(View contentView,  int xGravity) {
+        ConfigBean configBean =  DialogAssigner.getInstance().assignCustom(null, contentView, Gravity.CENTER);
+        configBean.asAdXStyle = true;
+        configBean.xGravity = xGravity;
+        configBean.useTheShadowBg = false;
+        return configBean;
+    }
+
+    public static ConfigBean buildAlertAsAdStyle(String title,String msg,  int xGravity) {
+        IosAlertDialogHolder dialogHolder = new IosAlertDialogHolder(ActivityStackManager.getInstance().getTopActivity());
+        dialogHolder.showOnlyTitleAndMsg(title,msg);
+        ConfigBean configBean =  DialogAssigner.getInstance().assignCustom(null, dialogHolder.rootView, Gravity.CENTER);
+        configBean.hint1 = "";
+        configBean.hint1 = "";
+        configBean.text1 = "";
+        configBean.text2 = "";
+        configBean.text3 = "";
+       // dialogHolder.assingDatasAndEvents(ActivityStackManager.getInstance().getTopActivity(),configBean);
+        configBean.asAdXStyle = true;
+        configBean.xGravity = xGravity;
+        configBean.useTheShadowBg = false;
+        return configBean;
     }
 
 

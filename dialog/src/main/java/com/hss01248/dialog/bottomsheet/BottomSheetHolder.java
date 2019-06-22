@@ -186,6 +186,14 @@ public class BottomSheetHolder extends SuperLvHolder<ConfigBean> {
             };
             bean.mAdapter = adapter;
         }
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                BottomSheetBean sheetBean =  bean.lvDatas.get(position);
+                bean.itemListener.onItemClick(sheetBean.text,position);
+                Tool.dismiss(bean,true);
+            }
+        });
 
 
         listView.setAdapter(bean.mAdapter);
