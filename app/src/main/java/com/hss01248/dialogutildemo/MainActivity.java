@@ -234,7 +234,7 @@ android:pivotY="50%" />
                 testBadToken();
                 break;
             case R.id.btn_dismiss:
-                StyledDialog.dismissLoading();
+                StyledDialog.dismissLoading(this);
                 break;
             case R.id.btn_common_progress:
                 final Dialog[] dialog00 = new Dialog[1];

@@ -3,11 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/DialogUtil.iml" filepath="$PROJECT_DIR$/DialogUtil.iml" />
-      <module fileurl="file://D:\projects\android\hss01248\DialogUtil\DialogUtil.iml" filepath="D:\projects\android\hss01248\DialogUtil\DialogUtil.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://D:\projects\android\hss01248\DialogUtil\app\app.iml" filepath="D:\projects\android\hss01248\DialogUtil\app\app.iml" />
       <module fileurl="file://$PROJECT_DIR$/dialog/dialog.iml" filepath="$PROJECT_DIR$/dialog/dialog.iml" />
-      <module fileurl="file://D:\projects\android\hss01248\DialogUtil\dialog\dialog.iml" filepath="D:\projects\android\hss01248\DialogUtil\dialog\dialog.iml" />
     </modules>
   </component>
 </project>
