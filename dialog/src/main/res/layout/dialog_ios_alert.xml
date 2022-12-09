@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
     app:cardBackgroundColor="#ffffff"
-    app:cardCornerRadius="20dp"
+    app:cardCornerRadius="12dp"
     app:cardElevation="0dp"
     app:cardMaxElevation="0dp"
     android:layout_height="wrap_content">
@@ -101,18 +101,18 @@
             android:layout_width="match_parent"
             android:minHeight="48dp"
             android:layout_height="wrap_content">
-            <androidx.appcompat.widget.AppCompatButton
+            <TextView
                 android:id="@+id/btn_1"
                 android:textAllCaps="false"
                 android:text="@string/dialogutil_btn_sure"
                 android:layout_gravity="center"
                 android:padding="5dp"
+                android:minHeight="48dp"
                 android:textStyle="normal"
                 android:gravity="center"
                 android:background="@drawable/btn_bg_selector_dialog"
                 android:textSize="@dimen/dialogutil_btn_txt_size"
                 android:textColor="@color/dialogutil_ios_btntext_blue"
-
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"/>
@@ -122,7 +122,7 @@
                 android:background="@color/dialogutil_line_dd"
                 android:layout_width="1px"
                 android:layout_height="match_parent"/>
-            <androidx.appcompat.widget.AppCompatButton
+            <TextView
                 android:id="@+id/btn_2"
                 android:text="@string/dialogutil_btn_cancel"
                 android:layout_gravity="center"
@@ -143,7 +143,7 @@
                 android:background="@color/dialogutil_line_dd"
                 android:layout_width="1px"
                 android:layout_height="match_parent"/>
-            <androidx.appcompat.widget.AppCompatButton
+            <TextView
                 android:layout_gravity="center"
                 android:padding="5dp"
                 android:id="@+id/btn_3"
@@ -170,7 +170,7 @@
             android:layout_width="match_parent"
             android:minHeight="48dp"
             android:layout_height="wrap_content">
-            <androidx.appcompat.widget.AppCompatButton
+            <TextView
                 android:id="@+id/btn_1_vertical"
                 android:text="1"
                 android:layout_gravity="center"
@@ -189,7 +189,7 @@
                 android:background="@color/dialogutil_line_dd"
                 android:layout_width="match_parent"
                 android:layout_height="1px"/>
-            <androidx.appcompat.widget.AppCompatButton
+            <TextView
                 android:id="@+id/btn_2_vertical"
                 android:text="2"
                 android:layout_gravity="center"
@@ -209,7 +209,7 @@
                 android:background="@color/dialogutil_line_dd"
                 android:layout_width="match_parent"
                 android:layout_height="1px"/>
-            <androidx.appcompat.widget.AppCompatButton
+            <TextView
                 android:layout_gravity="center"
                 android:padding="5dp"
                 android:id="@+id/btn_3_vertical"

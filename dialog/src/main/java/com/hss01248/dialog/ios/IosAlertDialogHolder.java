@@ -7,7 +7,7 @@ import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.TextView;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
@@ -29,17 +29,17 @@ public class IosAlertDialogHolder extends SuperLvHolder<ConfigBean> {
     public EditText et1;
     public EditText et2;
     protected View line;
-    protected Button btn1;
+    protected TextView btn1;
     protected View lineBtn2;
-    protected Button btn2;
+    protected TextView btn2;
     protected View lineBtn3;
-    protected Button btn3;
+    protected TextView btn3;
     protected LinearLayout llContainerHorizontal;
-    protected Button btn1Vertical;
+    protected TextView btn1Vertical;
     protected View lineBtn2Vertical;
-    protected Button btn2Vertical;
+    protected TextView btn2Vertical;
     protected View lineBtn3Vertical;
-    protected Button btn3Vertical;
+    protected TextView btn3Vertical;
     protected LinearLayout llContainerVertical;
     protected ScrollView sv;
     protected LinearLayout llContainerContent;
@@ -58,17 +58,17 @@ public class IosAlertDialogHolder extends SuperLvHolder<ConfigBean> {
         et1 = (EditText) rootView.findViewById(R.id.et_1);
         et2 = (EditText) rootView.findViewById(R.id.et_2);
         line = (View) rootView.findViewById(R.id.line);
-        btn1 = (Button) rootView.findViewById(R.id.btn_1);
+        btn1 = (TextView) rootView.findViewById(R.id.btn_1);
         lineBtn2 = (View) rootView.findViewById(R.id.line_btn2);
-        btn2 = (Button) rootView.findViewById(R.id.btn_2);
+        btn2 = (TextView) rootView.findViewById(R.id.btn_2);
         lineBtn3 = (View) rootView.findViewById(R.id.line_btn3);
-        btn3 = (Button) rootView.findViewById(R.id.btn_3);
+        btn3 = (TextView) rootView.findViewById(R.id.btn_3);
         llContainerHorizontal = (LinearLayout) rootView.findViewById(R.id.ll_container_horizontal);
-        btn1Vertical = (Button) rootView.findViewById(R.id.btn_1_vertical);
+        btn1Vertical = (TextView) rootView.findViewById(R.id.btn_1_vertical);
         lineBtn2Vertical = (View) rootView.findViewById(R.id.line_btn2_vertical);
-        btn2Vertical = (Button) rootView.findViewById(R.id.btn_2_vertical);
+        btn2Vertical = (TextView) rootView.findViewById(R.id.btn_2_vertical);
         lineBtn3Vertical = (View) rootView.findViewById(R.id.line_btn3_vertical);
-        btn3Vertical = (Button) rootView.findViewById(R.id.btn_3_vertical);
+        btn3Vertical = (TextView) rootView.findViewById(R.id.btn_3_vertical);
         llContainerVertical = (LinearLayout) rootView.findViewById(R.id.ll_container_vertical);
         sv = (ScrollView) rootView.findViewById(R.id.sv);
         llContainerContent = (LinearLayout) rootView.findViewById(R.id.ll_container);
@@ -331,8 +331,6 @@ public class IosAlertDialogHolder extends SuperLvHolder<ConfigBean> {
                 et1.setText(bean.inputText1);
                 et1.setSelection(bean.inputText1.length());
             }
-
-
         }
 
         if (TextUtils.isEmpty(bean.hint2)) {
