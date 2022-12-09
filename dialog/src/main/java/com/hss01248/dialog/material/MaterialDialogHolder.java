@@ -1,7 +1,7 @@
 package com.hss01248.dialog.material;
 
 import android.content.Context;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.SparseBooleanArray;
 import android.view.View;

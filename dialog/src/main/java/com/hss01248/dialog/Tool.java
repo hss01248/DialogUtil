@@ -13,10 +13,10 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomSheetBehavior;
-import android.support.design.widget.BottomSheetDialog;
-import android.support.v7.app.AlertDialog;
+import androidx.annotation.NonNull;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
+import androidx.appcompat.app.AlertDialog;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
@@ -807,7 +807,7 @@ public class Tool {
      */
     public static void setBottomSheetDialogPeekHeight(final ConfigBean bean){
         if(bean.hasBehaviour && bean.dialog instanceof BottomSheetDialog){
-            View view = bean.dialog.getWindow().findViewById(android.support.design.R.id.design_bottom_sheet);
+            View view = bean.dialog.getWindow().findViewById(R.id.design_bottom_sheet);
 
             if(view ==null){
                 return;

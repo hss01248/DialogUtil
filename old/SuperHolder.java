@@ -1,7 +1,7 @@
 package com.hss01248.dialog.view;
 
 import android.content.Context;
-import android.support.annotation.LayoutRes;
+import androidx.annotation.LayoutRes;
 import android.view.View;
 
 import com.hss01248.dialog.config.ConfigBean;

@@ -3,8 +3,8 @@ package com.hss01248.dialogutildemo;
 import android.app.AlertDialog;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 /**
  * Created by huangshuisheng on 2017/9/30.

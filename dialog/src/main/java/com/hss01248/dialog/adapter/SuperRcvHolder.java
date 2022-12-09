@@ -1,7 +1,7 @@
 package com.hss01248.dialog.adapter;
 
 import android.app.Activity;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 
 import java.util.List;

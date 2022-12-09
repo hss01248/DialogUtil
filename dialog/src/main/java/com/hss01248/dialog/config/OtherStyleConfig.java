@@ -1,6 +1,6 @@
 package com.hss01248.dialog.config;
 
-import android.support.annotation.ColorRes;
+import androidx.annotation.ColorRes;
 
 /**
  * Created by Administrator on 2017/12/7.

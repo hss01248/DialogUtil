@@ -91,7 +91,7 @@
         android:layout_width="match_parent"
         android:minHeight="48dp"
         android:layout_height="wrap_content">
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_1"
             android:textAllCaps="false"
             android:text="@string/dialogutil_btn_sure"
@@ -111,7 +111,7 @@
                 android:background="@color/dialogutil_line_dd"
                 android:layout_width="1px"
                 android:layout_height="match_parent"/>
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_2"
                 android:text="@string/dialogutil_btn_cancel"
                 android:layout_gravity="center"
@@ -125,14 +125,14 @@
                 android:gravity="center"
                 android:layout_weight="1"
                 android:minHeight="48dp"
-                android:layout_height="wrap_content"/>
+                android:layout_height="match_parent"/>
 
             <View
                 android:id="@+id/line_btn3"
                 android:background="@color/dialogutil_line_dd"
                 android:layout_width="1px"
                 android:layout_height="match_parent"/>
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:layout_gravity="center"
                 android:padding="5dp"
                 android:id="@+id/btn_3"
@@ -146,7 +146,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:minHeight="48dp"
-                android:layout_height="wrap_content"/>
+                android:layout_height="match_parent"/>
 
 
     </LinearLayout>
@@ -158,7 +158,7 @@
         android:layout_width="match_parent"
         android:minHeight="48dp"
         android:layout_height="wrap_content">
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_1_vertical"
             android:text="1"
             android:layout_gravity="center"
@@ -177,7 +177,7 @@
             android:background="@color/dialogutil_line_dd"
             android:layout_width="match_parent"
             android:layout_height="1px"/>
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_2_vertical"
             android:text="2"
             android:layout_gravity="center"
@@ -197,7 +197,7 @@
             android:background="@color/dialogutil_line_dd"
             android:layout_width="match_parent"
             android:layout_height="1px"/>
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:layout_gravity="center"
             android:padding="5dp"
             android:id="@+id/btn_3_vertical"

@@ -50,7 +50,7 @@
         android:layout_width="match_parent"
         android:minHeight="48dp"
         android:layout_height="wrap_content">
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_1"
             android:text="@string/dialogutil_btn_sure"
             android:layout_gravity="center"
@@ -59,7 +59,6 @@
             android:gravity="center"
             android:textSize="13sp"
             android:textColor="#444444"
-            android:background="@android:color/transparent"
             android:layout_width="match_parent"
             android:minHeight="48dp"
             android:layout_height="wrap_content"/>
@@ -69,7 +68,7 @@
                 android:background="@android:color/darker_gray"
                 android:layout_width="match_parent"
                 android:layout_height="1px"/>
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_2"
                 android:text="@string/dialogutil_btn_cancel"
                 android:textAllCaps="false"
@@ -77,7 +76,6 @@
                 android:padding="5dp"
                 android:textSize="13sp"
                 android:textColor="#444444"
-                android:background="@android:color/transparent"
                 android:layout_width="match_parent"
                 android:gravity="center"
                 android:minHeight="48dp"
@@ -88,7 +86,7 @@
                 android:background="@android:color/darker_gray"
                 android:layout_width="match_parent"
                 android:layout_height="1px"/>
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:layout_gravity="center"
                 android:padding="5dp"
                 android:id="@+id/btn_3"
@@ -97,7 +95,6 @@
                 android:gravity="center"
                 android:textSize="13sp"
                 android:textColor="#444444"
-                android:background="@android:color/transparent"
                 android:layout_width="match_parent"
                 android:minHeight="48dp"
                 android:layout_height="wrap_content"/>

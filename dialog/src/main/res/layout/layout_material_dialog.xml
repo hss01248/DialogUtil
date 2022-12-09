@@ -81,14 +81,15 @@
 
 
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_n"
                 style="@style/ActionButton"
+                android:gravity="center"
                 android:textColor="@color/dialogutil_text_black_light"
                 android:stateListAnimator="@null"
                 tools:text="CANCEL"/>
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_p"
                 style="@style/ActionButton"
                 android:layout_width="match_parent"

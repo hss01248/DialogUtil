@@ -1,7 +1,7 @@
 package com.hss01248.dialog.bottomsheet;
 
 import android.content.Context;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;

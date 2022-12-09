@@ -1,6 +1,6 @@
 package com.hss01248.dialog.config;
 
-import android.support.annotation.DrawableRes;
+import androidx.annotation.DrawableRes;
 import android.view.View;
 
 /**

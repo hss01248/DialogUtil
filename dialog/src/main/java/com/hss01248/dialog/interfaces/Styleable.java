@@ -1,8 +1,8 @@
 package com.hss01248.dialog.interfaces;
 
 import android.app.Dialog;
-import android.support.annotation.ColorRes;
-import android.support.annotation.Nullable;
+import androidx.annotation.ColorRes;
+import androidx.annotation.Nullable;
 
 import com.hss01248.dialog.config.ConfigBean;
 

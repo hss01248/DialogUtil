@@ -1,5 +1,8 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
+    apply from: 'https://raw.githubusercontent.com/hss01248/flipperUtil/dev/remote3.gradle'
+    apply from: 'https://raw.githubusercontent.com/hss01248/flipperUtil/master/deps/depsLastestChecker.gradle'
+    apply from: 'https://raw.githubusercontent.com/hss01248/flipperUtil/dev/z_config/git_branch_info.gradle'
     repositories {
 
         mavenCentral()

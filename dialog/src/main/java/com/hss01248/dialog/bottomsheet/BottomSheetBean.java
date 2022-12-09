@@ -1,6 +1,6 @@
 package com.hss01248.dialog.bottomsheet;
 
-import android.support.annotation.DrawableRes;
+import androidx.annotation.DrawableRes;
 
 /**
  * Created by Administrator on 2016/10/19.
