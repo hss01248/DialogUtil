@@ -2,9 +2,15 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/DialogUtil.iml" filepath="$PROJECT_DIR$/DialogUtil.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/dialog/dialog.iml" filepath="$PROJECT_DIR$/dialog/dialog.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/DialogUtil.iml" filepath="$PROJECT_DIR$/.idea/modules/DialogUtil.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/DialogUtil.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/DialogUtil.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/DialogUtil.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/DialogUtil.app.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/DialogUtil.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/DialogUtil.app.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/DialogUtil.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/DialogUtil.app.unitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/dialog/DialogUtil.dialog.iml" filepath="$PROJECT_DIR$/.idea/modules/dialog/DialogUtil.dialog.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/dialog/DialogUtil.dialog.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/dialog/DialogUtil.dialog.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/dialog/DialogUtil.dialog.main.iml" filepath="$PROJECT_DIR$/.idea/modules/dialog/DialogUtil.dialog.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/dialog/DialogUtil.dialog.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/dialog/DialogUtil.dialog.unitTest.iml" />
     </modules>
   </component>
 </project>

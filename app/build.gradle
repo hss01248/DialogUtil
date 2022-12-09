@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion '28.0.2'
+    compileSdkVersion 32
+    buildToolsVersion '30.0.0'
 
     defaultConfig {
         applicationId "com.hss01248.dialogutildemo"
-        minSdkVersion 15
-        targetSdkVersion 26
+        minSdkVersion 16
+        targetSdkVersion 32
         versionCode 1
         versionName "1.0"
     }
