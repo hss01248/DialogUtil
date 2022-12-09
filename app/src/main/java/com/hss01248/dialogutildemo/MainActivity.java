@@ -335,7 +335,29 @@ android:pivotY="50%" />
 
                 break;
             case R.id.btn_ios_alert:
-                StyledDialog.buildIosAlert( "", msg,  new MyDialogListener() {
+                String msg2 = "前言\n" +
+                        "基于 Jenkins 的 KubeSphere DevOps 系统是专为 Kubernetes 中的 CI/CD 工作流设计的，它提供了一站式的解决方案，帮助开发和运维团队用非常简单的方式构建、测试和发布应用到 Kubernetes。它还具有插件管理、Binary-to-Image (B2I)、Source-to-Image (S2I)、代码依赖缓存、代码质量分析、流水线日志等功能。\n" +
+                        "\n" +
+                        "DevOps 系统为用户提供了一个自动化的环境，应用可以自动发布到同一个平台。它还兼容第三方私有镜像仓库（如 Harbor）和代码库（如 GitLab/GitHub/SVN/BitBucket）。它为用户提供了全面的、可视化的 CI/CD 流水线，打造了极佳的用户体验，而且这种兼容性强的流水线能力在离线环境中非常有用。\n" +
+                        "\n" +
+                        "简而言之，DevOps 可以帮助我们拉取代码、项目编译、构建镜像、推送镜像、项目部署全自动一条龙服务。\n" +
+                        "\n" +
+                        "关于如何安装 DevOps 功能请参照：https://kubesphere.io/zh/docs/pluggable-components/devops/。\n" +
+                        "\n" +
+                        "创建 DevOps 工程 && 创建流水线\n" +
+                        "创建 DevOps 工程：企业空间—>DevOps 工程—>创建；填入工程名称，点击确定即可。"+
+                        "前言2\n" +
+                        "基于 Jenkins 的 KubeSphere DevOps 系统是专为 Kubernetes 中的 CI/CD 工作流设计的，它提供了一站式的解决方案，帮助开发和运维团队用非常简单的方式构建、测试和发布应用到 Kubernetes。它还具有插件管理、Binary-to-Image (B2I)、Source-to-Image (S2I)、代码依赖缓存、代码质量分析、流水线日志等功能。\n" +
+                        "\n" +
+                        "DevOps 系统为用户提供了一个自动化的环境，应用可以自动发布到同一个平台。它还兼容第三方私有镜像仓库（如 Harbor）和代码库（如 GitLab/GitHub/SVN/BitBucket）。它为用户提供了全面的、可视化的 CI/CD 流水线，打造了极佳的用户体验，而且这种兼容性强的流水线能力在离线环境中非常有用。\n" +
+                        "\n" +
+                        "简而言之，DevOps 可以帮助我们拉取代码、项目编译、构建镜像、推送镜像、项目部署全自动一条龙服务。\n" +
+                        "\n" +
+                        "关于如何安装 DevOps 功能请参照：https://kubesphere.io/zh/docs/pluggable-components/devops/。\n" +
+                        "\n" +
+                        "创建 DevOps 工程 && 创建流水线\n" +
+                        "创建 DevOps 工程：企业空间—>DevOps 工程—>创建；填入工程名称，点击确定即可。";
+                StyledDialog.buildIosAlert( "titlexxxxxxxxxxxxxxxxxxxxxtitlexxxxxxxxxxxxxxxxxxxxx", msg2,  new MyDialogListener() {
                     @Override
                     public void onFirst() {
                         showToast("onFirst");
@@ -360,7 +382,7 @@ android:pivotY="50%" />
                     //.setForceWidthPercent(0.99f)
                     //.setForceHeightPercent(0.88f)
                     //.setBgRes(R.drawable.leak_canary_icon)
-                    .setCustomContentHolder(new CustomContentHolder(this))
+                    //.setCustomContentHolder(new CustomContentHolder(this))
                     .show();
                 break;
             case R.id.btn_ios_alert_vertical:
