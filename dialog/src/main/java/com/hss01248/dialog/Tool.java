@@ -578,8 +578,9 @@ public class Tool {
                 }
 
             }
+            //bean.alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         }else {
-             if(bean.type == DefaultConfig.TYPE_IOS_LOADING  ){//转菊花时,背景透明
+             /*if(bean.type == DefaultConfig.TYPE_IOS_LOADING  ){//转菊花时,背景透明
                 bean.dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
             }else if((bean.type == DefaultConfig.TYPE_BOTTOM_SHEET_GRID && !bean.hasBehaviour)){
                  bean.dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.WHITE));
@@ -593,8 +594,9 @@ public class Tool {
                         bean.dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                     }
                 }
-            }
+            }*/
 
+            bean.dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         }
 
 

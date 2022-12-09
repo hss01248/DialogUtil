@@ -1,111 +1,122 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-        android:background="@drawable/bg_ios_roundcorner"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content">
-    <!-- android:background="@drawable/bg_ios_roundcorner"-->
-    <TextView
-        android:id="@+id/tv_title"
-        android:textSize="@dimen/dialogutil_title_txt_size"
-        android:textColor="@color/dialogutil_text_title_11"
-        android:gravity="center"
-        android:text="i am title"
-        android:paddingTop="12dp"
-        android:paddingBottom="12dp"
-        android:paddingLeft="40dp"
-        android:paddingRight="40dp"
-        android:textStyle="bold"
-        android:maxLines="3"
-        android:ellipsize="end"
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    app:cardBackgroundColor="#ffffff"
+    app:cardCornerRadius="20dp"
+    app:cardElevation="0dp"
+    app:cardMaxElevation="0dp"
+    android:layout_height="wrap_content">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-
-
-    <ScrollView
-        android:id="@+id/sv"
-        android:overScrollMode="never"
-        android:scrollbars="none"
-        android:layout_width="match_parent"
-        android:layout_weight="1"
-        android:layout_height="0dp">
-        <LinearLayout
-                android:id="@+id/ll_container"
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:id="@+id/tv_msg"
-                android:textSize="@dimen/dialogutil_msg_txt_size"
-                android:textColor="@color/dialogutil_text_msg_33"
-                android:gravity="center"
-                android:text="i am msg"
-                android:paddingTop="5dp"
-                android:paddingBottom="15dp"
-                android:paddingLeft="30dp"
-                android:paddingRight="30dp"
-                android:minHeight="60dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
-            <EditText
-                android:layout_marginTop="5dp"
-                android:id="@+id/et_1"
-                    android:paddingTop="8dp"
-                    android:paddingBottom="8dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                 style="@style/dialogutil_md_innput"
-                android:background="@drawable/edittext_nomal"
-                android:layout_marginBottom="15dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-            <EditText
-                android:id="@+id/et_2"
-                    android:paddingTop="8dp"
-                    android:paddingBottom="8dp"
-                style="@style/dialogutil_md_innput"
-                android:background="@drawable/edittext_nomal"
-                android:layout_marginBottom="15dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" /><!--35dp-->
-
-
-        </LinearLayout>
-
-
-    </ScrollView>
-
-    <View
-        android:id="@+id/line"
-        android:layout_width="match_parent"
-        android:background="@color/dialogutil_line_dd"
-        android:layout_height="1px"/>
-
-    <LinearLayout
-        android:id="@+id/ll_container_horizontal"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:minHeight="48dp"
         android:layout_height="wrap_content">
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_1"
-            android:textAllCaps="false"
-            android:text="@string/dialogutil_btn_sure"
-            android:layout_gravity="center"
-            android:padding="5dp"
-            android:textStyle="normal"
+        <!-- android:background="@drawable/bg_ios_roundcorner"-->
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:textSize="@dimen/dialogutil_title_txt_size"
+            android:textColor="@color/dialogutil_text_title_11"
             android:gravity="center"
-            android:textSize="@dimen/dialogutil_btn_txt_size"
-            android:textColor="@color/dialogutil_ios_btntext_blue"
-            android:background="@drawable/selector_btn_press_left_bottom"
-            android:layout_width="0dp"
-            android:layout_weight="1"
+            android:text="i am title"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
+            android:paddingLeft="40dp"
+            android:paddingRight="40dp"
+            android:textStyle="bold"
+            android:maxLines="3"
+            android:ellipsize="end"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
+
+        <ScrollView
+            android:id="@+id/sv"
+            android:overScrollMode="never"
+            android:scrollbars="none"
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_height="0dp">
+            <LinearLayout
+                android:id="@+id/ll_container"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/tv_msg"
+                    android:textSize="@dimen/dialogutil_msg_txt_size"
+                    android:textColor="@color/dialogutil_text_msg_33"
+                    android:gravity="center"
+                    android:text="i am msg"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="15dp"
+                    android:paddingLeft="30dp"
+                    android:paddingRight="30dp"
+                    android:minHeight="60dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <EditText
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/et_1"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    style="@style/dialogutil_md_innput"
+                    android:background="@drawable/edittext_nomal"
+                    android:layout_marginBottom="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <EditText
+                    android:id="@+id/et_2"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
+                    style="@style/dialogutil_md_innput"
+                    android:background="@drawable/edittext_nomal"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" /><!--35dp-->
+
+
+            </LinearLayout>
+
+
+        </ScrollView>
+
+        <View
+            android:id="@+id/line"
+            android:layout_width="match_parent"
+            android:background="@color/dialogutil_line_dd"
+            android:layout_height="1px"/>
+
+        <LinearLayout
+            android:id="@+id/ll_container_horizontal"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:minHeight="48dp"
+            android:layout_height="wrap_content">
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_1"
+                android:textAllCaps="false"
+                android:text="@string/dialogutil_btn_sure"
+                android:layout_gravity="center"
+                android:padding="5dp"
+                android:textStyle="normal"
+                android:gravity="center"
+                android:background="@drawable/btn_bg_selector_dialog"
+                android:textSize="@dimen/dialogutil_btn_txt_size"
+                android:textColor="@color/dialogutil_ios_btntext_blue"
+
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"/>
+<!-- android:background="@drawable/selector_btn_press_left_bottom"-->
             <View
                 android:id="@+id/line_btn2"
                 android:background="@color/dialogutil_line_dd"
@@ -120,13 +131,13 @@
                 android:textAllCaps="false"
                 android:textSize="@dimen/dialogutil_btn_txt_size"
                 android:textColor="@color/dialogutil_ios_btntext_blue"
-                android:background="@drawable/selector_btn_press_no_corner"
+                android:background="@drawable/btn_bg_selector_dialog"
                 android:layout_width="0dp"
                 android:gravity="center"
                 android:layout_weight="1"
                 android:minHeight="48dp"
                 android:layout_height="match_parent"/>
-
+<!--     android:background="@drawable/selector_btn_press_no_corner"-->
             <View
                 android:id="@+id/line_btn3"
                 android:background="@color/dialogutil_line_dd"
@@ -142,78 +153,80 @@
                 android:gravity="center"
                 android:textSize="@dimen/dialogutil_btn_txt_size"
                 android:textColor="@color/dialogutil_ios_btntext_blue"
-                android:background="@drawable/selector_btn_press_right_bottom"
+                android:background="@drawable/btn_bg_selector_dialog"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:minHeight="48dp"
                 android:layout_height="match_parent"/>
+            <!--android:background="@drawable/selector_btn_press_right_bottom"-->
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_container_vertical"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:minHeight="48dp"
+            android:layout_height="wrap_content">
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_1_vertical"
+                android:text="1"
+                android:layout_gravity="center"
+                android:padding="5dp"
+                android:gravity="center"
+                android:textSize="@dimen/dialogutil_btn_txt_size"
+                android:textColor="@color/dialogutil_ios_btntext_blue"
+                android:background="@drawable/selector_btn_press_no_corner"
+                android:textStyle="normal"
+                android:layout_width="match_parent"
+                android:minHeight="48dp"
+                android:layout_height="wrap_content"/>
+
+            <View
+                android:id="@+id/line_btn2_vertical"
+                android:background="@color/dialogutil_line_dd"
+                android:layout_width="match_parent"
+                android:layout_height="1px"/>
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_2_vertical"
+                android:text="2"
+                android:layout_gravity="center"
+                android:padding="5dp"
+                android:textStyle="normal"
+                android:textSize="@dimen/dialogutil_btn_txt_size"
+                android:textColor="@color/dialogutil_ios_btntext_blue"
+                android:background="@drawable/selector_btn_press_no_corner"
+
+                android:layout_width="match_parent"
+                android:gravity="center"
+                android:minHeight="48dp"
+                android:layout_height="wrap_content"/>
+
+            <View
+                android:id="@+id/line_btn3_vertical"
+                android:background="@color/dialogutil_line_dd"
+                android:layout_width="match_parent"
+                android:layout_height="1px"/>
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_gravity="center"
+                android:padding="5dp"
+                android:id="@+id/btn_3_vertical"
+                android:text="3"
+                android:textStyle="normal"
+                android:gravity="center"
+                android:textSize="@dimen/dialogutil_btn_txt_size"
+                android:textColor="@color/dialogutil_ios_btntext_blue"
+                android:background="@drawable/selector_btn_press_all_bottom"
+
+                android:layout_width="match_parent"
+                android:minHeight="48dp"
+                android:layout_height="wrap_content"/>
+
+
+        </LinearLayout>
 
 
     </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/ll_container_vertical"
-        android:orientation="vertical"
-        android:visibility="gone"
-        android:layout_width="match_parent"
-        android:minHeight="48dp"
-        android:layout_height="wrap_content">
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_1_vertical"
-            android:text="1"
-            android:layout_gravity="center"
-            android:padding="5dp"
-            android:gravity="center"
-            android:textSize="@dimen/dialogutil_btn_txt_size"
-            android:textColor="@color/dialogutil_ios_btntext_blue"
-            android:background="@drawable/selector_btn_press_no_corner"
-                android:textStyle="normal"
-            android:layout_width="match_parent"
-            android:minHeight="48dp"
-            android:layout_height="wrap_content"/>
-
-        <View
-            android:id="@+id/line_btn2_vertical"
-            android:background="@color/dialogutil_line_dd"
-            android:layout_width="match_parent"
-            android:layout_height="1px"/>
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_2_vertical"
-            android:text="2"
-            android:layout_gravity="center"
-            android:padding="5dp"
-            android:textStyle="normal"
-            android:textSize="@dimen/dialogutil_btn_txt_size"
-            android:textColor="@color/dialogutil_ios_btntext_blue"
-            android:background="@drawable/selector_btn_press_no_corner"
-
-            android:layout_width="match_parent"
-            android:gravity="center"
-            android:minHeight="48dp"
-            android:layout_height="wrap_content"/>
-
-        <View
-            android:id="@+id/line_btn3_vertical"
-            android:background="@color/dialogutil_line_dd"
-            android:layout_width="match_parent"
-            android:layout_height="1px"/>
-        <androidx.appcompat.widget.AppCompatButton
-            android:layout_gravity="center"
-            android:padding="5dp"
-            android:id="@+id/btn_3_vertical"
-            android:text="3"
-                android:textStyle="normal"
-            android:gravity="center"
-            android:textSize="@dimen/dialogutil_btn_txt_size"
-            android:textColor="@color/dialogutil_ios_btntext_blue"
-            android:background="@drawable/selector_btn_press_all_bottom"
-
-            android:layout_width="match_parent"
-            android:minHeight="48dp"
-            android:layout_height="wrap_content"/>
-
-
-    </LinearLayout>
-
-
-</LinearLayout>
+</androidx.cardview.widget.CardView>
