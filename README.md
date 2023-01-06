@@ -48,6 +48,40 @@ any problem or bug, join the qq group to get a quick response:
 * **support three window types**: as a common dialog ,as a widow with TYPE_TOAST,as a activity with dialog style.
 * support show **softKeyboard** automatically ,just setNeedSoftKeyboard(true)
 * support **ad style** dialog
+* fullscreen dialog support
+
+
+
+# full screen dialog
+
+inspired by [三句代码创建全屏Dialog或者DialogFragment](https://www.jianshu.com/p/3ecad4bfc55e)
+
+> use FullScreenDialog object or R.style.Dialog_FullScreen
+
+```java
+FullScreenDialog dialog = new FullScreenDialog(this);
+
+//or :    Dialog dialog = new Dialog(this,R.style.Dialog_FullScreen);
+       // FullScreenDialog.setDialogToFullScreen(dialog);
+
+
+
+        TextView textView = new TextView(this);
+        textView.setText("test text     Toast.makeText(MainActivity.this, msg, Toast.LENGTH_SHORT).show();\n " +
+                "Toast.makeText(MainActivity.this, msg, Toast.LENGTH_SHORT).show();");
+        textView.setTextColor(Color.BLACK);
+        textView.setBackgroundColor(Color.GREEN);
+
+
+        dialog.setContentView(textView);
+        dialog.show();
+```
+
+
+
+effect:
+
+![image-20230106172535563](https://cdn.jsdelivr.net/gh/shuiniuhss/myimages@main/imagemac3/image-20230106172535563.png)
 
 
 

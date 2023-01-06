@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,6 +28,7 @@ import com.hss01248.dialog.adapter.SuperRcvAdapter;
 import com.hss01248.dialog.adapter.SuperRcvHolder;
 import com.hss01248.dialog.bottomsheet.BottomSheetBean;
 import com.hss01248.dialog.config.ConfigBean;
+import com.hss01248.dialog.fullscreen.FullScreenDialog;
 import com.hss01248.dialog.interfaces.MyDialogListener;
 import com.hss01248.dialog.interfaces.MyItemDialogListener;
 import com.orhanobut.logger.Logger;
@@ -745,4 +747,19 @@ android:pivotY="50%" />
     }
 
 
+    public void fullScreen(View view) {
+        //FullScreenDialog dialog = new FullScreenDialog(this);
+        Dialog dialog = new Dialog(this,R.style.Dialog_FullScreen);
+        FullScreenDialog.setDialogToFullScreen(dialog);
+
+
+        TextView textView = new TextView(this);
+        textView.setText("test text     Toast.makeText(MainActivity.this, msg, Toast.LENGTH_SHORT).show();\n " +
+                "Toast.makeText(MainActivity.this, msg, Toast.LENGTH_SHORT).show();");
+        textView.setTextColor(Color.BLACK);
+        textView.setBackgroundColor(Color.GREEN);
+
+        dialog.setContentView(textView);
+        dialog.show();
+    }
 }
