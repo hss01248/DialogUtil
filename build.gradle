@@ -3,12 +3,7 @@ buildscript {
     apply from: 'https://raw.githubusercontent.com/hss01248/flipperUtil/dev/remote3.gradle'
     apply from: 'https://raw.githubusercontent.com/hss01248/flipperUtil/master/deps/depsLastestChecker.gradle'
     apply from: 'https://raw.githubusercontent.com/hss01248/flipperUtil/dev/z_config/git_branch_info.gradle'
-    repositories {
 
-        mavenCentral()
-        google()
-        jcenter()
-    }
     dependencies {
         classpath 'com.android.tools.build:gradle:4.1.0'
 
@@ -16,12 +11,5 @@ buildscript {
         // in the individual module build.gradle files
     }
 }
-allprojects {
-    repositories {
-        mavenCentral()
-        google()
-        jcenter()
-        maven { url "https://jitpack.io" }
-    }
-}
+
 

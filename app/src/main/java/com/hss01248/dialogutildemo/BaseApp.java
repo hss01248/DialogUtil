@@ -10,7 +10,6 @@ import com.alibaba.fastjson.JSON;
 
 import com.orhanobut.logger.Jsonfy;
 import com.orhanobut.logger.XLogUtil;
-import com.squareup.leakcanary.LeakCanary;
 
 /**
  * Created by Administrator on 2017/2/15 0015.
@@ -21,7 +20,6 @@ public class BaseApp extends MultiDexApplication {
     @Override
     public void onCreate() {
         super.onCreate();
-        LeakCanary.install(this);
         //StyledDialog.init(getApplicationContext());
         initlog();
         //TestTool.openStickModeIfIsDebug();

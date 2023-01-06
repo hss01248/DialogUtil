@@ -56,8 +56,13 @@ dependencies {
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.1'
     //compile 'com.github.rubensousa:BottomSheetBuilder:1.3'
     compile project(path: ':dialog')
-    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5'
-    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
+    //debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5'
+   // releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
     compile 'com.github.hss01248:Mylog:1.0.1'
     compile 'com.alibaba:fastjson:1.1.54.android'
+}
+
+configurations {
+    //all*.exclude group: 'com.github.hss01248.flipperUtil'
+     all*.exclude group: 'com.github.hss01248', module: 'DialogUtil'
 }
