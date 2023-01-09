@@ -359,6 +359,7 @@ android:pivotY="50%" />
                         "\n" +
                         "创建 DevOps 工程 && 创建流水线\n" +
                         "创建 DevOps 工程：企业空间—>DevOps 工程—>创建；填入工程名称，点击确定即可。";
+                String msg3 = "one line test";
                 StyledDialog.buildIosAlert( "titlexxxxxxxxxxxxxxxxxxxxxtitlexxxxxxxxxxxxxxxxxxxxx", msg2,  new MyDialogListener() {
                     @Override
                     public void onFirst() {
@@ -386,6 +387,24 @@ android:pivotY="50%" />
                     //.setBgRes(R.drawable.leak_canary_icon)
                     //.setCustomContentHolder(new CustomContentHolder(this))
                     .show();
+                StyledDialog.buildIosAlert( "titlexxxxxxxxxxxxxxxxxxxxxtitlexxxxxxxxxxxxxxxxxxxxx", msg3,  new MyDialogListener() {
+                    @Override
+                    public void onFirst() {
+                        showToast("onFirst");
+                    }
+
+                    @Override
+                    public void onSecond() {
+                        showToast("onSecond");
+                    }
+
+                    @Override
+                    public void onThird() {
+                        showToast("onThird");
+                    }
+
+
+                }).show();
                 break;
             case R.id.btn_ios_alert_vertical:
                 StyledDialog.buildIosAlertVertical( "titlelll", msg,  new MyDialogListener() {

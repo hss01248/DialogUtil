@@ -116,7 +116,7 @@ public class ConfigBean extends MyDialogBuilder implements Styleable {
     public CharSequence title;
     public CharSequence msg;
     public CharSequence text1 = DefaultConfig.btnTxt1;
-    public CharSequence text2 = DefaultConfig.btnTxt2;
+    public CharSequence text2 ;
     public CharSequence text3;
 
     public CharSequence hint1;

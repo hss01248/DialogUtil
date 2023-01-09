@@ -189,7 +189,7 @@ public class StyledDialog {
 
 
     public static ConfigBean buildIosAlert(CharSequence title, CharSequence msg, MyDialogListener listener) {
-        return DialogAssigner.getInstance().assignIosAlert(null, title, msg, listener);
+        return DialogAssigner.getInstance().assignIosAlert(null, title, msg, listener).setBtnText("ok");
     }
 
 

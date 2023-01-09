@@ -2,11 +2,14 @@ package com.hss01248.dialog.ios;
 
 
 import android.content.Context;
+import android.os.Build;
 import android.text.TextUtils;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.TextView;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -215,6 +218,22 @@ public class IosAlertDialogHolder extends SuperLvHolder<ConfigBean> {
 
             tvMsg.setTextColor(Tool.getColor(tvMsg.getContext(),bean.msgTxtColor));
             tvMsg.setTextSize(bean.msgTxtSize);
+
+            tvMsg.measure(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+            tvMsg.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+                @Override
+                public void onGlobalLayout() {
+                    int lineCount = tvMsg.getLineCount();
+                    if(lineCount>0){
+                        tvMsg.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                        if (lineCount ==1){
+                            tvMsg.setGravity(Gravity.CENTER);
+                        }else {
+                            tvMsg.setGravity(Gravity.LEFT);
+                        }
+                    }
+                }
+            });
         }
     }
 

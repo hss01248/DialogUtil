@@ -89,7 +89,7 @@ public class DefaultConfig {
 
     public static void initBtnTxt(Context context){
         btnTxt1 = context.getResources().getString(R.string.dialogutil_btn_sure);
-        btnTxt2 = context.getResources().getString(R.string.dialogutil_btn_cancel);
+        //btnTxt2 = context.getResources().getString(R.string.dialogutil_btn_cancel);
         bottomTxt = context.getResources().getString(R.string.dialogutil_btn_cancel);
         loadingTxt = context.getResources().getString(R.string.dialogutil_loading);
         uploadingTxt = context.getResources().getString(R.string.dialogutil_uploading);
