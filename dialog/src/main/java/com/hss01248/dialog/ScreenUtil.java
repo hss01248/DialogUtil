@@ -21,6 +21,10 @@ public class ScreenUtil {
         int height =  getWindowManager().getDefaultDisplay().getHeight();
         return height;
     }
+    public static int getScreenWidth() {
+        int height =  getWindowManager().getDefaultDisplay().getWidth();
+        return height;
+    }
 
     /**
      * 通过反射，获取包含虚拟键的整体屏幕高度

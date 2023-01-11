@@ -6,6 +6,7 @@ import android.os.Build;
 import android.text.TextUtils;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,8 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.hss01248.dialog.R;
+import com.hss01248.dialog.ScreenUtil;
+import com.hss01248.dialog.StyledDialog;
 import com.hss01248.dialog.Tool;
 import com.hss01248.dialog.adapter.SuperLvHolder;
 import com.hss01248.dialog.config.ConfigBean;
@@ -209,6 +212,16 @@ public class IosAlertDialogHolder extends SuperLvHolder<ConfigBean> {
         });
     }
 
+    /**
+     * 策略: textview 使用wrap_content,
+     * 如果其宽度没有充满,那么将其和其内文字居中显示
+     * 否则,居左
+     * json类型的不调整其gravity
+     * 测试: 多行 短文字
+     *       单行 短文字
+     *       单行  长文字
+     * @param bean
+     */
     private void setMsgStyleAndTxt(ConfigBean bean) {
         if (TextUtils.isEmpty(bean.msg)) {
             tvMsg.setVisibility(View.GONE);
@@ -219,17 +232,27 @@ public class IosAlertDialogHolder extends SuperLvHolder<ConfigBean> {
             tvMsg.setTextColor(Tool.getColor(tvMsg.getContext(),bean.msgTxtColor));
             tvMsg.setTextSize(bean.msgTxtSize);
 
-            tvMsg.measure(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+            //json类型的不调整其gravity
+            if(bean.msg.toString().startsWith("{") && bean.msg.toString().endsWith("}")){
+                return;
+            }
+            if(bean.msg.toString().startsWith("[") && bean.msg.toString().endsWith("]")){
+                return;
+            }
             tvMsg.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
                 @Override
                 public void onGlobalLayout() {
                     int lineCount = tvMsg.getLineCount();
                     if(lineCount>0){
                         tvMsg.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-                        if (lineCount ==1){
+
+                        Log.w("check","tvMsg.getMeasuredWidth()-"+tvMsg.getMeasuredWidth()+
+                                "-llContainerContent.getMeasuredWidth()-"+llContainerContent.getMeasuredWidth());
+                        if(tvMsg.getMeasuredWidth()*1.4 < llContainerContent.getMeasuredWidth() || lineCount == 1){
                             tvMsg.setGravity(Gravity.CENTER);
-                        }else {
-                            tvMsg.setGravity(Gravity.LEFT);
+                            LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) tvMsg.getLayoutParams();
+                            layoutParams.gravity = Gravity.CENTER;
+                            tvMsg.setLayoutParams(layoutParams);
                         }
                     }
                 }

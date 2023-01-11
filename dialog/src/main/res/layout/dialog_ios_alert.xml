@@ -48,14 +48,14 @@
                     android:id="@+id/tv_msg"
                     android:textSize="@dimen/dialogutil_msg_txt_size"
                     android:textColor="@color/dialogutil_text_msg_33"
-                    android:gravity="center"
+                    android:gravity="left"
                     android:text="i am msg"
                     android:paddingTop="5dp"
                     android:paddingBottom="15dp"
                     android:paddingLeft="30dp"
                     android:paddingRight="30dp"
                     android:minHeight="60dp"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
 
                 <EditText

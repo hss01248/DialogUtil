@@ -405,6 +405,18 @@ android:pivotY="50%" />
 
 
                 }).show();
+                StyledDialog.buildIosAlert( "titlexxxxxxxxxx\nxxxxxxxxxxxt\nitlexxxxxxxxx\nxxxxxxxxxxx",
+                        "titlexxxxxxxxxx\nxxxxxxxxxxxt\nitlexxxxxxxxx\nxxxxxxxxxxx",
+                        new MyDialogListener() {
+                    @Override
+                    public void onFirst() {
+                        showToast("onFirst");
+                    }
+                    @Override
+                    public void onSecond() {
+
+                    }
+                }).show();
                 break;
             case R.id.btn_ios_alert_vertical:
                 StyledDialog.buildIosAlertVertical( "titlelll", msg,  new MyDialogListener() {
