@@ -13,9 +13,10 @@
         <item name="android:backgroundDimEnabled">false</item>&ndash;&gt;
     </style>-->
 
-    <style name="Dialog.FullScreen" parent="Theme.AppCompat.Dialog">
+    <style name="Dialog.FullScreen" parent="Theme.AppCompat.Light.Dialog">
+        <!--Theme.AppCompat.Dialog-->
         <item name="android:windowNoTitle">true</item>
-        <item name="android:windowBackground">#00000000</item>
+        <item name="android:windowBackground">#FFFFFF</item>
         <item name="android:windowIsFloating">false</item>
     </style>
 
