@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 32
+    compileSdkVersion 34
     buildToolsVersion '30.0.0'
 
     defaultConfig {
         applicationId "com.hss01248.dialogutildemo"
-        minSdkVersion 19
-        targetSdkVersion 32
+        minSdkVersion 23
+        targetSdkVersion 34
         versionCode 1
         versionName "1.0"
         multiDexEnabled true
@@ -40,26 +40,25 @@ repositories {
     };
 
     maven {
-        url  "http://dl.bintray.com/lukaville/maven"
+        url  "https://dl.bintray.com/lukaville/maven"
     }
 
 
     /* maven { url "http://dl.bintray.com/dodola/maven" }*/
 }
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    testCompile 'junit:junit:4.12'
+
     implementation 'androidx.appcompat:appcompat:1.0.0'
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
     implementation 'com.google.android.material:material:1.0.0'
-    compile 'com.jakewharton:butterknife:10.2.1'
+    implementation 'com.jakewharton:butterknife:10.2.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.1'
     //compile 'com.github.rubensousa:BottomSheetBuilder:1.3'
-    compile project(path: ':dialog')
+    implementation project(path: ':dialog')
     //debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5'
    // releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
-    compile 'com.github.hss01248:Mylog:1.0.1'
-    compile 'com.alibaba:fastjson:1.1.54.android'
+    implementation 'com.github.hss01248:Mylog:1.0.1'
+    implementation 'com.alibaba:fastjson:1.1.54.android'
 }
 
 configurations {

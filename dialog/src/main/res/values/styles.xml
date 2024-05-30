@@ -16,7 +16,7 @@
     <style name="Dialog.FullScreen" parent="Theme.AppCompat.Light.Dialog">
         <!--Theme.AppCompat.Dialog-->
         <item name="android:windowNoTitle">true</item>
-        <item name="android:windowBackground">#FFFFFF</item>
+        <item name="android:windowBackground">@color/cardBodyColor</item>
         <item name="android:windowIsFloating">false</item>
     </style>
 
